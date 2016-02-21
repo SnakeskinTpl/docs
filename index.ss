@@ -11,8 +11,7 @@
 - include './base'
 - include './docs/*/*'
 
-- block main->doc(el, key, i = 2)
-	: cont = []
+- block main->doc(el, key, i = 2, cont = [])
 	- if key === 'main'
 		: hash = Object.keys(el)[0]
 		< .doc#doc-${hash}
@@ -21,11 +20,11 @@
 
 	- else if typeof el !== 'function'
 		- target cont
-			< h
+			< h${i}
 				{key}
 
 		- forEach el => el, key
-			+= self.doc(el, key, ++i)
+			+= self.doc(el, key, ++i, cont)
 
 - base.typograf({lang: @@lang})
 - template main()
