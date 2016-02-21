@@ -11,18 +11,18 @@
 - import Typograf from 'typograf'
 - import MarkdownIt from 'markdown-it'
 
-- template typograf(params) @= renderAs 'template'
+- template typograf(params)
 	- return
 		() => target
 			- return
 				() =>
 					- return new Typograf(params).execute(target.apply(this, arguments))
 
-- template md(target) @= renderAs 'template'
+- template md(target)
 	- return
 		() =>
 			- return MarkdownIt().render(target.apply(this, arguments))
 
 - @md
-- @typograf({lang: @@lang || 'ru'})
+- @typograf({lang: @@lang})
 - placeholder main() @= tolerateWhitespaces true @= localization false

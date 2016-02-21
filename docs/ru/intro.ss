@@ -8,7 +8,7 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
-- include '../../base' as placeholder
+- include '../../base'
 
 #{template main[%fileName%]() extends base.main}
 #{block root}

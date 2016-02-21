@@ -8,6 +8,7 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
+- include './base'
 - include './docs/*/*'
 
 - block main->doc(el, key, i = 2)
@@ -26,6 +27,7 @@
 		- forEach el => el, key
 			+= self.doc(el, key, ++i)
 
+- base.typograf({lang: @@lang})
 - template main()
 	- doctype
 	< html
@@ -35,7 +37,7 @@
 				Документация Snakeskin 7
 
 		< body
-			: doc = docs[@@lang || 'ru']
+			: doc = docs[@@lang]
 			< ul
 				- forEach doc => el, key
 					< li
