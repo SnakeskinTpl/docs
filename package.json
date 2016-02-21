@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-snakeskin": "^7.0.0",
+    "gulp-stylus": "^2.3.0",
+    "gulp-watch": "^4.3.5",
+    "markdown-it": "^6.0.0",
+    "snakeskin": "^7.0.0-beta15",
+    "stylus": "^0.53.0"
+  },
+  "dependencies": {
+    "glob": "^7.0.0"
+  }
+}
