@@ -10,7 +10,7 @@
 
 - include '../../base' as placeholder
 
-#{template main() extends base.main}
+#{template main[%fileName%]() extends base.main}
 #{block root}
 
 Snakeskin — это специальный язык шаблонов, который транслируется в JavaScript. Говоря более четко, он предоставляет

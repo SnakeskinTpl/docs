@@ -11,12 +11,17 @@
 - include './docs/*/*'
 
 - block main->doc(el, key, i = 2)
-	- if key === 'main' && typeof el === 'function'
-		+= el()
+	: cont = []
+	- if key === 'main'
+		: hash = Object.keys(el)[0]
+		< .doc#doc-${hash}
+			+= cont.join('')
+			+= el[hash]()
 
 	- else if typeof el !== 'function'
-		< h${i}
-			{key}
+		- target cont
+			< h
+				{key}
 
 		- forEach el => el, key
 			+= self.doc(el, key, ++i)

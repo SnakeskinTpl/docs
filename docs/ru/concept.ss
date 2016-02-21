@@ -10,7 +10,7 @@
 
 - include '../../base' as placeholder
 
-#{template main() extends base.main}
+#{template main[%fileName%]() extends base.main}
 #{block root}
 
 Шаблоны в Snakeskin — это функции в JavaScript.
