@@ -6,7 +6,8 @@
     "gulp-stylus": "^2.3.0",
     "gulp-watch": "^4.3.5",
     "markdown-it": "^6.0.0",
-    "snakeskin": "^7.0.0-beta17",
-    "stylus": "^0.53.0"
+    "snakeskin": "^7.0.0-beta18",
+    "stylus": "^0.53.0",
+    "typograf": "^5.0.0"
   }
 }
