@@ -13,7 +13,7 @@
 #{template main[%fileName%]() extends base.main}
 #{block root}
 
-Шаблоны в Snakeskin — это функции в JavaScript.
+Шаблоны в Snakeskin - это функции в JavaScript.
 
 ```js
 - namespace demo

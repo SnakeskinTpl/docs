@@ -26,7 +26,7 @@
 		- forEach el => el, key
 			+= self.doc(el, key, ++i)
 
-- template main(@params = {})
+- template main()
 	- doctype
 	< html
 		< head
@@ -35,7 +35,7 @@
 				Документация Snakeskin 7
 
 		< body
-			: doc = docs[@lang || 'ru']
+			: doc = docs[@@lang || 'ru']
 			< ul
 				- forEach doc => el, key
 					< li
