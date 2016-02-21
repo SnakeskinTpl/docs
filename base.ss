@@ -24,5 +24,4 @@
 			- return MarkdownIt().render(target.apply(this, arguments))
 
 - @md
-- @typograf({lang: @@lang})
 - placeholder main() @= tolerateWhitespaces true @= localization false
