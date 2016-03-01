@@ -27,8 +27,9 @@
 			+= self.doc(el, key, ++i, cont)
 
 - template main() extends index.main
+	- cluster = 'guide'
 	- block body
-		: doc = docs[@@lang].guide
+		: doc = docs[@@lang][cluster]
 		< ul
 			- forEach doc => el, key
 				< li
