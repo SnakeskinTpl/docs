@@ -1,4 +1,4 @@
-- namespace docs.ru['Введение']['Что такое Snakeskin']
+- namespace docs.ru.guide['Введение']['Что такое Snakeskin']
 
 /*!
  * snakeskin.github.io
@@ -8,7 +8,7 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
-- include '../../base'
+- include '../../tpls/modules/base'
 
 #{template main[%fileName%]() extends base.main}
 #{block root}

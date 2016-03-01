@@ -8,23 +8,7 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
-- include './base'
-- include './docs/*/*'
-
-- block main->doc(el, key, i = 2, cont = [])
-	- if key === 'main'
-		: hash = Object.keys(el)[0]
-		< .doc#doc-${hash}
-			+= cont.join('')
-			+= el[hash]()
-
-	- else if typeof el !== 'function'
-		- target cont
-			< h${i}
-				{key}
-
-		- forEach el => el, key
-			+= self.doc(el, key, ++i, cont)
+- include './modules/base'
 
 - base.typograf({lang: @@lang})
 - template main()
@@ -39,15 +23,6 @@
 			- link :: css/index.css
 
 		< body
-			/*: doc = docs[@@lang]
-			< ul
-				- forEach doc => el, key
-					< li
-						{key}
-
-			- forEach doc => el, key
-				+= self.doc(el, key)*/
-
 			< .b-index-wrapper
 				< .&__el[.&_align_center]
 					< menu.b-index-top-menu
@@ -110,4 +85,3 @@
 							Fork
 
 						- script js id = github-bjs | src = https://buttons.github.io/buttons.js | async | defer
-

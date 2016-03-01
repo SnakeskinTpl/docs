@@ -1,0 +1,50 @@
+- namespace guide
+
+/*!
+ * snakeskin.github.io
+ * https://github.com/SnakeskinTpl/snakeskin.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
+ */
+
+- include './modules/base'
+- include '../docs/*/*'
+
+- block main->doc(el, key, i = 2, cont = [])
+	- if key === 'main'
+		: hash = Object.keys(el)[0]
+		< .doc#doc-${hash}
+			+= cont.join('')
+			+= el[hash]()
+
+	- else if typeof el !== 'function'
+		- target cont
+			< h${i}
+				{key}
+
+		- forEach el => el, key
+			+= self.doc(el, key, ++i, cont)
+
+- base.typograf({lang: @@lang})
+- template main()
+	- doctype
+	< html
+		< head
+			< meta charset = utf-8
+			< title
+				Документация Snakeskin 7
+
+			- link :: https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic&subset=latin,cyrillic
+			- link :: css/index.css
+
+		< body
+			/*: doc = docs[@@lang]
+			< ul
+				- forEach doc => el, key
+					< li
+						{key}
+
+			- forEach doc => el, key
+				+= self.doc(el, key)*/
+
