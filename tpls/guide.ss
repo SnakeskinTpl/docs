@@ -36,4 +36,3 @@
 
 		- forEach doc => el, key
 			+= self.doc(el, key)
-
