@@ -8,6 +8,8 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
+global.i18n = (str) => str;
+
 const
 	gulp = require('gulp'),
 	snakeskin = require('gulp-snakeskin'),
