@@ -13,6 +13,7 @@ const
 	snakeskin = require('gulp-snakeskin'),
 	stylus = require('gulp-stylus'),
 	autoprefixer = require('gulp-autoprefixer'),
+	nib = require('nib'),
 	watch = require('gulp-watch');
 
 function error(cb) {
@@ -32,9 +33,9 @@ gulp.task('snakeskin', (cb) => {
 });
 
 gulp.task('stylus', (cb) => {
-	gulp.src('./styles/index.styl')
+	gulp.src('./styles/*.styl')
 		.pipe(watch('./styles/**/*.styl'))
-		.pipe(stylus())
+		.pipe(stylus({use: nib()}))
 		.on('error', error(cb))
 		.pipe(autoprefixer())
 		.pipe(gulp.dest('./build/css'))
