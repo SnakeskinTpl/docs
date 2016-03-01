@@ -24,8 +24,8 @@ function error(cb) {
 }
 
 gulp.task('snakeskin', (cb) => {
-	gulp.src('./index.ss')
-		.pipe(watch('./**/*.ss'))
+	gulp.src('./tpls/*.ss')
+		.pipe(watch('./@(tpls|docs)/**/*.ss'))
 		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru'}}))
 		.on('error', error(cb))
 		.pipe(gulp.dest('./build'))
