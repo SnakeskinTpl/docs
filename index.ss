@@ -100,11 +100,11 @@
 						.
 							Star
 
-						< a.github-button href = https://github.com/SnakeskinTpl/Snakeskin | &
+						< a.github-button href = https://github.com/SnakeskinTpl/Snakeskin/fork | &
 							aria-label = Fork SnakeskinTpl/Snakeskin on GitHub |
 							-count-aria-label = # forks on GitHub |
 							-count-api = /repos/SnakeskinTpl/Snakeskin#forks_count |
-							-count-href = /SnakeskinTpl/Snakeskin/forks |
+							-count-href = /SnakeskinTpl/Snakeskin/network |
 							-icon = octicon-repo-forked
 						.
 							Fork
