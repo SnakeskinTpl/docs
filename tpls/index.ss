@@ -29,11 +29,11 @@
 					< .&__el[.&_align_center]
 						< menu.b-index-top-menu
 							< li
-								< a href = #
+								< a href = guide.html
 									`Гайд`
 
 							< li
-								< a href = #
+								< a href = api.html
 									API
 
 							< li
