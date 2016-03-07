@@ -8,6 +8,7 @@
     "markdown-it": "^6.0.0",
     "nib": "^1.1.0",
     "snakeskin": "^7.0.0-beta22",
+    "stylint": "^1.3.6",
     "stylus": "^0.53.0",
     "typograf": "^5.0.0"
   }
