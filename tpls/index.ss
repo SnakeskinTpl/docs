@@ -49,17 +49,17 @@
 			] .
 
 			- block nav()
-				< menu.b-nav
-					- forEach menu => @el
-						< li
-							< a ${el}
-								{@label}
+				< nav.b-nav
+					< menu
+						- forEach menu => @el
+							< li
+								< a ${el}
+									{@label}
 
 			- block body
 				< .b-index-wrapper
 					< .&__el[.&_align_center]
-						< nav
-							+= self.nav()
+						+= self.nav()
 
 						< img.b-index-logo src = ../logo.svg | alt = snakeskin template engine
 						< .b-index-title

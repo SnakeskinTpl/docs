@@ -11,29 +11,42 @@
 - include './index'
 - include '../docs/*/*'
 
-- block main->doc(el, key, i = 2, cont = [])
-	- if key === 'main'
-		: hash = Object.keys(el)[0]
-		< .doc#doc-${hash}
-			+= cont.join('')
-			+= el[hash]()
-
-	- else if typeof el !== 'function'
-		- target cont
-			< h${i}
-				{key}
-
-		- forEach el => el, key
-			+= self.doc(el, key, ++i, cont)
-
 - template main() extends index.main
 	- cluster = 'guide'
 	- block body
-		: doc = docs[@@lang][cluster]
-		< ul
-			- forEach doc => el, key
-				< li
-					{key}
+		< header.b-header
+			< img.&__logo src = ../logo.svg | alt = snakeskin template engine
+			+= self.nav()
 
-		- forEach doc => el, key
-			+= self.doc(el, key)
+		: contents = {}
+		< .b-content-wrapper
+			< aside.b-contents
+				- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
+					< ul
+						- forEach doc => el, key
+							: href
+
+							- if el.main
+								? href = Object.keys(el.main)[0]
+								? contents[href] = { &
+									breadcrumbs: breadcrumbs,
+									text: el.main[href](),
+									title: key
+								} .
+
+							- if key !== 'main'
+								< li
+									- if href
+										< a href = #${href}
+											{key}
+
+									- else
+										{key}
+
+									- if !el.main
+										+= self.contents(el, breadcrumbs.concat(key))
+
+			< .b-articles
+				- forEach contents => @el, key
+					< article#${key}.b-article
+						+= @text
