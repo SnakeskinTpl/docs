@@ -24,29 +24,42 @@
 				- link :: css/index.css
 
 		< body
+			- menu = [ &
+				{
+					href: 'guide.html',
+					label: `Гайд`
+				},
+				{
+					href: 'api.html',
+					label: `API`
+				},
+				{
+					href: '#',
+					label: `Плагины`
+				},
+				{
+					href: '#',
+					label: `Примеры`
+				},
+				{
+					href: 'http://codepen.io/kobezzza/pen/zrJNXx',
+					label: `Песочница`,
+					target: '_blank'
+				}
+			] .
+
+			- block nav()
+				< menu.b-nav
+					- forEach menu => @el
+						< li
+							< a ${el}
+								{@label}
+
 			- block body
 				< .b-index-wrapper
 					< .&__el[.&_align_center]
-						< menu.b-index-top-menu
-							< li
-								< a href = guide.html
-									`Гайд`
-
-							< li
-								< a href = api.html
-									API
-
-							< li
-								< a href = #
-									`Плагины`
-
-							< li
-								< a href = #
-									`Примеры`
-
-							< li
-								< a href = http://codepen.io/kobezzza/pen/zrJNXx | target = _blank
-									`Песочница`
+						< nav
+							+= self.nav()
 
 						< img.b-index-logo src = ../logo.svg | alt = snakeskin template engine
 						< .b-index-title
@@ -57,7 +70,7 @@
 								`Удивительно мощный язык описания шаблонов`
 
 						< a.b-install href = #
-							Установить v7.0.0-beta23
+							Установить v7.0.0-beta26
 
 						< .b-badges
 							< a.github-button href = https://github.com/SnakeskinTpl | &
