@@ -67,15 +67,15 @@ a
 		font-weight normal
 
 	h1
-		font-size 3rem
 		color darken(@color, 50%)
+		font-size 3rem
 
 	h2
 		font-size 0.8rem
 
-.b-index-top-menu
-	list-style none
+.b-nav
 	margin 2rem 0
+	list-style none
 
 	li + li
 		margin-left 1rem
@@ -91,9 +91,9 @@ a
 	display inline-block
 	margin 2rem 0
 	padding 1rem
+	border-radius 0.5rem
 	background-color #E5D3AE
 	box-shadow 0.1rem 0.2rem darken(@background-color, 50%)
-	border-radius 0.5rem
 	text-decoration none
 
 	&:hover
@@ -102,3 +102,13 @@ a
 	&:active
 		box-shadow none
 		transform translate(2px, 2px)
+
+.b-header
+	display flex
+	justify-content space-between
+	align-items center
+	padding 1em 5em
+	border-bottom 2px #E5D3AE solid
+
+	&__logo
+		width 4rem
