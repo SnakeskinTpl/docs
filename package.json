@@ -5,6 +5,7 @@
     "gulp-snakeskin": "^7.0.0",
     "gulp-stylus": "^2.3.0",
     "gulp-watch": "^4.3.5",
+    "jscs": "^2.11.0",
     "markdown-it": "^6.0.0",
     "nib": "^1.1.0",
     "snakeskin": "^7.0.0-beta22",
