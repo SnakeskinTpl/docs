@@ -16,6 +16,6 @@
   },
 
   "scripts": {
-    "start": "static -H \"{\"\"Cache-Control\"\": \"\"no-cache, must-revalidate\"\"}\" -p 9036 ./build"
+    "start": "static -H \"{\"\"Cache-Control\"\": \"\"no-cache, must-revalidate\"\"}\" -p 9036"
   }
 }

@@ -27,7 +27,7 @@
 			- menu = [ &
 				{
 					href: 'guide.html',
-					label: `Гайд`
+					label: `Документация`
 				},
 				{
 					href: 'api.html',
