@@ -1,7 +1,10 @@
 {
   "devDependencies": {
+    "babel-core": "^6.7.2",
+    "babel-preset-es2015-rollup": "^1.1.1",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.0",
+    "gulp-rollup": "^1.7.0",
     "gulp-snakeskin": "^7.0.0",
     "gulp-stylus": "^2.3.0",
     "gulp-watch": "^4.3.5",
@@ -9,12 +12,13 @@
     "markdown-it": "^6.0.0",
     "nib": "^1.1.0",
     "node-static": "^0.7.7",
+    "rollup": "^0.25.4",
+    "rollup-plugin-babel": "^2.4.0",
     "snakeskin": "^7.0.0-beta29",
     "stylint": "^1.3.6",
     "stylus": "^0.53.0",
     "typograf": "^5.0.0"
   },
-
   "scripts": {
     "start": "static -H \"{\"\"Cache-Control\"\": \"\"no-cache, must-revalidate\"\"}\" -p 9036"
   }

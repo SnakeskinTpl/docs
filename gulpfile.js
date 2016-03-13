@@ -18,13 +18,17 @@ const
 	nib = require('nib'),
 	watch = require('gulp-watch');
 
+const
+	rollup = require('gulp-rollup'),
+	babel = require('rollup-plugin-babel');
+
 function error() {
 	return (err) => {
 		console.error(err.message);
 	};
 }
 
-gulp.task('snakeskin', (cb) => {
+gulp.task('templates', (cb) => {
 	gulp.src('./tpls/*.ss')
 		.pipe(watch(['./tpls/**/*.ss', './docs/**/*.ss']))
 		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru'}}))
@@ -33,7 +37,7 @@ gulp.task('snakeskin', (cb) => {
 		.on('end', cb);
 });
 
-gulp.task('stylus', (cb) => {
+gulp.task('styles', (cb) => {
 	gulp.src('./styles/*.styl')
 		.pipe(watch('./styles/**/*.styl'))
 		.pipe(stylus({use: nib()}))
@@ -43,4 +47,13 @@ gulp.task('stylus', (cb) => {
 		.on('end', cb);
 });
 
-gulp.task('default', ['snakeskin', 'stylus']);
+gulp.task('scripts', (cb) => {
+	gulp.src('./scripts/index.js')
+		.pipe(watch('./scripts/**/*.js'))
+		.pipe(rollup({format: 'iife', plugins: [babel()]}))
+		.on('error', error())
+		.pipe(gulp.dest('./build/js'))
+		.on('end', cb);
+});
+
+gulp.task('default', ['templates', 'styles', 'scripts']);
