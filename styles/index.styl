@@ -67,9 +67,9 @@ a
 .b-background
 	background radial-gradient(
 		ellipse farthest-corner at right bottom,
-		rgba(#FFF, 0.4) 0,
-		rgba(#EEE, 0.3) 50%,
-		rgba(#FFF, 0.6) 100%
+		rgba(#FFF, 0.2) 0,
+		#FFF 50%,
+		rgba(#FFF, 0.4) 100%
 	)
 
 .b-index-wrapper
@@ -133,13 +133,16 @@ a
 		box-shadow none
 		transform translate(2px, 2px)
 
-$border = 1px rgba(#B2A842, 0.7) solid
+$border = 1px rgba(#CCC, 0.7) solid
+$headerHeight = 8rem
 
 .b-header
 	display flex
+	height $headerHeight
 	justify-content space-between
+	box-sizing border-box
 	align-items center
-	padding 1rem 5rem
+	padding 0 5rem
 	border-bottom $border
 	background radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px)
 	background-color #FFF
@@ -148,8 +151,8 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	&__logo-text
 		display inline-block
 		color $logoColor
-		font 700 4.4rem\/3.5rem $logoFamily
-		transform translateY(-0.3em)
+		font 700 3.4rem\/2.5rem $logoFamily
+		transform translateY(-0.5em)
 
 	&__logo:hover &__logo-text
 		color $activeLinkColor
@@ -167,8 +170,9 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	width 100%
 
 .b-contents
-	position relative
-	align-self flex-start
+	position absolute
+	height calc(100% \- 8rem)
+
 	box-sizing border-box
 	border-right $border
 
