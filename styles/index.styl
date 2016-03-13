@@ -21,15 +21,15 @@ html
 	@media all and (min-width 1900px)
 		font-size 16px
 
-body
-	$background = \
-		linear-gradient(-45deg, transparent 52%, rgba(#FFF, 0.9) 54%, transparent 55%),
-		linear-gradient(45deg, transparent 52%, rgba(#FFF,0.6) 54%, transparent 55%),
-		linear-gradient(-45deg, transparent 50%, rgba(#000, 0.1) 52%, transparent 53%),
-		linear-gradient(45deg, transparent 50%, rgba(#000, 0.05) 52%, transparent 53%)
+$defaultBackground = \
+	linear-gradient(-45deg, transparent 52%, rgba(#FFF, 0.9) 54%, transparent 55%),
+	linear-gradient(45deg, transparent 52%, rgba(#FFF,0.6) 54%, transparent 55%),
+	linear-gradient(-45deg, transparent 50%, rgba(#000, 0.1) 52%, transparent 53%),
+	linear-gradient(45deg, transparent 50%, rgba(#000, 0.05) 52%, transparent 53%)
 
-	background $background
-	background-size 3rem 3rem
+body
+	background $defaultBackground
+	background-size 2rem 2rem
 	line-height 1.8
 
 h1, h2, h3, h4, h5, h6
@@ -61,7 +61,7 @@ a
 	background radial-gradient(
 		ellipse farthest-corner at right bottom,
 		rgba(#FFF, 0.4) 0,
-		rgba(#EEE, 0.5) 50%,
+		rgba(#EEE, 0.3) 50%,
 		rgba(#FFF, 0.6) 100%
 	)
 
@@ -133,6 +133,9 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	align-items center
 	padding 1em 5em
 	border-bottom $border
+	background $defaultBackground
+	background-size 0.4rem 0.4rem
+	background-color #FFF
 
 	&__logo
 		width 4rem
@@ -149,7 +152,7 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	border-right $border
 
 	padding 0.5rem
-	padding-bottom 10.5px
+	padding-bottom 16px
 
 	background radial-gradient(
 		ellipse farthest-corner at right bottom,
@@ -161,13 +164,14 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	&::after
 		$height = 14px
 		$background = \
-			linear-gradient(135deg, #F4EF77 25%, transparent 25%),
-			linear-gradient(225deg, #F4EF77 25%, transparent 25%),
+			linear-gradient(135deg, #F3EC74 25%, transparent 25%),
+			linear-gradient(225deg, #F3EC74 25%, transparent 25%),
 			linear-gradient(315deg, white 25%, transparent 25%) -7px 0,
 			linear-gradient(45deg, white 25%, transparent 25%) -7px 0
 
 		position absolute
 		right 0
+		bottom -4px
 		left 0
 		height $height
 		content ""
