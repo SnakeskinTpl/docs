@@ -16,7 +16,8 @@
 	- block body
 		< .b-background.b-doc-wrapper
 			< header.b-header
-				< img.&__logo src = ../logo.svg | alt = snakeskin template engine
+				< a href = index.html
+					< img.&__logo src = ../logo.svg | alt = snakeskin template engine
 				+= self.nav()
 
 			: contents = {}

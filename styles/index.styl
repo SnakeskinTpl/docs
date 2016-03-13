@@ -134,8 +134,8 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	padding 1em 5em
 	border-bottom $border
 	background $defaultBackground
-	background-size 0.4rem 0.4rem
 	background-color #FFF
+	background-size 0.4rem 0.4rem
 
 	&__logo
 		width 4rem
@@ -185,12 +185,14 @@ $border = 1px rgba(#B2A842, 0.7) solid
 
 .b-articles
 	color #000
+	flex-basis 100%
+	display flex
+	justify-content center
 
 .b-article
 	display none
 	padding 0.5rem
-	max-width 700px
-	font-size 1rem
+	max-width 50rem
 
 	&:target
 		display block
