@@ -9,6 +9,9 @@
  */
 
 - include './modules/base'
+- include 'std.ss/html'
+
+- import snakeskin from 'snakeskin'
 
 - base.typograf({lang: @@lang})
 - template main()
@@ -20,8 +23,14 @@
 				{title = `Документация Snakeskin 7` ?}
 
 			- block head
-				- link :: https://fonts.googleapis.com/css?family=Open+Sans:400,700,700italic,400italic&subset=latin,cyrillic
-				- link :: css/index.css
+				- with std.html
+					+= @cdn('fontAwesome@4.4.0')
+					+= @cdn('jquery@2.2.0', 'yandex')
+
+				- link :: https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext
+
+				- forEach ['highlight/default', 'index'] => url
+					- link :: css/{url}.css
 
 		< body
 			- menu = [ &
@@ -57,7 +66,7 @@
 									{@label}
 
 			- block body
-				< .b-index-wrapper
+				< .b-background.b-index-wrapper
 					< .&__el[.&_align_center]
 						+= self.nav()
 
@@ -70,7 +79,7 @@
 								`Удивительно мощный язык описания шаблонов`
 
 						< a.b-install href = #
-							Установить v7.0.0-beta26
+							Установить v{snakeskin.VERSION.join('.')}
 
 						< .b-badges
 							< a.github-button href = https://github.com/SnakeskinTpl | &

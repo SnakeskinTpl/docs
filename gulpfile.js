@@ -15,8 +15,17 @@ const
 	snakeskin = require('gulp-snakeskin'),
 	stylus = require('gulp-stylus'),
 	autoprefixer = require('gulp-autoprefixer'),
-	nib = require('nib'),
+	rollup = require('gulp-rollup'),
 	watch = require('gulp-watch');
+
+const
+	path = require('path'),
+	async = require('async'),
+	nib = require('nib'),
+	babel = require('rollup-plugin-babel');
+
+const
+	buildFolder = './build';
 
 function error() {
 	return (err) => {
@@ -24,23 +33,46 @@ function error() {
 	};
 }
 
-gulp.task('snakeskin', (cb) => {
+gulp.task('templates', (cb) => {
 	gulp.src('./tpls/*.ss')
 		.pipe(watch(['./tpls/**/*.ss', './docs/**/*.ss']))
 		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru'}}))
 		.on('error', error())
-		.pipe(gulp.dest('./build'))
+		.pipe(gulp.dest(buildFolder))
 		.on('end', cb);
 });
 
-gulp.task('stylus', (cb) => {
+gulp.task('styles', (cb) => {
 	gulp.src('./styles/*.styl')
 		.pipe(watch('./styles/**/*.styl'))
 		.pipe(stylus({use: nib()}))
 		.on('error', error())
 		.pipe(autoprefixer())
-		.pipe(gulp.dest('./build/css'))
+		.pipe(gulp.dest(path.join(buildFolder, 'css')))
 		.on('end', cb);
 });
 
-gulp.task('default', ['snakeskin', 'stylus']);
+gulp.task('dependencies', (cb) => {
+	async.parallel([
+		(cb) => {
+			gulp.src([
+				'./node_modules/highlight.js/styles/default.css'
+			])
+
+				.pipe(gulp.dest(path.join(buildFolder, 'css/highlight')))
+				.on('end', cb);
+		}
+
+	], cb)
+});
+
+gulp.task('scripts', (cb) => {
+	gulp.src('./scripts/index.js')
+		.pipe(watch('./scripts/**/*.js'))
+		.pipe(rollup({format: 'iife', plugins: [babel()]}))
+		.on('error', error())
+		.pipe(gulp.dest(path.join(buildFolder, 'js')))
+		.on('end', cb);
+});
+
+gulp.task('default', ['templates', 'styles', 'scripts', 'dependencies']);

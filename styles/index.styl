@@ -22,6 +22,14 @@ html
 		font-size 16px
 
 body
+	$background = \
+		linear-gradient(-45deg, transparent 52%, rgba(#FFF, 0.9) 54%, transparent 55%),
+		linear-gradient(45deg, transparent 52%, rgba(#FFF,0.6) 54%, transparent 55%),
+		linear-gradient(-45deg, transparent 50%, rgba(#000, 0.1) 52%, transparent 53%),
+		linear-gradient(45deg, transparent 50%, rgba(#000, 0.05) 52%, transparent 53%)
+
+	background $background
+	background-size 2rem 2rem
 	line-height 1.8
 
 h1, h2, h3, h4, h5, h6
@@ -31,23 +39,38 @@ h1, h2, h3, h4, h5, h6
 
 for $i in 1..6
 	h{$i}
+		position relative
+		margin (0.15 * (6 - $i))rem 0
 		font-size (2 - 0.2 * $i)rem
 
 p
 	margin 0
 	padding 0.4rem
 
+$linkColor = #49401B
+$activeLinkColor = #B31533
+$logoColor = #490F25
+$logoFamily = "Open Sans Condensed", Arial, Helvetica, sans-serif
+
 a
-	color #49401B
+	color $linkColor
 
 	&:hover
-		color lighten(@color, 20%)
+		color $activeLinkColor
 
 	&:active
-		color lighten(@color, 30%)
+		color lighten($activeLinkColor, 20%)
 
 	img
 		border 0
+
+.b-background
+	background radial-gradient(
+		ellipse farthest-corner at right bottom,
+		rgba(#FFF, 0.4) 0,
+		rgba(#EEE, 0.3) 50%,
+		rgba(#FFF, 0.6) 100%
+	)
 
 .b-index-wrapper
 	display flex
@@ -59,19 +82,22 @@ a
 		&_align_center
 			text-align center
 
+.b-doc-wrapper
+	min-height 100%
+
 .b-index-logo
 	width 12rem
 
 .b-index-title
 	margin-top 1rem
-	color #B7AE98
+	color #635a45
 
 	h1, h2
 		font-weight normal
 
 	h1
-		color darken(@color, 50%)
-		font-size 3rem
+		color $logoColor
+		font 700 3.4rem\/2.5rem $logoFamily
 
 	h2
 		font-size 0.8rem
@@ -107,17 +133,32 @@ a
 		box-shadow none
 		transform translate(2px, 2px)
 
-$border = 2px #E5D3AE solid
+$border = 1px rgba(#B2A842, 0.7) solid
 
 .b-header
 	display flex
 	justify-content space-between
 	align-items center
-	padding 1em 5em
+	padding 1rem 5rem
 	border-bottom $border
+	background radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+	background-color #FFF
+	background-size 6px 6px
+
+	&__logo-text
+		display inline-block
+		color $logoColor
+		font 700 4.4rem\/3.5rem $logoFamily
+		transform translateY(-0.3em)
+
+	&__logo:hover &__logo-text
+		color $activeLinkColor
 
 	&__logo
-		width 4rem
+		text-decoration none
+
+		> img
+			height 6rem
 
 .b-content-wrapper
 	display flex
@@ -126,28 +167,133 @@ $border = 2px #E5D3AE solid
 	width 100%
 
 .b-contents
-	padding 0.5rem
-	border-right $border
-	white-space nowrap
-	width 300px
-	flex-grow 0
-	flex-shrink 0
+	position relative
+	align-self flex-start
 	box-sizing border-box
+	border-right $border
+
+	padding 0.5rem
+	padding-bottom 16px
+
+	background radial-gradient(
+		ellipse farthest-corner at right bottom,
+		#F4EF77 0,
+		#F2E66B 50%,
+		#EAD949 100%
+	)
+
+	&::after
+		$height = 14px
+		$background = \
+			linear-gradient(135deg, #F3EC74 25%, transparent 25%),
+			linear-gradient(225deg, #F3EC74 25%, transparent 25%),
+			linear-gradient(315deg, white 25%, transparent 25%) -7px 0,
+			linear-gradient(45deg, white 25%, transparent 25%) -7px 0
+
+		position absolute
+		right 0
+		bottom -4px
+		left 0
+		height $height
+		content ""
+
+		background $background
+		background-color #EAD949
+		background-size $height $height
 
 	li > ul
 		margin-left 0.5rem
 
 .b-articles
 	color #000
+	flex-basis 100%
+	display flex
+	justify-content center
 
 .b-article
 	display none
 	padding 0.5rem
-	max-width 700px
-	font-size 1rem
+	max-width 50rem
+	color #151515
 
-	&:target
+	&_active_true
 		display block
 
 	p
 		text-indent 0.5rem
+
+	h1
+		margin 1.8rem 0 2.2rem 0
+		font 700 2.4rem\/1.5rem $logoFamily
+
+	for $i in 2..6
+		h{$i}
+			cursor pointer
+			$hoverColor = #222
+
+			&:hover
+				color $hoverColor
+				text-decoration underline
+				opacity 0.7
+
+			&:active
+				color lighten($hoverColor, 30%)
+
+			&:hover::before
+				position absolute
+				left -1em
+				display inline-block
+				color lighten($hoverColor, 50%)
+				content "\f0c1"
+				font-weight normal
+				font-family FontAwesome
+
+.b-breadcrumbs
+	margin-top 0.5rem
+
+	li
+		display inline-block
+		margin-right 0.2rem
+
+$codeMargin = 0.4rem 0
+
+.hljs
+	margin $codeMargin
+
+.b-example
+	position relative
+	margin $codeMargin
+
+	&__toggle
+		display block
+		list-style-type none
+		text-align right
+
+	&__link
+		display inline-block
+		padding 0.2em 0.6em
+		font-size 0.9rem
+		cursor default
+
+		&_active_true
+			background #F0F0F0
+			color $activeLinkColor
+
+		&:not(&_active_true)
+			border-bottom 1px dotted $linkColor
+			color $linkColor
+			cursor pointer
+
+			&:hover
+				color lighten(@color, 20%)
+
+			&:active
+				color lighten(@color, 30%)
+
+	&__code
+		> .hljs
+			display none
+			margin 0
+
+			&:first-of-type
+				display block
