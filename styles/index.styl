@@ -22,6 +22,14 @@ html
 		font-size 16px
 
 body
+	$background = \
+		linear-gradient(-45deg, transparent 52%, rgba(#FFF, 0.9) 54%, transparent 55%),
+		linear-gradient(45deg, transparent 52%, rgba(#FFF,0.6) 54%, transparent 55%),
+		linear-gradient(-45deg, transparent 50%, rgba(#000, 0.1) 52%, transparent 53%),
+		linear-gradient(45deg, transparent 50%, rgba(#000, 0.05) 52%, transparent 53%)
+
+	background $background
+	background-size 3rem 3rem
 	line-height 1.8
 
 h1, h2, h3, h4, h5, h6
@@ -49,6 +57,14 @@ a
 	img
 		border 0
 
+.b-background
+	background radial-gradient(
+		ellipse farthest-corner at right bottom,
+		rgba(#FFF, 0.4) 0,
+		rgba(#EEE, 0.5) 50%,
+		rgba(#FFF, 0.6) 100%
+	)
+
 .b-index-wrapper
 	display flex
 	min-height 100%
@@ -59,18 +75,20 @@ a
 		&_align_center
 			text-align center
 
+.b-doc-wrapper
+	min-height 100%
+
 .b-index-logo
 	width 12rem
 
 .b-index-title
 	margin-top 1rem
-	color #B7AE98
+	color #635a45
 
 	h1, h2
 		font-weight normal
 
 	h1
-		color darken(@color, 50%)
 		font-size 3rem
 
 	h2
@@ -107,7 +125,7 @@ a
 		box-shadow none
 		transform translate(2px, 2px)
 
-$border = 2px #E5D3AE solid
+$border = 1px rgba(#B2A842, 0.7) solid
 
 .b-header
 	display flex
@@ -126,13 +144,37 @@ $border = 2px #E5D3AE solid
 	width 100%
 
 .b-contents
-	padding 0.5rem
-	border-right $border
-	white-space nowrap
-	width 300px
-	flex-grow 0
-	flex-shrink 0
+	position relative
 	box-sizing border-box
+	border-right $border
+
+	padding 0.5rem
+	padding-bottom 10.5px
+
+	background radial-gradient(
+		ellipse farthest-corner at right bottom,
+		#F4EF77 0,
+		#F2E66B 50%,
+		#EAD949 100%
+	)
+
+	&::after
+		$height = 14px
+		$background = \
+			linear-gradient(135deg, #F4EF77 25%, transparent 25%),
+			linear-gradient(225deg, #F4EF77 25%, transparent 25%),
+			linear-gradient(315deg, white 25%, transparent 25%) -7px 0,
+			linear-gradient(45deg, white 25%, transparent 25%) -7px 0
+
+		position absolute
+		right 0
+		left 0
+		height $height
+		content ""
+
+		background $background
+		background-color #EAD949
+		background-size $height $height
 
 	li > ul
 		margin-left 0.5rem

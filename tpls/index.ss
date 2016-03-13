@@ -57,7 +57,7 @@
 									{@label}
 
 			- block body
-				< .b-index-wrapper
+				< .b-background.b-index-wrapper
 					< .&__el[.&_align_center]
 						+= self.nav()
 

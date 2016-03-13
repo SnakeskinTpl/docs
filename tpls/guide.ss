@@ -14,39 +14,40 @@
 - template main() extends index.main
 	- cluster = 'guide'
 	- block body
-		< header.b-header
-			< img.&__logo src = ../logo.svg | alt = snakeskin template engine
-			+= self.nav()
+		< .b-background.b-doc-wrapper
+			< header.b-header
+				< img.&__logo src = ../logo.svg | alt = snakeskin template engine
+				+= self.nav()
 
-		: contents = {}
-		< .b-content-wrapper
-			< aside.b-contents
-				- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
-					< ul
-						- forEach doc => el, key
-							: href
+			: contents = {}
+			< .b-content-wrapper
+				< nav.b-contents
+					- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
+						< ul
+							- forEach doc => el, key
+								: href
 
-							- if el.main
-								? href = Object.keys(el.main)[0]
-								? contents[href] = { &
-									breadcrumbs: breadcrumbs,
-									text: el.main[href](),
-									title: key
-								} .
+								- if el.main
+									? href = Object.keys(el.main)[0]
+									? contents[href] = { &
+										breadcrumbs: breadcrumbs,
+										text: el.main[href](),
+										title: key
+									} .
 
-							- if key !== 'main'
-								< li
-									- if href
-										< a href = #${href}
+								- if key !== 'main'
+									< li
+										- if href
+											< a href = #${href}
+												{key}
+
+										- else
 											{key}
 
-									- else
-										{key}
+										- if !el.main
+											+= self.contents(el, breadcrumbs.concat(key))
 
-									- if !el.main
-										+= self.contents(el, breadcrumbs.concat(key))
-
-			< .b-articles
-				- forEach contents => @el, key
-					< article#${key}.b-article
-						+= @text
+				< .b-articles
+					- forEach contents => @el, key
+						< article#${key}.b-article
+							+= @text
