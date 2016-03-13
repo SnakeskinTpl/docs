@@ -20,10 +20,14 @@
 
 	- block body
 		< .b-background.b-doc-wrapper
-			< header.b-header
-				< a href = index.html
-					< img.&__logo src = ../logo.svg | alt = snakeskin template engine
-				+= self.nav()
+			< header
+				< .b-header
+					< a.&__logo href = index.html
+						< img src = ../logo.svg | alt = snakeskin template engine
+						< .&__logo-text
+							nakeskin
+
+					+= self.nav()
 
 			: contents = {}
 			< .b-content-wrapper

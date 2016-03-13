@@ -21,14 +21,14 @@ html
 	@media all and (min-width 1900px)
 		font-size 16px
 
-$defaultBackground = \
-	linear-gradient(-45deg, transparent 52%, rgba(#FFF, 0.9) 54%, transparent 55%),
-	linear-gradient(45deg, transparent 52%, rgba(#FFF,0.6) 54%, transparent 55%),
-	linear-gradient(-45deg, transparent 50%, rgba(#000, 0.1) 52%, transparent 53%),
-	linear-gradient(45deg, transparent 50%, rgba(#000, 0.05) 52%, transparent 53%)
-
 body
-	background $defaultBackground
+	$background = \
+		linear-gradient(-45deg, transparent 52%, rgba(#FFF, 0.9) 54%, transparent 55%),
+		linear-gradient(45deg, transparent 52%, rgba(#FFF,0.6) 54%, transparent 55%),
+		linear-gradient(-45deg, transparent 50%, rgba(#000, 0.1) 52%, transparent 53%),
+		linear-gradient(45deg, transparent 50%, rgba(#000, 0.05) 52%, transparent 53%)
+
+	background $background
 	background-size 2rem 2rem
 	line-height 1.8
 
@@ -49,6 +49,8 @@ p
 
 $linkColor = #49401B
 $activeLinkColor = #B31533
+$logoColor = #490F25
+$logoFamily = "Open Sans Condensed", Arial, Helvetica, sans-serif
 
 a
 	color $linkColor
@@ -94,7 +96,8 @@ a
 		font-weight normal
 
 	h1
-		font-size 3rem
+		color $logoColor
+		font 700 3.4rem\/2.5rem $logoFamily
 
 	h2
 		font-size 0.8rem
@@ -138,12 +141,24 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	align-items center
 	padding 1rem 5rem
 	border-bottom $border
-	background $defaultBackground
+	background radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px)
 	background-color #FFF
-	background-size 0.4rem 0.4rem
+	background-size 6px 6px
+
+	&__logo-text
+		display inline-block
+		color $logoColor
+		font 700 4.4rem\/3.5rem $logoFamily
+		transform translateY(-0.3em)
+
+	&__logo:hover &__logo-text
+		color $activeLinkColor
 
 	&__logo
-		width 4rem
+		text-decoration none
+
+		> img
+			height 6rem
 
 .b-content-wrapper
 	display flex
@@ -199,6 +214,7 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	display none
 	padding 0.5rem
 	max-width 50rem
+	color #151515
 
 	&_active_true
 		display block
@@ -208,7 +224,7 @@ $border = 1px rgba(#B2A842, 0.7) solid
 
 	h1
 		margin 1.8rem 0 2.2rem 0
-		font 700 2.4rem\/1.5rem "Open Sans Condensed", Arial, Helvetica, sans-serif
+		font 700 2.4rem\/1.5rem $logoFamily
 
 	for $i in 2..6
 		h{$i}
@@ -216,9 +232,9 @@ $border = 1px rgba(#B2A842, 0.7) solid
 			$hoverColor = #222
 
 			&:hover
-				opacity 0.7
 				color $hoverColor
 				text-decoration underline
+				opacity 0.7
 
 			&:active
 				color lighten($hoverColor, 30%)
@@ -227,10 +243,17 @@ $border = 1px rgba(#B2A842, 0.7) solid
 				position absolute
 				left -1em
 				display inline-block
+				color lighten($hoverColor, 50%)
 				content "\f0c1"
 				font-weight normal
 				font-family FontAwesome
-				color lighten($hoverColor, 50%)
+
+.b-breadcrumbs
+	margin-top 0.5rem
+
+	li
+		display inline-block
+		margin-right 0.2rem
 
 $codeMargin = 0.4rem 0
 

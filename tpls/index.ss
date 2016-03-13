@@ -11,6 +11,8 @@
 - include './modules/base'
 - include 'std.ss/html'
 
+- import snakeskin from 'snakeskin'
+
 - base.typograf({lang: @@lang})
 - template main()
 	- doctype
@@ -77,7 +79,7 @@
 								`Удивительно мощный язык описания шаблонов`
 
 						< a.b-install href = #
-							Установить v7.0.0-beta26
+							Установить v{snakeskin.VERSION.join('.')}
 
 						< .b-badges
 							< a.github-button href = https://github.com/SnakeskinTpl | &
