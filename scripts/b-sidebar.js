@@ -12,7 +12,6 @@ $(() => {
 	const
 		doc = $(document),
 		contents = $('nav.b-contents'),
-		baseTop = parseFloat(contents.css('top')),
 		headerHeight = $('header.b-header').innerHeight();
 
 	doc.on('scroll', () => {
@@ -20,8 +19,6 @@ $(() => {
 			contents.addClass('b-contents_full_true');
 
 		} else {
-			//console.log(baseTop);
-			//contents.css('top', baseTop - doc.scrollTop() + headerHeight);
 			contents.removeClass('b-contents_full_true');
 		}
 	});
