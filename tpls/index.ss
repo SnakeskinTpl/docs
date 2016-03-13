@@ -32,41 +32,41 @@
 				- forEach ['highlight/default', 'index'] => url
 					- link :: css/{url}.css
 
-		< body
-			- menu = [ &
-				{
-					href: 'guide.html',
-					label: `Документация`
-				},
-				{
-					href: 'api.html',
-					label: `API`
-				},
-				{
-					href: '#',
-					label: `Плагины`
-				},
-				{
-					href: '#',
-					label: `Примеры`
-				},
-				{
-					href: 'http://codepen.io/kobezzza/pen/zrJNXx',
-					label: `Песочница`,
-					target: '_blank'
-				}
-			] .
+		- menu = [ &
+			{
+				href: 'guide.html',
+				label: `Документация`
+			},
+			{
+				href: 'api.html',
+				label: `API`
+			},
+			{
+				href: '#',
+				label: `Плагины`
+			},
+			{
+				href: '#',
+				label: `Примеры`
+			},
+			{
+				href: 'http://codepen.io/kobezzza/pen/zrJNXx',
+				label: `Песочница`,
+				target: '_blank'
+			}
+		] .
 
-			- block nav()
-				< nav.b-nav
-					< menu
-						- forEach menu => @el
-							< li
-								< a ${el}
-									{@label}
+		- block nav()
+			< nav.b-nav
+				< menu
+					- forEach menu => @el
+						< li
+							< a ${el}
+								{@label}
 
-			- block body
-				< .b-background.b-index-wrapper
+		- block body
+			< body.b-index-background
+				< .b-index-wrapper
 					< .&__el[.&_align_center]
 						+= self.nav()
 

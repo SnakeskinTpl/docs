@@ -19,61 +19,62 @@
 		- script js src = js/index.js
 
 	- block body
-		< .b-background.b-doc-wrapper
-			< header
-				< .b-header
-					< a.&__logo href = index.html
-						< img src = ../logo.svg | alt = snakeskin template engine
-						< .&__logo-text
-							nakeskin
+		< body
+			< .b-doc-wrapper
+				< header
+					< .b-header
+						< a.&__logo href = index.html
+							< img src = ../logo.svg | alt = snakeskin template engine
+							< .&__logo-text
+								nakeskin
 
-					+= self.nav()
+						+= self.nav()
 
-			: contents = {}
-			< .b-content-wrapper
-				< nav.b-contents
-					- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
-						< ul
-							- forEach doc => el, key
-								: href
+				: contents = {}
+				< .b-content-wrapper
+					< nav.b-contents
+						- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
+							< ul
+								- forEach doc => el, key
+									: href
 
-								- if el.main
-									? href = Object.keys(el.main)[0]
-									? contents[href] = { &
-										breadcrumbs: breadcrumbs,
-										text: el.main[href](),
-										title: key
-									} .
+									- if el.main
+										? href = Object.keys(el.main)[0]
+										? contents[href] = { &
+											breadcrumbs: breadcrumbs,
+											text: el.main[href](),
+											title: key
+										} .
 
-								- if key !== 'main'
-									< li
-										- if href
-											< a href = #${href}
+									- if key !== 'main'
+										< li
+											- if href
+												< a href = #${href}
+													{key}
+
+											- else
 												{key}
 
-										- else
-											{key}
+											- if !el.main
+												+= self.contents(el, breadcrumbs.concat(key))
 
-										- if !el.main
-											+= self.contents(el, breadcrumbs.concat(key))
+					< .b-articles
+						- forEach contents => @el, key
+							< section#${key}.b-article
+								- if @breadcrumbs.length
+									< ul.b-breadcrumbs
+										- forEach @breadcrumbs => title, i, data, isFirst, isLast
+											< li
+												- if !i
+													< i.fa.fa-home
+													< .fa.fa-angle-right
 
-				< .b-articles
-					- forEach contents => @el, key
-						< section#${key}.b-article
-							- if @breadcrumbs.length
-								< ul.b-breadcrumbs
-									- forEach @breadcrumbs => title, i, data, isFirst, isLast
-										< li
-											- if !i
-												< i.fa.fa-home
-												< .fa.fa-angle-right
+												{title}
 
-											{title}
+												- if !isLast
+													< .fa.fa-angle-right
 
-											- if !isLast
-												< .fa.fa-angle-right
+								< h1
+									{@title}
 
-							< h1
-								{@title}
-
-							+= @text
+								+= @text
