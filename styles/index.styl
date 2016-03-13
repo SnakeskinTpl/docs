@@ -39,20 +39,24 @@ h1, h2, h3, h4, h5, h6
 
 for $i in 1..6
 	h{$i}
+		margin (0.15 * (6 - $i))rem 0
 		font-size (2 - 0.2 * $i)rem
 
 p
 	margin 0
 	padding 0.4rem
 
+$linkColor = #49401B
+$activeLinkColor = #B31533
+
 a
-	color #49401B
+	color $linkColor
 
 	&:hover
-		color lighten(@color, 20%)
+		color $activeLinkColor
 
 	&:active
-		color lighten(@color, 30%)
+		color lighten($activeLinkColor, 20%)
 
 	img
 		border 0
@@ -148,6 +152,7 @@ $border = 1px rgba(#B2A842, 0.7) solid
 
 .b-contents
 	position relative
+	align-self flex-start
 	box-sizing border-box
 	border-right $border
 
@@ -199,3 +204,50 @@ $border = 1px rgba(#B2A842, 0.7) solid
 
 	p
 		text-indent 0.5rem
+
+	h1
+		margin 1.8rem 0 2.2rem 0
+		font 700 2.4rem\/1.5rem "Open Sans Condensed", Arial, Helvetica, sans-serif
+
+$codeMargin = 0.4rem 0
+
+.hljs
+	margin $codeMargin
+
+.b-example
+	position relative
+	margin $codeMargin
+
+	&__toggle
+		display block
+		list-style-type none
+		text-align right
+
+	&__link
+		display inline-block
+		padding 0.2em 0.6em
+		font-size 0.9rem
+		cursor default
+
+		&_active_true
+			background #F0F0F0
+			color $activeLinkColor
+
+		&:not(&_active_true)
+			border-bottom 1px dotted $linkColor
+			color $linkColor
+			cursor pointer
+
+			&:hover
+				color lighten(@color, 20%)
+
+			&:active
+				color lighten(@color, 30%)
+
+	&__code
+		> .hljs
+			display none
+			margin 0
+
+			&:first-of-type
+				display block

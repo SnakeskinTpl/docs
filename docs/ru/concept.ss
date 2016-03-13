@@ -10,16 +10,27 @@
 
 - include '../../tpls/modules/base'
 
-#{template main[%fileName%]() extends base.main}
+{template main[%fileName%]() extends base.main}
 #{block root}
 
 Шаблоны в Snakeskin - это функции в JavaScript.
 
-```js
+#{+= self.example()}
+
+```jade-like
 - namespace demo
 - template helloWorld(name = 'world')
-  Hello {name}!
+	Hello {name}!
 ```
+
+```classic
+{namespace demo}
+{template helloWorld(name = 'world')}
+	Hello {name}!
+{/template}
+```
+
+#{/}
 
 Эквивалентно
 
@@ -37,4 +48,4 @@ var demo.helloWorld = function helloWorld(name) {
 Такой же подход используется в [Google Closure Templates](https://developers.google.com/closure/templates/).
 
 #{/block}
-#{/template}
+{/template}

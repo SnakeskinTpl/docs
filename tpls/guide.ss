@@ -50,5 +50,21 @@
 
 				< .b-articles
 					- forEach contents => @el, key
-						< article#${key}.b-article
+						< section#${key}.b-article
+							- if @breadcrumbs.length
+								< ul.b-breadcrumbs
+									- forEach @breadcrumbs => title, i, data, isFirst, isLast
+										< li
+											- if !i
+												< i.fa.fa-home
+												< .fa.fa-angle-right
+
+											{title}
+
+											- if !isLast
+												< .fa.fa-angle-right
+
+							< h1
+								{@title}
+
 							+= @text

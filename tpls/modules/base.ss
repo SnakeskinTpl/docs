@@ -10,6 +10,7 @@
 
 - import Typograf from 'typograf'
 - import MarkdownIt from 'markdown-it'
+- import hljs from 'highlight.js'
 
 - template typograf(params)
 	- return
@@ -21,7 +22,32 @@
 - template md(target)
 	- return
 		() =>
-			- return MarkdownIt().render(target.apply(this, arguments))
+			- block highlight(str, lang)
+				&+
+					< pre.hljs.example-${lang || 'default'}
+						< code
+							+= hljs.highlight(lang && hljs.getLanguage(lang) ? lang : 'js', str).value
+
+				- return getTplResult()
+			- return MarkdownIt({html: true, highlight: self.highlight}).render(target.apply(this, arguments))
+
+{block main->example(content)}
+{< .b-example}
+
+{< menu.&__toggle}
+
+{< li.&__link[.&_active_true]}jade-like{/}
+{< li.&__link}classic{/}
+
+{/}
+
+{< .&__code}
+
+{+= content /}
+
+{/}
+{/}
+{/block}
 
 - @md
 - placeholder main() @= tolerateWhitespaces true @= localization false
