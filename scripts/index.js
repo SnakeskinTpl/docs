@@ -9,4 +9,5 @@
  */
 
 import './b-example';
+import './b-sidebar';
 import './navigation';

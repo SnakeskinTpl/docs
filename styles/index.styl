@@ -22,6 +22,7 @@ html
 		font-size 16px
 
 body
+	min-width 80rem
 	line-height 1.8
 
 h1, h2, h3, h4, h5, h6
@@ -82,6 +83,7 @@ a
 			text-align center
 
 .b-doc-wrapper
+	position relative
 	min-height 100%
 
 .b-index-logo
@@ -172,24 +174,34 @@ $headerHeight = 8rem
 	align-content flex-start
 	box-sizing border-box
 	width 100%
-	min-width 80rem
 
 $contentsWidth = 22rem
 
 .b-contents
 	position absolute
+	top $headerHeight
+	bottom 0
+
+	overflow auto
+	box-sizing border-box
 	width $contentsWidth
-	height calc(100% \- 8rem)
+	border-right $border
 	font-size 0.9rem
 
-	box-sizing border-box
-	border-right $border
-
-	padding 1.5rem
+	padding 1.5em
 	background #F5F2F0
 
+	&_full_true
+		position fixed
+		top 0
+		height 100%
+
 	li > ul
-		margin-left 0.5rem
+		margin-left 0.5em
+
+	a
+		display block
+		padding 0.3em 0
 
 .b-articles
 	color #000

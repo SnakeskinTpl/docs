@@ -21,14 +21,13 @@
 	- block body
 		< body
 			< .b-doc-wrapper
-				< header
-					< .b-header
-						< a.&__logo href = index.html
-							< img src = ../logo.svg | alt = snakeskin template engine
-							< .&__logo-text
-								nakeskin
+				< header.b-header
+					< a.&__logo href = index.html
+						< img src = ../logo.svg | alt = snakeskin template engine
+						< .&__logo-text
+							nakeskin
 
-						+= self.nav()
+					+= self.nav()
 
 				: contents = {}
 				< .b-content-wrapper
