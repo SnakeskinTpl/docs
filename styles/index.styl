@@ -41,16 +41,17 @@ p
 	padding 0.4rem
 
 $linkColor = #49401B
-$activeLinkColor = #B31533
+$hoverLinkColor = #B31533
+$activeLinkColor = lighten($hoverLinkColor, 20%)
 
 a
 	color $linkColor
 
 	&:hover
-		color $activeLinkColor
+		color $hoverLinkColor
 
 	&:active
-		color lighten($activeLinkColor, 20%)
+		color $activeLinkColor
 
 	img
 		border 0
@@ -161,7 +162,7 @@ $headerHeight = 8rem
 		transform translateY(-0.5em)
 
 	&__logo:hover &__logo-text
-		color $activeLinkColor
+		color $hoverLinkColor
 
 	&__logo
 		text-decoration none
@@ -222,6 +223,15 @@ $contentsWidth = 22rem
 	&_active_true
 		display block
 
+	a
+		color #2974bb
+
+		&:hover
+			color $hoverLinkColor
+
+		&:active
+			color $activeLinkColor
+
 	p
 		text-indent 0.5rem
 
@@ -280,7 +290,7 @@ $codeMargin = 0.4rem 0
 
 		&_active_true
 			background #F0F0F0
-			color $activeLinkColor
+			color $hoverLinkColor
 
 		&:not(&_active_true)
 			border-bottom 1px dotted $linkColor
