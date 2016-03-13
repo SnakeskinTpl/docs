@@ -39,6 +39,7 @@ h1, h2, h3, h4, h5, h6
 
 for $i in 1..6
 	h{$i}
+		position relative
 		margin (0.15 * (6 - $i))rem 0
 		font-size (2 - 0.2 * $i)rem
 
@@ -208,6 +209,28 @@ $border = 1px rgba(#B2A842, 0.7) solid
 	h1
 		margin 1.8rem 0 2.2rem 0
 		font 700 2.4rem\/1.5rem "Open Sans Condensed", Arial, Helvetica, sans-serif
+
+	for $i in 2..6
+		h{$i}
+			cursor pointer
+			$hoverColor = #222
+
+			&:hover
+				opacity 0.7
+				color $hoverColor
+				text-decoration underline
+
+			&:active
+				color lighten($hoverColor, 30%)
+
+			&:hover::before
+				position absolute
+				left -1em
+				display inline-block
+				content "\f0c1"
+				font-weight normal
+				font-family FontAwesome
+				color lighten($hoverColor, 50%)
 
 $codeMargin = 0.4rem 0
 

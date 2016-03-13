@@ -13,6 +13,11 @@
 
 - template main() extends index.main
 	- cluster = 'guide'
+
+	- block head
+		- super
+		- script js src = js/index.js
+
 	- block body
 		< .b-background.b-doc-wrapper
 			< header.b-header

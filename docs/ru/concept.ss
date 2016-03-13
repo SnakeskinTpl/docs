@@ -47,5 +47,7 @@ var demo.helloWorld = function helloWorld(name) {
 После компиляции вызов шаблона соответствует простому вызову функции.
 Такой же подход используется в [Google Closure Templates](https://developers.google.com/closure/templates/).
 
+## Проверка ссылки
+
 #{/block}
 {/template}

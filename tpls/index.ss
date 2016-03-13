@@ -30,9 +30,6 @@
 				- forEach ['highlight/default', 'index'] => url
 					- link :: css/{url}.css
 
-				- forEach ['index'] => url
-					- script js src = js/${url}.js
-
 		< body
 			- menu = [ &
 				{
