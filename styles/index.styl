@@ -41,8 +41,6 @@ p
 
 $linkColor = #49401B
 $activeLinkColor = #B31533
-$logoColor = #490F25
-$logoFamily = "Open Sans Condensed", Arial, Helvetica, sans-serif
 
 a
 	color $linkColor
@@ -89,6 +87,9 @@ a
 .b-index-logo
 	width 12rem
 
+$logoColor = #490F25
+$logoFamily = "Open Sans Condensed", Arial, Helvetica, sans-serif
+
 .b-index-title
 	margin-top 1rem
 	color #635a45
@@ -134,17 +135,19 @@ a
 		box-shadow none
 		transform translate(2px, 2px)
 
-$border = 1px rgba(#CCC, 0.7) solid
+$border = 1px #E1E0DE solid
 $headerHeight = 8rem
 
 .b-header
 	display flex
-	height $headerHeight
-	justify-content space-between
 	box-sizing border-box
-	align-items center
 	padding 0 5rem
+	height $headerHeight
 	border-bottom $border
+
+	justify-content space-between
+	align-items center
+
 	background radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px)
 	background-color #FFF
 	background-size 6px 6px
@@ -169,16 +172,20 @@ $headerHeight = 8rem
 	align-content flex-start
 	box-sizing border-box
 	width 100%
+	min-width 80rem
+
+$contentsWidth = 22rem
 
 .b-contents
 	position absolute
+	width $contentsWidth
 	height calc(100% \- 8rem)
 	font-size 0.9rem
 
 	box-sizing border-box
 	border-right $border
 
-	padding 1rem
+	padding 1.5rem
 	background #F5F2F0
 
 	li > ul
@@ -189,6 +196,10 @@ $headerHeight = 8rem
 	flex-basis 100%
 	display flex
 	justify-content center
+	margin-left $contentsWidth
+
+	@media all and (max-width 90rm)
+		margin-left 0
 
 .b-article
 	display none
