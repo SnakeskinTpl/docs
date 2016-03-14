@@ -86,13 +86,23 @@ $contentsWidth = 22rem
 	display flex
 	margin-left $contentsWidth
 
-	@media all and (max-width 90rm)
-		margin-left 0
+	&__nav-cont
+		absolute top $headerHeight bottom 0
+		display flex
+		align-items center
+
+	@media all and (max-width 75rem)
+		&__nav-cont
+			display none
+
+	&__next
+		right 0
 
 	&__nav-control
-		margin auto 0
+		box-sizing border-box
 		padding 0.1em 0.8em
 		color #999
+		text-align center
 		font-size 3rem
 		cursor pointer
 
@@ -100,12 +110,6 @@ $contentsWidth = 22rem
 			background #EEE
 			color darken(@color, 50%)
 			opacity 1
-
-	&__back
-		justify-self flex-start
-
-	&__next
-		justify-self flex-end
 
 .b-article
 	display none

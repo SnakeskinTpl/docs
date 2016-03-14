@@ -58,8 +58,9 @@
 												+= self.contents(el, breadcrumbs.concat(key))
 
 					< .b-articles
-						< .&__nav-control.&__back
-							< i.fa.fa-angle-left
+						< .&__nav-cont.&__back
+							< .&__nav-control
+								< i.fa.fa-angle-left
 
 						- forEach contents => @el, key
 							< section#${key}.b-article
@@ -81,5 +82,6 @@
 
 								+= @text
 
-						< .&__nav-control.&__next
-							< i.fa.fa-angle-right
+						< .&__nav-cont.&__next
+							< .&__nav-control
+								< i.fa.fa-angle-right
