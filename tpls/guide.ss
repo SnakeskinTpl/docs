@@ -58,6 +58,9 @@
 												+= self.contents(el, breadcrumbs.concat(key))
 
 					< .b-articles
+						< .&__nav-control.&__back
+							< i.fa.fa-angle-left
+
 						- forEach contents => @el, key
 							< section#${key}.b-article
 								- if @breadcrumbs.length
@@ -77,3 +80,6 @@
 									{@title}
 
 								+= @text
+
+						< .&__nav-control.&__next
+							< i.fa.fa-angle-right
