@@ -76,9 +76,20 @@ $contentsWidth = 22rem
 	li > ul
 		margin-left 0.5em
 
-	a
+	&__link
+		position relative
 		display block
 		padding 0.3em 0
+
+		&_active_true
+			color $activeLinkColor
+			text-decoration none
+
+			&::before
+				position absolute
+				left -0.4em
+				content "\f105"
+				font-family FontAwesome
 
 .b-articles
 	color #000

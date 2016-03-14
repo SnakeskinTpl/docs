@@ -27,7 +27,7 @@
 						< .&__logo-text
 							nakeskin
 
-					+= self.nav()
+					+= self.nav(cluster)
 
 				: contents = {}
 				< .b-content-wrapper
@@ -48,7 +48,7 @@
 									- if key !== 'main'
 										< li
 											- if href
-												< a href = #${href}
+												< a.&__link href = #${href}
 													{key}
 
 											- else

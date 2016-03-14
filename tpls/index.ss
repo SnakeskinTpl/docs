@@ -34,35 +34,45 @@
 
 		- menu = [ &
 			{
+				id: 'guide',
 				href: 'guide.html',
 				label: `Документация`
 			},
 			{
+				id: 'api',
 				href: 'api.html',
 				label: `API`
 			},
 			{
+				id: 'plugins',
 				href: '#',
 				label: `Плагины`
 			},
 			{
+				id: 'examples',
 				href: '#',
 				label: `Примеры`
 			},
 			{
+				id: 'sandbox',
 				href: 'http://codepen.io/kobezzza/pen/zrJNXx',
 				label: `Песочница`,
 				target: '_blank'
 			}
 		] .
 
-		- block nav()
+		- block nav(id)
 			< nav.b-nav
 				< menu
 					- forEach menu => @el
 						< li
-							< a ${el}
-								{@label}
+							- if @id === id
+								< strong
+									{@label}
+
+							- else
+								< a ${el}
+									{@label}
 
 		- block body
 			< body.b-index-background

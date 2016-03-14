@@ -55,6 +55,9 @@ $(() => {
 			}
 		});
 
+	const
+		contents = $('.b-contents');
+
 	function emptyHash() {
 		let
 			hash = decodeURIComponent(location.hash),
@@ -72,6 +75,9 @@ $(() => {
 
 			const
 				id = target.attr('id');
+
+			contents.find('.b-contents__link').removeClass('b-contents__link_active_true');
+			contents.find(`.b-contents__link[href='#${id}']`).addClass('b-contents__link_active_true');
 
 			if (id === $('.b-article:eq(0)').attr('id')) {
 				prev.addClass(navHiddenClass);
