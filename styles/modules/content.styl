@@ -76,13 +76,17 @@ $contentsColor = #F5F2F0
 		top 0
 		height 100%
 
-	li > ul
+	&__part_link_false
+		color #777
+		list-style-type upper-roman
+
+	li > ol
 		margin-left 0.5em
 
 	&__link
 		position relative
 		display block
-		padding 0.3em 0
+		margin-bottom 0.3em
 
 		&_active_true
 			color $activeLinkColor
@@ -90,7 +94,7 @@ $contentsColor = #F5F2F0
 
 			&::before
 				position absolute
-				left -0.4em
+				left -0.5em
 				content "\f105"
 				font-family FontAwesome
 
@@ -180,7 +184,7 @@ $contentsColor = #F5F2F0
 		text-indent 0.5rem
 
 	h1
-		margin 1.8rem 0 2.2rem 0
+		margin 1.6rem 0
 		font 700 2.4rem\/1.5rem $logoFamily
 
 	for $i in 2..6

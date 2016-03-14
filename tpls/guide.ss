@@ -33,7 +33,7 @@
 				< .b-content-wrapper
 					< nav.b-contents
 						- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
-							< ul
+							< ol
 								- forEach doc => el, key
 									: href
 
@@ -46,7 +46,7 @@
 										} .
 
 									- if key !== 'main'
-										< li
+										< li.&__part[.&_link_${Boolean(href)}]
 											- if href
 												< a.&__link href = #${href}
 													{key}
