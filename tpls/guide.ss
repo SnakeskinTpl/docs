@@ -86,7 +86,7 @@
 							< .&__nav-control
 								< i.fa.fa-angle-right
 
-				< .b-footer
+				< footer.b-footer
 					: y = new Date().getFullYear()
 					(c) 2016{y !== 2016 ? '-' + y : ''} Snakeskin
 					< menu.&__menu
