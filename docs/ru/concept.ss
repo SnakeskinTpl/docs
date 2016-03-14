@@ -1,4 +1,4 @@
-- namespace docs.ru.guide['Введение']['Общая концепция шаблонов Snakeskin']
+- namespace docs.ru.guide['1::Введение']['2::Общая концепция шаблонов Snakeskin']
 
 /*!
  * snakeskin.github.io
@@ -46,8 +46,6 @@ var demo.helloWorld = function helloWorld(name) {
 
 После компиляции вызов шаблона соответствует простому вызову функции.
 Такой же подход используется в [Google Closure Templates](https://developers.google.com/closure/templates/).
-
-## Проверка ссылки
 
 #{/block}
 {/template}

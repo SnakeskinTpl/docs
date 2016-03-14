@@ -1,4 +1,4 @@
-- namespace docs.ru.guide['Введение']['Что такое Snakeskin']
+- namespace docs.ru.guide['1::Введение']['1::Что такое Snakeskin']
 
 /*!
  * snakeskin.github.io

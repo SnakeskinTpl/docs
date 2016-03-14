@@ -33,9 +33,16 @@
 				< .b-content-wrapper
 					< nav.b-contents
 						- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
+							: sortDoc = Object.keys(doc).sort()
+
 							< ol
-								- forEach doc => el, key
-									: href
+								- forEach sortDoc => key
+									: &
+										el = doc[key],
+										href
+									.
+
+									? key = key.replace(/^\d+::\s*/, '')
 
 									- if el.main
 										? href = Object.keys(el.main)[0]
