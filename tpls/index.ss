@@ -80,7 +80,7 @@
 					< .&__el[.&_align_center]
 						+= self.nav()
 
-						< img.b-index-logo src = ../logo.svg | alt = snakeskin template engine
+						< img.b-index-logo src = logo.svg | alt = snakeskin template engine
 						< .b-index-title
 							< h1
 								Snakeskin

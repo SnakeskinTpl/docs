@@ -25,7 +25,7 @@ const
 	babel = require('rollup-plugin-babel');
 
 const
-	buildFolder = './build';
+	buildFolder = './';
 
 function error() {
 	return (err) => {
