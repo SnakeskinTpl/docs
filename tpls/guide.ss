@@ -85,3 +85,16 @@
 						< .&__nav-cont.&__next
 							< .&__nav-control
 								< i.fa.fa-angle-right
+
+				< .b-footer
+					: y = new Date().getFullYear()
+					(c) 2016{y !== 2016 ? '-' + y : ''} Snakeskin
+					< menu.&__menu
+						< li
+							< a href = https://github.com/SnakeskinTpl/snakeskin.github.io/issues/new
+								Сообщить об ошибке
+
+						< li
+							< a href = https://github.com/SnakeskinTpl/Snakeskin
+								GitHub
+
