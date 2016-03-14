@@ -58,7 +58,7 @@
 												+= self.contents(el, breadcrumbs.concat(key))
 
 					< .b-articles
-						< .&__nav-cont.&__back
+						< .&__nav-cont.&__prev
 							< .&__nav-control
 								< i.fa.fa-angle-left
 
