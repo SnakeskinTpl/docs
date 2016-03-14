@@ -1,0 +1,60 @@
+/*!
+ * snakeskin.github.io
+ * https://github.com/SnakeskinTpl/snakeskin.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
+ */
+
+@import "nib/reset"
+
+global-reset()
+reset-html5()
+
+html, body
+	height 100%
+
+html
+	font-size 14px
+	font-family "Open Sans", sans-serif
+
+	@media all and (min-width 1900px)
+		font-size 16px
+
+body
+	min-width 80rem
+	line-height 1.8
+
+for $i in 1..6
+	h{$i}
+		position relative
+		margin (0.15 * (6 - $i))rem 0
+		padding 0.2em
+		font-size (2 - 0.2 * $i)rem
+		font-weight bold
+
+p
+	margin 0
+	padding 0.4rem
+
+strong
+	font-weight bold
+
+em
+	font-style italic
+
+$linkColor = #49401B
+$hoverLinkColor = #B31533
+$activeLinkColor = lighten($hoverLinkColor, 20%)
+
+a
+	color $linkColor
+
+	&:hover
+		color $hoverLinkColor
+
+	&:active
+		color $activeLinkColor
+
+	img
+		border 0

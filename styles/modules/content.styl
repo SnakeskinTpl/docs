@@ -1,0 +1,206 @@
+/*!
+ * snakeskin.github.io
+ * https://github.com/SnakeskinTpl/snakeskin.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
+ */
+
+@import "nib/positions"
+@import "./base"
+@import "./index"
+
+.b-doc-wrapper
+	position relative
+	min-height 100%
+
+$border = 1px #E1E0DE solid
+$headerHeight = 8rem
+
+.b-header
+	box-sizing border-box
+	padding 0 5rem
+	height $headerHeight
+	border-bottom $border
+
+	display flex
+	justify-content space-between
+	align-items center
+
+	background radial-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px)
+	background-color #FFF
+	background-size 6px 6px
+
+	&__logo-text
+		display inline-block
+		color $logoColor
+		font 700 3.4rem\/2.5rem $logoFamily
+		transform translateY(-0.45em)
+
+	&__logo:hover &__logo-text
+		color $hoverLinkColor
+
+	&__logo
+		text-decoration none
+
+		> img
+			height 6rem
+
+.b-content-wrapper
+	display flex
+	align-content flex-start
+	box-sizing border-box
+	width 100%
+
+$contentsWidth = 22rem
+
+.b-contents
+	position absolute
+	top $headerHeight
+	bottom 0
+
+	overflow auto
+	box-sizing border-box
+	width $contentsWidth
+	border-right $border
+	font-size 0.9rem
+
+	padding 1.5em
+	background #F5F2F0
+
+	&_full_true
+		position fixed
+		top 0
+		height 100%
+
+	li > ul
+		margin-left 0.5em
+
+	a
+		display block
+		padding 0.3em 0
+
+.b-articles
+	color #000
+	flex-basis 100%
+	display flex
+	margin-left $contentsWidth
+
+	@media all and (max-width 90rm)
+		margin-left 0
+
+	&__nav-control
+		margin auto 0
+		padding 0.1em 0.8em
+		color #999
+		font-size 3rem
+		cursor pointer
+
+		&:hover
+			background #EEE
+			color darken(@color, 50%)
+			opacity 1
+
+	&__back
+		justify-self flex-start
+
+	&__next
+		justify-self flex-end
+
+.b-article
+	display none
+	margin 0 auto
+	padding 0.5rem
+	max-width 50rem
+	color #151515
+
+	&_active_true
+		display block
+
+	a
+		color #2974bb
+
+		&:hover
+			color $hoverLinkColor
+
+		&:active
+			color $activeLinkColor
+
+	p
+		text-indent 0.5rem
+
+	h1
+		margin 1.8rem 0 2.2rem 0
+		font 700 2.4rem\/1.5rem $logoFamily
+
+	for $i in 2..6
+		h{$i}
+			cursor pointer
+			$hoverColor = #222
+
+			&:hover
+				color $hoverColor
+				text-decoration underline
+				opacity 0.7
+
+			&:active
+				color lighten($hoverColor, 30%)
+
+			&:hover::before
+				position absolute
+				left -1em
+				display inline-block
+				color lighten($hoverColor, 50%)
+				content "\f0c1"
+				font-weight normal
+				font-family FontAwesome
+
+.b-breadcrumbs
+	margin-top 0.5rem
+
+	li
+		display inline-block
+		margin-right 0.2rem
+
+$codeMargin = 0.4rem 0
+
+.hljs
+	margin $codeMargin
+
+.b-example
+	position relative
+	margin $codeMargin
+
+	&__toggle
+		display block
+		list-style-type none
+		text-align right
+
+	&__link
+		display inline-block
+		padding 0.2em 0.6em
+		font-size 0.9rem
+		cursor default
+
+		&_active_true
+			background #F0F0F0
+			color $hoverLinkColor
+
+		&:not(&_active_true)
+			border-bottom 1px dotted $linkColor
+			color $linkColor
+			cursor pointer
+
+			&:hover
+				color lighten(@color, 20%)
+
+			&:active
+				color lighten(@color, 30%)
+
+	&__code
+		> .hljs
+			display none
+			margin 0
+
+			&:first-of-type
+				display block
