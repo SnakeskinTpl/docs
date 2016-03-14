@@ -127,12 +127,15 @@ $contentsColor = #F5F2F0
 	margin-left $contentsWidth
 
 	&__nav-cont
-		absolute top $headerHeight bottom 0
+		fixed top $headerHeight bottom 0
 		display flex
 		align-items center
 
 		&_hidden_true
 			display none
+
+		&_full_true
+			top 0
 
 	@media all and (max-width 75rem)
 		&__nav-cont
