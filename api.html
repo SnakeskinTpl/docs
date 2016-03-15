@@ -38,6 +38,13 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#void">void</a> </li>
                                 </ol>
                             </li>
+                            <li class="b-contents__part b-contents__part_link_false">Логические директивы
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#if">if</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#unless">unless</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#switch">switch</a> </li>
+                                </ol>
+                            </li>
                         </ol>
                     </li>
                 </ol>
@@ -61,12 +68,14 @@
                             <tr>
                                 <th>Декларация</th>
                                 <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>Без ограничений</td>
                                 <td><code>?</code></td>
+                                <td>Строковая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -89,6 +98,208 @@
 	{void a++}
 	{a} /// 1
 {/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="if" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Логические директивы </li>
+                    </ul>
+                    <h1>if</h1>
+                    <p>Директива вставляет код <code>if</code> блока.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Дополнительные директивы</strong>:</p>
+                    <ul>
+                        <li><code>else</code></li>
+                        <li><code>else if</code></li>
+                        <li><code>else unless</code> (аналог <code>else if !(...)</code>)</li>
+                    </ul>
+                    <h2>Примеры</h2>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">3</span>
+- <span class="hljs-keyword">if</span> a &gt; <span class="hljs-number">3</span>
+	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &gt; 3'</span>)
+
+- <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> a &lt; <span class="hljs-number">3</span>
+	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &lt; 3'</span>)
+
+- <span class="hljs-keyword">else</span>
+	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 3'</span>)
+</code></pre>
+                            <pre class="hljs example-classic"><code>{: a = 3}
+{if a &gt; 3}
+	{? console.log('a &gt; 3')}
+
+{else if a &lt; 3}
+	{? console.log('a &lt; 3')}
+
+{else}
+	{? console.log('a == 3')}
+
+{/if}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="unless" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Логические директивы </li>
+                    </ul>
+                    <h1>unless</h1>
+                    <p>Директива вставляет код <code>if !(...)</code> блока.</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Дополнительные директивы</strong>:</p>
+                    <ul>
+                        <li><code>else</code></li>
+                        <li><code>else if</code></li>
+                        <li><code>else unless</code> (аналог <code>else if !(...)</code>)</li>
+                    </ul>
+                    <h2>Примеры</h2>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">3</span>
+- unless a &gt;= <span class="hljs-number">3</span>
+	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &lt; 3'</span>)
+
+- <span class="hljs-keyword">else</span> unless a &lt;= <span class="hljs-number">3</span>
+	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &gt; 3'</span>)
+
+- <span class="hljs-keyword">else</span>
+	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 3'</span>)
+</code></pre>
+                            <pre class="hljs example-classic"><code>{: a = 3}
+{unless a &gt;= 3}
+	{? console.log('a &lt; 3')}
+
+{else unless a &lt;= 3}
+	{? console.log('a &gt; 3')}
+
+{else}
+	{? console.log('a == 3')}
+
+{/unless}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="switch" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Логические директивы </li>
+                    </ul>
+                    <h1>switch</h1>
+                    <p>Директива вставляет код <code>switch-case</code> блока (break ставится автоматически после каждого <strong>case</strong>).</p>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td><code>&gt;</code> (для <strong>case</strong>)</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong>Дополнительные директивы</strong>:</p>
+                    <ul>
+                        <li><code>case</code></li>
+                        <li><code>default</code></li>
+                    </ul>
+                    <h2>Примеры</h2>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">3</span>
+- <span class="hljs-keyword">switch</span> a
+	- <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>
+		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 1'</span>)
+
+	- <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>
+		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 2'</span>)
+
+	&gt; <span class="hljs-number">3</span>
+		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 3'</span>)
+
+	- <span class="hljs-keyword">default</span>
+		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'default'</span>)
+</code></pre>
+                            <pre class="hljs example-classic"><code>{: a = 3}
+{switch a}
+	{case 1}
+		{? console.log('a == 1')}
+	{/case}
+
+	{case 2}
+		{? console.log('a == 2')}
+	{/case}
+
+	{&gt; 3}
+		{? console.log('a == 3')}
+	{/&gt;}
+
+	{default}
+		{? console.log('default')}
+	{/default}
+{/switch}
 </code></pre>
                         </div>
                     </div>

@@ -30,12 +30,12 @@ for $i in 1..6
 		position relative
 		margin (0.15 * (6 - $i))rem 0
 		padding 0.2em
-		font-size (2 - 0.2 * $i)rem
 		font-weight bold
+		font-size (2 - 0.2 * $i)rem
 
 p
-	margin 0
-	padding 0.4rem
+	margin 0.2rem
+	padding 0.2rem
 
 strong
 	font-weight bold
@@ -60,23 +60,32 @@ a
 		border 0
 
 code
-	border 1px solid #EEE
 	padding 0.1rem 0.3rem
+	border 1px solid #EEE
 	background #F0F0F0
 
 pre > code
-	border none
 	padding 0
+	border 0
 	background none
 
 table
+	margin 0.8rem
 	border-collapse collapse
-	margin 0.2rem 0.8rem
 
 td, th
-	border 1px solid #EEE
 	padding 0.3rem
+	border 1px solid #EEE
 	text-align center
 
 th
 	font-weight bold
+
+ul, ol
+	margin 0.8rem
+
+ul
+	list-style-type disc
+
+ol
+	list-style-type decimal
