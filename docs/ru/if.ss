@@ -1,0 +1,61 @@
+- namespace docs.ru.api['Директивы']['Логические директивы']['1::if']
+
+/*!
+ * snakeskin.github.io
+ * https://github.com/SnakeskinTpl/snakeskin.github.io
+ *
+ * Released under the MIT license
+ * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
+ */
+
+- include '../../tpls/modules/base'
+
+{template main[%fileName%]() extends base.main}
+#{block root}
+
+Директива вставляет код `if` блока.
+
+| Декларация      | Короткий синтаксис | Тип директивы |
+|-----------------|--------------------|---------------|
+| Без ограничений | Отсутствует        | Блочная       |
+
+**Дополнительные директивы**:
+
+* `else`
+* `else if`
+* `else unless` (аналог `else if !(...)`)
+
+## Примеры
+
+#{+= self.example()}
+
+```jade-like
+: a = 3
+- if a > 3
+	? console.log('a > 3')
+
+- else if a < 3
+	? console.log('a < 3')
+
+- else
+	? console.log('a == 3')
+```
+
+```classic
+{: a = 3}
+{if a > 3}
+	{? console.log('a > 3')}
+
+{else if a < 3}
+	{? console.log('a < 3')}
+
+{else}
+	{? console.log('a == 3')}
+
+{/if}
+```
+
+#{/}
+
+#{/block}
+{/template}
