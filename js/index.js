@@ -131,11 +131,15 @@
 				}
 			}
 
+			var win = $(window),
+			    duration = 250;
+
 			if (!hash || target.hasClass('b-article')) {
 				setArticle(target);
+				win.scrollTo(0, duration);
 			} else {
 				setArticle(target.closest('.b-article'));
-				target.length && $(window).scrollTop(target.offset().top);
+				target.length && win.scrollTo(target.offset().top, duration);
 			}
 
 			if (hash !== location.hash) {
