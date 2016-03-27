@@ -31,23 +31,23 @@
 				- return getTplResult()
 			- return MarkdownIt({html: true, highlight: self.highlight}).render(target.apply(this, arguments))
 
-{block main->example(content)}
-{< .b-example}
+#{block main->example(content)}
+#{< .b-example}
 
-{< menu.&__toggle}
+#{< menu.&__toggle}
 
-{< li.&__link[.&_active_true]}jade-like{/}
-{< li.&__link}classic{/}
+#{< li.&__link[.&_active_true]}jade-like#{/}
+#{< li.&__link}classic#{/}
 
-{/}
+#{/}
 
-{< .&__code}
+#{< .&__code}
 
-{+= content /}
+#{+= content /}
 
-{/}
-{/}
-{/block}
+#{/}
+#{/}
+#{/block}
 
 - @md
 - placeholder main() @= tolerateWhitespaces true @= localization false
