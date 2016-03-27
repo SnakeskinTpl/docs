@@ -42,6 +42,7 @@
                             <li class="b-contents__part b-contents__part_link_false">Итераторы
                                 <ol>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#forEach">forEach</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#forIn">forIn</a> </li>
                                 </ol>
                             </li>
                             <li class="b-contents__part b-contents__part_link_false">Логические директивы
@@ -324,6 +325,169 @@
                             <pre class="hljs example-classic"><code>{namespace demo}
 {template index()}
 	{forEach [1, 2, 3] =&gt; el}
+		{el}
+		{break}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="forIn" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Итераторы </li>
+                    </ul>
+                    <h1>forIn</h1>
+                    <p>Директива <strong>forIn</strong> итерирурует заданный объект как таблицу (без учёта <em>hasOwnProperty</em>).</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива итерирурует заданный объект с помощью функции <code>Snakeskin.forIn</code>.</p>
+                    <p>Общая форма директивы следующая:</p>
+                    <pre class="hljs example-js"><code>forIn ссылка на объект или сам объект =&gt; параметры функции через запятую
+	команда
+</code></pre>
+                    <p>Например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- forIn {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el
+	{el}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{forIn {a: 1, b: 2} =&gt; el}
+	{el}
+{/forIn}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления обходом внутри директивы можно использовать директивы:</p>
+                    <ol>
+                        <li><strong>break</strong> — полностью прерывает выполнение итератора;</li>
+                        <li><strong>continue</strong> — прерывает текущую итерацию и переходит к следующей.</li>
+                    </ol>
+                    <h3>Параметры функции итератора</h3>
+                    <ol>
+                        <li>Эначение элемента;</li>
+                        <li>Ключ;</li>
+                        <li>Ссылка на итерируемый объект;</li>
+                        <li>Номер итерации;</li>
+                        <li>Является ли элемент первым;</li>
+                        <li>Является ли элемент последним;</li>
+                        <li>Длина массива.</li>
+                    </ol>
+                    <h3>forIn и return</h3>
+                    <p>Несмотря на то что <em>forIn</em> использует функцию при обходе объекта, поведение директивы приближено к поведению цикла, т. е. внутри можно использовать директивы <em>break</em>, <em>continue</em> и <strong>return</strong>, принцип
+                        работы которых не будет отличаться, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+
+<span class="hljs-comment">/// Шаблон вернёт 1</span>
+- template index()
+	- forIn {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el
+		- <span class="hljs-keyword">return</span> el
+	Hello world
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo
+
+<span class="hljs-comment">/// Шаблон вернёт 1</span>
+{template index()}
+	{forIn {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el}
+		{<span class="hljs-keyword">return</span> el}
+	Hello world
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Примеры</h3>
+                    <h4>Простой перебор</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
+	- forIn obj =&gt; el, key
+		{el} {key}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var obj = {a: 1, b: 2}}
+	{forIn obj =&gt; el, key}
+		{el} {key}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Перебор с заданием <a href="#with">with</a> в списке входных параметров</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> obj = {a: {name: <span class="hljs-string">'Koba'</span>}, b: {name: <span class="hljs-string">'Over'</span>}}
+	- forIn obj =&gt; @el
+		{@name}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var obj = {a: {name: 'Koba'}, b: {name: 'Over'}}}
+	{forEach obj =&gt; @el}
+		{@name}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброй итераций</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- forEach {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span>} =&gt; el
+		{el}
+		- <span class="hljs-keyword">break</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{forEach {a: 1, b: 2, c: 3} =&gt; el}
 		{el}
 		{break}
 	{/}
