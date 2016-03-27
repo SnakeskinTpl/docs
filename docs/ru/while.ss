@@ -59,18 +59,23 @@
 #{+= self.example()}
 
 ```jade-like
-- var arr = [1, 2, 3]
-- while arr.length
-	{arr[0]}
-	? arr.shift()
+- namespace demo
+- template index()
+	- var arr = [1, 2, 3]
+	- while arr.length
+		{arr[0]}
+		? arr.shift()
 ```
 
 ```classic
-{var arr = [1, 2, 3]}
-{while arr.length}
-	{arr[0]}
-	{? arr.shift()}
-{/while}
+{namespace demo}
+{template index()}
+	{var arr = [1, 2, 3]}
+	{while arr.length}
+		{arr[0]}
+		{? arr.shift()}
+	{/}
+{/template}
 ```
 
 #{/}
