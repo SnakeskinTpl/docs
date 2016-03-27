@@ -39,7 +39,7 @@ if (typeof demo === 'undefined') {
 	var demo = {};
 }
 
-var demo.helloWorld = function helloWorld(name) {
+demo.helloWorld = function helloWorld(name) {
 	return 'Hello ' + escape(name) + '!';
 }
 ```
