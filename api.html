@@ -39,6 +39,11 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#void">void</a> </li>
                                 </ol>
                             </li>
+                            <li class="b-contents__part b-contents__part_link_false">Итераторы
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#forEach">forEach</a> </li>
+                                </ol>
+                            </li>
                             <li class="b-contents__part b-contents__part_link_false">Логические директивы
                                 <ol>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#if">if</a> </li>
@@ -89,7 +94,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива <strong>void</strong> нужна, когда нам нужно выполнить некоторую логику, но чтобы она никак не отобразилась в шаблоне, например, сделать инкремент переменной или вывести текст в консоль разработчика.</p>
+                    <p>Директива <strong>void</strong> используется когда нам нужно выполнить некоторую логику, но чтобы она никак не отобразилась в шаблоне, например, сделать инкремент переменной или вывести текст в консоль разработчика.</p>
                     <p>Директива начинается с ключевого слова <code>void</code> (или символа <code>?</code>), которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -126,6 +131,202 @@
 	{: a = 0}
 	{void a++}
 	{a} /// 1
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="forEach" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Итераторы </li>
+                    </ul>
+                    <h1>forEach</h1>
+                    <p>Директива <strong>forEach</strong> итерирурует заданную таблицу (с учётом <em>hasOwnProperty</em>) или массив.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива итерирурует заданный объект с помощью функции <code>Snakeskin.forEach</code> и может работать как с таблицами, так и с массивами.
+                    </p>
+                    <p>Общая форма директивы следующая:</p>
+                    <pre class="hljs example-js"><code>forEach ссылка на объект или сам объект =&gt; параметры функции через запятую
+	команда
+</code></pre>
+                    <p>Например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el
+	{el}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{forEach [1, 2, 3] =&gt; el}
+	{el}
+{/forEach}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления обходом внутри директивы можно использовать директивы:</p>
+                    <ol>
+                        <li><strong>break</strong> — полностью прерывает выполнение итератора;</li>
+                        <li><strong>continue</strong> — прерывает текущую итерацию и переходит к следующей.</li>
+                    </ol>
+                    <h3>Параметры для массива</h3>
+                    <ol>
+                        <li>Эначение элемента;</li>
+                        <li>Номер итерации;</li>
+                        <li>Ссылка на итерируемый массив;</li>
+                        <li>Является ли элемент первым;</li>
+                        <li>Является ли элемент последним;</li>
+                        <li>Длина массива.</li>
+                    </ol>
+                    <h3>Параметры для таблицы</h3>
+                    <ol>
+                        <li>Эначение элемента;</li>
+                        <li>Ключ;</li>
+                        <li>Ссылка на итерируемый объект;</li>
+                        <li>Номер итерации;</li>
+                        <li>Является ли элемент первым;</li>
+                        <li>Является ли элемент последним;</li>
+                        <li>Длина массива.</li>
+                    </ol>
+                    <h3>forEach и return</h3>
+                    <p>Несмотря на то что <em>forEach</em> использует функцию при обходе объекта, поведение директивы приближено к поведению цикла, т. е. внутри можно использовать директивы <em>break</em>, <em>continue</em> и <strong>return</strong>, принцип
+                        работы которых не будет отличаться, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+
+<span class="hljs-comment">/// Шаблон вернёт 1</span>
+- template index()
+	- forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el
+		- <span class="hljs-keyword">return</span> el
+	Hello world
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo
+
+<span class="hljs-comment">/// Шаблон вернёт 1</span>
+{template index()}
+	{forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el}
+		{<span class="hljs-keyword">return</span> el}
+	Hello world
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Примеры</h3>
+                    <h4>Простой перебор массива</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+	- forEach arr =&gt; el
+		{el}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var arr = [1, 2, 3]}
+	{forEach arr =&gt; el}
+		{el}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Перебор массива с заданием <a href="#with">with</a> в списке входных параметров</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> arr = [{name: <span class="hljs-string">'Koba'</span>}, {name: <span class="hljs-string">'Over'</span>}]
+	- forEach arr =&gt; @el
+		{@name}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var arr = [{name: 'Koba'}, {name: 'Over'}]}
+	{forEach arr =&gt; @el}
+		{@name}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Простой перебор объекта</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
+	- forEach obj =&gt; el, key
+		{el} {key}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var obj = {a: 1, b: 2}}
+	{forEach obj =&gt; el, key}
+		{el} {key}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброй итераций</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el
+		{el}
+		- <span class="hljs-keyword">break</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{forEach [1, 2, 3] =&gt; el}
+		{el}
+		{break}
+	{/}
 {/template}
 </code></pre>
                         </div>
@@ -253,7 +454,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива является инвертной формой <a href="#if">if</a>, т. е. если <strong>if</strong> блок выполнится только в том случае, если условное выражение будет приведено к <code>true</code>, то <strong>unless</strong> выполнится в случае
+                    <p>Директива является инвертной формой <a href="#if">if</a>, т. е. если <strong>if</strong> блок выполнится только в том случае когда условное выражение будет приведено к <code>true</code>, то <strong>unless</strong> выполнится в случае
                         <code>false</code>.</p>
                     <p>Директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения.</p>
                     <p>Директива начинается с ключевого слова <code>unless</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
@@ -351,7 +552,7 @@
                     </table>
                     <h2>Описание</h2>
                     <p>Подобно <a href="#if">if</a> или <a href="#unless">unless</a> директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения,
-                        но предоставляет более удобный синтаксис когда нам нужно сравнить выражение сразу с несколькими вариантами.</p>
+                        но предоставляет более удобный синтаксис когда нужно сравнить выражение сразу с несколькими вариантами.</p>
                     <p>Директива начинается с ключевого слова <code>switch</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно), а внутри директивы должны использоваться вспомогательные директивы
                         <strong>case</strong> и/или <strong>default</strong>. Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
                     <p>Директива <em>case</em> начинается с ключевого слова <code>case</code> (или символа <code>&gt;</code>), а после должно следовать выражение выражение для сравнения со <em>switch</em>. В отличии от реализации <em>case</em> в JS — оператор
