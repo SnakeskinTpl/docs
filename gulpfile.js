@@ -63,7 +63,7 @@ gulp.task('dependencies', (cb) => {
 				.on('end', cb);
 		}
 
-	], cb)
+	], cb);
 });
 
 gulp.task('scripts', (cb) => {
