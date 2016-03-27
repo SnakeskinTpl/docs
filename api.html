@@ -50,6 +50,7 @@
                                 <ol>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#for">for</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#while">while</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#do">do</a> </li>
                                 </ol>
                             </li>
                         </ol>
@@ -443,8 +444,8 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным. Директива проводит инициализацию перед первым шагом цикла. Затем выполняется проверка условия цикла, и в конце
-                        каждой итерации происходит изменение управляющей переменной.</p>
+                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную. Директива проводит инициализацию перед первым шагом цикла. Затем
+                        выполняется проверка условия цикла, и в конце каждой итерации происходит изменение управляющей переменной.</p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">for</span> инициализация; логическое выражение (условие); шаг (итерация)
 	команда
 </code></pre>
@@ -589,7 +590,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным.</p>
+                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную.</p>
                     <p>Директива начинается с ключевого слова <code>while</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -621,16 +622,21 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
-- <span class="hljs-keyword">while</span> arr.length
-	{arr[<span class="hljs-number">0</span>]}
-	? arr.shift()
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+	- <span class="hljs-keyword">while</span> arr.length
+		{arr[<span class="hljs-number">0</span>]}
+		? arr.shift()
 </code></pre>
-                            <pre class="hljs example-classic"><code>{var arr = [1, 2, 3]}
-{while arr.length}
-	{arr[0]}
-	{? arr.shift()}
-{/while}
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var arr = [1, 2, 3]}
+	{while arr.length}
+		{arr[0]}
+		{? arr.shift()}
+	{/}
+{/template}
 </code></pre>
                         </div>
                     </div>
@@ -655,6 +661,140 @@
 		{i}
 		{break}
 	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="do" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Циклы </li>
+                    </ul>
+                    <h1>do</h1>
+                    <p>Директива <strong>do</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную. Отличие <strong>do</strong> от <a href="#while">while</a> состоит
+                        в том, что цикл <code>do-while</code> выполняется по крайней мере один раз, даже если условие изначально ложно.</p>
+                    <p>Директива начинается с ключевого слова <code>do</code>, а выражение для проверки идёт после вложенного блока цикла вместе с директивой <strong>while</strong> (заключать выражение в скобки не обязательно). Самая простая форма выглядит
+                        так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
+- <span class="hljs-keyword">do</span>
+	{i}
+- <span class="hljs-keyword">while</span> i--
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>}
+{<span class="hljs-keyword">do</span>}
+	{i}
+{<span class="hljs-keyword">while</span> i--}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления циклом внутри директивы можно использовать директивы:</p>
+                    <ol>
+                        <li><strong>break</strong> — полностью прерывает выполнение цикла;</li>
+                        <li><strong>continue</strong> — прерывает текущую итерацию и переходит к следующей.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <h4>Перебор массива</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+	- <span class="hljs-keyword">do</span>
+		{arr[<span class="hljs-number">0</span>]}
+		? arr.shift()
+	- <span class="hljs-keyword">while</span> arr.length
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var arr = [1, 2, 3]}
+	{do}
+		{arr[0]}
+		{? arr.shift()}
+	{while arr.length}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Бесконечный цикл</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>
+	- <span class="hljs-keyword">do</span>
+		{i}
+		? i++
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var i = 0}
+	{do}
+		{i}
+		{? i++}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброй итераций</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
+	- <span class="hljs-keyword">do</span>
+		{i}
+		- <span class="hljs-keyword">break</span>
+	- <span class="hljs-keyword">while</span> i--
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var i = 3}
+	{do}
+		{i}
+		{break}
+	{while i--}
 {/template}
 </code></pre>
                         </div>
