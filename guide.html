@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext">
     <link rel="stylesheet" type="text/css" href="css/highlight/default.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 
@@ -84,11 +85,11 @@
                     </div>
                     <p>Эквивалентно</p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> demo === <span class="hljs-string">'undefined'</span>) {
-  <span class="hljs-keyword">var</span> demo = {};
+	<span class="hljs-keyword">var</span> demo = {};
 }
 
 <span class="hljs-keyword">var</span> demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">helloWorld</span>(<span class="hljs-params">name</span>) </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-string">'Hello '</span> + <span class="hljs-built_in">escape</span>(name) + <span class="hljs-string">'!'</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello '</span> + <span class="hljs-built_in">escape</span>(name) + <span class="hljs-string">'!'</span>;
 }
 </code></pre>
                     <p>После компиляции вызов шаблона соответствует простому вызову функции. Такой же подход используется в <a href="https://developers.google.com/closure/templates/">Google Closure Templates</a>.</p>

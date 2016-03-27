@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext">
     <link rel="stylesheet" type="text/css" href="css/highlight/default.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
 </head>
 
@@ -45,6 +46,12 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#switch">switch</a> </li>
                                 </ol>
                             </li>
+                            <li class="b-contents__part b-contents__part_link_false">Циклы
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#for">for</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#while">while</a> </li>
+                                </ol>
+                            </li>
                         </ol>
                     </li>
                 </ol>
@@ -63,6 +70,7 @@
                     </ul>
                     <h1>void</h1>
                     <p>Директива выполняет заданное выражение, но ничего не выводит в шаблон.</p>
+                    <h2>Паспорт</h2>
                     <table>
                         <thead>
                             <tr>
@@ -79,21 +87,41 @@
                             </tr>
                         </tbody>
                     </table>
-                    <h2>Примеры</h2>
+                    <h2>Описание</h2>
+                    <p>Директива <strong>void</strong> нужна, когда нам нужно выполнить некоторую логику, но чтобы она никак не отобразилась в шаблоне, например, сделать инкремент переменной или вывести текст в консоль разработчика.</p>
+                    <p>Директива начинается с ключевого слова <code>void</code> (или символа <code>?</code>), которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello world'</span>)
-- template demo()
+                            <pre class="hljs example-jade-like"><code>? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello'</span>)
+- <span class="hljs-keyword">void</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'world'</span>)
+</code></pre>
+                            <pre class="hljs example-classic"><code>{? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello'</span>)}
+{<span class="hljs-keyword">void</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'world'</span>)}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello world'</span>)
+- template index()
 	: a = <span class="hljs-number">0</span>
 	- <span class="hljs-keyword">void</span> a++
 	{a} <span class="hljs-comment">/// 1</span>
 </code></pre>
-                            <pre class="hljs example-classic"><code>{? console.log('hello world')}
-{template demo()}
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{? console.log('hello world')}
+{template index()}
 	{: a = 0}
 	{void a++}
 	{a} /// 1
@@ -111,7 +139,8 @@
                         <li> Логические директивы </li>
                     </ul>
                     <h1>if</h1>
-                    <p>Директива вставляет код <code>if</code> блока.</p>
+                    <p>Директива <strong>if</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <h2>Паспорт</h2>
                     <table>
                         <thead>
                             <tr>
@@ -128,41 +157,70 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p><strong>Дополнительные директивы</strong>:</p>
-                    <ul>
-                        <li><code>else</code></li>
-                        <li><code>else if</code></li>
-                        <li><code>else unless</code> (аналог <code>else if !(...)</code>)</li>
-                    </ul>
-                    <h2>Примеры</h2>
+                    <h2>Описание</h2>
+                    <p>Директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения.</p>
+                    <p>Директива начинается с ключевого слова <code>if</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">3</span>
-- <span class="hljs-keyword">if</span> a &gt; <span class="hljs-number">3</span>
-	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &gt; 3'</span>)
-
-- <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> a &lt; <span class="hljs-number">3</span>
-	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &lt; 3'</span>)
-
-- <span class="hljs-keyword">else</span>
-	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 3'</span>)
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
+	Hello world!
 </code></pre>
-                            <pre class="hljs example-classic"><code>{: a = 3}
-{if a &gt; 3}
-	{? console.log('a &gt; 3')}
-
-{else if a &lt; 3}
-	{? console.log('a &lt; 3')}
-
-{else}
-	{? console.log('a == 3')}
-
+                            <pre class="hljs example-classic"><code>{if true}
+	Hello world!
 {/if}
 </code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
+                    <ol>
+                        <li><code>else</code> — аналог <code>else</code> в JS;</li>
+                        <li><code>else if</code> — аналог <code>else if</code> в JS;</li>
+                        <li><code>else unless</code> — аналог <code>else if (!(...))</code> в JS.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	&lt; .result
+		- <span class="hljs-keyword">if</span> val &gt; <span class="hljs-number">3</span>
+			&lt; .success
+				Значение больше чем <span class="hljs-number">3.</span>
+
+		- <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> val &lt; <span class="hljs-number">3</span>
+			&lt; .fail
+				Значение меньше чем <span class="hljs-number">3.</span>
+
+		- <span class="hljs-keyword">else</span>
+			&lt; .error
+				Значение рано <span class="hljs-number">3.</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
+		{<span class="hljs-attr">if</span> <span class="hljs-attr">val</span> &gt;</span> 3}
+			{<span class="hljs-tag">&lt; <span class="hljs-attr">.success</span>}
+				Значение больше чем <span class="hljs-attr">3.</span>
+
+		{<span class="hljs-attr">else</span> <span class="hljs-attr">if</span> <span class="hljs-attr">val</span> &lt; <span class="hljs-attr">3</span>}
+			{&lt; <span class="hljs-attr">.fail</span>}
+				Значение меньше чем <span class="hljs-attr">3.</span>
+
+		{<span class="hljs-attr">else</span>}
+			{&lt; <span class="hljs-attr">.error</span>}
+				Значение рано <span class="hljs-attr">3.</span>
+		{/}
+	{/}
+{/<span class="hljs-attr">template</span>}
+</span></span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -175,7 +233,8 @@
                         <li> Логические директивы </li>
                     </ul>
                     <h1>unless</h1>
-                    <p>Директива вставляет код <code>if !(...)</code> блока.</p>
+                    <p>Директива <strong>unless</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в CoffeeScript.</p>
+                    <h2>Паспорт</h2>
                     <table>
                         <thead>
                             <tr>
@@ -192,41 +251,72 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p><strong>Дополнительные директивы</strong>:</p>
-                    <ul>
-                        <li><code>else</code></li>
-                        <li><code>else if</code></li>
-                        <li><code>else unless</code> (аналог <code>else if !(...)</code>)</li>
-                    </ul>
-                    <h2>Примеры</h2>
+                    <h2>Описание</h2>
+                    <p>Директива является инвертной формой <a href="#if">if</a>, т. е. если <strong>if</strong> блок выполнится только в том случае, если условное выражение будет приведено к <code>true</code>, то <strong>unless</strong> выполнится в случае
+                        <code>false</code>.</p>
+                    <p>Директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения.</p>
+                    <p>Директива начинается с ключевого слова <code>unless</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">3</span>
-- unless a &gt;= <span class="hljs-number">3</span>
-	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &lt; 3'</span>)
-
-- <span class="hljs-keyword">else</span> unless a &lt;= <span class="hljs-number">3</span>
-	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a &gt; 3'</span>)
-
-- <span class="hljs-keyword">else</span>
-	? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 3'</span>)
+                            <pre class="hljs example-jade-like"><code>- unless <span class="hljs-literal">false</span>
+	Hello world!
 </code></pre>
-                            <pre class="hljs example-classic"><code>{: a = 3}
-{unless a &gt;= 3}
-	{? console.log('a &lt; 3')}
-
-{else unless a &lt;= 3}
-	{? console.log('a &gt; 3')}
-
-{else}
-	{? console.log('a == 3')}
-
-{/unless}
+                            <pre class="hljs example-classic"><code>{unless false}
+	Hello world!
+{/if}
 </code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
+                    <ol>
+                        <li><code>else</code> — аналог <code>else</code> в JS;</li>
+                        <li><code>else if</code> — аналог <code>else if</code> в JS;</li>
+                        <li><code>else unless</code> — аналог <code>else if (!(...))</code> в JS.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	&lt; .result
+		- unless val &gt;= <span class="hljs-number">3</span>
+			&lt; .success
+				Значение меньше чем <span class="hljs-number">3.</span>
+
+		- <span class="hljs-keyword">else</span> unless val &lt;= <span class="hljs-number">3</span>
+			&lt; .fail
+				Значение больше чем <span class="hljs-number">3.</span>
+
+		- <span class="hljs-keyword">else</span>
+			&lt; .error
+				Значение рано <span class="hljs-number">3.</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
+		{<span class="hljs-attr">unless</span> <span class="hljs-attr">val</span> &gt;</span>= 3}
+			{<span class="hljs-tag">&lt; <span class="hljs-attr">.success</span>}
+				Значение меньше чем <span class="hljs-attr">3.</span>
+
+		{<span class="hljs-attr">else</span> <span class="hljs-attr">unless</span> <span class="hljs-attr">val</span> &lt;= <span class="hljs-attr">3</span>}
+			{&lt; <span class="hljs-attr">.fail</span>}
+				Значение больше чем <span class="hljs-attr">3.</span>
+
+		{<span class="hljs-attr">else</span>}
+			{&lt; <span class="hljs-attr">.error</span>}
+				Значение рано <span class="hljs-attr">3.</span>
+		{/}
+	{/}
+{/<span class="hljs-attr">template</span>}
+</span></span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -239,7 +329,9 @@
                         <li> Логические директивы </li>
                     </ul>
                     <h1>switch</h1>
-                    <p>Директива вставляет код <code>switch-case</code> блока (break ставится автоматически после каждого <strong>case</strong>).</p>
+                    <p>Директива <strong>switch</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript (<code>break</code> ставится автоматически после каждого блока
+                        <strong>case</strong>).</p>
+                    <h2>Паспорт</h2>
                     <table>
                         <thead>
                             <tr>
@@ -256,50 +348,314 @@
                             </tr>
                         </tbody>
                     </table>
-                    <p><strong>Дополнительные директивы</strong>:</p>
-                    <ul>
-                        <li><code>case</code></li>
-                        <li><code>default</code></li>
-                    </ul>
-                    <h2>Примеры</h2>
+                    <h2>Описание</h2>
+                    <p>Подобно <a href="#if">if</a> или <a href="#unless">unless</a> директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения,
+                        но предоставляет более удобный синтаксис когда нам нужно сравнить выражение сразу с несколькими вариантами.</p>
+                    <p>Директива начинается с ключевого слова <code>switch</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно), а внутри директивы должны использоваться вспомогательные директивы
+                        <strong>case</strong> и/или <strong>default</strong>. Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <p>Директива <em>case</em> начинается с ключевого слова <code>case</code> (или символа <code>&gt;</code>), а после должно следовать выражение выражение для сравнения со <em>switch</em>. В отличии от реализации <em>case</em> в JS — оператор
+                        <code>break</code> ставиться автоматически после каждого блока.
+                    </p>
+                    <p>Декларация <em>default</em> полностью идентичная аналогичной в JS.</p>
+                    <h3>Примеры</h3>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">3</span>
-- <span class="hljs-keyword">switch</span> a
-	- <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>
-		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 1'</span>)
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	&lt; .result
+		- <span class="hljs-keyword">switch</span> value
+			- <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>
+				&lt; .value<span class="hljs-number">-1</span>
+					value == <span class="hljs-number">1</span>
 
-	- <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>
-		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 2'</span>)
+			- <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>
+				&lt; .value<span class="hljs-number">-2</span>
+					value == <span class="hljs-number">2</span>
 
-	&gt; <span class="hljs-number">3</span>
-		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'a == 3'</span>)
+			&gt; <span class="hljs-number">3</span>
+				&lt; .value<span class="hljs-number">-3</span>
+					value == <span class="hljs-number">3</span>
 
-	- <span class="hljs-keyword">default</span>
-		? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'default'</span>)
+			- <span class="hljs-keyword">default</span>
+				Условие, которое выполнится по умолчанию.
 </code></pre>
-                            <pre class="hljs example-classic"><code>{: a = 3}
-{switch a}
-	{case 1}
-		{? console.log('a == 1')}
-	{/case}
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
+		{<span class="hljs-attr">switch</span> <span class="hljs-attr">value</span>}
+			{<span class="hljs-attr">case</span> <span class="hljs-attr">1</span>}
+				{&lt; <span class="hljs-attr">.value-1</span>}
+					<span class="hljs-attr">value</span> =<span class="hljs-string">=</span> <span class="hljs-attr">1</span>
+				{/}
+			{/}
 
-	{case 2}
-		{? console.log('a == 2')}
-	{/case}
+			{<span class="hljs-attr">case</span> <span class="hljs-attr">2</span>}
+				{&lt; <span class="hljs-attr">.value-2</span>
+					<span class="hljs-attr">value</span> =<span class="hljs-string">=</span> <span class="hljs-attr">2</span>
+				{/}
+			{/}
 
-	{&gt; 3}
-		{? console.log('a == 3')}
-	{/&gt;}
+			{&gt;</span> 3}
+				{<span class="hljs-tag">&lt; <span class="hljs-attr">.value-3</span>}
+					<span class="hljs-attr">value</span> =<span class="hljs-string">=</span> <span class="hljs-attr">3</span>
+				{/}
+			{/}
 
-	{default}
-		{? console.log('default')}
-	{/default}
-{/switch}
+			{<span class="hljs-attr">default</span>}
+				Условие, которое выполнится по умолчанию<span class="hljs-attr">.</span>
+			{/}
+		{/}
+	{/}
+{/<span class="hljs-attr">template</span>}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="for" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Циклы </li>
+                    </ul>
+                    <h1>for</h1>
+                    <p>Директива <strong>for</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным. Директива проводит инициализацию перед первым шагом цикла. Затем выполняется проверка условия цикла, и в конце
+                        каждой итерации происходит изменение управляющей переменной.</p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">for</span> инициализация; логическое выражение (условие); шаг (итерация)
+	команда
+</code></pre>
+                    <p>Самая простая форма выглядит так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++
+	Итерация - {i}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{for var i = 0; i &lt; 3; i++}
+	Итерация - {i}
+{/for}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления циклом внутри директивы можно использовать директивы:</p>
+                    <ol>
+                        <li><strong>break</strong> — полностью прерывает выполнение цикла;</li>
+                        <li><strong>continue</strong> — прерывает текущую итерацию и переходит к следующей.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <h4>Простой перебор массива</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+
+	<span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span>
+	<span class="hljs-comment">/// то i будет доступен только внутри for</span>
+	- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++
+		{arr[i]}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var arr = [1, 2, 3]}
+
+	/// Т.к. переменные Snakeskin имеют блочную область видимости,
+	/// то i будет доступен только внутри for
+	{for var i = 0; i &lt; arr.length; i++}
+		{arr[i]}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Простой перебор объекта</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
+
+	<span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span>
+	<span class="hljs-comment">/// то key будет доступен только внутри for</span>
+	- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj
+		{key}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var obj = {a: 1, b: 2}}
+
+	/// Т.к. переменные Snakeskin имеют блочную область видимости,
+	/// то key будет доступен только внутри for
+	{for var key in obj}
+		{key}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброй итераций</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
+	- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj
+		- <span class="hljs-keyword">if</span> !obj.hasOwnProperty(key)
+			- <span class="hljs-keyword">continue</span>
+
+		{key}
+		- <span class="hljs-keyword">break</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var obj = {a: 1, b: 2}}
+	{for var key in obj}
+		{if !obj.hasOwnProperty(key)}
+			{continue}
+		{/}
+
+		{key}
+		{break}
+	{/}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="while" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Циклы </li>
+                    </ul>
+                    <h1>while</h1>
+                    <p>Директива <strong>while</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным.</p>
+                    <p>Директива начинается с ключевого слова <code>while</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
+- <span class="hljs-keyword">while</span> i--
+	{i}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{var i = 3}
+{while i--}
+	{i}
+{/while}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления циклом внутри директивы можно использовать директивы:</p>
+                    <ol>
+                        <li><strong>break</strong> — полностью прерывает выполнение цикла;</li>
+                        <li><strong>continue</strong> — прерывает текущую итерацию и переходит к следующей.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <h4>Перебор массива</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+- <span class="hljs-keyword">while</span> arr.length
+	{arr[<span class="hljs-number">0</span>]}
+	? arr.shift()
+</code></pre>
+                            <pre class="hljs example-classic"><code>{var arr = [1, 2, 3]}
+{while arr.length}
+	{arr[0]}
+	{? arr.shift()}
+{/while}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброй итераций</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index()
+	- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
+	- <span class="hljs-keyword">while</span> i--
+		{i}
+		- <span class="hljs-keyword">break</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index()}
+	{var i = 3}
+	{while i--}
+		{i}
+		{break}
+	{/}
+{/template}
 </code></pre>
                         </div>
                     </div>
