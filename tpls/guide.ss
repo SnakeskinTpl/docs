@@ -16,7 +16,8 @@
 
 	- block head
 		- super
-		- script js src = js/index.js
+		- forEach ['jquery.scrollTo.min', 'index'] => url
+			- script js src = js/${url}.js
 
 	- block body
 		< body

@@ -61,6 +61,15 @@ gulp.task('dependencies', (cb) => {
 
 				.pipe(gulp.dest(path.join(buildFolder, 'css/highlight')))
 				.on('end', cb);
+		},
+
+		(cb) => {
+			gulp.src([
+				'./node_modules/jquery.scrollto/jquery.scrollTo.min.js'
+			])
+
+			.pipe(gulp.dest(path.join(buildFolder, 'js')))
+			.on('end', cb);
 		}
 
 	], cb);
