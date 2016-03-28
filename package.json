@@ -8,7 +8,6 @@
     "gulp-rollup": "^1.7.0",
     "gulp-snakeskin": "^7.0.0",
     "gulp-stylus": "^2.3.0",
-    "gulp-watch": "^4.3.5",
     "highlight.js": "^9.2.0",
     "jquery.scrollto": "^2.1.2",
     "jscs": "^2.11.0",

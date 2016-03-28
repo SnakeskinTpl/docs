@@ -15,8 +15,7 @@ const
 	snakeskin = require('gulp-snakeskin'),
 	stylus = require('gulp-stylus'),
 	autoprefixer = require('gulp-autoprefixer'),
-	rollup = require('gulp-rollup'),
-	watch = require('gulp-watch');
+	rollup = require('gulp-rollup');
 
 const
 	path = require('path'),
@@ -35,7 +34,6 @@ function error() {
 
 gulp.task('templates', (cb) => {
 	gulp.src('./tpls/*.ss')
-		.pipe(watch(['./tpls/**/*.ss', './docs/**/*.ss']))
 		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru'}}))
 		.on('error', error())
 		.pipe(gulp.dest(buildFolder))
@@ -44,7 +42,6 @@ gulp.task('templates', (cb) => {
 
 gulp.task('styles', (cb) => {
 	gulp.src('./styles/*.styl')
-		.pipe(watch('./styles/**/*.styl'))
 		.pipe(stylus({use: nib()}))
 		.on('error', error())
 		.pipe(autoprefixer())
@@ -77,11 +74,16 @@ gulp.task('dependencies', (cb) => {
 
 gulp.task('scripts', (cb) => {
 	gulp.src('./scripts/index.js')
-		.pipe(watch('./scripts/**/*.js'))
 		.pipe(rollup({format: 'iife', plugins: [babel()]}))
 		.on('error', error())
 		.pipe(gulp.dest(path.join(buildFolder, 'js')))
 		.on('end', cb);
 });
 
-gulp.task('default', ['templates', 'styles', 'scripts', 'dependencies']);
+gulp.task('watch', () => {
+	gulp.watch(['./tpls/**/*.ss', './docs/**/*.ss'], ['templates']);
+	gulp.watch('./styles/**/*.styl', ['styles']);
+	gulp.watch('./scripts/**/*.js', ['scripts']);
+});
+
+gulp.task('default', ['templates', 'styles', 'scripts', 'dependencies', 'watch']);
