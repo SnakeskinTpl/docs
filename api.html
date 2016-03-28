@@ -52,6 +52,17 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#switch">switch</a> </li>
                                 </ol>
                             </li>
+                            <li class="b-contents__part b-contents__part_link_false">Переменные
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#var">var</a> </li>
+                                </ol>
+                            </li>
+                            <li class="b-contents__part b-contents__part_link_false">Работа с исключениями
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#try">try</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#throw">throw</a> </li>
+                                </ol>
+                            </li>
                             <li class="b-contents__part b-contents__part_link_false">Циклы
                                 <ol>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#for">for</a> </li>
@@ -76,7 +87,7 @@
                         <li> Выполнение / вывод </li>
                     </ul>
                     <h1>void</h1>
-                    <p>Директива выполняет заданное выражение, но ничего не выводит в шаблон.</p>
+                    <p>Директива выполняет заданное выражение, но ничего не выводит в шаблон. 1</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -209,7 +220,7 @@
                         <li>Номер итерации;</li>
                         <li>Является ли элемент первым;</li>
                         <li>Является ли элемент последним;</li>
-                        <li>Длина массива.</li>
+                        <li>Количество элементов в объекте.</li>
                     </ol>
                     <h3>forEach и return</h3>
                     <p>Несмотря на то что <em>forEach</em> использует функцию при обходе объекта, поведение директивы приближено к поведению цикла, т. е. внутри можно использовать директивы <em>break</em>, <em>continue</em> и <strong>return</strong>, принцип
@@ -395,7 +406,7 @@
                         <li>Номер итерации;</li>
                         <li>Является ли элемент первым;</li>
                         <li>Является ли элемент последним;</li>
-                        <li>Длина массива.</li>
+                        <li>Количество элементов в объекте.</li>
                     </ol>
                     <h3>forIn и return</h3>
                     <p>Несмотря на то что <em>forIn</em> использует функцию при обходе объекта, поведение директивы приближено к поведению цикла, т. е. внутри можно использовать директивы <em>break</em>, <em>continue</em> и <strong>return</strong>, принцип
@@ -525,7 +536,8 @@
                     </table>
                     <h2>Описание</h2>
                     <p>Директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения.</p>
-                    <p>Директива начинается с ключевого слова <code>if</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
+                    <p>Директива начинается с ключевого слова <code>if</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно).</p>
+                    <p>Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -621,7 +633,8 @@
                     <p>Директива является инвертной формой <a href="#if">if</a>, т. е. если <strong>if</strong> блок выполнится только в том случае когда условное выражение будет приведено к <code>true</code>, то <strong>unless</strong> выполнится в случае
                         <code>false</code>.</p>
                     <p>Директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения.</p>
-                    <p>Директива начинается с ключевого слова <code>unless</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
+                    <p>Директива начинается с ключевого слова <code>unless</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно).</p>
+                    <p>Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -778,6 +791,332 @@
 	{/}
 {/<span class="hljs-attr">template</span>}
 </span></span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="var" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Переменные </li>
+                    </ul>
+                    <h1>var</h1>
+                    <p>Директива создаёт переменную/ые с указанным именем и значением.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td><code>:</code></td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Переменные в Snakeskin имеют блочную область видимости и по своей семантике напоминают <code>let</code> из JS ES2015.</p>
+                    <p>Директива <strong>var</strong> позволяет декларировать сразу несколько переменных через запятую (аналогично как это делается в JS).</p>
+                    <p>Директива начинается с ключевого слова <code>var</code> (или символа <code>:</code>), которое должно сопровождаться списком имён создаваемых переменных (через запятую). Для присвоения значений созданной переменной необходимо поставить
+                        символ <code>=</code> после имени.</p>
+                    <p>Самая простая форма выглядит так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>
+: b = <span class="hljs-number">2</span>, c, d = <span class="hljs-number">4</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span> /}
+{: b = <span class="hljs-number">2</span>, c, d = <span class="hljs-number">4</span> /}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Для удобства использования <em>var</em> в классическом синтаксисе существует короткая форма закрытия директивы, например:</p>
+                    <pre class="hljs example-classic"><code>/// Обычное закрытие
+{var a = 1}{/}
+
+/// Короткая форма закрытия
+{var b = 2 /}
+</code></pre>
+                    <p>В отличии от JS переменные в Snakeskin декларируются только после места декларации.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">2</span>
+- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
+	? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 2</span>
+	: a = <span class="hljs-number">1</span>
+	? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 1</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{: a = 2}
+{if true}
+	{? console.log(a)} /// 2
+	{: a = 1}
+	{? console.log(a)} /// 1
+{/}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Допускается в рамках одного блока создавать переменные с одинаковым именем.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">2</span>
+? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 2</span>
+: a = <span class="hljs-number">1</span>
+? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 1</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{: a = <span class="hljs-number">2</span>}
+{? <span class="hljs-built_in">console</span>.log(a)} <span class="hljs-comment">/// 2</span>
+{: a = <span class="hljs-number">1</span>}
+{? <span class="hljs-built_in">console</span>.log(a)} <span class="hljs-comment">/// 1</span>
+</code></pre>
+                        </div>
+                    </div>
+                    <p>С помощью ключевого слова <strong>putIn</strong> можно присвоить переменной фрагмент выражения Snakeskin, однако при такой декларации допускается создавать только одну переменную за раз, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	: putIn tpl
+		- <span class="hljs-keyword">if</span> value !== <span class="hljs-number">404</span>
+			&lt; .hello
+				Hello World!
+
+		- <span class="hljs-keyword">else</span>
+			&lt; .error
+				<span class="hljs-number">404</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{: putIn tpl}
+		{<span class="hljs-keyword">if</span> value !== <span class="hljs-number">404</span>}
+			{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.hello</span>}
+				<span class="hljs-attr">Hello</span> <span class="hljs-attr">World</span>!
+
+		{<span class="hljs-attr">else</span>}
+			{&lt; <span class="hljs-attr">.error</span>}
+				<span class="hljs-attr">404</span>
+			{/}
+		{/}
+	{/}
+{/<span class="hljs-attr">template</span>}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
+		: a = <span class="hljs-number">1</span>
+		{a}
+
+	{a} <span class="hljs-comment">/// Error, a is not defined</span>
+
+	: b = <span class="hljs-number">1</span>
+	- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
+		{b} <span class="hljs-comment">/// 1</span>
+
+	{b} <span class="hljs-comment">/// 1</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{if true}
+		{: a = 1 /}
+		{a}
+	{/}
+
+	{a} /// Error, a is not defined
+
+	{: b = 1}
+	{if true}
+		{b} /// 1
+	{/}
+
+	{b} /// 1
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="try" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с исключениями </li>
+                    </ul>
+                    <h1>try</h1>
+                    <p>Директива <strong>try</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива позволяет вашему шаблону отлавливать и обрабатывать исключения, которые могут возникать по ходу выполнения программы на Snakeskin.</p>
+                    <p>Самая простая форма выглядит так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">try</span>
+	? <span class="hljs-number">1</span> <span class="hljs-number">2</span>
+</code></pre>
+                            <pre class="hljs example-classic"><code>{try}
+	{1 2}
+{/try}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
+                    <ol>
+                        <li><code>catch</code> — аналог <code>catch</code> в JS;</li>
+                        <li><code>finally</code> — аналог <code>finally</code> в JS.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	&lt; .result
+		- <span class="hljs-keyword">try</span>
+			? value = <span class="hljs-built_in">JSON</span>.parse(value)
+
+		- <span class="hljs-keyword">catch</span> err
+			? <span class="hljs-built_in">console</span>.error(err)
+
+		- <span class="hljs-keyword">finally</span>
+			Hello world!
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
+		{<span class="hljs-attr">try</span>}
+			{? <span class="hljs-attr">value</span> = <span class="hljs-attr">JSON.parse</span>(<span class="hljs-attr">value</span>)}
+
+		{<span class="hljs-attr">catch</span> <span class="hljs-attr">err</span>}
+			{? <span class="hljs-attr">console.error</span>(<span class="hljs-attr">err</span>)}
+
+		{<span class="hljs-attr">finally</span>}
+			<span class="hljs-attr">Hello</span> <span class="hljs-attr">world</span>!
+		{/}
+	{/}
+{/<span class="hljs-attr">template</span>}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="throw" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с исключениями </li>
+                    </ul>
+                    <h1>throw</h1>
+                    <p>Директива <strong>throw</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Строковая</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива генерирует заданное исключение и начинается с ключевого слова <code>throw</code>, которое должно сопровождаться выражением. Самая простая форма выглядит так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Ошибка'</span>)
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Ошибка'</span>)}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	&lt; .result
+		- <span class="hljs-keyword">if</span> value &gt; <span class="hljs-number">1</span>
+			- <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid value'</span>)
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
+		{<span class="hljs-attr">if</span> <span class="hljs-attr">value</span> &gt;</span> 1}
+			{throw new Error('Invalid value')}
+		{/}
+	{/}
+{/template}
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -956,7 +1295,8 @@
                     </table>
                     <h2>Описание</h2>
                     <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную.</p>
-                    <p>Директива начинается с ключевого слова <code>while</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
+                    <p>Директива начинается с ключевого слова <code>while</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно).</p>
+                    <p>Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1061,8 +1401,8 @@
                     <h2>Описание</h2>
                     <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную. Отличие <strong>do</strong> от <a href="#while">while</a> состоит
                         в том, что цикл <code>do-while</code> выполняется по крайней мере один раз, даже если условие изначально ложно.</p>
-                    <p>Директива начинается с ключевого слова <code>do</code>, а выражение для проверки идёт после вложенного блока цикла вместе с директивой <strong>while</strong> (заключать выражение в скобки не обязательно). Самая простая форма выглядит
-                        так:</p>
+                    <p>Директива начинается с ключевого слова <code>do</code>, а выражение для проверки идёт после вложенного блока цикла вместе с директивой <strong>while</strong> (заключать выражение в скобки не обязательно).</p>
+                    <p>Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
