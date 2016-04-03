@@ -57,6 +57,13 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#var">var</a> </li>
                                 </ol>
                             </li>
+                            <li class="b-contents__part b-contents__part_link_false">Работа с HTML/XML
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#doctype">doctype</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#attr">attr</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#tag">tag</a> </li>
+                                </ol>
+                            </li>
                             <li class="b-contents__part b-contents__part_link_false">Работа с исключениями
                                 <ol>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#try">try</a> </li>
@@ -963,6 +970,599 @@
 	{b} /// 1
 {/template}
 </code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="doctype" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с HTML/XML </li>
+                    </ul>
+                    <h1>doctype</h1>
+                    <p>Директива <strong>doctype</strong> вставляет в шаблон код декларации заданного <a href="http://htmlbook.ru/html/!doctype">doctype</a>, а также определяет правила форматирования для тегов и атрибутов.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Отсутствует</td>
+                                <td>Строковая</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива предназначена для указания типа текущего документа — DTD (document type definition, описание типа документа). Это необходимо, чтобы клиент/парсер понимал, как следует интерпретировать текущую страницу, а также указывает Snakeskin
+                        какие правила он должен применять при генерации кода тегов и атрибутов.</p>
+                    <p>Директива может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <h3>Таблица обозначений</h3>
+                    <h4>html</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html&gt;</span>
+</code></pre>
+                    <h4>xml</h4>
+                    <pre class="hljs example-html"><code><span class="php"><span class="hljs-meta">&lt;?</span>xml version=<span class="hljs-string">"1.0"</span> encoding=<span class="hljs-string">"utf-8"</span> <span class="hljs-meta">?&gt;</span></span>
+</code></pre>
+                    <h4>transitional</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;</span>
+</code></pre>
+                    <h4>strict</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;</span>
+</code></pre>
+                    <h4>frameset</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"&gt;</span>
+</code></pre>
+                    <h4>1.1</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;</span>
+</code></pre>
+                    <h4>basic</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML Basic 1.1//EN" "http://www.w3.org/TR/xhtml-basic/xhtml-basic11.dtd"&gt;</span>
+</code></pre>
+                    <h4>mobile</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd"&gt;</span>
+</code></pre>
+                    <h4>mathml 1.0</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE math SYSTEM "http://www.w3.org/Math/DTD/mathml1/mathml.dtd"&gt;</span>
+</code></pre>
+                    <h4>mathml 2.0</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE math PUBLIC "-//W3C//DTD MathML 2.0//EN" "http://www.w3.org/Math/DTD/mathml2/mathml2.dtd"&gt;</span>
+</code></pre>
+                    <h4>svg 1.0</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd"&gt;</span>
+</code></pre>
+                    <h4>svg 1.1 full</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"&gt;</span>
+</code></pre>
+                    <h4>svg 1.1 basic</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Basic//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-basic.dtd"&gt;</span>
+</code></pre>
+                    <h4>svg 1.1 tiny</h4>
+                    <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1 Tiny//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-tiny.dtd"&gt;</span>
+</code></pre>
+                    <h3>Примеры</h3>
+                    <h4>Использование значения по умолчанию (html5)</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	- doctype
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{doctype}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Явное указание типа</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- namespace demo
+- template index(value)
+	- doctype xml
+</code></pre>
+                            <pre class="hljs example-classic"><code>{namespace demo}
+{template index(value)}
+	{doctype xml}
+{/template}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="attr" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с HTML/XML </li>
+                    </ul>
+                    <h1>attr</h1>
+                    <p>Директива <strong>attr</strong> вставляет код декларации HTML/XML атрибута по заданным параметрам.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Отсутствует</td>
+                                <td>Строковая</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива <em>attr</em> обычно используется для задания атрибутов вместе с директивой <a href="#tag">tag</a>. Общая форма директивы следующая:</p>
+                    <pre class="hljs example-js"><code>attr название атрибута = значение атрибута
+</code></pre>
+                    <p>Например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr foo = bar
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr foo = bar}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Обратите внимание, что крайние пробелы у символа <code>=</code> важны, иначе он трактуется как простой текст.</p>
+                    <h3>Множественное задание атрибутов</h3>
+                    <p>Если необходимо задать несколько атрибутов, то нужно использовать специальный разделитель <code>|</code>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr foo = bar | baz = bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr foo = bar | baz = bla}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Обратите внимание, что крайние пробелы у символа <code>|</code> важны, иначе он трактуется как простой текст.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr foo = bar|baz=bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr foo = bar|baz=bla}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Атрибуты с пустым значением</h3>
+                    <p>Если нужно задать атрибут с пустым значением, то достаточно просто ничего не писать после знака присвоения, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr alt =
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr alt =}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Инлайновые атрибуты</h3>
+                    <p>Для задания «инлайновых» HTML атрибутов, например, <code>&lt;input disabled&gt;</code> нужно просто опустить знак присвоения.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr disabled
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr disabled}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Задание <code>data-</code> атрибутов</h3>
+                    <p>Для декларации <code>data-</code> атрибутов поддеживается короткий синтаксис:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr -title = bla | -desc-field = bar
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr -title = bla | -desc-field = bar}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Однако можно писать и полную форму:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr data-title = bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr data-title = bla}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Группы атрибутов</h3>
+                    <p>В Snakeskin есть универсальный синтаксис для создания групп атрибутов с автоматическим добавлением указанного префикса, общая форма следующая:</p>
+                    <pre class="hljs example-js"><code>attr опциональный префикс(( название атрибута = значение атрибута ))
+</code></pre>
+                    <p>Например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr ng-(( repeat = el <span class="hljs-keyword">in</span> data | bind = bla ))
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr dng-(( repeat = el <span class="hljs-keyword">in</span> data | bind = bla ))}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Обратите внимание, что крайние пробелы у символов <code>((</code> и <code>))</code> важны, иначе они трактуется как простой текст. Также следует отметить, что при комбинировании групп атрибутов с другими группами не нужно ставить специальный
+                        разделитель, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr ng-(( repeat = foo <span class="hljs-keyword">of</span> bla )) (( baz = bar )) hello = world | foo = bar
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr ng-(( repeat = foo <span class="hljs-keyword">of</span> bla )) (( baz = bar )) hello = world | foo = bar}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Интерполяция</h3>
+                    <p>Директива поддерживает механизм интерполяции значений, т. е. есть возможность пробрасывать вычисляемые значения внутрь декларации и для этого используется специальный синтаксис <code>${выражение}</code>.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>
+- attr ${name} = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
+{attr ${name} = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Допускается смешивать интепроляцию с обычной декларацией:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>
+- attr ${name}-bar = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>} hello
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
+{attr ${name}-bar = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>} hello}
+</code></pre>
+                        </div>
+                    </div>
+                    <h4>Интеполяция объекта</h4>
+                    <p>Snakeskin позволяет используя механизм интерполяции задать атрибуты с помощью обьекта, где ключём является название атрибута или группы.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> attrs = {foo: <span class="hljs-string">'bar'</span>, <span class="hljs-string">'ng-'</span>: {repeat: <span class="hljs-string">'el in data'</span>}}
+- attr ${attrs}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> attrs = {foo: <span class="hljs-string">'bar'</span>, <span class="hljs-string">'ng-'</span>: {repeat: <span class="hljs-string">'el in data'</span>}}}
+{attr ${attrs}}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>Чтобы сделать атрибут «инлайновым» нужно использовать специальную константу <strong>TRUE</strong>:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> attrs = {disabled: TRUE}
+- attr ${attrs}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> attrs = {disabled: TRUE}}
+{attr ${attrs}}
+</code></pre>
+                        </div>
+                    </div>
+                    <p>А чтобы исключить, то нужно использовать константу <code>FALSE</code>:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> attrs = {disabled: FALSE}
+- attr ${attrs}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> attrs = {disabled: FALSE}}
+{attr ${attrs}}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Экранирование</h3>
+                    <p>Для экранирования спецсимволов директивы используется символ <code>\</code>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- attr foo = bar \= bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{attr foo = bar \= bla}
+</code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="tag" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с HTML/XML </li>
+                    </ul>
+                    <h1>tag</h1>
+                    <p>Директива <strong>tag</strong> вставляет код декларации HTML/XML тега по заданным параметрам.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td><code>&lt;</code></td>
+                                <td>Блочная</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива <em>tag</em> является универсальным инструментом для генерации XML подобных структур. Общая форма директивы следующая:</p>
+                    <pre class="hljs example-js"><code>tag название директивы
+</code></pre>
+                    <p>Например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- tag span
+&lt; span
+</code></pre>
+                            <pre class="hljs example-classic"><code>{tag span}{/tag}
+{&lt; span}{/}
+</code></pre>
+                        </div>
+                    </div>
+                    <h3>Создание элемента с заданием классов и ИД</h3>
+                    <p>Для удобного задания классов и ИД-а в <em>tag</em> используется синтаксис селекторов CSS, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; span#baz.foo.bar
+/// Если не указать имя создаваемого тега,
+/// то будет использоваться div
+&lt; .bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">span</span>#<span class="hljs-attr">baz.foo.bar</span>}{/}
+/// Если не указать имя создаваемого тега,
+/// то будет использоваться <span class="hljs-attr">div</span>
+{&lt; <span class="hljs-attr">.bla</span>}{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <h3>Задание произвольных атрибутов</h3>
+                    <p>Директива <em>tag</em> поддерживает задание атрибутов с помощью <a href="#attr">attr</a>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; input disabled | value = foo
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">input</span> <span class="hljs-attr">disabled</span> | <span class="hljs-attr">value</span> = <span class="hljs-attr">foo</span>}{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <h3>Ссылки на родительский класс</h3>
+                    <p>В Snakeskin существует специальный механизм получения значения родительского класса в дочернем теге, который называется «липкая ссылка». Принцип работы следующий: если при декларации тега задать имя класса, которе начинается с символа
+                        <code>&amp;</code>, то он будет заменён на ближайший родительский класс, который декларировался без этого символа, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; .foo
+	&lt; .&amp;__bar
+	&lt; .&amp;__bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.foo</span>}
+	{&lt; <span class="hljs-attr">.</span>&amp;<span class="hljs-attr">__bar</span>}{/}
+	{&lt; <span class="hljs-attr">.</span>&amp;<span class="hljs-attr">__bla</span>}{/}
+{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>В результате работы шаблона получится следующий код:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo__bar"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo__bla"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+                    <p>При реализации этого механизма используется специальный фильтр <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L453">bem</a>, который можно перегрузить и добавить дополнительную логику.</p>
+                    <h4>Ссылка на родительский класс в произвольном атрибуте</h4>
+                    <p>Альтернативным способом получения липкой ссылки является вызов внутренней переменной шаблона <code>$class</code>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; .foo value = ${$<span class="hljs-class"><span class="hljs-keyword">class</span>}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.foo</span> <span class="hljs-attr">value</span> = ${$<span class="hljs-attr">class</span>}}{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Локальные ссылки</h4>
+                    <p>Если поместить декларацию класса в специальную конструкцию <code>[...]</code>, то классы заданные внутри такого блока не будут запоминаться как липкая ссылка, а также плейсхолдер <code>&amp;</code> будет ссылаться на ближайший по иерархии
+                        вложенности класс слева.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; .b-button[.g-helper]
+	&lt; button.&amp;__elem[.&amp;__focused_true]
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.b-button</span>[<span class="hljs-attr">.g-helper</span>]}
+	{&lt; <span class="hljs-attr">button.</span>&amp;<span class="hljs-attr">__elem</span>[<span class="hljs-attr">.</span>&amp;<span class="hljs-attr">_focused_true</span>]}{/}
+{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>В результате работы шаблона получится следующий код:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button g-helper"</span>&gt;</span>
+	<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button__elem b-button__elem_focused_true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+                    <h3>Тег-плейсходер</h3>
+                    <p>Специальный тег <code>?</code> существует только на этапе трансляции и не включается в конечный код, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; ?.b-button
+	&lt; button.&amp;__elem
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; ?<span class="hljs-attr">.b-button</span>}
+	{&lt; <span class="hljs-attr">button.</span>&amp;<span class="hljs-attr">__elem</span>}{/}
+{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>В результате работы шаблона получится следующий код:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button__elem"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+                    <h3>Интерполяция</h3>
+                    <p>Директива поддерживает механизм интерполяции значений, т. е. есть возможность пробрасывать вычисляемые значения внутрь декларации и для этого используется специальный синтаксис <code>${выражение}</code>.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'span'</span>
+&lt; ${name}
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
+{<span class="xml"><span class="hljs-tag">&lt; ${<span class="hljs-attr">name</span>}}{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>Допускается смешивать интепроляцию с обычной декларацией:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>
+&lt; .${name}-bla.bar
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
+{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.</span>${<span class="hljs-attr">name</span>}<span class="hljs-attr">-bla.bar</span>}{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>Для интерполяции в атрибутах используется механизмы <a href="#attr--%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D0%BE%D0%BB%D1%8F%D1%86%D0%B8%D1%8F">attr</a>.</p>
+                    <h4>Интерполяция и тег-плейсхолдер</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; ${<span class="hljs-string">'?'</span>}.b-button
+	&lt; button.&amp;__elem
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; ${'?'}<span class="hljs-attr">.b-button</span>}
+	{&lt; <span class="hljs-attr">button.</span>&amp;<span class="hljs-attr">__elem</span>}{/}
+{/}
+</span></span></code></pre>
+                        </div>
+                    </div>
+                    <p>В результате работы шаблона получится следующий код:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button__elem"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+                    <h3>Экранирование</h3>
+                    <p>Для экранирования спецсимволов директивы используется символ <code>\</code>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code>&lt; .bla foo = bar \= bla
+</code></pre>
+                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.bla</span> <span class="hljs-attr">foo</span> = <span class="hljs-attr">bar</span> \= <span class="hljs-attr">bla</span>}{/}
+</span></span></code></pre>
                         </div>
                     </div>
                 </section>
