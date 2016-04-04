@@ -23,15 +23,15 @@ module.exports = function (hljs) {
 
 			{
 				className: 'directive',
-				begin: /#?\{\s*!/,
+				begin: /#?\{\s*/,
 				end: /\s*}/,
 				contains: [].concat(def.dir)
 			},
 
 			{
 				className: 'directive',
-				begin: /\s*(?:#|-|(?=\+=|<!|<|>|\(\)|\*|:|\?))\s+/,
-				end: /\s*\n/,
+				begin: /^\s*(?:#|-|\+=|<!|<|>|\(\)|\*|:)\s+/,
+				end: '$',
 				contains: [].concat(def.dir)
 			}
 		]

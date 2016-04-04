@@ -28,6 +28,7 @@
 					+= @cdn('jquery@2.2.0', 'yandex')
 
 				- link :: https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext
+				- link :: https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,400italic,700italic&subset=latin,cyrillic,cyrillic-ext,latin-ext
 
 				- forEach ['highlight/default', 'index'] => url
 					- link :: css/{url}.css

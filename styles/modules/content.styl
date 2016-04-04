@@ -131,10 +131,10 @@ $contentsColor = #F5F2F0
 			color #3B86C4
 
 .b-articles
-	color #000
-	flex-basis 100%
 	display flex
+	flex-basis 100%
 	margin-left $contentsWidth
+	color #000
 
 	&__nav-cont
 		fixed top $headerHeight bottom 0
@@ -225,10 +225,26 @@ $contentsColor = #F5F2F0
 		margin-right 0.2rem
 
 $codeMargin = 0.4rem 0
+$code()
+	border 1px #DDD solid
+	border-radius 2px
+	background #F5F2F0
 
 .hljs
 	margin $codeMargin
 	tab-size 4
+	$code()
+
+body code
+	white-space nowrap
+	font-size 0.95rem
+	font-family 'Roboto Mono', monospace
+	$code()
+
+.hljs code
+	border 0
+	white-space pre
+	font-size 1em
 
 .b-example
 	position relative
@@ -250,7 +266,6 @@ $codeMargin = 0.4rem 0
 			color $hoverLinkColor
 
 		&:not(&_active_true)
-			border-bottom 1px dotted $linkColor
 			color $linkColor
 			cursor pointer
 

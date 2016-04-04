@@ -7,6 +7,7 @@
     <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type="text/javascript" src="http://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,400italic,700italic&subset=latin,cyrillic,cyrillic-ext,latin-ext">
     <link rel="stylesheet" type="text/css" href="css/highlight/default.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
     <script type="text/javascript" src="js/jquery.scrollTo.min.js"></script>
@@ -121,12 +122,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello'</span>)
-- <span class="hljs-keyword">void</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'world'</span>)
-</code></pre>
-                            <pre class="hljs example-classic"><code>{? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello'</span>)}
-{<span class="hljs-keyword">void</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'world'</span>)}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml">? console.log('hello')
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">void</span></span> console.log(<span class="hljs-string">'world'</span>)</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">?</span> console.log(<span class="hljs-string">'hello'</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> console.log(<span class="hljs-string">'world'</span>)}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
@@ -137,21 +138,21 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-? <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'hello world'</span>)
-- template index()
-	: a = <span class="hljs-number">0</span>
-	- <span class="hljs-keyword">void</span> a++
-	{a} <span class="hljs-comment">/// 1</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{? console.log('hello world')}
-{template index()}
-	{: a = 0}
-	{void a++}
-	{a} /// 1
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+? console.log('hello world')
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	: <span class="hljs-name">a</span> = <span class="hljs-number">0</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">void</span></span> a++</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">a</span>}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">?</span> console.log(<span class="hljs-string">'hello world'</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">:</span> a = <span class="hljs-number">0</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> a++}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">a</span>}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -196,13 +197,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el
-	{el}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{forEach [1, 2, 3] =&gt; el}
-	{el}
-{/forEach}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">forEach</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления обходом внутри итератора можно использовать директивы:</p>
@@ -239,22 +240,22 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 
-<span class="hljs-comment">/// Шаблон вернёт 1</span>
-- template index()
-	- forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el
-		- <span class="hljs-keyword">return</span> el
+</span><span class="hljs-comment">/// Шаблон вернёт 1</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">return</span></span> el</span><span class="xml">
 	Hello world
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo
 
-<span class="hljs-comment">/// Шаблон вернёт 1</span>
-{template index()}
-	{forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el}
-		{<span class="hljs-keyword">return</span> el}
+/// Шаблон вернёт <span class="hljs-number">1</span>
+{template index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> el}</span><span class="xml">
 	Hello world
-</code></pre>
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Примеры</h3>
@@ -265,20 +266,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
-	- forEach arr =&gt; el
-		{el}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var arr = [1, 2, 3]}
-	{forEach arr =&gt; el}
-		{el}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> arr =&gt; el</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> arr =&gt; el}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Перебор массива с заданием <a href="#with">with</a> в списке входных параметров</h4>
@@ -288,20 +289,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> arr = [{name: <span class="hljs-string">'Koba'</span>}, {name: <span class="hljs-string">'Over'</span>}]
-	- forEach arr =&gt; @el
-		{@name}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var arr = [{name: 'Koba'}, {name: 'Over'}]}
-	{forEach arr =&gt; @el}
-		{@name}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [{name: <span class="hljs-string">'Koba'</span>}, {name: <span class="hljs-string">'Over'</span>}]</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> arr =&gt; @el</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">@name</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [{name: <span class="hljs-string">'Koba'</span>}</span><span class="xml">, </span><span class="hljs-directive">{<span class="hljs-name">name:</span> <span class="hljs-string">'Over'</span>}</span><span class="xml">]}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> arr =&gt; @el}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">@name</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Простой перебор объекта</h4>
@@ -311,20 +312,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
-	- forEach obj =&gt; el, key
-		{el} {key}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var obj = {a: 1, b: 2}}
-	{forEach obj =&gt; el, key}
-		{el} {key}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> obj =&gt; el, key</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml"> </span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> obj =&gt; el, key}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml"> </span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Сброс итераций</h4>
@@ -334,20 +335,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- forEach [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el
-		{el}
-		- <span class="hljs-keyword">break</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{forEach [1, 2, 3] =&gt; el}
-		{el}
-		{break}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name">break</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] =&gt; el}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">break</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -391,13 +392,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- forIn {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el
-	{el}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{forIn {a: 1, b: 2} =&gt; el}
-	{el}
-{/forIn}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">forIn</span></span> {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forIn</span></span> {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml"> =&gt; el}
+	</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">forIn</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления обходом внутри итератора можно использовать директивы:</p>
@@ -425,22 +426,22 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 
-<span class="hljs-comment">/// Шаблон вернёт 1</span>
-- template index()
-	- forIn {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el
-		- <span class="hljs-keyword">return</span> el
+</span><span class="hljs-comment">/// Шаблон вернёт 1</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forIn</span></span> {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">return</span></span> el</span><span class="xml">
 	Hello world
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo
 
-<span class="hljs-comment">/// Шаблон вернёт 1</span>
-{template index()}
-	{forIn {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>} =&gt; el}
-		{<span class="hljs-keyword">return</span> el}
+/// Шаблон вернёт <span class="hljs-number">1</span>
+{template index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forIn</span></span> {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml"> =&gt; el}
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> el}</span><span class="xml">
 	Hello world
-</code></pre>
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Примеры</h3>
@@ -451,20 +452,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
-	- forIn obj =&gt; el, key
-		{el} {key}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var obj = {a: 1, b: 2}}
-	{forIn obj =&gt; el, key}
-		{el} {key}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forIn</span></span> obj =&gt; el, key</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml"> </span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forIn</span></span> obj =&gt; el, key}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml"> </span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Перебор с заданием <a href="#with">with</a> в списке входных параметров</h4>
@@ -474,20 +475,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> obj = {a: {name: <span class="hljs-string">'Koba'</span>}, b: {name: <span class="hljs-string">'Over'</span>}}
-	- forIn obj =&gt; @el
-		{@name}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var obj = {a: {name: 'Koba'}, b: {name: 'Over'}}}
-	{forEach obj =&gt; @el}
-		{@name}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: {name: <span class="hljs-string">'Koba'</span>}, b: {name: <span class="hljs-string">'Over'</span>}}</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forIn</span></span> obj =&gt; @el</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">@name</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: {name: <span class="hljs-string">'Koba'</span>}</span><span class="xml">, b: </span><span class="hljs-directive">{<span class="hljs-name">name:</span> <span class="hljs-string">'Over'</span>}</span><span class="xml">}}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> obj =&gt; @el}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">@name</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Сброс итераций</h4>
@@ -497,20 +498,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- forEach {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span>} =&gt; el
-		{el}
-		- <span class="hljs-keyword">break</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{forEach {a: 1, b: 2, c: 3} =&gt; el}
-		{el}
-		{break}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span>} =&gt; el</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name">break</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>, c: <span class="hljs-number">3</span>}</span><span class="xml"> =&gt; el}
+		</span><span class="hljs-directive">{<span class="hljs-name">el</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">break</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -551,13 +552,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
 	Hello world!
-</code></pre>
-                            <pre class="hljs example-classic"><code>{if true}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> true}</span><span class="xml">
 	Hello world!
-{/if}
-</code></pre>
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">if</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
@@ -573,39 +574,42 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	&lt; .result
-		- <span class="hljs-keyword">if</span> val &gt; <span class="hljs-number">3</span>
-			&lt; .success
-				Значение больше чем <span class="hljs-number">3.</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.result</span></span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">if</span></span> val &gt; <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.success</span></span><span class="xml">
+				Значение больше чем 3.
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">else</span> <span class="hljs-built_in">if</span> </span>val &lt; <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.fail</span></span><span class="xml">
+				Значение меньше чем 3.
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">else</span></span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.error</span></span><span class="xml">
+				Значение рано 3.
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .result}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> val &gt; <span class="hljs-number">3</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .success}</span><span class="xml">
+				Значение больше чем 3.
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-		- <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> val &lt; <span class="hljs-number">3</span>
-			&lt; .fail
-				Значение меньше чем <span class="hljs-number">3.</span>
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">else</span> <span class="hljs-built_in">if</span> </span>val &lt; <span class="hljs-number">3</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .fail}</span><span class="xml">
+				Значение меньше чем 3.
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-		- <span class="hljs-keyword">else</span>
-			&lt; .error
-				Значение рано <span class="hljs-number">3.</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
-		{<span class="hljs-attr">if</span> <span class="hljs-attr">val</span> &gt;</span> 3}
-			{<span class="hljs-tag">&lt; <span class="hljs-attr">.success</span>}
-				Значение больше чем <span class="hljs-attr">3.</span>
-
-		{<span class="hljs-attr">else</span> <span class="hljs-attr">if</span> <span class="hljs-attr">val</span> &lt; <span class="hljs-attr">3</span>}
-			{&lt; <span class="hljs-attr">.fail</span>}
-				Значение меньше чем <span class="hljs-attr">3.</span>
-
-		{<span class="hljs-attr">else</span>}
-			{&lt; <span class="hljs-attr">.error</span>}
-				Значение рано <span class="hljs-attr">3.</span>
-		{/}
-	{/}
-{/<span class="hljs-attr">template</span>}
-</span></span></code></pre>
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">else</span></span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .error}</span><span class="xml">
+				Значение рано 3.
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -648,13 +652,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- unless <span class="hljs-literal">false</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">unless</span></span> false</span><span class="xml">
 	Hello world!
-</code></pre>
-                            <pre class="hljs example-classic"><code>{unless false}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">unless</span></span> false}</span><span class="xml">
 	Hello world!
-{/if}
-</code></pre>
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">if</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
@@ -670,39 +674,39 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	&lt; .result
-		- unless val &gt;= <span class="hljs-number">3</span>
-			&lt; .success
-				Значение меньше чем <span class="hljs-number">3.</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.result</span></span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">unless</span></span> val &gt;= <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.success</span></span><span class="xml">
+				Значение меньше чем 3.
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">else</span> <span class="hljs-built_in">unless</span> </span>val &lt;= <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.fail</span></span><span class="xml">
+				Значение больше чем 3.
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">else</span></span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.error</span></span><span class="xml">
+				Значение рано 3.
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .result}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">unless</span></span> val &gt;= <span class="hljs-number">3</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .success}</span><span class="xml">
+				Значение меньше чем 3.
 
-		- <span class="hljs-keyword">else</span> unless val &lt;= <span class="hljs-number">3</span>
-			&lt; .fail
-				Значение больше чем <span class="hljs-number">3.</span>
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">else</span> <span class="hljs-built_in">unless</span> </span>val &lt;= <span class="hljs-number">3</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .fail}</span><span class="xml">
+				Значение больше чем 3.
 
-		- <span class="hljs-keyword">else</span>
-			&lt; .error
-				Значение рано <span class="hljs-number">3.</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
-		{<span class="hljs-attr">unless</span> <span class="hljs-attr">val</span> &gt;</span>= 3}
-			{<span class="hljs-tag">&lt; <span class="hljs-attr">.success</span>}
-				Значение меньше чем <span class="hljs-attr">3.</span>
-
-		{<span class="hljs-attr">else</span> <span class="hljs-attr">unless</span> <span class="hljs-attr">val</span> &lt;= <span class="hljs-attr">3</span>}
-			{&lt; <span class="hljs-attr">.fail</span>}
-				Значение больше чем <span class="hljs-attr">3.</span>
-
-		{<span class="hljs-attr">else</span>}
-			{&lt; <span class="hljs-attr">.error</span>}
-				Значение рано <span class="hljs-attr">3.</span>
-		{/}
-	{/}
-{/<span class="hljs-attr">template</span>}
-</span></span></code></pre>
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">else</span></span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .error}</span><span class="xml">
+				Значение рано 3.
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -750,54 +754,54 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	&lt; .result
-		- <span class="hljs-keyword">switch</span> value
-			- <span class="hljs-keyword">case</span> <span class="hljs-number">1</span>
-				&lt; .value<span class="hljs-number">-1</span>
-					value == <span class="hljs-number">1</span>
-
-			- <span class="hljs-keyword">case</span> <span class="hljs-number">2</span>
-				&lt; .value<span class="hljs-number">-2</span>
-					value == <span class="hljs-number">2</span>
-
-			&gt; <span class="hljs-number">3</span>
-				&lt; .value<span class="hljs-number">-3</span>
-					value == <span class="hljs-number">3</span>
-
-			- <span class="hljs-keyword">default</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.result</span></span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">switch</span></span> value</span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">case</span></span> <span class="hljs-number">1</span></span><span class="xml">
+</span><span class="hljs-directive">				&lt; <span class="hljs-name">.value-1</span></span><span class="xml">
+					value == 1
+</span><span class="hljs-directive">
+			- <span class="hljs-name"><span class="hljs-built_in">case</span></span> <span class="hljs-number">2</span></span><span class="xml">
+</span><span class="hljs-directive">				&lt; <span class="hljs-name">.value-2</span></span><span class="xml">
+					value == 2
+</span><span class="hljs-directive">
+			&gt; <span class="hljs-name">3</span></span><span class="xml">
+</span><span class="hljs-directive">				&lt; <span class="hljs-name">.value-3</span></span><span class="xml">
+					value == 3
+</span><span class="hljs-directive">
+			- <span class="hljs-name"><span class="hljs-built_in">default</span></span></span><span class="xml">
 				Условие, которое выполнится по умолчанию.
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
-		{<span class="hljs-attr">switch</span> <span class="hljs-attr">value</span>}
-			{<span class="hljs-attr">case</span> <span class="hljs-attr">1</span>}
-				{&lt; <span class="hljs-attr">.value-1</span>}
-					<span class="hljs-attr">value</span> =<span class="hljs-string">=</span> <span class="hljs-attr">1</span>
-				{/}
-			{/}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .result}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">switch</span></span> value}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">case</span></span> <span class="hljs-number">1</span>}</span><span class="xml">
+				</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .value<span class="hljs-number">-1</span>}</span><span class="xml">
+					value == 1
+				</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-			{<span class="hljs-attr">case</span> <span class="hljs-attr">2</span>}
-				{&lt; <span class="hljs-attr">.value-2</span>
-					<span class="hljs-attr">value</span> =<span class="hljs-string">=</span> <span class="hljs-attr">2</span>
-				{/}
-			{/}
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">case</span></span> <span class="hljs-number">2</span>}</span><span class="xml">
+				</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .value<span class="hljs-number">-2</span>}</span><span class="xml">
+					value == 2
+				</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-			{&gt;</span> 3}
-				{<span class="hljs-tag">&lt; <span class="hljs-attr">.value-3</span>}
-					<span class="hljs-attr">value</span> =<span class="hljs-string">=</span> <span class="hljs-attr">3</span>
-				{/}
-			{/}
+			</span><span class="hljs-directive">{<span class="hljs-name">&gt;</span> <span class="hljs-number">3</span>}</span><span class="xml">
+				</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .value<span class="hljs-number">-3</span>}</span><span class="xml">
+					value == 3
+				</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-			{<span class="hljs-attr">default</span>}
-				Условие, которое выполнится по умолчанию<span class="hljs-attr">.</span>
-			{/}
-		{/}
-	{/}
-{/<span class="hljs-attr">template</span>}
-</span></span></code></pre>
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">default</span></span>}</span><span class="xml">
+				Условие, которое выполнится по умолчанию.
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -840,21 +844,21 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span>
-: b = <span class="hljs-number">2</span>, c, d = <span class="hljs-number">4</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> a = <span class="hljs-number">1</span> /}
-{: b = <span class="hljs-number">2</span>, c, d = <span class="hljs-number">4</span> /}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-number">1</span></span><span class="xml">
+</span><span class="hljs-directive">: <span class="hljs-name">b</span> = <span class="hljs-number">2</span>, c, d = <span class="hljs-number">4</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-number">1</span> /}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">:</span> b = <span class="hljs-number">2</span>, c, d = <span class="hljs-number">4</span> /}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Для удобства использования <em>var</em> в классическом синтаксисе существует короткая форма закрытия директивы, например:</p>
-                    <pre class="hljs example-classic"><code>/// Обычное закрытие
-{var a = 1}{/}
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Обычное закрытие</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-number">1</span>}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-/// Короткая форма закрытия
-{var b = 2 /}
-</code></pre>
+</span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> b = <span class="hljs-number">2</span> /}</span><span class="xml">
+</span></code></pre>
                     <p>В отличии от JS переменные в Snakeskin декларируются только после места декларации.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -862,19 +866,19 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">2</span>
-- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
-	? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 2</span>
-	: a = <span class="hljs-number">1</span>
-	? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 1</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{: a = 2}
-{if true}
-	{? console.log(a)} /// 2
-	{: a = 1}
-	{? console.log(a)} /// 1
-{/}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">: <span class="hljs-name">a</span> = <span class="hljs-number">2</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
+	? console.log(a) </span><span class="hljs-comment">/// 2</span><span class="xml">
+</span><span class="hljs-directive">	: <span class="hljs-name">a</span> = <span class="hljs-number">1</span></span><span class="xml">
+	? console.log(a) </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">:</span> a = <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> true}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">?</span> console.log(a)}</span><span class="xml"> </span><span class="hljs-comment">/// 2</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">:</span> a = <span class="hljs-number">1</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">?</span> console.log(a)}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Допускается в рамках одного блока создавать переменные с одинаковым именем.</p>
@@ -884,16 +888,16 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>: a = <span class="hljs-number">2</span>
-? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 2</span>
-: a = <span class="hljs-number">1</span>
-? <span class="hljs-built_in">console</span>.log(a) <span class="hljs-comment">/// 1</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{: a = <span class="hljs-number">2</span>}
-{? <span class="hljs-built_in">console</span>.log(a)} <span class="hljs-comment">/// 2</span>
-{: a = <span class="hljs-number">1</span>}
-{? <span class="hljs-built_in">console</span>.log(a)} <span class="hljs-comment">/// 1</span>
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">: <span class="hljs-name">a</span> = <span class="hljs-number">2</span></span><span class="xml">
+? console.log(a) </span><span class="hljs-comment">/// 2</span><span class="xml">
+</span><span class="hljs-directive">: <span class="hljs-name">a</span> = <span class="hljs-number">1</span></span><span class="xml">
+? console.log(a) </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">:</span> a = <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">?</span> console.log(a)}</span><span class="xml"> </span><span class="hljs-comment">/// 2</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">:</span> a = <span class="hljs-number">1</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">?</span> console.log(a)}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>С помощью ключевого слова <strong>putIn</strong> можно присвоить переменной фрагмент выражения Snakeskin, однако при такой декларации допускается создавать только одну переменную за раз, например:</p>
@@ -903,32 +907,32 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	: putIn tpl
-		- <span class="hljs-keyword">if</span> value !== <span class="hljs-number">404</span>
-			&lt; .hello
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	: <span class="hljs-name"><span class="hljs-built_in">putIn</span></span> tpl</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">if</span></span> value !== <span class="hljs-number">404</span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.hello</span></span><span class="xml">
+				Hello World!
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">else</span></span></span><span class="xml">
+</span><span class="hljs-directive">			&lt; <span class="hljs-name">.error</span></span><span class="xml">
+				404
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">:</span> putIn tpl}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> value !== <span class="hljs-number">404</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .hello}</span><span class="xml">
 				Hello World!
 
-		- <span class="hljs-keyword">else</span>
-			&lt; .error
-				<span class="hljs-number">404</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{: putIn tpl}
-		{<span class="hljs-keyword">if</span> value !== <span class="hljs-number">404</span>}
-			{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.hello</span>}
-				<span class="hljs-attr">Hello</span> <span class="hljs-attr">World</span>!
-
-		{<span class="hljs-attr">else</span>}
-			{&lt; <span class="hljs-attr">.error</span>}
-				<span class="hljs-attr">404</span>
-			{/}
-		{/}
-	{/}
-{/<span class="hljs-attr">template</span>}
-</span></span></code></pre>
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">else</span></span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .error}</span><span class="xml">
+				404
+			</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
@@ -939,37 +943,37 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
-		: a = <span class="hljs-number">1</span>
-		{a}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
+</span><span class="hljs-directive">		: <span class="hljs-name">a</span> = <span class="hljs-number">1</span></span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">a</span>}</span><span class="xml">
 
-	{a} <span class="hljs-comment">/// Error, a is not defined</span>
+	</span><span class="hljs-directive">{<span class="hljs-name">a</span>}</span><span class="xml"> </span><span class="hljs-comment">/// Error, a is not defined</span><span class="xml">
+</span><span class="hljs-directive">
+	: <span class="hljs-name">b</span> = <span class="hljs-number">1</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">b</span>}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
 
-	: b = <span class="hljs-number">1</span>
-	- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span>
-		{b} <span class="hljs-comment">/// 1</span>
+	</span><span class="hljs-directive">{<span class="hljs-name">b</span>}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> true}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">:</span> a = <span class="hljs-number">1</span> /}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">a</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-	{b} <span class="hljs-comment">/// 1</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{if true}
-		{: a = 1 /}
-		{a}
-	{/}
+	</span><span class="hljs-directive">{<span class="hljs-name">a</span>}</span><span class="xml"> </span><span class="hljs-comment">/// Error, a is not defined</span><span class="xml">
 
-	{a} /// Error, a is not defined
+	</span><span class="hljs-directive">{<span class="hljs-name">:</span> b = <span class="hljs-number">1</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> true}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">b</span>}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-	{: b = 1}
-	{if true}
-		{b} /// 1
-	{/}
-
-	{b} /// 1
-{/template}
-</code></pre>
+	</span><span class="hljs-directive">{<span class="hljs-name">b</span>}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -1055,15 +1059,15 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	- doctype
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{doctype}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">doctype</span></span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">doctype</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Явное указание типа</h4>
@@ -1073,15 +1077,15 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	- doctype xml
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{doctype xml}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">doctype</span></span> xml</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">doctype</span></span> xml}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -1123,10 +1127,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr foo = bar
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr foo = bar}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Обратите внимание, что крайние пробелы у символа <code>=</code> важны, иначе он трактуется как простой текст.</p>
@@ -1138,10 +1142,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr foo = bar | baz = bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr foo = bar | baz = bla}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar | baz = bla</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar | baz = bla}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Обратите внимание, что крайние пробелы у символа <code>|</code> важны, иначе он трактуется как простой текст.</p>
@@ -1151,10 +1155,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr foo = bar|baz=bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr foo = bar|baz=bla}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar|baz=bla</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar|baz=bla}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Атрибуты с пустым значением</h3>
@@ -1165,10 +1169,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr alt =
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr alt =}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> alt =</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> alt =}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Инлайновые атрибуты</h3>
@@ -1179,10 +1183,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr disabled
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr disabled}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> disabled</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> disabled}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Задание <code>data-</code> атрибутов</h3>
@@ -1193,10 +1197,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr -title = bla | -desc-field = bar
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr -title = bla | -desc-field = bar}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> -title = bla | -desc-field = bar</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> -title = bla | -desc-field = bar}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Однако можно писать и полную форму:</p>
@@ -1206,10 +1210,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr data-title = bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr data-title = bla}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> data-title = bla</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> data-title = bla}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Группы атрибутов</h3>
@@ -1223,10 +1227,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr ng-(( repeat = el <span class="hljs-keyword">in</span> data | bind = bla ))
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr dng-(( repeat = el <span class="hljs-keyword">in</span> data | bind = bla ))}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ng-(( repeat = el in data | bind = bla ))</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> dng-(( repeat = el in data | bind = bla ))}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Обратите внимание, что крайние пробелы у символов <code>((</code> и <code>))</code> важны, иначе они трактуется как простой текст. Также следует отметить, что при комбинировании групп атрибутов с другими группами не нужно ставить специальный
@@ -1238,10 +1242,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr ng-(( repeat = foo <span class="hljs-keyword">of</span> bla )) (( baz = bar )) hello = world | foo = bar
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr ng-(( repeat = foo <span class="hljs-keyword">of</span> bla )) (( baz = bar )) hello = world | foo = bar}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ng-(( repeat = foo of bla )) (( baz = bar )) hello = world | foo = bar</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ng-(( repeat = foo of bla )) (( baz = bar )) hello = world | foo = bar}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Интерполяция</h3>
@@ -1252,12 +1256,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>
-- attr ${name} = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
-{attr ${name} = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${name} = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${name}</span><span class="xml"> = $</span><span class="hljs-directive">{<span class="hljs-name">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">}
+</span></code></pre>
                         </div>
                     </div>
                     <p>Допускается смешивать интепроляцию с обычной декларацией:</p>
@@ -1267,12 +1271,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>
-- attr ${name}-bar = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>} hello
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
-{attr ${name}-bar = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>} hello}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${name}-bar = ${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>} hello</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${name}</span><span class="xml">-bar = $</span><span class="hljs-directive">{<span class="hljs-name">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> hello}
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Интеполяция объекта</h4>
@@ -1283,12 +1287,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> attrs = {foo: <span class="hljs-string">'bar'</span>, <span class="hljs-string">'ng-'</span>: {repeat: <span class="hljs-string">'el in data'</span>}}
-- attr ${attrs}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> attrs = {foo: <span class="hljs-string">'bar'</span>, <span class="hljs-string">'ng-'</span>: {repeat: <span class="hljs-string">'el in data'</span>}}}
-{attr ${attrs}}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> attrs = {foo: <span class="hljs-string">'bar'</span>, <span class="hljs-string">'ng-'</span>: {repeat: <span class="hljs-string">'el in data'</span>}}</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${attrs}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> attrs = {foo: <span class="hljs-string">'bar'</span>, <span class="hljs-string">'ng-'</span>: {repeat: <span class="hljs-string">'el in data'</span>}</span><span class="xml">}}
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${attrs}</span><span class="xml">}
+</span></code></pre>
                         </div>
                     </div>
                     <p>Чтобы сделать атрибут «инлайновым» нужно использовать специальную константу <strong>TRUE</strong>:</p>
@@ -1298,12 +1302,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> attrs = {disabled: TRUE}
-- attr ${attrs}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> attrs = {disabled: TRUE}}
-{attr ${attrs}}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> attrs = {disabled: TRUE}</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${attrs}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> attrs = {disabled: TRUE}</span><span class="xml">}
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${attrs}</span><span class="xml">}
+</span></code></pre>
                         </div>
                     </div>
                     <p>А чтобы исключить, то нужно использовать константу <code>FALSE</code>:</p>
@@ -1313,12 +1317,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> attrs = {disabled: FALSE}
-- attr ${attrs}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> attrs = {disabled: FALSE}}
-{attr ${attrs}}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> attrs = {disabled: FALSE}</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${attrs}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> attrs = {disabled: FALSE}</span><span class="xml">}
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${attrs}</span><span class="xml">}
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Экранирование</h3>
@@ -1329,10 +1333,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- attr foo = bar \= bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{attr foo = bar \= bla}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar \= bla</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> foo = bar \= bla}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -1374,12 +1378,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- tag span
-&lt; span
-</code></pre>
-                            <pre class="hljs example-classic"><code>{tag span}{/tag}
-{&lt; span}{/}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">tag</span></span> span</span><span class="xml">
+</span><span class="hljs-directive">&lt; <span class="hljs-name">span</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> span}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">tag</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> span}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Создание элемента с заданием классов и ИД</h3>
@@ -1390,16 +1394,16 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; span#baz.foo.bar
-/// Если не указать имя создаваемого тега,
-/// то будет использоваться div
-&lt; .bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">span</span>#<span class="hljs-attr">baz.foo.bar</span>}{/}
-/// Если не указать имя создаваемого тега,
-/// то будет использоваться <span class="hljs-attr">div</span>
-{&lt; <span class="hljs-attr">.bla</span>}{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">span#baz.foo.bar</span></span><span class="xml">
+</span><span class="hljs-comment">/// Если не указать имя создаваемого тега,</span><span class="xml">
+</span><span class="hljs-comment">/// то будет использоваться div</span><span class="xml">
+</span><span class="hljs-directive">&lt; <span class="hljs-name">.bla</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> span#baz.foo.bar}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-comment">/// Если не указать имя создаваемого тега,</span><span class="xml">
+</span><span class="hljs-comment">/// то будет использоваться div</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .bla}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Задание произвольных атрибутов</h3>
@@ -1410,10 +1414,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; input disabled | value = foo
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">input</span> <span class="hljs-attr">disabled</span> | <span class="hljs-attr">value</span> = <span class="hljs-attr">foo</span>}{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">input</span> disabled | value = foo</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> input disabled | value = foo}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h3>Ссылки на родительский класс</h3>
@@ -1425,15 +1429,15 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; .foo
-	&lt; .&amp;__bar
-	&lt; .&amp;__bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.foo</span>}
-	{&lt; <span class="hljs-attr">.</span>&amp;<span class="hljs-attr">__bar</span>}{/}
-	{&lt; <span class="hljs-attr">.</span>&amp;<span class="hljs-attr">__bla</span>}{/}
-{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">.foo</span></span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.&amp;__bar</span></span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.&amp;__bla</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .foo}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .&amp;__bar}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .&amp;__bla}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>В результате работы шаблона получится следующий код:</p>
@@ -1451,10 +1455,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; .foo value = ${$<span class="hljs-class"><span class="hljs-keyword">class</span>}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">.foo</span> value = ${$class}</span><span class="xml">
 </span></code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.foo</span> <span class="hljs-attr">value</span> = ${$<span class="hljs-attr">class</span>}}{/}
-</span></span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .foo value = ${$class}</span><span class="xml">}</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Локальные ссылки</h4>
@@ -1466,13 +1470,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; .b-button[.g-helper]
-	&lt; button.&amp;__elem[.&amp;__focused_true]
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.b-button</span>[<span class="hljs-attr">.g-helper</span>]}
-	{&lt; <span class="hljs-attr">button.</span>&amp;<span class="hljs-attr">__elem</span>[<span class="hljs-attr">.</span>&amp;<span class="hljs-attr">_focused_true</span>]}{/}
-{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">.b-button[.g-helper]</span></span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">button.&amp;__elem[.&amp;__focused_true]</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .b-button[.g-helper]}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> button.&amp;__elem[.&amp;_focused_true]}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>В результате работы шаблона получится следующий код:</p>
@@ -1488,13 +1492,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; ?.b-button
-	&lt; button.&amp;__elem
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; ?<span class="hljs-attr">.b-button</span>}
-	{&lt; <span class="hljs-attr">button.</span>&amp;<span class="hljs-attr">__elem</span>}{/}
-{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">?.b-button</span></span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">button.&amp;__elem</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> ?.b-button}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> button.&amp;__elem}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>В результате работы шаблона получится следующий код:</p>
@@ -1508,12 +1512,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'span'</span>
-&lt; ${name}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
-{<span class="xml"><span class="hljs-tag">&lt; ${<span class="hljs-attr">name</span>}}{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'span'</span></span><span class="xml">
+</span><span class="hljs-directive">&lt; <span class="hljs-name">${name</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> ${name}</span><span class="xml">}</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Допускается смешивать интепроляцию с обычной декларацией:</p>
@@ -1523,12 +1527,12 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>
-&lt; .${name}-bla.bar
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> name = <span class="hljs-string">'foo'</span>}
-{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.</span>${<span class="hljs-attr">name</span>}<span class="hljs-attr">-bla.bar</span>}{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span></span><span class="xml">
+</span><span class="hljs-directive">&lt; <span class="hljs-name">.${name</span>}-bla.bar</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> name = <span class="hljs-string">'foo'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .${name}</span><span class="xml">-bla.bar}</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Для интерполяции в атрибутах используется механизмы <a href="#attr--%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%BF%D0%BE%D0%BB%D1%8F%D1%86%D0%B8%D1%8F">attr</a>.</p>
@@ -1539,13 +1543,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; ${<span class="hljs-string">'?'</span>}.b-button
-	&lt; button.&amp;__elem
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; ${'?'}<span class="hljs-attr">.b-button</span>}
-	{&lt; <span class="hljs-attr">button.</span>&amp;<span class="hljs-attr">__elem</span>}{/}
-{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">${'?'</span>}.b-button</span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">button.&amp;__elem</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> ${<span class="hljs-string">'?'</span>}</span><span class="xml">.b-button}
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> button.&amp;__elem}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>В результате работы шаблона получится следующий код:</p>
@@ -1559,10 +1563,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>&lt; .bla foo = bar \= bla
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.bla</span> <span class="hljs-attr">foo</span> = <span class="hljs-attr">bar</span> \= <span class="hljs-attr">bla</span>}{/}
-</span></span></code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; <span class="hljs-name">.bla</span> foo = bar \= bla</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .bla foo = bar \= bla}</span><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -1602,13 +1606,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">try</span>
-	? <span class="hljs-number">1</span> <span class="hljs-number">2</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{try}
-	{1 2}
-{/try}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">try</span></span></span><span class="xml">
+	? 1 2
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">try</span></span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">1</span> <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">try</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
@@ -1623,33 +1627,33 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	&lt; .result
-		- <span class="hljs-keyword">try</span>
-			? value = <span class="hljs-built_in">JSON</span>.parse(value)
-
-		- <span class="hljs-keyword">catch</span> err
-			? <span class="hljs-built_in">console</span>.error(err)
-
-		- <span class="hljs-keyword">finally</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.result</span></span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">try</span></span></span><span class="xml">
+			? value = JSON.parse(value)
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">catch</span></span> err</span><span class="xml">
+			? console.error(err)
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">finally</span></span></span><span class="xml">
 			Hello world!
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
-		{<span class="hljs-attr">try</span>}
-			{? <span class="hljs-attr">value</span> = <span class="hljs-attr">JSON.parse</span>(<span class="hljs-attr">value</span>)}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .result}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">try</span></span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">?</span> value = JSON.parse(value)}</span><span class="xml">
 
-		{<span class="hljs-attr">catch</span> <span class="hljs-attr">err</span>}
-			{? <span class="hljs-attr">console.error</span>(<span class="hljs-attr">err</span>)}
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">catch</span></span> err}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">?</span> console.error(err)}</span><span class="xml">
 
-		{<span class="hljs-attr">finally</span>}
-			<span class="hljs-attr">Hello</span> <span class="hljs-attr">world</span>!
-		{/}
-	{/}
-{/<span class="hljs-attr">template</span>}
-</span></span></code></pre>
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">finally</span></span>}</span><span class="xml">
+			Hello world!
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -1688,10 +1692,10 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Ошибка'</span>)
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Ошибка'</span>)}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">throw</span></span> new Error(<span class="hljs-string">'Ошибка'</span>)</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">throw</span></span> new Error(<span class="hljs-string">'Ошибка'</span>)}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
@@ -1702,20 +1706,20 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index(value)
-	&lt; .result
-		- <span class="hljs-keyword">if</span> value &gt; <span class="hljs-number">1</span>
-			- <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Invalid value'</span>)
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index(value)}
-	{<span class="xml"><span class="hljs-tag">&lt; <span class="hljs-attr">.result</span>}
-		{<span class="hljs-attr">if</span> <span class="hljs-attr">value</span> &gt;</span> 1}
-			{throw new Error('Invalid value')}
-		{/}
-	{/}
-{/template}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; <span class="hljs-name">.result</span></span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">if</span></span> value &gt; <span class="hljs-number">1</span></span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">throw</span></span> new Error(<span class="hljs-string">'Invalid value'</span>)</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">&lt;</span> .result}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> value &gt; <span class="hljs-number">1</span>}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">throw</span></span> new Error(<span class="hljs-string">'Invalid value'</span>)}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
@@ -1760,13 +1764,13 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++
-	Итерация - {i}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{for var i = 0; i &lt; 3; i++}
-	Итерация - {i}
-{/for}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">for</span></span> var i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++</span><span class="xml">
+	Итерация - </span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">for</span></span> var i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">3</span>; i++}</span><span class="xml">
+	Итерация - </span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">for</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления циклом внутри блока можно использовать директивы:</p>
@@ -1782,26 +1786,26 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</span><span class="xml">
 
-	<span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span>
-	<span class="hljs-comment">/// то i будет доступен только внутри for</span>
-	- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++
-		{arr[i]}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var arr = [1, 2, 3]}
+	</span><span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span><span class="xml">
+	</span><span class="hljs-comment">/// то i будет доступен только внутри for</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">for</span></span> var i = <span class="hljs-number">0</span>; i &lt; arr.length; i++</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">arr[i]</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]}</span><span class="xml">
 
-	/// Т.к. переменные Snakeskin имеют блочную область видимости,
-	/// то i будет доступен только внутри for
-	{for var i = 0; i &lt; arr.length; i++}
-		{arr[i]}
-	{/}
-{/template}
-</code></pre>
+	</span><span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span><span class="xml">
+	</span><span class="hljs-comment">/// то i будет доступен только внутри for</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">for</span></span> var i = <span class="hljs-number">0</span>; i &lt; arr.length; i++}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">arr[i]</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Простой перебор объекта</h4>
@@ -1811,26 +1815,26 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">
 
-	<span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span>
-	<span class="hljs-comment">/// то key будет доступен только внутри for</span>
-	- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj
-		{key}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var obj = {a: 1, b: 2}}
+	</span><span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span><span class="xml">
+	</span><span class="hljs-comment">/// то key будет доступен только внутри for</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">for</span></span> var key in obj</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">}
 
-	/// Т.к. переменные Snakeskin имеют блочную область видимости,
-	/// то key будет доступен только внутри for
-	{for var key in obj}
-		{key}
-	{/}
-{/template}
-</code></pre>
+	</span><span class="hljs-comment">/// Т.к. переменные Snakeskin имеют блочную область видимости,</span><span class="xml">
+	</span><span class="hljs-comment">/// то key будет доступен только внутри for</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">for</span></span> var key in obj}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Сброс итераций</h4>
@@ -1840,29 +1844,29 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}
-	- <span class="hljs-keyword">for</span> <span class="hljs-keyword">var</span> key <span class="hljs-keyword">in</span> obj
-		- <span class="hljs-keyword">if</span> !obj.hasOwnProperty(key)
-			- <span class="hljs-keyword">continue</span>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">for</span></span> var key in obj</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">if</span></span> !obj.hasOwnProperty(key)</span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name">continue</span></span><span class="xml">
 
-		{key}
-		- <span class="hljs-keyword">break</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var obj = {a: 1, b: 2}}
-	{for var key in obj}
-		{if !obj.hasOwnProperty(key)}
-			{continue}
-		{/}
+		</span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name">break</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> obj = {a: <span class="hljs-number">1</span>, b: <span class="hljs-number">2</span>}</span><span class="xml">}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">for</span></span> var key in obj}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> !obj.hasOwnProperty(key)}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name">continue</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
 
-		{key}
-		{break}
-	{/}
-{/template}
-</code></pre>
+		</span><span class="hljs-directive">{<span class="hljs-name">key</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">break</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -1903,15 +1907,15 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
-- <span class="hljs-keyword">while</span> i--
-	{i}
-</code></pre>
-                            <pre class="hljs example-classic"><code>{var i = 3}
-{while i--}
-	{i}
-{/while}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">while</span></span> i--</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">while</span></span> i--}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">while</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления циклом внутри блока можно использовать директивы:</p>
@@ -1927,22 +1931,22 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
-	- <span class="hljs-keyword">while</span> arr.length
-		{arr[<span class="hljs-number">0</span>]}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">while</span></span> arr.length</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">arr[0]</span>}</span><span class="xml">
 		? arr.shift()
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var arr = [1, 2, 3]}
-	{while arr.length}
-		{arr[0]}
-		{? arr.shift()}
-	{/}
-{/template}
-</code></pre>
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">while</span></span> arr.length}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">arr[0]</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">?</span> arr.shift()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Сброс итераций</h4>
@@ -1952,22 +1956,22 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
-	- <span class="hljs-keyword">while</span> i--
-		{i}
-		- <span class="hljs-keyword">break</span>
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var i = 3}
-	{while i--}
-		{i}
-		{break}
-	{/}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">while</span></span> i--</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name">break</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">while</span></span> i--}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">break</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
@@ -2009,16 +2013,16 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
-- <span class="hljs-keyword">do</span>
-	{i}
-- <span class="hljs-keyword">while</span> i--
-</code></pre>
-                            <pre class="hljs example-classic"><code>{<span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>}
-{<span class="hljs-keyword">do</span>}
-	{i}
-{<span class="hljs-keyword">while</span> i--}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">do</span></span></span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">while</span></span> i--</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">do</span></span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">while</span></span> i--}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Для управления циклом внутри блока можно использовать директивы:</p>
@@ -2034,23 +2038,23 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]
-	- <span class="hljs-keyword">do</span>
-		{arr[<span class="hljs-number">0</span>]}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">do</span></span></span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">arr[0]</span>}</span><span class="xml">
 		? arr.shift()
-	- <span class="hljs-keyword">while</span> arr.length
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var arr = [1, 2, 3]}
-	{do}
-		{arr[0]}
-		{? arr.shift()}
-	{while arr.length}
-{/template}
-</code></pre>
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">while</span></span> arr.length</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> arr = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>]}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">do</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">arr[0]</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">?</span> arr.shift()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">while</span></span> arr.length}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Бесконечный цикл</h4>
@@ -2060,22 +2064,22 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>
-	- <span class="hljs-keyword">do</span>
-		{i}
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">0</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">do</span></span></span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
 		? i++
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var i = 0}
-	{do}
-		{i}
-		{? i++}
-	{/}
-{/template}
-</code></pre>
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">0</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">do</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">?</span> i++}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                     <h4>Сброс итераций</h4>
@@ -2085,23 +2089,23 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code>- namespace demo
-- template index()
-	- <span class="hljs-keyword">var</span> i = <span class="hljs-number">3</span>
-	- <span class="hljs-keyword">do</span>
-		{i}
-		- <span class="hljs-keyword">break</span>
-	- <span class="hljs-keyword">while</span> i--
-</code></pre>
-                            <pre class="hljs example-classic"><code>{namespace demo}
-{template index()}
-	{var i = 3}
-	{do}
-		{i}
-		{break}
-	{while i--}
-{/template}
-</code></pre>
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">do</span></span></span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name">break</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">while</span></span> i--</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> i = <span class="hljs-number">3</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">do</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">i</span>}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name">break</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">while</span></span> i--}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
                         </div>
                     </div>
                 </section>
