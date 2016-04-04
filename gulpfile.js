@@ -21,7 +21,11 @@ const
 	path = require('path'),
 	async = require('async'),
 	nib = require('nib'),
-	babel = require('rollup-plugin-babel');
+	babel = require('rollup-plugin-babel'),
+	hljs = require('highlight.js');
+
+hljs.registerLanguage('classic', require('./highlight/classic'));
+hljs.registerLanguage('jade-like', require('./highlight/jade-like'));
 
 const
 	buildFolder = './';
