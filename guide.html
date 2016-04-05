@@ -80,11 +80,11 @@
                         <div class="b-example__code">
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helloWorld(name = <span class="hljs-string">'world'</span>)</span><span class="xml">
-	Hello </span><span class="hljs-directive">{<span class="hljs-name">name</span>}</span><span class="xml">!
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helloWorld(name = <span class="hljs-string">'world'</span>)}</span><span class="xml">
-	Hello </span><span class="hljs-directive">{<span class="hljs-name">name</span>}</span><span class="xml">!
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
@@ -107,57 +107,63 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
                     </ul>
                     <h1>Механизм фильтров</h1>
                     <h2>Общая концепция</h2>
-                    <p>Snakeskin поддерживает механизм фильтров — это более удобный и «сахарный» доступ к функциям в пространстве имён <a href="https://github.com/kobezzza/Snakeskin/blob/master/lib/filters.es6#L53">Snakeskin.Filters</a>.</p>
-                    <p><code>{a|ucfirst}</code> ↔ <code>{Snakeskin.Filters['ucfirst'].call(this, a)}</code></p>
-                    <p><code>{a + b|ucfirst}</code> ↔ <code>{Snakeskin.Filters['ucfirst'].call(this, a + b)}</code></p>
-                    <p>Допускается использовать последовательности фильтров</p>
-                    <p><code>{a + b|trim|ucfirst}</code> ↔</p>
-                    <p><code>{Snakeskin.Filters['ucfirst'].call(this, Snakeskin.Filters['trim'].call(this, a + b))}</code></p>
-                    <p>Фильтры можно накладывать отдельно на некоторые части выражения, для этого нужно обернуть декларацию в круглые скобки.</p>
-                    <pre class="hljs example-default"><code><span class="hljs-comment">/// Два локальных и один глобальный фильтр</span>
-{(a|ucfirst) + (b|ucfirst) |trim}
-</code></pre>
+                    <p>Фильтром Snakeskin называется функция, которая лежит в пространстве имён <strong>Snakeskin.Filters</strong>, а для вызова такой функции используется специальный «сахарный» синтаксис. Сам механизм фильтров идеологически близок к реализации
+                        в Bash, т. е. для вызова фильтра используется символ вертикальной черты (<code>|</code>), после которого идёт название фильтра и его параметры. Следует отметить, что между символом фильтра и названием не должно быть пробелов, иначе
+                        это будет трактоваться парсером как «побитовое или».</p>
+                    <p>Например:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Snakeskin.Filters['ucfirst'].call(this, 'hello' + ' world')</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-string">'hello'</span> + <span class="hljs-string">' world'</span><span class="hljs-keyword">|ucfirst</span>}</span><span class="xml">
+</span></code></pre>
+                    <p>Как и в Bash, фильтры Snakeskin могут создавать конвейерные последовательности:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-string">' hello '</span><span class="hljs-keyword">|trim</span><span class="hljs-keyword">|ucfirst</span>}</span><span class="xml">
+</span></code></pre>
+                    <p>Фильтры можно накладывать отдельно на некоторые части выражения, для этого нужно обернуть декларацию в круглые скобки:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Два локальных и один глобальный фильтр,</span><span class="xml">
+</span><span class="hljs-comment">/// который применится на всё выражение</span><span class="xml">
+</span><span class="hljs-directive">{(a<span class="hljs-keyword">|ucfirst</span>) + (b<span class="hljs-keyword">|ucfirst</span>) <span class="hljs-keyword">|trim</span>}</span><span class="xml">
+</span></code></pre>
                     <p>Фильтрам можно передавать параметры, на которые также можно применять фильтры и т. д.</p>
-                    <pre class="hljs example-default"><code>{a|myFilter <span class="hljs-number">1</span>, (<span class="hljs-number">2</span> / <span class="hljs-number">3</span>|myFilter)}
-</code></pre>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{a<span class="hljs-keyword">|myFilter</span> <span class="hljs-number">1</span>, (<span class="hljs-number">2</span> / <span class="hljs-number">3</span><span class="hljs-keyword">|myFilter</span>)}</span><span class="xml">
+</span></code></pre>
                     <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако их выполнение можно
                         отменить <code>{a|!html}</code> и <code>{a|!undef}</code>.</p>
-                    <p>Механизм фильтров поддерживает большинство директив Snakeskin.</p>
+                    <p>Механизм фильтров поддерживает большинство директив Snakeskin, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-string">'fooo '</span>|trim</span><span class="xml">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-string">'fooo '</span><span class="hljs-keyword">|trim</span></span><span class="xml">
 </span><span class="hljs-directive">
-- <span class="hljs-name"><span class="hljs-built_in">if</span></span> a|trim</span><span class="xml">
+- <span class="hljs-name"><span class="hljs-built_in">if</span></span> a<span class="hljs-keyword">|trim</span></span><span class="xml">
 	...
 </span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-string">'fooo '</span>|trim}</span><span class="xml">
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-string">'fooo '</span><span class="hljs-keyword">|trim</span>}</span><span class="xml">
 
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> a|trim}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> a<span class="hljs-keyword">|trim</span>}</span><span class="xml">
 	...
-</span><span class="hljs-directive">{<span class="hljs-name">/</span>}</span><span class="xml">
+</span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Чтобы написать свой фильтр, достаточно добавить его в <code>Snakeskin.Filters</code>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) и знака доллара (<code>$</code>). Первым параметром
-                        функции будет значение выражения, а <code>this</code> внутри фильтра ссылается на <code>this</code> шаблона.</p>
+                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) и знака доллара (<code>$</code>). Первым параметром функции
+                        будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'replace'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
 };
 </code></pre>
-                    <p>Фильтры можно разбивать на внутренние пространства имён</p>
+                    <p>Фильтры можно разбивать на внутренние пространства имён:</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'text'</span>] = {
 	<span class="hljs-string">'replace'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 		<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
 	}
 };
 </code></pre>
-                    <pre class="hljs example-default"><code>{<span class="hljs-string">'foo'</span>|text.replace <span class="hljs-string">'fo'</span>, <span class="hljs-string">'bar'</span>}
-</code></pre>
-                    <p>Также для добавления своих фильтров можно воспользоваться методов <code>Snakeskin.importFilters</code></p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-string">'foo'</span><span class="hljs-keyword">|text</span>.replace <span class="hljs-string">'fo'</span>, <span class="hljs-string">'bar'</span>}</span><span class="xml">
+</span></code></pre>
+                    <p>Также для добавления своих фильтров можно воспользоваться методов
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L22">Snakeskin.importFilters</a>:</p>
                     <pre class="hljs example-js"><code>Snakeskin.importFilters({
 	<span class="hljs-string">'replace'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 		<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
@@ -165,17 +171,39 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
 });
 
 <span class="hljs-comment">// С указанием пространства имён</span>
+<span class="hljs-comment">// my.foo.bar.repeat</span>
 Snakeskin.importFilters({
 	<span class="hljs-string">'replace'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 		<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
 	}
-}, <span class="hljs-string">'my.foo.bar'</span>); <span class="hljs-comment">// my.foo.bar.repeat</span>
+}, <span class="hljs-string">'my.foo.bar'</span>);
 </code></pre>
+                    <h3>Дополнительные параметры фильтров</h3>
+                    <p>При декларации фильтра ему можно задать ряд дополнительных параметров, например, чтобы фильтр отменял выполнение фильтров по умолчанию. Для этого используется специальный метод
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L46">Snakeskin.setFilterParams</a>, который первым параметром принимает название фильтра, а вторым объект с настройками.</p>
+                    <pre class="hljs example-js"><code>Snakeskin.importFilters({
+	myFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, getTplResult</span>) </span>{
+		<span class="hljs-keyword">return</span> str + getTplResult();
+	}
+});
+
+Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
+	<span class="hljs-comment">// Прокидываем функцию getTplResult из шаблона в фильтр</span>
+	bind: [<span class="hljs-string">'getTplResult'</span>],
+
+	<span class="hljs-comment">// Отменяем фильтр html по умолчанию</span>
+	<span class="hljs-string">'!html'</span>: <span class="hljs-literal">true</span>,
+
+	<span class="hljs-comment">// Отменяем фильтр undef по умолчанию</span>
+	<span class="hljs-string">'!undef'</span>: <span class="hljs-literal">true</span>
+});
+</code></pre>
+                    <p>Обратите внимание, что такие параметры должны задаваться <strong>до</strong> трансляции шаблона.</p>
                     <h3>Переменная $_</h3>
-                    <p>Переменная <code>$_</code> содержит результат последней работы фильтра.</p>
-                    <pre class="hljs example-default"><code>{<span class="hljs-string">' fooo '</span>|trim}
-{$_} <span class="hljs-comment">/// 'fooo'</span>
-</code></pre>
+                    <p>Переменная <strong>$_</strong> содержит результат последней работы фильтра.</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-string">' fooo '</span><span class="hljs-keyword">|trim</span>}</span><span class="xml">
+</span><span class="hljs-directive">{$_}</span><span class="xml"> </span><span class="hljs-comment">/// 'fooo'</span><span class="xml">
+</span></code></pre>
                     <h3>Примечание</h3>
                     <p>Чтобы использовать в шаблоне побитовое ИЛИ (<code>|</code>) достаточно просто указать пробел после оператора <code>|</code>, также если после оператора <code>|</code> идёт число, то можно писать как есть, т. к. название фильтра не может
                         начинаться с числа.</p>
@@ -184,6 +212,8 @@ Snakeskin.importFilters({
 {a = <span class="hljs-number">1</span>}
 {<span class="hljs-number">1</span> | a}
 </code></pre>
+                    <h3>Встроенные фильтры</h3>
+                    <p>В стандартном runtime библиотеки Snakeskin присутствует ряд базовых фильтров, которые могут быть полезны при разработке шаблонов, <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js">подробнее</a>.</p>
                 </section>
                 <div class="b-articles__nav-cont b-articles__next">
                     <div class="b-articles__nav-control"><i class="fa fa-angle-right"></i></div>
