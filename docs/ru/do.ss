@@ -43,7 +43,7 @@
 ```
 
 ```classic
-{var i = 3}
+{var i = 3 /}
 {do}
 	{i}
 {while i--}
@@ -75,7 +75,7 @@
 ```classic
 {namespace demo}
 {template index()}
-	{var arr = [1, 2, 3]}
+	{var arr = [1, 2, 3] /}
 	{do}
 		{arr[0]}
 		{? arr.shift()}
@@ -101,7 +101,7 @@
 ```classic
 {namespace demo}
 {template index()}
-	{var i = 0}
+	{var i = 0 /}
 	{do}
 		{i}
 		{? i++}
@@ -128,7 +128,7 @@
 ```classic
 {namespace demo}
 {template index()}
-	{var i = 3}
+	{var i = 3 /}
 	{do}
 		{i}
 		{break}

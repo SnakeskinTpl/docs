@@ -112,7 +112,7 @@ forIn ссылка на объект или сам объект => параме�
 ```classic
 {namespace demo}
 {template index()}
-	{var obj = {a: 1, b: 2}}
+	{var obj = {a: 1, b: 2} /}
 	{forIn obj => el, key}
 		{el} {key}
 	{/}
@@ -137,7 +137,7 @@ forIn ссылка на объект или сам объект => параме�
 ```classic
 {namespace demo}
 {template index()}
-	{var obj = {a: {name: 'Koba'}, b: {name: 'Over'}}}
+	{var obj = {a: {name: 'Koba'}, b: {name: 'Over'}} /}
 	{forEach obj => @el}
 		{@name}
 	{/}

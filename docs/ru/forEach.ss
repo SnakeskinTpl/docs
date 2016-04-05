@@ -122,7 +122,7 @@ forEach ссылка на объект или сам объект => парам�
 ```classic
 {namespace demo}
 {template index()}
-	{var arr = [1, 2, 3]}
+	{var arr = [1, 2, 3] /}
 	{forEach arr => el}
 		{el}
 	{/}
@@ -146,7 +146,7 @@ forEach ссылка на объект или сам объект => парам�
 ```classic
 {namespace demo}
 {template index()}
-	{var arr = [{name: 'Koba'}, {name: 'Over'}]}
+	{var arr = [{name: 'Koba'}, {name: 'Over'}] /}
 	{forEach arr => @el}
 		{@name}
 	{/}
@@ -170,7 +170,7 @@ forEach ссылка на объект или сам объект => парам�
 ```classic
 {namespace demo}
 {template index()}
-	{var obj = {a: 1, b: 2}}
+	{var obj = {a: 1, b: 2} /}
 	{forEach obj => el, key}
 		{el} {key}
 	{/}

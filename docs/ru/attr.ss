@@ -192,7 +192,7 @@ attr опциональный префикс(( название атрибута
 ```
 
 ```classic
-{var name = 'foo'}
+{var name = 'foo' /}
 {attr ${name} = ${1 + 2}}
 ```
 
@@ -208,7 +208,7 @@ attr опциональный префикс(( название атрибута
 ```
 
 ```classic
-{var name = 'foo'}
+{var name = 'foo' /}
 {attr ${name}-bar = ${1 + 2} hello}
 ```
 
@@ -226,7 +226,7 @@ Snakeskin позволяет используя механизм интерпо�
 ```
 
 ```classic
-{var attrs = {foo: 'bar', 'ng-': {repeat: 'el in data'}}}
+{var attrs = {foo: 'bar', 'ng-': {repeat: 'el in data'}} /}
 {attr ${attrs}}
 ```
 
@@ -242,7 +242,7 @@ Snakeskin позволяет используя механизм интерпо�
 ```
 
 ```classic
-{var attrs = {disabled: TRUE}}
+{var attrs = {disabled: TRUE} /}
 {attr ${attrs}}
 ```
 
@@ -258,7 +258,7 @@ Snakeskin позволяет используя механизм интерпо�
 ```
 
 ```classic
-{var attrs = {disabled: FALSE}}
+{var attrs = {disabled: FALSE} /}
 {attr ${attrs}}
 ```
 

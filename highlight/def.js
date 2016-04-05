@@ -59,7 +59,7 @@ Object.defineProperties(exports, {
 
 					{
 						className: 'keyword',
-						begin: /\|[\w$!]+|=>|->/,
+						begin: /\|[\w$!]+|=>|->|@=|\s+extends\s+/,
 						relevance: 0
 					},
 

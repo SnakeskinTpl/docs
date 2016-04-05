@@ -18,7 +18,7 @@ module.exports = function () {
 		contains: def.classic.concat([
 			{
 				className: 'directive',
-				begin: /^\s*(?:#|-|\+=|<!|<|>|\(\)|\*|:)\s+/,
+				begin: /^\s*(?:#|-|\+=|<!|<|>|\(\)|\*|:|@=)\s+/,
 				end: '$',
 				contains: def.dir
 			}

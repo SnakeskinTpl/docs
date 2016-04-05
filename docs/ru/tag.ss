@@ -201,7 +201,7 @@ tag название директивы
 ```
 
 ```classic
-{var name = 'foo'}
+{var name = 'foo' /}
 {< ${name}}{/}
 ```
 
@@ -217,7 +217,7 @@ tag название директивы
 ```
 
 ```classic
-{var name = 'foo'}
+{var name = 'foo' /}
 {< .${name}-bla.bar}{/}
 ```
 
