@@ -27,7 +27,7 @@ Object.defineProperties(exports, {
 					'if unless else',
 					'switch case default',
 					'try catch finally throw',
-					'for while do',
+					'for while do break continue',
 					'forEach forIn',
 					'doctype attr tag script style link comment',
 					'op sp ignoreWhitespaces ignoreAllWhitespaces unIgnoreAllWhitespaces'
