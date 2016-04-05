@@ -1151,7 +1151,7 @@ ol {
        tab-size: 4;
   border: 1px #ddd solid;
   border-radius: 2px;
-  background: #f5f2f0;
+  background: #f7f4f2;
 }
 body code {
   white-space: nowrap;
@@ -1159,12 +1159,11 @@ body code {
   font-family: 'Roboto Mono', monospace;
   border: 1px #ddd solid;
   border-radius: 2px;
-  background: #f5f2f0;
+  background: #f7f4f2;
 }
 .hljs code {
   border: 0;
   white-space: pre;
-  font-size: 1em;
 }
 .b-example {
   position: relative;

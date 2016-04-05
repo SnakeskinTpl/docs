@@ -11,29 +11,17 @@
 const
 	def = require('./def');
 
-module.exports = function (hljs) {
+module.exports = function () {
 	return {
 		case_insensitive: true,
 		subLanguage: 'xml',
-		contains: [
-			hljs.COMMENT('///', '$'),
-			hljs.C_BLOCK_COMMENT_MODE,
-			hljs.BACKSLASH_ESCAPE,
-			def.i18n,
-
-			{
-				className: 'directive',
-				begin: /#?\{\s*/,
-				end: /\s*}/,
-				contains: [].concat(def.dir)
-			},
-
+		contains: def.classic.concat([
 			{
 				className: 'directive',
 				begin: /^\s*(?:#|-|\+=|<!|<|>|\(\)|\*|:)\s+/,
 				end: '$',
-				contains: [].concat(def.dir)
+				contains: def.dir
 			}
-		]
+		])
 	};
 };

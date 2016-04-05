@@ -90,5 +90,23 @@ Object.defineProperties(exports, {
 				}
 			];
 		}
+	},
+
+	classic: {
+		get() {
+			return [
+				hljs.COMMENT('///', '$'),
+				hljs.C_BLOCK_COMMENT_MODE,
+				hljs.BACKSLASH_ESCAPE,
+				exports.i18n,
+
+				{
+					className: 'directive',
+					begin: /#?\{\s*/,
+					end: /\s*}/,
+					contains: exports.dir
+				}
+			];
+		}
 	}
 });
