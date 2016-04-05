@@ -44,6 +44,13 @@
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
                         </ol>
                     </li>
+                    <li class="b-contents__part b-contents__part_link_false">Наследование
+                        <ol>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritBasic">Концепция наследования. Блоки</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritParams">Наследование входных параметров</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritSet">Наследование параметров трансляции</a> </li>
+                        </ol>
+                    </li>
                 </ol>
             </nav>
             <div class="b-articles">
@@ -139,7 +146,7 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
 - <span class="hljs-name"><span class="hljs-built_in">if</span></span> a<span class="hljs-keyword">|trim</span></span><span class="xml">
 	...
 </span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-string">'fooo '</span><span class="hljs-keyword">|trim</span>}</span><span class="xml">
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = <span class="hljs-string">'fooo '</span><span class="hljs-keyword">|trim</span> /}</span><span class="xml">
 
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> a<span class="hljs-keyword">|trim</span>}</span><span class="xml">
 	...
@@ -214,6 +221,390 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 </code></pre>
                     <h3>Встроенные фильтры</h3>
                     <p>В стандартном runtime библиотеки Snakeskin присутствует ряд базовых фильтров, которые могут быть полезны при разработке шаблонов, <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js">подробнее</a>.</p>
+                </section>
+                <section id="inheritBasic" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Наследование </li>
+                    </ul>
+                    <h1>Концепция наследования. Блоки</h1>
+                    <p>Важно понимать отличие простой декларации шаблона от декларации шаблона с наследованием. При декларации простого шаблона мы описываем его структуру, а при наследовании описываем его изменения относительно родителя, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base()</span><span class="xml">
+	Какой хороший день!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+	Может пойдём на речку?
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base()}</span><span class="xml">
+	Какой хороший день!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+	Может пойдём на речку?
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>При вызове скомпилированной функции <strong>child</strong> результат будет точно таким же, как и у <strong>base</strong>: <code>Какой хороший день!</code>, но мы скорее всего ожидали увидеть <code>Какой хороший день! Может пойдём на речку?</code>.
+                        Всё дело в том, что в тексте шаблона child не были указаны изменения, а просто написана некоторая новая структура и Snakeskin не знает как именно она должна расширять родительский шаблон и поэтому проигнорировал её.</p>
+                    <p>Одним из способов декларации переопределяемых структур являются блоки (<a href="/api.html#block">вызываемые блоки</a> являются частным случаем), они позволяют создавать специальные структурные пометки, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> root</span><span class="xml">
+		Какой хороший день!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> root</span><span class="xml">
+		Может пойдём на речку?
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> root}</span><span class="xml">
+		Какой хороший день!
+	</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> root}</span><span class="xml">
+		Может пойдём на речку?
+	</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Теперь при вызове <em>child</em> результат будет: <code>Может пойдём на речку?</code>, т. к. в родительском шаблоне мы декларировали блок <em>foo</em>, а в дочернем переопределили его. Мы также можем расширять дочерний шаблон путём
+                        введения новых блоков, которых нет у родителя, и тогда они будут последовательно подставляться в конец тела родителя.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base()</span><span class="xml">
+	Какой хороший день!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> sub</span><span class="xml">
+		Может пойдём на речку?
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base()}</span><span class="xml">
+	Какой хороший день!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> sub}</span><span class="xml">
+		Может пойдём на речку?
+	</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Теперь результат <em>child</em>: <code>Какой хороший день! Может пойдём на речку?</code>.</p>
+                    <p>Сами по себе блоки никак не влияют на конечный вид шаблона, т. е.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> sub</span><span class="xml">
+		Какой хороший день!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base2()</span><span class="xml">
+	Какой хороший день!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> sub}</span><span class="xml">Какой хороший день!</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base2()}</span><span class="xml">
+	Какой хороший день!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Оба шаблона дадут абсолютно одинаковый ответ.</p>
+                    <p>В пределах шаблона не может быть двух блоков с одинаковым названием. Название блоков подчиняется тем же правилам, что и идентификаторы в JS. Внутри блока можно декларировать другие директивы, в частности другие блоки, константы и т. д.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> foo</span><span class="xml">
+		Какой хороший
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">block</span></span> e</span><span class="xml">
+			день
+		!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> e</span><span class="xml">
+		пень
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> foo}</span><span class="xml">
+		Какой хороший </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> e}</span><span class="xml">день</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">!
+	</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> e}</span><span class="xml">пень</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">block</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="inheritParams" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Наследование </li>
+                    </ul>
+                    <h1>Наследование входных параметров</h1>
+                    <p>При наследовании шаблон или блок наследует входные параметры родителя только в случае явного перечисления, при этом если входной параметр имеет у родителя значение по умолчанию, а у потомка оно не указано, то оно наследуется также.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>, b)</span><span class="xml">
+
+</span><span class="hljs-comment">/// Шаблон имеет один параметр "a" со значением по умолчанию 1</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child(a)<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+
+</span><span class="hljs-comment">/// Шаблон имеет один параметр "a" со значением по умолчанию 2</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child2(a = <span class="hljs-number">2</span>)<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>, b)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Шаблон имеет один параметр "a" со значением по умолчанию 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child(a)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Шаблон имеет один параметр "a" со значением по умолчанию 2</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child2(a = <span class="hljs-number">2</span>)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Фильтры параметров также наследуются, причём мы можем добавлять новые фильтры в дочернем шаблоне (они будут применятся после родительских).</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base((a<span class="hljs-keyword">|trim</span>))</span><span class="xml">
+
+</span><span class="hljs-comment">/// a|trim|ucfirst</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child((a<span class="hljs-keyword">|ucfirst</span>))<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base((a<span class="hljs-keyword">|trim</span>))}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// a|trim|ucfirst</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child((a<span class="hljs-keyword">|ucfirst</span>))<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Параметры имеют привязку по своему названию, а не порядку.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>)</span><span class="xml">
+
+</span><span class="hljs-comment">/// b = 2, a = 1</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child(b, a)<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// b = 2, a = 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child(b, a)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>В случае если потомок исключает родительский параметр, то он становится простой локальной переменной внутри шаблона.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>)</span><span class="xml">
+
+</span><span class="hljs-comment">/// Параметр "a" стал переменной со значением a = 1</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Параметр "a" стал переменной со значением a = 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Помимо исключения родительских параметров в дочернем шаблоне допускается и добавление новых.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>)</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child(b = <span class="hljs-number">3</span>, a)<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a = <span class="hljs-number">1</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child(b = <span class="hljs-number">3</span>, a)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p><a href="/api.html#with">with</a> биндинг параметров также наследуется, если он не был переопределён явно.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helloWorld(@params = {name: <span class="hljs-string">'friend'</span>})</span><span class="xml">
+</span><span class="hljs-directive">	&lt; h1</span><span class="xml">
+		Hello </span><span class="hljs-directive">{@name}</span><span class="xml">!
+
+</span><span class="hljs-comment">/// params наследуется как @params</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helloWorld2(params)<span class="hljs-keyword"> extends </span>@helloWorld</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helloWorld(@params = {name: <span class="hljs-string">'friend'</span>}</span><span class="xml">)}
+	<span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello </span><span class="hljs-directive">{@name}</span><span class="xml">!<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// params наследуется как @params</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helloWorld2(params)<span class="hljs-keyword"> extends </span>@helloWorld}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="inheritSet" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Наследование </li>
+                    </ul>
+                    <h1>Наследование параметров трансляции</h1>
+                    <p>При наследовании шаблона также наследуются те параметры трансляции, которые были ассоциированы с родительским шаблоном.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(data) <span class="hljs-keyword">@=</span> renderMode <span class="hljs-string">'dom'</span></span><span class="xml">
+
+</span><span class="hljs-comment">/// @= renderMode 'dom'</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child(data)<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(data) <span class="hljs-keyword">@=</span> inlineIterators true <span class="hljs-keyword">@=</span> renderMode <span class="hljs-string">'dom'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// @= renderMode 'dom'</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child(data)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Допускается переопределение или доопределение параметров трансляции в дочернем шаблоне.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(data) <span class="hljs-keyword">@=</span> renderMode <span class="hljs-string">'stringConcat'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child(data)<span class="hljs-keyword"> extends </span>@base <span class="hljs-keyword">@=</span> renderMode <span class="hljs-string">'dom'</span> <span class="hljs-keyword">@=</span> tolerateWhitespaces true</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(data) <span class="hljs-keyword">@=</span> inlineIterators true <span class="hljs-keyword">@=</span> renderMode <span class="hljs-string">'stringConcat'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child(data)<span class="hljs-keyword"> extends </span>@base <span class="hljs-keyword">@=</span> renderMode <span class="hljs-string">'dom'</span> <span class="hljs-keyword">@=</span> tolerateWhitespaces true}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
                 </section>
                 <div class="b-articles__nav-cont b-articles__next">
                     <div class="b-articles__nav-control"><i class="fa fa-angle-right"></i></div>
