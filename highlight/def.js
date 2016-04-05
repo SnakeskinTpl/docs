@@ -58,6 +58,12 @@ Object.defineProperties(exports, {
 					exports.i18n,
 
 					{
+						className: 'keyword',
+						begin: /\|[\w$!]+/,
+						relevance: 0
+					},
+
+					{
 						className: 'number',
 						variants: [
 							{begin: /\b(0[bB][01]+)/},
@@ -77,17 +83,19 @@ Object.defineProperties(exports, {
 			return [
 				{
 					className: 'name',
-					begin: /else(?: if| unless|) /,
+					begin: /\belse(?: if| unless|) /,
 					keywords: {built_in: 'else if unless'},
 					starts: exports.dirContent
 				},
 
 				{
 					className: 'name',
-					begin: /[^\s}]+/,
+					begin: new RegExp(`\\b(?:${exports.dirs.built_in.split(' ').join('|')})\\b`),
 					keywords: exports.dirs,
 					starts: exports.dirContent
-				}
+				},
+
+				exports.dirContent
 			];
 		}
 	},
