@@ -32,13 +32,11 @@
 #{+= self.example()}
 
 ```jade-like
-? console.log('hello')
-- void console.log('world')
+- void console.log('hello')
 ```
 
 ```classic
-{? console.log('hello')}
-{void console.log('world')}
+{void console.log('hello')}
 ```
 
 #{/}

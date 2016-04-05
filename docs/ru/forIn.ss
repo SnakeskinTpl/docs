@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **forIn** итерирурует заданный объект (без учёта *hasOwnProperty*).
+Директива **forIn** итерирует заданный объект (без учёта *hasOwnProperty*).
 
 ## Паспорт
 
@@ -23,7 +23,8 @@
 
 ## Описание
 
-Директива итерирурует заданный объект с помощью функции `Snakeskin.forIn`.
+Директива итерирует заданный объект с помощью функции
+[Snakeskin.forIn](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L302).
 
 Общая форма директивы следующая:
 

@@ -59,7 +59,7 @@ Object.defineProperties(exports, {
 
 					{
 						className: 'keyword',
-						begin: /\|[\w$!]+/,
+						begin: /\|[\w$!]+|=>|->/,
 						relevance: 0
 					},
 
@@ -90,7 +90,7 @@ Object.defineProperties(exports, {
 
 				{
 					className: 'name',
-					begin: new RegExp(`\\b(?:${exports.dirs.built_in.split(' ').join('|')})\\b`),
+					begin: new RegExp(`/?\\b(?:${exports.dirs.built_in.split(' ').join('|')})\\b`),
 					keywords: exports.dirs,
 					starts: exports.dirContent
 				},

@@ -36,12 +36,10 @@
 
 ```jade-like
 - var a = 1
-: b = 2, c, d = 4
 ```
 
 ```classic
 {var a = 1 /}
-{: b = 2, c, d = 4 /}
 ```
 
 #{/}
@@ -69,10 +67,10 @@
 ```
 
 ```classic
-{: a = 2}
+{: a = 2 /}
 {if true}
 	{? console.log(a)} \/// 2
-	{: a = 1}
+	{: a = 1 /}
 	{? console.log(a)} \/// 1
 {/}
 ```
@@ -91,9 +89,9 @@
 ```
 
 ```classic
-{: a = 2}
+{: a = 2 /}
 {? console.log(a)} \/// 2
-{: a = 1}
+{: a = 1 /}
 {? console.log(a)} \/// 1
 ```
 
@@ -151,9 +149,10 @@
 
 	{a} \/// Error, a is not defined
 
-	: b = 1
+	: b = 1, c = 2
 	- if true
 		{b} \/// 1
+		{c} \/// 2
 
 	{b} \/// 1
 ```
@@ -168,9 +167,10 @@
 
 	{a} \/// Error, a is not defined
 
-	{: b = 1}
+	{: b = 1, c = 2 /}
 	{if true}
 		{b} \/// 1
+		{c} \/// 2
 	{/}
 
 	{b} \/// 1
