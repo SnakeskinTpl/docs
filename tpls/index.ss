@@ -37,12 +37,12 @@
 			{
 				id: 'guide',
 				href: 'guide.html',
-				label: `Документация`
+				label: `Учебник`
 			},
 			{
 				id: 'api',
 				href: 'api.html',
-				label: `API`
+				label: `Документация`
 			},
 			{
 				id: 'plugins',
