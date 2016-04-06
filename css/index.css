@@ -241,6 +241,7 @@ th {
 ul,
 ol {
   margin: 0.8rem;
+  list-style-position: inside;
 }
 ul {
   list-style-type: disc;
@@ -491,6 +492,7 @@ th {
 ul,
 ol {
   margin: 0.8rem;
+  list-style-position: inside;
 }
 ul {
   list-style-type: disc;
@@ -741,6 +743,7 @@ th {
 ul,
 ol {
   margin: 0.8rem;
+  list-style-position: inside;
 }
 ul {
   list-style-type: disc;
@@ -789,7 +792,7 @@ ol {
   font-size: 0.8rem;
 }
 .b-index-logo {
-  width: 12rem;
+  height: 18rem;
 }
 .b-install {
   display: inline-block;
@@ -899,6 +902,14 @@ ol {
   padding: 1.5em;
   background: #f5f2f0;
 }
+.b-contents ol,
+.b-contents ul {
+  margin: 0;
+}
+.b-contents li > ol,
+.b-contents li > ul {
+  margin-left: 0.5em;
+}
 .b-contents_full_true {
   position: fixed;
   top: 0;
@@ -911,15 +922,31 @@ ol {
   color: #777;
   list-style-type: upper-roman;
 }
-.b-contents ol {
-  margin: 0;
+.b-contents__sub .b-contents__part {
+  font-size: 0.8rem;
 }
-.b-contents li > ol {
-  margin-left: 0.5em;
+.b-contents__sub .b-contents__link_active_true {
+  background: #e6e6e6;
+}
+.b-contents__sub .b-contents__link_active_true::before {
+  display: none;
+}
+.b-contents__sub .b-contents__link {
+  padding: 0.1em 0.4em;
+  color: #857431;
+}
+.b-contents__sub .b-contents__link:hover {
+  color: #b31533;
+}
+.b-contents__sub .b-contents__link:active {
+  color: #e52146;
+}
+.b-contents__sub .b-contents__part_link_false {
+  list-style-type: none;
 }
 .b-contents__link {
   position: relative;
-  display: block;
+  display: inline-block;
   margin-bottom: 0.3em;
 }
 .b-contents__link_active_true {
@@ -1444,6 +1471,7 @@ th {
 ul,
 ol {
   margin: 0.8rem;
+  list-style-position: inside;
 }
 ul {
   list-style-type: disc;
@@ -1492,7 +1520,7 @@ ol {
   font-size: 0.8rem;
 }
 .b-index-logo {
-  width: 12rem;
+  height: 18rem;
 }
 .b-install {
   display: inline-block;

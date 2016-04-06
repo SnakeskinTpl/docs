@@ -57,7 +57,7 @@
 
 	$(function () {
 		$('.b-article').find('h2, h3, h4, h5, h6').each(function (i, el) {
-			el.id = $(el).closest('.b-article').attr('id') + '--' + el.textContent.trim().replace(/\s|\./g, '_');
+			el.id = $(el).closest('.b-article').attr('id') + '--' + el.textContent.trim().replace(/\s|\.|\$/g, '_');
 		});
 
 		var rootTarget = void 0;
