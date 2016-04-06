@@ -15,7 +15,9 @@ const
 	snakeskin = require('gulp-snakeskin'),
 	stylus = require('gulp-stylus'),
 	autoprefixer = require('gulp-autoprefixer'),
-	rollup = require('gulp-rollup');
+	rollup = require('gulp-rollup'),
+	uglify = require('gulp-uglify'),
+	csso = require('gulp-csso');
 
 const
 	path = require('path'),
@@ -49,6 +51,9 @@ gulp.task('styles', (cb) => {
 		.pipe(stylus({use: nib()}))
 		.on('error', error())
 		.pipe(autoprefixer())
+		.on('error', error())
+		.pipe(csso())
+		.on('error', error())
 		.pipe(gulp.dest(path.join(buildFolder, 'css')))
 		.on('end', cb);
 });
@@ -60,6 +65,8 @@ gulp.task('dependencies', (cb) => {
 				'./node_modules/highlight.js/styles/default.css'
 			])
 
+				.pipe(csso())
+				.on('error', error())
 				.pipe(gulp.dest(path.join(buildFolder, 'css/highlight')))
 				.on('end', cb);
 		},
@@ -79,6 +86,8 @@ gulp.task('dependencies', (cb) => {
 gulp.task('scripts', (cb) => {
 	gulp.src('./scripts/index.js')
 		.pipe(rollup({format: 'iife', plugins: [babel()]}))
+		.on('error', error())
+		.pipe(uglify())
 		.on('error', error())
 		.pipe(gulp.dest(path.join(buildFolder, 'js')))
 		.on('end', cb);
