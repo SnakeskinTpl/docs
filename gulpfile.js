@@ -17,7 +17,8 @@ const
 	autoprefixer = require('gulp-autoprefixer'),
 	rollup = require('gulp-rollup'),
 	uglify = require('gulp-uglify'),
-	csso = require('gulp-csso');
+	csso = require('gulp-csso'),
+	run = require('gulp-run');
 
 const
 	path = require('path'),
@@ -93,8 +94,15 @@ gulp.task('scripts', (cb) => {
 		.on('end', cb);
 });
 
+gulp.task('yaspeller', (cb) => {
+	run('yaspeller ./').exec()
+		.on('error', error())
+		.on('finish', cb);
+});
+
 gulp.task('watch', () => {
 	gulp.watch(['./tpls/**/*.ss', './docs/**/*.ss'], ['templates']);
+	gulp.watch('./docs/**/*.ss', ['yaspeller']);
 	gulp.watch('./styles/**/*.styl', ['styles']);
 	gulp.watch('./scripts/**/*.js', ['scripts']);
 });
