@@ -17,8 +17,7 @@ $(() => {
 
 	const
 		prev = $('.b-articles__prev'),
-		next = $('.b-articles__next'),
-		navHiddenClass = 'b-articles__nav-cont_hidden_true';
+		next = $('.b-articles__next');
 
 	prev.on('click', () => {
 		if (!rootTarget) {
@@ -47,10 +46,10 @@ $(() => {
 			}
 
 			e.preventDefault();
-			if (e.keyCode === 37 && !prev.hasClass(navHiddenClass)) {
+			if (e.keyCode === 37 && !prev.hasClass('b-articles__nav-cont_hidden_true')) {
 				prev.trigger('click');
 
-			} else if (e.keyCode === 39 && !next.hasClass(navHiddenClass)) {
+			} else if (e.keyCode === 39 && !next.hasClass('b-articles__nav-cont_hidden_true')) {
 				next.trigger('click');
 			}
 		});
@@ -124,17 +123,17 @@ $(() => {
 				.append(sub.is('.b-contents__sub') ? sub : sub.closest('.b-contents__sub'));
 
 			if (id === $('.b-article:eq(0)').attr('id')) {
-				prev.addClass(navHiddenClass);
+				prev.addClass('b-articles__nav-cont_hidden_true');
 
 			} else {
-				prev.removeClass(navHiddenClass);
+				prev.removeClass('b-articles__nav-cont_hidden_true');
 			}
 
 			if (id === $('.b-article:eq(-1)').attr('id')) {
-				next.addClass(navHiddenClass);
+				next.addClass('b-articles__nav-cont_hidden_true');
 
 			} else {
-				next.removeClass(navHiddenClass);
+				next.removeClass('b-articles__nav-cont_hidden_true');
 			}
 		}
 
