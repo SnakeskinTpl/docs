@@ -74,10 +74,54 @@ $(() => {
 			rootTarget = target;
 
 			const
-				id = target.attr('id');
+				id = target.attr('id'),
+				link = contents.find(`.b-contents__link[href='#${id}']`);
 
-			contents.find('.b-contents__link').removeClass('b-contents__link_active_true');
-			contents.find(`.b-contents__link[href='#${id}']`).addClass('b-contents__link_active_true');
+			contents
+				.find('.b-contents__link')
+				.removeClass('b-contents__link_active_true')
+				.closest('li')
+				.find('.b-contents__sub')
+				.remove();
+
+			link
+				.addClass('b-contents__link_active_true');
+
+			let
+				sub = $('<ul class="b-contents__sub">'),
+				pos = 2;
+
+			target.find('h2,h3').each((i, el) => {
+				const
+					rank = Number(/\d+/.exec(el.tagName.toLowerCase())[0]);
+
+				if (rank > pos) {
+					const tmp = $('<li class="b-contents__part b-contents__part_link_false"><ul></li>');
+					sub.append(tmp);
+					sub = tmp.find('ul');
+
+				} else {
+					sub = sub.closest('ul');
+				}
+
+				if (pos !== rank) {
+					pos = rank;
+				}
+
+				console.log(hash, el.id)
+
+				sub.append(
+					$(`
+						<li class="b-contents__part b-contents__part_link_true">
+							<a href="#${el.id}" class="b-contents__link b-contents__link_active_${hash.slice(1) === el.id}">${el.textContent}</a>
+						</li>
+					`)
+				);
+			});
+
+			link
+				.closest('li')
+				.append(sub.is('.b-contents__sub') ? sub : sub.closest('.b-contents__sub'));
 
 			if (id === $('.b-article:eq(0)').attr('id')) {
 				prev.addClass(navHiddenClass);

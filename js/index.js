@@ -113,10 +113,37 @@
 				target.addClass('b-article_active_true');
 				rootTarget = target;
 
-				var id = target.attr('id');
+				var id = target.attr('id'),
+				    link = contents.find('.b-contents__link[href=\'#' + id + '\']');
 
-				contents.find('.b-contents__link').removeClass('b-contents__link_active_true');
-				contents.find('.b-contents__link[href=\'#' + id + '\']').addClass('b-contents__link_active_true');
+				contents.find('.b-contents__link').removeClass('b-contents__link_active_true').closest('li').find('.b-contents__sub').remove();
+
+				link.addClass('b-contents__link_active_true');
+
+				var sub = $('<ul class="b-contents__sub">'),
+				    pos = 2;
+
+				target.find('h2,h3').each(function (i, el) {
+					var rank = Number(/\d+/.exec(el.tagName.toLowerCase())[0]);
+
+					if (rank > pos) {
+						var tmp = $('<li class="b-contents__part b-contents__part_link_false"><ul></li>');
+						sub.append(tmp);
+						sub = tmp.find('ul');
+					} else {
+						sub = sub.closest('ul');
+					}
+
+					if (pos !== rank) {
+						pos = rank;
+					}
+
+					console.log(hash, el.id);
+
+					sub.append($('\n\t\t\t\t\t\t<li class="b-contents__part b-contents__part_link_true">\n\t\t\t\t\t\t\t<a href="#' + el.id + '" class="b-contents__link b-contents__link_active_' + (hash.slice(1) === el.id) + '">' + el.textContent + '</a>\n\t\t\t\t\t\t</li>\n\t\t\t\t\t'));
+				});
+
+				link.closest('li').append(sub.is('.b-contents__sub') ? sub : sub.closest('.b-contents__sub'));
 
 				if (id === $('.b-article:eq(0)').attr('id')) {
 					prev.addClass(navHiddenClass);
