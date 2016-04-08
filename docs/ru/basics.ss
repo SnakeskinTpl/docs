@@ -1,4 +1,4 @@
-- namespace docs.ru.guide['2::Основы']['1::Декларация и синтаксис']
+- namespace docs.ru.guide['2::Основы']['1::Декларация и базовый синтаксис']
 
 /*!
  * snakeskin.github.io
