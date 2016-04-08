@@ -90,7 +90,7 @@ $(() => {
 				sub = $('<ul class="b-contents__sub">'),
 				pos = 2;
 
-			target.find('h2,h3').each((i, el) => {
+			target.find('h2, h3').each((i, el) => {
 				const
 					rank = Number(/\d+/.exec(el.tagName.toLowerCase())[0]);
 
@@ -99,15 +99,13 @@ $(() => {
 					sub.append(tmp);
 					sub = tmp.find('ul');
 
-				} else {
-					sub = sub.closest('ul');
+				} else if (rank < pos) {
+					sub = sub.parent().closest('ul');
 				}
 
 				if (pos !== rank) {
 					pos = rank;
 				}
-
-				console.log(hash, el.id)
 
 				sub.append(
 					$(`
@@ -117,6 +115,8 @@ $(() => {
 					`)
 				);
 			});
+
+			console.log(sub[0]);
 
 			link
 				.closest('li')
