@@ -52,6 +52,8 @@ Object.defineProperties(exports, {
 				relevance: 0,
 				endsWithParent: true,
 				contains: [
+					hljs.COMMENT('///', '$'),
+					hljs.C_BLOCK_COMMENT_MODE,
 					hljs.APOS_STRING_MODE,
 					hljs.QUOTE_STRING_MODE,
 					hljs.BACKSLASH_ESCAPE,
