@@ -20,7 +20,7 @@
     "/\\b(snakeskin|nakeskin|snakeskinTpl|ss|v7|filename|dirname)\\b/i",
     "/\\b(es2015|ECMAScript|js|CoffeeScript|github|io|com|filename|dirname)\\b/i",
     "/\\b(html5|haml|jade|dtd|mathml|svg|bem|frameset)\\b/i",
-    "/\\b(mvvm|vue|xss|webpack|foo)\\b/i",
+    "/\\b(mvvm|npm|webkit|vue|xss|webpack|foo)\\b/i",
     "/\\b(importFilters|setFilterParams|undef)\\b/i",
     "/\\b(attr|doctype|forEach|forIn|putIn)\\b/i",
     "/бесшовно|биндинг|бэкенд|фронтенд|доопределение/i",

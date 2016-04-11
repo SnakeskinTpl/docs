@@ -36,7 +36,8 @@
                     <li class="b-contents__part b-contents__part_link_false">Введение
                         <ol>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#intro">Что такое Snakeskin</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#concept">Общая концепция шаблонов Snakeskin</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#install">Установка</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#gettingStarted">Концепт и варианты применения</a> </li>
                         </ol>
                     </li>
                     <li class="b-contents__part b-contents__part_link_false">Основы
@@ -76,12 +77,58 @@
                     <p>Snakeskin поддерживает интеграцию с популярными task-runnerʼами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов — это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
                     <p>Use and enjoy.</p>
                 </section>
-                <section id="concept" class="b-article">
+                <section id="install" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
                             <div class="fa fa-angle-right"></div> Введение </li>
                     </ul>
-                    <h1>Общая концепция шаблонов Snakeskin</h1>
+                    <h1>Установка</h1>
+                    <p>Snakeskin написан на языке JavaScript и поддерживает работу как в браузере, так и в других окружениях:</p>
+                    <ul>
+                        <li>node.js (0.12+);</li>
+                        <li>node-webkit;</li>
+                        <li>electron;</li>
+                        <li>web-worker;</li>
+                        <li>дополнения к приложениям и т. д.</li>
+                    </ul>
+                    <h2>Запуск в браузере</h2>
+                    <ul>
+                        <li><a href="https://raw.githubusercontent.com/SnakeskinTpl/Snakeskin/master/dist/snakeskin.live.min.js">runtime</a> — микробиблиотека для запуска скомпилированных шаблонов;</li>
+                        <li><a href="https://raw.githubusercontent.com/SnakeskinTpl/Snakeskin/master/dist/snakeskin.min.js">compiler</a> — для запуска компилятора необходимо предварительно установить <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/demo/helloworld.html">ряд зависимостей</a>                            и
+                            <a href="https://github.com/zloirock/core-js">полифилов</a> (если нужна поддержка старых браузеров).</li>
+                    </ul>
+                    <h2>Bower</h2>
+                    <pre class="hljs example-bash"><code>bower install --save snakeskin
+</code></pre>
+                    <p>Файл библиотеки лежит по адресу:</p>
+                    <pre class="hljs example-default"><code>bower_components/
+	snakeskin/
+		dist/
+			snakeskin.min.js
+			snakeskin.live.min.js
+</code></pre>
+                    <h2>NPM</h2>
+                    <pre class="hljs example-bash"><code>npm install --save snakeskin
+</code></pre>
+                    <h3>Плагины</h3>
+                    <ul>
+                        <li><a href="https://github.com/SnakeskinTpl/gulp-snakeskin">gulp</a></li>
+                        <li><a href="https://github.com/SnakeskinTpl/grunt-snakeskin">grunt</a></li>
+                        <li><a href="https://github.com/SnakeskinTpl/snakeskin-loader">webpack</a></li>
+                    </ul>
+                    <h3>std.ss</h3>
+                    <p><a href="https://github.com/SnakeskinTpl/std.ss">std.ss</a> — это библиотека написанная на Snakeskin, которая предоставляет ряд дополнительных функций для разработки.</p>
+                    <h2>GitHub</h2>
+                    <pre class="hljs example-bash"><code>git <span class="hljs-built_in">clone</span> https://github.com/SnakeskinTpl/Snakeskin
+</code></pre>
+                </section>
+                <section id="gettingStarted" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Введение </li>
+                    </ul>
+                    <h1>Концепт и варианты применения</h1>
+                    <h2>Общая концепция</h2>
                     <p>Шаблоны в Snakeskin — это функции в JavaScript.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -101,15 +148,161 @@
                         </div>
                     </div>
                     <p>Эквивалентно</p>
-                    <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> demo === <span class="hljs-string">'undefined'</span>) {
-	<span class="hljs-keyword">var</span> demo = {};
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (exports.demo === <span class="hljs-string">'undefined'</span>) {
+	<span class="hljs-keyword">var</span> demo = exports.demo = {};
 }
 
-demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">helloWorld</span>(<span class="hljs-params">name</span>) </span>{
+exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">helloWorld</span>(<span class="hljs-params">name</span>) </span>{
 	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello '</span> + <span class="hljs-built_in">escape</span>(name) + <span class="hljs-string">'!'</span>;
 }
 </code></pre>
                     <p>После компиляции вызов шаблона соответствует простому вызову функции. Такой же подход используется в <a href="https://developers.google.com/closure/templates/">Google Closure Templates</a>.</p>
+                    <h2>Песочница</h2>
+                    <p>Простейшим способом изучения возможностей Snakeskin является использование <a href="http://codepen.io/kobezzza/pen/zrJNXx">онлайн-песочницы</a> на Codepen.
+                    </p>
+                    <h2>Способы использования и основные use-case</h2>
+                    <p>Snakeskin поддерживает работу как на клиенте, так и на сервере, а также интеграцию со всеми основными системами сборок:</p>
+                    <ul>
+                        <li><a href="https://github.com/SnakeskinTpl/gulp-snakeskin">gulp</a></li>
+                        <li><a href="https://github.com/SnakeskinTpl/grunt-snakeskin">grunt</a></li>
+                        <li><a href="https://github.com/SnakeskinTpl/snakeskin-loader">webpack</a></li>
+                    </ul>
+                    <p>Основные use-case Snakeskin — это:</p>
+                    <ol>
+                        <li>Серверная шаблонизация;</li>
+                        <li>Предварительная трансляция шаблонов в JS и использование их на клиенте;</li>
+                        <li>Генерация шаблонов для различных фреймворков, например, Angular, Vue, React и т. д.;</li>
+                        <li>Статическая генерация страниц на этапе сборки проекта.</li>
+                    </ol>
+                    <p>Также есть возможность «живой» компиляции в браузере, хотя данная фича не рекомендуется для prod.</p>
+                    <h3>Использование Snakeskin как серверного шаблонизатора вместе с Node.js</h3>
+                    <p><strong>templates.ss</strong></p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; input name = login | type = text | placeholder = Логин</span><span class="xml">
+</span><span class="hljs-directive">	&lt; input name = password | type = password | placeholder = Пароль</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; input name = login | type = text | placeholder = Логин}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; input name = password | type = password | placeholder = Пароль}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p><strong>index.js</strong></p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> ss = <span class="hljs-built_in">require</span>(<span class="hljs-string">'snakeskin'</span>);
+
+<span class="hljs-built_in">console</span>.log(
+	ss.compileFile(<span class="hljs-string">'templates.ss'</span>).registration.index()
+);
+</code></pre>
+                    <h3>Подключение уже скомпилированного шаблона в Node.js</h3>
+                    <p>Скомпилированные файлы Snakeskin подключаются как простые Node.js модули.</p>
+                    <p><strong>index.js</strong></p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./templates.ss.js'</span>);
+</code></pre>
+                    <h3>Использование в браузере вместе с Webpack</h3>
+                    <p><strong>webpack.config.js</strong></p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
+
+webpack({
+	entry: {
+			index: <span class="hljs-string">'./index.js'</span>
+	},
+
+	output: {
+			filename: <span class="hljs-string">'[name].bundle.js'</span>
+	},
+
+	<span class="hljs-built_in">module</span>: {
+		loaders: [
+			{
+				test: <span class="hljs-regexp">/.ss$/</span>,
+				exclude: <span class="hljs-regexp">/node_modules/</span>,
+				loader: <span class="hljs-string">'snakeskin-loader?pack=true'</span>
+			}
+		]
+	}
+});
+</code></pre>
+                    <p><strong>templates.ss</strong></p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; input name = login | type = text | placeholder = Логин</span><span class="xml">
+</span><span class="hljs-directive">	&lt; input name = password | type = password | placeholder = Пароль</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; input name = login | type = text | placeholder = Логин}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; input name = password | type = password | placeholder = Пароль}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p><strong>index.js</strong></p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'templates.ss'</span>);
+
+<span class="hljs-built_in">console</span>.log(
+	tpls.registration.index()
+);
+</code></pre>
+                    <h3>Статическая генерация страниц вместе с Gulp</h3>
+                    <p><strong>gulpfile.js</strong></p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span>
+	gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>),
+	ss = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-snakeskin'</span>);
+
+gulp.task(<span class="hljs-string">'snakeskin'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+	gulp.src(<span class="hljs-string">'templates.ss'</span>)
+		.pipe(ss({exec: <span class="hljs-literal">true</span>, tpl: <span class="hljs-string">'registration'</span>}))
+		.pipe(gulp.dest(<span class="hljs-string">'./dist/registration.html'</span>));
+});
+
+gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string">'snakeskin'</span>]);
+</code></pre>
+                    <p><strong>templates.ss</strong></p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; input name = login | type = text | placeholder = Логин</span><span class="xml">
+</span><span class="hljs-directive">	&lt; input name = password | type = password | placeholder = Пароль</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; input name = login | type = text | placeholder = Логин}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; input name = password | type = password | placeholder = Пароль}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h3>Статическая генерация с CLI</h3>
+                    <p>Генерация страницы index.html на основе шаблона templates.ss и данных myData.json.</p>
+                    <pre class="hljs example-bash"><code>snakeskin templates.ss <span class="hljs-_">-e</span> <span class="hljs-_">-d</span> myData.json -o index.html
+</code></pre>
+                    <p>Если шаблон для запуска не задан явно, то он определяется по правилу:</p>
+                    <pre class="hljs example-default"><code>шаблон с именем текущего файла (без расширения) ||
+main ||
+index ||
+первый шаблон в списке
+</code></pre>
                 </section>
                 <section id="basics" class="b-article">
                     <ul class="b-breadcrumbs">
