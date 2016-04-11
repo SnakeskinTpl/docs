@@ -42,7 +42,8 @@
                     <li class="b-contents__part b-contents__part_link_false">Основы
                         <ol>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#basics">Декларация и базовый синтаксис</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Альтернативный синтаксис</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Jade-like синтаксис</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Декларация шаблона и вывод данных</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
                         </ol>
                     </li>
@@ -241,7 +242,7 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
                         <li><i class="fa fa-home"></i>
                             <div class="fa fa-angle-right"></div> Основы </li>
                     </ul>
-                    <h1>Альтернативный синтаксис</h1>
+                    <h1>Jade-like синтаксис</h1>
                     <p>Помимо <a href="#basics--%D0%A1%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D1%85_%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B9">основного</a> синтаксиса
                         Snakeskin поддерживает также альтернативный, который основан на принципе управляющих пробелов и по духу близок к <a href="https://github.com/visionmedia/jade">Jade</a> и
                         <a href="https://github.com/haml/haml">HAML</a>. Такой синтаксис крайне удобен при генерации XML подобных структур, например:</p>
@@ -250,7 +251,7 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
 </span><span class="hljs-directive">		&lt; span style = color: red</span><span class="xml">
 			Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
 </span></code></pre>
-                    <p>Вместо символов <code>{</code>, <code>}</code> для вывода директивы используется <code>-</code>.</p>
+                    <p>Вместо символов <code>{</code>, <code>}</code> для вывода директивы используется <code>-</code>. В примерах документации основной синтаксис будет называться <strong>classic</strong>, а альтернативный — <strong>jade-like</strong>.</p>
                     <p><strong>«Классический» синтаксис:</strong></p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
@@ -259,13 +260,13 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
-                    <p><strong>Альтернативный синтаксис:</strong></p>
+                    <p><strong>Jade-like синтаксис:</strong></p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)</span><span class="xml">
 </span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">if</span></span> name</span><span class="xml">
 		</span><span class="hljs-directive">{name}</span><span class="xml">
 </span></code></pre>
-                    <p>Следует заметить, что в альтернативном синтаксисе нет необходимости ставить закрывающие теги для блочных директив, т. к. они проставляются автоматически.</p>
+                    <p>Следует заметить, что в jade-like синтаксисе нет необходимости ставить закрывающие теги для блочных директив, т. к. они проставляются автоматически.</p>
                     <p>Если директива имеет короткий синтаксис, то тогда управляющий символ <code>-</code> может быть опущен, например:</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-comment">/// - var foo = 'bar'</span><span class="xml">
 </span><span class="hljs-directive">: foo = <span class="hljs-string">'bar'</span></span><span class="xml">
@@ -280,7 +281,7 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
 	#? console.log(foo)
 </span></code></pre>
                     <h2>Смешивание синтаксисов</h2>
-                    <p>Альтернативный синтаксис можно использовать совместно с классическим, при этом классический синтаксис может включаться в блоки с декларацией альтернативного, например:</p>
+                    <p>Jade-like синтаксис можно использовать совместно с классическим, при этом классический синтаксис может включаться в блоки с декларацией jade-like, например:</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-comment">/// Альтернативный синтаксис</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 
@@ -320,6 +321,140 @@ demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword">functio
 	\- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> :: Hello world! <span class="hljs-comment">/// - if true :: Hello world!</span>
 </code></pre>
                     <p>Т.е. можно использовать любой из способов.</p>
+                </section>
+                <section id="introTemplates" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Основы </li>
+                    </ul>
+                    <h1>Декларация шаблона и вывод данных</h1>
+                    <p>Шаблон — это главная функциональная ячейка Snakeskin, которая является синонимом функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом.</p>
+                    <p>Объявление шаблона возможно с помощью директив <a href="api.html#template">template</a>, <a href="api.html#interface">interface</a> и
+                        <a href="api.html#placeholder">placeholder</a>. Шаблон не может включать в себя другой шаблон, для этого есть другие директивы.</p>
+                    <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
+                    <h2>Пространства имён</h2>
+                    <p>Все шаблоны Snakeskin декларируются в рамках пространства имён, которое обязан задать разработчик с помощью директивы
+                        <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т. е.
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> bar <span class="hljs-comment">/// Ошибка</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> bar}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Каждое пространство имён является свойством корневого объекта <strong>exports</strong>, которое является глобальным для всех файлов Snakeskin и осуществляет экспорт шаблонов в JavaScript.</p>
+                    <p>В рамках пространства имён не может быть двух шаблонов с одинаковым названием, т. е. переопределять шаблоны в Snakeskin нельзя.</p>
+                    <h2>Механика шаблонов</h2>
+                    <p>Если в JavaScript результатом работы функции является то, что указано после оператора <em>return</em>, то в Snakeskin любой текст автоматически является результатом, хотя возможность явного возврата значения также имеется (<a href="api.html#return">return</a>).</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> hello()</span><span class="xml">
+	Hello World!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> hello()}</span><span class="xml">
+	Hello World!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>В JS такое будет выглядеть как:</p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (exports.demo === <span class="hljs-string">'undefined'</span>) {
+	exports.demo = {};
+}
+
+exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>) </span>{
+	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello World!'</span>;
+};
+</code></pre>
+                    <h3>Вывод значений</h3>
+                    <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона значения JavaScript выражений, например, вызовы функций, значения переменных, результат математических операций и т. д. Для этого используется специальная директива
+                        <a href="api.html#output">output</a>. Давайте усложним пример выше и будем выводить приветствие по заданному параметру-имени.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> hello(name)</span><span class="xml">
+	</span><span class="hljs-comment">/// Можно было бы написать {output name},</span><span class="xml">
+	</span><span class="hljs-comment">/// но внутри шаблонов директива output</span><span class="xml">
+	</span><span class="hljs-comment">/// имеет более удобную короткую форму вызова и поэтому</span><span class="xml">
+	</span><span class="hljs-comment">/// достаточно просто взять выводимое выражение в фигурные скобки</span><span class="xml">
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> hello(name)}</span><span class="xml">
+	</span><span class="hljs-comment">/// Можно было бы написать {output name},</span><span class="xml">
+	</span><span class="hljs-comment">/// но внутри шаблонов директива output</span><span class="xml">
+	</span><span class="hljs-comment">/// имеет более удобную короткую форму вызова и поэтому</span><span class="xml">
+	</span><span class="hljs-comment">/// достаточно просто взять выводимое выражение в фигурные скобки</span><span class="xml">
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Как уже говорилось выше, выводить через <em>output</em> можно не только простые параметры, а практически любое JavaScript выражение, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)</span><span class="xml">
+	a + b = </span><span class="hljs-directive">{Math.round(a) + b}</span><span class="xml">
+	</span><span class="hljs-directive">{a &gt; <span class="hljs-number">10</span> ? <span class="hljs-string">'"a" great then 10'</span> : <span class="hljs-string">'"a" less then 10'</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(name)}</span><span class="xml">
+	a + b = </span><span class="hljs-directive">{Math.round(a) + b}</span><span class="xml">
+	</span><span class="hljs-directive">{a &gt; <span class="hljs-number">10</span> ? <span class="hljs-string">'"a" great then 10'</span> : <span class="hljs-string">'"a" less then 10'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h3>Другие директивы</h3>
+                    <p>Помимо <em>output</em>, в Snakeskin существует множество других директив, которые помогут написать функциональный и гибкий шаблон, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">if</span></span> Array.isArray(value)</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> value <span class="hljs-keyword">=&gt;</span> el</span><span class="xml">
+			</span><span class="hljs-directive">{el}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(name)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> Array.isArray(value)}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> value <span class="hljs-keyword">=&gt;</span> el}</span><span class="xml">
+			</span><span class="hljs-directive">{el}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                            <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
+                        </div>
+                    </div>
                 </section>
                 <section id="filters" class="b-article">
                     <ul class="b-breadcrumbs">

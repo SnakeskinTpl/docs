@@ -1,4 +1,4 @@
-- namespace docs.ru.guide['2::Основы']['3::Механизм фильтров']
+- namespace docs.ru.guide['2::Основы']['4::Механизм фильтров']
 
 /*!
  * snakeskin.github.io
