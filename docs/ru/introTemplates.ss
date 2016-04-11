@@ -151,7 +151,7 @@ Snakeskin позволяет разработчику вставлять в ст
 
 ```classic
 {namespace demo}
-{template calc(name)}
+{template index(name)}
 	{if Array.isArray(value)}
 		{forEach value => el}
 			{el}
@@ -160,9 +160,93 @@ Snakeskin позволяет разработчику вставлять в ст
 {/template}
 ```
 
+#{/}
+
 Узнать о всех директивах, которые поддерживает Snakeskin, можно в [документации проекта](api.html).
 
+### Работа с пробельными символами
+
+Если не задан параметр [tolerateWhitespaces](api.html#compile--tolerateWhitespaces), то любые пробельные символы
+(перевод строки, пробел, табуляция и т.д.) в рамках шаблона Snakeskin трактуются как пробел и "схлопываются" в один, т.е.
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	Hello          World
+
+
+	Bar
+```
+
+```classic
+{namespace demo}
+{template index()}
+	Hello          World
+
+
+	Bar
+{/template}
+```
+
 #{/}
+
+Отрендерится как
+
+```
+Hello World Bar
+```
+
+Исключение составляют блоки [cdata](#api.html#cdata), литералы строк и регулярных выражений внутри директивы и jsDoc комментарии.
+
+С помощью параметра [ignore](api.html#compile--ignore) можно задать те пробельные символы, которые будут полностью
+вырезаться из шаблона.
+
+#### Текстовые и логические директивы
+
+Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.
+
+Текстовые директивы — это такие директивы, результат работы которых выводится в шаблон, например,
+[output](api.html#output) или [call](api.html#call), а остальные директивы считаются логическими, например,
+[if](api.html#if) или [for](api.html#for).
+
+Логические директивы не участвуют в обработке пробелов, т.е.
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	Hello
+	- if true
+
+		- if true
+
+			world
+```
+
+```classic
+{namespace demo}
+{template index()}
+	Hello
+	{if true}
+
+		{if true}
+
+			world
+		{/if}
+	{/if}
+{/template}
+```
+
+#{/}
+
+Отрендерится как
+
+```
+Hello world
+```
 
 #{/block}
 {/template}

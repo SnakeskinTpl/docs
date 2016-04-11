@@ -403,7 +403,7 @@ index ||
                     <p>В любом месте области декларации шаблонов допускается использовать однострочные (<code>///</code>) и многострочные (<code>/* ... */</code>) комментарии. Комментарии вырезаются на этапе трансляции и не попадают в скомпилированный JavaScript.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/* ... */</span><span class="xml">
 </span><span class="hljs-comment">/// ...</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> foo(name)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
 	</span><span class="hljs-comment">///{name}</span><span class="xml">
 	</span><span class="hljs-comment">/*Hello
 	World*/</span><span class="xml">
@@ -420,6 +420,18 @@ index ||
 	</span><span class="hljs-comment">/// Пример ниже вызовет ошибку</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-comment">/*}*/</span>
 {/template}</span><span class="xml">
+</span></code></pre>
+                    <h3>jsDoc</h3>
+                    <p>Snakeskin поддерживает jsDoc комментарии, которые не вырезаются из конечного JavaScript кода.</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/**
+ * jsDoc комментарий
+ * @param {string} name
+ */</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
+ </span><span class="hljs-comment">/*
+  * Обычный комментарий
+  */</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                     <h2>Экранирование</h2>
                     <p>Символ <code>\</code> может использоваться для экранирования директив, комментариев и прочих сущностей Snakeskin.</p>
@@ -637,7 +649,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 			</span><span class="hljs-directive">{el}</span><span class="xml">
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(name)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> Array.isArray(value)}</span><span class="xml">
 		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> value <span class="hljs-keyword">=&gt;</span> el}</span><span class="xml">
 			</span><span class="hljs-directive">{el}</span><span class="xml">
@@ -645,9 +657,78 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
-                            <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
                         </div>
                     </div>
+                    <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
+                    <h3>Работа с пробельными символами</h3>
+                    <p>Если не задан параметр <a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a>, то любые пробельные символы (перевод строки, пробел, табуляция и т. д.) в рамках шаблона Snakeskin трактуются как пробел и «схлопываются»
+                        в один, т. е.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	Hello          World
+
+
+	Bar
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	Hello          World
+
+
+	Bar
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-default"><code>Hello World Bar
+</code></pre>
+                    <p>Исключение составляют блоки <a href="#api.html#cdata">cdata</a>, литералы строк и регулярных выражений внутри директивы и jsDoc комментарии.</p>
+                    <p>С помощью параметра <a href="api.html#compile--ignore">ignore</a> можно задать те пробельные символы, которые будут полностью вырезаться из шаблона.</p>
+                    <h4>Текстовые и логические директивы</h4>
+                    <p>Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.</p>
+                    <p>Текстовые директивы — это такие директивы, результат работы которых выводится в шаблон, например,
+                        <a href="api.html#output">output</a> или <a href="api.html#call">call</a>, а остальные директивы считаются логическими, например,
+                        <a href="api.html#if">if</a> или <a href="api.html#for">for</a>.</p>
+                    <p>Логические директивы не участвуют в обработке пробелов, т. е.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	Hello
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
+</span><span class="hljs-directive">
+		- <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
+
+			world
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	Hello
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> true}</span><span class="xml">
+
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> true}</span><span class="xml">
+
+			world
+		</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">if</span></span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">if</span></span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-default"><code>Hello world
+</code></pre>
                 </section>
                 <section id="filters" class="b-article">
                     <ul class="b-breadcrumbs">

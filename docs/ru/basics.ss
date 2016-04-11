@@ -147,7 +147,7 @@
 ```classic
 \/* ... */
 \/// ...
-{template foo(name)}
+{template index(name)}
 	\///{name}
 	\/*Hello
 	World*/
@@ -163,6 +163,22 @@
 
 	\/// Пример ниже вызовет ошибку
 	{\/*}*/
+{/template}
+```
+
+### jsDoc
+
+Snakeskin поддерживает jsDoc комментарии, которые не вырезаются из конечного JavaScript кода.
+
+```classic
+\/**
+ * jsDoc комментарий
+ * @param {string} name
+ */
+{template index(name)}
+ \/*
+  * Обычный комментарий
+  */
 {/template}
 ```
 
