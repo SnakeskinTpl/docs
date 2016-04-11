@@ -46,7 +46,7 @@
 			},
 			{
 				id: 'plugins',
-				href: '#',
+				href: 'guide.html#install--Плагины',
 				label: `Плагины`
 			},
 			{
