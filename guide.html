@@ -157,9 +157,6 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
 }
 </code></pre>
                     <p>После компиляции вызов шаблона соответствует простому вызову функции. Такой же подход используется в <a href="https://developers.google.com/closure/templates/">Google Closure Templates</a>.</p>
-                    <h2>Песочница</h2>
-                    <p>Простейшим способом изучения возможностей Snakeskin является использование <a href="http://codepen.io/kobezzza/pen/zrJNXx">онлайн-песочницы</a> на Codepen.
-                    </p>
                     <h2>Способы использования и основные use-case</h2>
                     <p>Snakeskin поддерживает работу как на клиенте, так и на сервере, а также интеграцию со всеми основными системами сборок:</p>
                     <ul>
@@ -175,7 +172,11 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                         <li>Статическая генерация страниц на этапе сборки проекта.</li>
                     </ol>
                     <p>Также есть возможность «живой» компиляции в браузере, хотя данная фича не рекомендуется для prod.</p>
+                    <h3>Песочница</h3>
+                    <p>Простейшим способом изучения возможностей Snakeskin является использование <a href="http://codepen.io/kobezzza/pen/zrJNXx">онлайн-песочницы</a> на Codepen.
+                    </p>
                     <h3>Использование Snakeskin как серверного шаблонизатора вместе с Node.js</h3>
+                    <p>Snakeskin содержит ряд вспомогательных методов для удобной работы из Node.js.</p>
                     <p><strong>templates.ss</strong></p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -209,6 +210,7 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./templates.ss.js'</span>);
 </code></pre>
                     <h3>Использование в браузере вместе с Webpack</h3>
+                    <p>Использование Snakeskin вместе с Webpack является одной из самых лучших практик.</p>
                     <p><strong>webpack.config.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
@@ -293,7 +295,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                         </div>
                     </div>
-                    <h3>Статическая генерация с CLI</h3>
+                    <h3>Статическая генерация с Snakeskin CLI</h3>
                     <p>Генерация страницы index.html на основе шаблона templates.ss и данных myData.json.</p>
                     <pre class="hljs example-bash"><code>snakeskin templates.ss <span class="hljs-_">-e</span> <span class="hljs-_">-d</span> myData.json -o index.html
 </code></pre>
@@ -558,7 +560,8 @@ index ||
                     <p>Каждое пространство имён является свойством корневого объекта <strong>exports</strong>, которое является глобальным для всех файлов Snakeskin и осуществляет экспорт шаблонов в JavaScript.</p>
                     <p>В рамках пространства имён не может быть двух шаблонов с одинаковым названием, т. е. переопределять шаблоны в Snakeskin нельзя.</p>
                     <h2>Механика шаблонов</h2>
-                    <p>Если в JavaScript результатом работы функции является то, что указано после оператора <em>return</em>, то в Snakeskin любой текст автоматически является результатом, хотя возможность явного возврата значения также имеется (<a href="api.html#return">return</a>).</p>
+                    <p>Snakeskin в известном смысле — макроязык, в нём нет оператора print; весь текст, набранный в исходном файле, суть большой оператор print. Директивы Snakeskin являются погруженными в текст. Получается, что вы не пишете программу, которая
+                        выводит текст — наоборот, в имеющийся текст вы добавляете логику и организацию, блоки (методы), на которые вы разбиваете код:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -586,8 +589,8 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 };
 </code></pre>
                     <h3>Вывод значений</h3>
-                    <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона значения JavaScript выражений, например, вызовы функций, значения переменных, результат математических операций и т. д. Для этого используется специальная директива
-                        <a href="api.html#output">output</a>. Давайте усложним пример выше и будем выводить приветствие по заданному параметру-имени.</p>
+                    <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона динамические JavaScript выражения, например, вызовы функций, значения переменных, результат математических операций и т. д. Для этого используется специальная директива
+                        <a href="api.html#output">output</a>. Давайте усложним пример данный главой выше: будем выводить приветствие по заданному параметру-имени.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -689,7 +692,8 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <p>Отрендерится как</p>
                     <pre class="hljs example-default"><code>Hello World Bar
 </code></pre>
-                    <p>Исключение составляют блоки <a href="#api.html#cdata">cdata</a>, литералы строк и регулярных выражений внутри директивы и jsDoc комментарии.</p>
+                    <p>Исключение составляют блоки <a href="#api.html#cdata">cdata</a>, литералы строк и регулярных выражений внутри директивы и
+                        <a href="#basics--jsDoc">jsDoc комментарии</a>.</p>
                     <p>С помощью параметра <a href="api.html#compile--ignore">ignore</a> можно задать те пробельные символы, которые будут полностью вырезаться из шаблона.</p>
                     <h4>Текстовые и логические директивы</h4>
                     <p>Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.</p>
