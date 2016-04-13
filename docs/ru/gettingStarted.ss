@@ -89,8 +89,8 @@ Snakeskin содержит ряд вспомогательных методов 
 ```classic
 {namespace registration}
 {template index()}
-	{< input name = login | type = text | placeholder = Логин}{/}
-	{< input name = password | type = password | placeholder = Пароль}{/}
+	{< input name = login | type = text | placeholder = Логин /}
+	{< input name = password | type = password | placeholder = Пароль /}
 {/template}
 ```
 
