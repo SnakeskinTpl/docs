@@ -95,7 +95,7 @@ Snakeskin.Filters['text'] = {
 {'foo'|text.replace 'fo', 'bar'}
 ```
 
-Также для добавления своих фильтров можно воспользоваться методов
+Также для добавления своих фильтров можно воспользоваться методом
 [Snakeskin.importFilters](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L22):
 
 ```js

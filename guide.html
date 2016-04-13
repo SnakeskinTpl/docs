@@ -278,6 +278,7 @@ Vue.component(<span class="hljs-string">'button'</span>, {
 	template: button.index()
 });
 </code></pre>
+                    <p>В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора <a href="https://babeljs.io/">Babel</a>, чтобы обеспечить поддержку в старых браузерах.</p>
                     <h3>Статическая генерация страниц вместе с Gulp</h3>
                     <p>Snakeskin может немедленно выполнить скомпилированный шаблон по заданному имени и вернуть результат, а если имя шаблона не задано, то оно будет вычислено по формуле:</p>
                     <pre class="hljs example-default"><code>шаблон с именем главного файла (без расширения) ||
@@ -559,7 +560,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                         <a href="api.html#placeholder">placeholder</a>. Шаблон не может включать в себя другой шаблон, для этого есть другие директивы.</p>
                     <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
                     <h2>Пространства имён</h2>
-                    <p>Все шаблоны Snakeskin декларируются в рамках пространства имён, которое обязан задать разработчик с помощью директивы
+                    <p>Все шаблоны Snakeskin декларируются в рамках пространства имён, которое обязан задать сам разработчик с помощью директивы
                         <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т. е.
                     </p>
                     <div class="b-example">
@@ -600,7 +601,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     </div>
                     <p>В JS такое будет выглядеть как:</p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (exports.demo === <span class="hljs-string">'undefined'</span>) {
-	exports.demo = {};
+	<span class="hljs-keyword">var</span> demo = exports.demo = {};
 }
 
 exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>) </span>{
@@ -814,7 +815,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </code></pre>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-string">'foo'</span><span class="hljs-keyword">|text</span>.replace <span class="hljs-string">'fo'</span>, <span class="hljs-string">'bar'</span>}</span><span class="xml">
 </span></code></pre>
-                    <p>Также для добавления своих фильтров можно воспользоваться методов
+                    <p>Также для добавления своих фильтров можно воспользоваться методом
                         <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L22">Snakeskin.importFilters</a>:</p>
                     <pre class="hljs example-js"><code>Snakeskin.importFilters({
 	<span class="hljs-string">'replace'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
