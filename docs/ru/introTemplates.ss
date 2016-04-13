@@ -83,7 +83,105 @@ exports.demo.hello = function hello() {
 };
 ```
 
-### Вывод значений
+## Модификаторы шаблона
+
+Функция шаблон поддерживает специальные модификаторы декларации.
+
+### Шаблон-генератор
+
+Шаблон будет транслироваться в JS как функция-генератор (для поддержки в старых браузерах необходимо использовать полифил).
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template *hello()
+	- yield
+		Hello world!
+```
+
+```classic
+{namespace demo}
+{template *hello()}
+	{yield}
+		Hello world!
+	{/}
+{/template}
+```
+
+#{/}
+
+### Асинхронный шаблон
+
+Шаблон будет транслироваться в JS как *async* функция (для поддержки в браузерах необходимо использовать полифил).
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- async template hello()
+	- var data = await db.getData()
+	Hello {data.name}!
+```
+
+```classic
+{namespace demo}
+{async template hello()}
+	{var data = await db.getData() /}
+	Hello {data.name}!
+{/template}
+```
+
+#{/}
+
+### Декораторы
+
+К любому шаблону может быть добавлено неограниченное количество функций-декораторов (которые также могу быть шаблонами).
+Функция декоратор принимает на вход ссылку на исходную функция и обязан вернуть в качестве ответа функцию.
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- import Typograf from 'typograf'
+
+- template typograf(params)
+	- return
+		() => target
+			- return
+				() =>
+					- return new Typograf(params).execute(target.apply(this, arguments))
+
+- @typograf({lang: 'ru'})
+- template index()
+	Спорт - это правильно!
+```
+
+```classic
+{namespace demo}
+{import Typograf from 'typograf'}
+
+{template typograf(params)}
+	{return}
+		{() => target}
+			{return}
+				{() =>}
+					{return new Typograf(params).execute(target.apply(this, arguments))}
+				{/}
+			{/}
+		{/}
+	{/}
+{/template}
+
+{@typograf({lang: 'ru'})}
+{template index()}
+	Спорт - это правильно!
+{/template}
+```
+
+#{/}
+
+## Вывод значений
 
 Snakeskin позволяет разработчику вставлять в статичный текст шаблона динамические JavaScript выражения, например,
 вызовы функций, значения переменных, результат математических операций и т.д.. Для этого используется специальная директива
@@ -136,7 +234,7 @@ Snakeskin позволяет разработчику вставлять в ст
 
 #{/}
 
-### Другие директивы
+## Другие директивы
 
 Помимо *output*, в Snakeskin существует множество других директив, которые помогут написать функциональный и
 гибкий шаблон, например:
@@ -166,7 +264,7 @@ Snakeskin позволяет разработчику вставлять в ст
 
 Узнать о всех директивах, которые поддерживает Snakeskin, можно в [документации проекта](api.html).
 
-### Работа с пробельными символами
+## Работа с пробельными символами
 
 Если не задан параметр [tolerateWhitespaces](api.html#compile--tolerateWhitespaces), то любые пробельные символы
 (перевод строки, пробел, табуляция и т.д.) в рамках шаблона Snakeskin трактуются как пробел и "схлопываются" в один, т.е.
@@ -206,7 +304,7 @@ Hello world Bar
 С помощью параметра [ignore](api.html#compile--ignore) можно задать те пробельные символы, которые будут полностью
 вырезаться из шаблона.
 
-#### Текстовые и логические директивы
+### Текстовые и логические директивы
 
 Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.
 
