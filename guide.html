@@ -44,9 +44,10 @@
                         <ol>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#basics">Декларация и базовый синтаксис</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Jade-like синтаксис</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Декларация шаблона и вывод данных</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introSet">Декларация шаблона и вывод данных</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#localization">Локализация</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Параметры трансляции</a> </li>
                         </ol>
                     </li>
                     <li class="b-contents__part b-contents__part_link_false">Наследование
@@ -549,7 +550,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </code></pre>
                     <p>Т.е. можно использовать любой из способов.</p>
                 </section>
-                <section id="introTemplates" class="b-article">
+                <section id="introSet" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
                             <div class="fa fa-angle-right"></div> Основы </li>
@@ -1072,6 +1073,69 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 <span class="hljs-comment">// {'Hello world!': 'Hello world!'}</span>
 <span class="hljs-built_in">console</span>.log(words);
 </code></pre>
+                </section>
+                <section id="introTemplates" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Основы </li>
+                    </ul>
+                    <h1>Параметры трансляции</h1>
+                    <p>Транслятор Snakeskin поддерживает множество дополнительных режимов работы, которые можно задавать через метод
+                        <a href="api.html#compile">compile</a> и т. д., но также, Snakeskin позволяет декларировать часть таких параметров непосредственно в тексте программы, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">@= tolerateWhitespaces true</span><span class="xml">
+</span><span class="hljs-directive">@= literalBounds [<span class="hljs-string">'&lt;?php'</span>, <span class="hljs-string">'?&gt;'</span>]</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-keyword">@=</span> tolerateWhitespaces true}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-keyword">@=</span> literalBounds [<span class="hljs-string">'&lt;?php'</span>, <span class="hljs-string">'?&gt;'</span>]}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Задачу параметров трансляции выполняет директива <a href="api.html#set">set</a>, которая имеет короткий синтаксис декларации <code>@=</code>. Поддерживаются следующие параметры:</p>
+                    <ul>
+                        <li><a href="api.html#compile--renderMode">renderMode</a></li>
+                        <li><a href="api.html#compile--renderAs">renderAs</a></li>
+                        <li><a href="api.html#compile--localization">localization</a></li>
+                        <li><a href="api.html#compile--i18nFn">i18nFn</a></li>
+                        <li><a href="api.html#compile--i18nFnOptions">i18nFnOptions</a></li>
+                        <li><a href="api.html#compile--literalBounds">literalBounds</a></li>
+                        <li><a href="api.html#compile--bemFilter">bemFilter</a></li>
+                        <li><a href="api.html#compile--filters">filters</a></li>
+                        <li><a href="api.html#compile--language">language</a></li>
+                        <li><a href="api.html#compile--ignore">ignore</a></li>
+                        <li><a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a></li>
+                        <li><a href="api.html#compile--doctype">doctype</a></li>
+                    </ul>
+                    <p>Параметры заданные таким способом распространяются на все шаблоны в файле, а также на все подключаемые файлы, если они там явно не переопределяются.</p>
+                    <h2>Локальные параметры</h2>
+                    <p>Параметр трансляции можно задать локально для конкретного шаблона, причём можно совмещать оба способа декларации, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">@= tolerateWhitespaces true</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index() <span class="hljs-keyword">@=</span> literalBounds [<span class="hljs-string">'&lt;?php'</span>, <span class="hljs-string">'?&gt;'</span>]</span><span class="xml">
+	</span><span class="hljs-directive">{{ Hello }</span><span class="xml">}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-keyword">@=</span> tolerateWhitespaces true}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index() <span class="hljs-keyword">@=</span> literalBounds [<span class="hljs-string">'&lt;?php'</span>, <span class="hljs-string">'?&gt;'</span>]}</span><span class="xml">
+	</span><span class="hljs-directive">{{ Hello }</span><span class="xml">}
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
                 </section>
                 <section id="inheritBasic" class="b-article">
                     <ul class="b-breadcrumbs">
