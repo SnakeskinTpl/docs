@@ -48,6 +48,7 @@
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#localization">Локализация</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introSet">Параметры трансляции</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introLiteral">Интеграция с другими шаблонами</a> </li>
                         </ol>
                     </li>
                     <li class="b-contents__part b-contents__part_link_false">Наследование
@@ -1225,6 +1226,57 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
+                </section>
+                <section id="introLiteral" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Основы </li>
+                    </ul>
+                    <h1>Интеграция с другими шаблонами</h1>
+                    <p>Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы <a href="api.html#literal">literal</a>. Как правило такой кейз возникает при интеграции Snakeskin c MVVM фреймворками, например,
+                        с Vue. Директива <em>literal</em> имеет специальный синтаксис <code>{{ ... }}</code>, который скомпилируется согласно параметру <a href="api.html#compile--literalBounds">literalBounds</a> (по умолчанию используется <code>{{ ... }}</code>),
+                        например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index() <span class="hljs-keyword">@=</span> literalBounds [<span class="hljs-string">'&lt;?php'</span>, <span class="hljs-string">'?&gt;'</span>]</span><span class="xml">
+	</span><span class="hljs-directive">{{ Hello }</span><span class="xml">}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index() <span class="hljs-keyword">@=</span> literalBounds [<span class="hljs-string">'&lt;?php'</span>, <span class="hljs-string">'?&gt;'</span>]}</span><span class="xml">
+	</span><span class="hljs-directive">{{ Hello }</span><span class="xml">}
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code><span class="php"><span class="hljs-meta">&lt;?php</span> Hello <span class="hljs-meta">?&gt;</span></span>
+</code></pre>
+                    <p>Для прокидывания значений Snakeskin внутрь директивы используется стандартный механизм интерполяции, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	</span><span class="hljs-directive">{{ bar${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> }}
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{{ bar${<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> }}
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code>{{ bar3 }}
+</code></pre>
                 </section>
                 <section id="inheritBasic" class="b-article">
                     <ul class="b-breadcrumbs">
