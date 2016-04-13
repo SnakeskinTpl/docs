@@ -125,13 +125,13 @@ i18n("hello world!", {lang: "en"}, true)
 ```jade-like
 - namespace demo
 - template index()
-	\\`Hello world!`\\
+	\\`Hello world!\\`
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\\`Hello world!`\\
+	\\`Hello world!\\`
 {/template}
 ```
 
@@ -155,13 +155,13 @@ i18n("hello world!", {lang: "en"}, true)
 ```jade-like
 - namespace demo
 - template index()
-	\`Hello world!`\
+	`Hello world!`
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\`Hello world!`\
+	`Hello world!`
 {/template}
 ```
 
@@ -190,19 +190,19 @@ Snakeskin.compile('<шаблон>', {
 ```jade-like
 - namespace demo
 - template index()
-	\`Hello
+	`Hello
 
 
-	world!`\
+	world!`
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\`Hello
+	`Hello
 
 
-	world!`\
+	world!`
 {/template}
 ```
 
@@ -226,13 +226,13 @@ Snakeskin.compile('<шаблон>', {
 ```jade-like
 - namespace demo
 - template index()
-	\`Hello world!`\
+	`Hello world!`
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\`Hello world!`\
+	`Hello world!`
 {/template}
 ```
 
