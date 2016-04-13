@@ -92,6 +92,13 @@ Object.defineProperties(exports, {
 
 				{
 					className: 'name',
+					begin: /\basync (?:template|interface|placeholder)\b/,
+					keywords: {built_in: 'async template interface placeholder'},
+					starts: exports.dirContent
+				},
+
+				{
+					className: 'name',
 					begin: new RegExp(`/?\\b(?:${exports.dirs.built_in.split(' ').join('|')})\\b`),
 					keywords: exports.dirs,
 					starts: exports.dirContent
