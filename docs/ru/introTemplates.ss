@@ -59,13 +59,13 @@ Snakeskin в известном смысле - макроязык, в нём н�
 ```jade-like
 - namespace demo
 - template hello()
-	Hello World!
+	Hello world!
 ```
 
 ```classic
 {namespace demo}
 {template hello()}
-	Hello World!
+	Hello world!
 {/template}
 ```
 
@@ -79,7 +79,7 @@ if (exports.demo === 'undefined') {
 }
 
 exports.demo.hello = function hello() {
-	return 'Hello World!';
+	return 'Hello world!';
 };
 ```
 
@@ -176,7 +176,7 @@ Snakeskin позволяет разработчику вставлять в ст
 ```jade-like
 - namespace demo
 - template index()
-	Hello          World
+	Hello          world
 
 
 	Bar
@@ -185,7 +185,7 @@ Snakeskin позволяет разработчику вставлять в ст
 ```classic
 {namespace demo}
 {template index()}
-	Hello          World
+	Hello          world
 
 
 	Bar
@@ -197,7 +197,7 @@ Snakeskin позволяет разработчику вставлять в ст
 Отрендерится как
 
 ```
-Hello World Bar
+Hello world Bar
 ```
 
 Исключение составляют блоки [cdata](#api.html#cdata), литералы строк и регулярных выражений внутри директивы и

@@ -108,7 +108,7 @@
 	: putIn tpl
 		- if value !== 404
 			< .hello
-				Hello World!
+				Hello world!
 
 		- else
 			< .error
@@ -121,7 +121,7 @@
 	{: putIn tpl}
 		{if value !== 404}
 			{< .hello}
-				Hello World!
+				Hello world!
 
 		{else}
 			{< .error}

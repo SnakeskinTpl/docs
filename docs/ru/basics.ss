@@ -31,7 +31,7 @@
 			{namespace demo}
 
 			{template index()}
-				Hello World!
+				Hello world!
 			{/template}
 
 			{template calc(a, b)}
@@ -150,7 +150,7 @@
 {template index(name)}
 	\///{name}
 	\/*Hello
-	World*/
+	world*/
 
 	{1 \/*+ 2*/} \/// Выведет 1
 

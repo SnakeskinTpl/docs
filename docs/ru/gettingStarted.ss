@@ -116,9 +116,10 @@ console.log(
 var tpls = require('./templates.ss.js');
 ```
 
-### Использование в браузере вместе с Webpack
+### Использование вместе с Vue и Webpack
 
-Использование Snakeskin вместе с Webpack является одной из самых лучших практик.
+Snakeskin бесшовно интегируется с большинством популярных MVVM библиотек и фреймворков, а
+использование SS вместе с Webpack является одной из самых лучших практик.
 
 **webpack.config.js**
 
@@ -127,15 +128,21 @@ var webpack = require('webpack');
 
 webpack({
 	entry: {
-			index: './index.js'
+		index: './button.js'
 	},
 
 	output: {
-			filename: '[name].bundle.js'
+		filename: '[name].bundle.js'
 	},
 
 	module: {
 		loaders: [
+			{
+				test: /\.js$/,
+				exclude: /node_modules/,
+				loader: 'babel'
+			},
+
 			{
 				test: /\.ss$/,
 				exclude: /node_modules/,
@@ -146,38 +153,58 @@ webpack({
 });
 ```
 
-**templates.ss**
+**button.ss**
 
 #{+= self.example()}
 
 ```jade-like
-- namespace registration
+- namespace button
 - template index()
-	< input name = login | type = text | placeholder = Логин
-	< input name = password | type = password | placeholder = Пароль
+	< button.b-button :type = type | :form = form
+		{{ label }}
 ```
 
 ```classic
-{namespace registration}
+{namespace button}
 {template index()}
-	{< input name = login | type = text | placeholder = Логин}{/}
-	{< input name = password | type = password | placeholder = Пароль}{/}
+	{< button.b-button :type = type | :form = form}
+		{{ label }}
+	{/}
 {/template}
 ```
 
 #{/}
 
-**index.js**
+**button.js**
 
 ```js
-var tpls = require('templates.ss');
+import { button } from './button.ss';
 
-console.log(
-	tpls.registration.index()
-);
+Vue.component('button', {
+	props: {
+		label: {
+			type: String,
+			required: true
+		},
+		type: String,
+		form: String
+	},
+
+	template: button.index()
+});
 ```
 
 ### Статическая генерация страниц вместе с Gulp
+
+Snakeskin может немедленно выполнить скомпилированный шаблон по заданному имени и вернуть результат,
+а если имя шаблона не задано, то оно будет вычислено по формуле:
+
+```
+шаблон с именем главного файла (без расширения) ||
+main ||
+index ||
+первый шаблон в списке
+```
 
 **gulpfile.js**
 
@@ -187,50 +214,44 @@ var
 	ss = require('gulp-snakeskin');
 
 gulp.task('snakeskin', function () {
-	gulp.src('templates.ss')
-		.pipe(ss({exec: true, tpl: 'registration'}))
-		.pipe(gulp.dest('./dist/registration.html'));
+	gulp.src('index.ss')
+		.pipe(ss({exec: true}))
+		.pipe(gulp.dest('./dist/index.html'));
 });
 
 gulp.task('default', ['snakeskin']);
 ```
 
-**templates.ss**
+**index.ss**
 
 #{+= self.example()}
 
 ```jade-like
-- namespace registration
-- template index()
-	< input name = login | type = text | placeholder = Логин
-	< input name = password | type = password | placeholder = Пароль
+- namespace index
+- template main()
+	< .hello
+		Hello world!
 ```
 
 ```classic
-{namespace registration}
-{template index()}
-	{< input name = login | type = text | placeholder = Логин}{/}
-	{< input name = password | type = password | placeholder = Пароль}{/}
+{namespace index}
+{template main()}
+	{< .hello}
+		Hello world!
+	{/}
 {/template}
 ```
 
 #{/}
 
+Также для задач статической генерации страниц может использоваться Grunt, Webpack или Snakeskin CLI.
+
 ### Статическая генерация с Snakeskin CLI
 
-Генерация страницы index.html на основе шаблона templates.ss и данных myData.json.
+Генерация страницы index.html на основе шаблона index.ss из примера выше.
 
 ```bash
-snakeskin templates.ss -e -d myData.json -o index.html
-```
-
-Если шаблон для запуска не задан явно, то он определяется по правилу:
-
-```
-шаблон с именем текущего файла (без расширения) ||
-main ||
-index ||
-первый шаблон в списке
+snakeskin ./index.ss -e -o ./dist/index.html
 ```
 
 #{/block}

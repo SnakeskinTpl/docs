@@ -46,6 +46,7 @@
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Jade-like синтаксис</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Декларация шаблона и вывод данных</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#localization">Локализация</a> </li>
                         </ol>
                     </li>
                     <li class="b-contents__part b-contents__part_link_false">Наследование
@@ -209,22 +210,28 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                     <p><strong>index.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./templates.ss.js'</span>);
 </code></pre>
-                    <h3>Использование в браузере вместе с Webpack</h3>
-                    <p>Использование Snakeskin вместе с Webpack является одной из самых лучших практик.</p>
+                    <h3>Использование вместе с Vue и Webpack</h3>
+                    <p>Snakeskin бесшовно интегируется с большинством популярных MVVM библиотек и фреймворков, а использование SS вместе с Webpack является одной из самых лучших практик.</p>
                     <p><strong>webpack.config.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
 webpack({
 	entry: {
-			index: <span class="hljs-string">'./index.js'</span>
+		index: <span class="hljs-string">'./button.js'</span>
 	},
 
 	output: {
-			filename: <span class="hljs-string">'[name].bundle.js'</span>
+		filename: <span class="hljs-string">'[name].bundle.js'</span>
 	},
 
 	<span class="hljs-built_in">module</span>: {
 		loaders: [
+			{
+				test: <span class="hljs-regexp">/.js$/</span>,
+				exclude: <span class="hljs-regexp">/node_modules/</span>,
+				loader: <span class="hljs-string">'babel'</span>
+			},
+
 			{
 				test: <span class="hljs-regexp">/.ss$/</span>,
 				exclude: <span class="hljs-regexp">/node_modules/</span>,
@@ -234,76 +241,88 @@ webpack({
 	}
 });
 </code></pre>
-                    <p><strong>templates.ss</strong></p>
+                    <p><strong>button.ss</strong></p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration</span><span class="xml">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> button</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
-</span><span class="hljs-directive">	&lt; input name = login | type = text | placeholder = Логин</span><span class="xml">
-</span><span class="hljs-directive">	&lt; input name = password | type = password | placeholder = Пароль</span><span class="xml">
+</span><span class="hljs-directive">	&lt; button.b-button :type = type | :form = form</span><span class="xml">
+		</span><span class="hljs-directive">{{ label }</span><span class="xml">}
 </span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration}</span><span class="xml">
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> button}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
-	</span><span class="hljs-directive">{&lt; input name = login | type = text | placeholder = Логин}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
-	</span><span class="hljs-directive">{&lt; input name = password | type = password | placeholder = Пароль}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; button.b-button :type = type | :form = form}</span><span class="xml">
+		</span><span class="hljs-directive">{{ label }</span><span class="xml">}
+	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
-                    <p><strong>index.js</strong></p>
-                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'templates.ss'</span>);
+                    <p><strong>button.js</strong></p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">import</span> { button } <span class="hljs-keyword">from</span> <span class="hljs-string">'./button.ss'</span>;
 
-<span class="hljs-built_in">console</span>.log(
-	tpls.registration.index()
-);
+Vue.component(<span class="hljs-string">'button'</span>, {
+	props: {
+		label: {
+			type: <span class="hljs-built_in">String</span>,
+			required: <span class="hljs-literal">true</span>
+		},
+		type: <span class="hljs-built_in">String</span>,
+		form: <span class="hljs-built_in">String</span>
+	},
+
+	template: button.index()
+});
 </code></pre>
                     <h3>Статическая генерация страниц вместе с Gulp</h3>
+                    <p>Snakeskin может немедленно выполнить скомпилированный шаблон по заданному имени и вернуть результат, а если имя шаблона не задано, то оно будет вычислено по формуле:</p>
+                    <pre class="hljs example-default"><code>шаблон с именем главного файла (без расширения) ||
+main ||
+index ||
+первый шаблон в списке
+</code></pre>
                     <p><strong>gulpfile.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span>
 	gulp = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp'</span>),
 	ss = <span class="hljs-built_in">require</span>(<span class="hljs-string">'gulp-snakeskin'</span>);
 
 gulp.task(<span class="hljs-string">'snakeskin'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-	gulp.src(<span class="hljs-string">'templates.ss'</span>)
-		.pipe(ss({exec: <span class="hljs-literal">true</span>, tpl: <span class="hljs-string">'registration'</span>}))
-		.pipe(gulp.dest(<span class="hljs-string">'./dist/registration.html'</span>));
+	gulp.src(<span class="hljs-string">'index.ss'</span>)
+		.pipe(ss({exec: <span class="hljs-literal">true</span>}))
+		.pipe(gulp.dest(<span class="hljs-string">'./dist/index.html'</span>));
 });
 
 gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string">'snakeskin'</span>]);
 </code></pre>
-                    <p><strong>templates.ss</strong></p>
+                    <p><strong>index.ss</strong></p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration</span><span class="xml">
-</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
-</span><span class="hljs-directive">	&lt; input name = login | type = text | placeholder = Логин</span><span class="xml">
-</span><span class="hljs-directive">	&lt; input name = password | type = password | placeholder = Пароль</span><span class="xml">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> index</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> main()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; .hello</span><span class="xml">
+		Hello world!
 </span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> registration}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
-	</span><span class="hljs-directive">{&lt; input name = login | type = text | placeholder = Логин}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
-	</span><span class="hljs-directive">{&lt; input name = password | type = password | placeholder = Пароль}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> index}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> main()}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+		Hello world!
+	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Также для задач статической генерации страниц может использоваться Grunt, Webpack или Snakeskin CLI.</p>
                     <h3>Статическая генерация с Snakeskin CLI</h3>
-                    <p>Генерация страницы index.html на основе шаблона templates.ss и данных myData.json.</p>
-                    <pre class="hljs example-bash"><code>snakeskin templates.ss <span class="hljs-_">-e</span> <span class="hljs-_">-d</span> myData.json -o index.html
-</code></pre>
-                    <p>Если шаблон для запуска не задан явно, то он определяется по правилу:</p>
-                    <pre class="hljs example-default"><code>шаблон с именем текущего файла (без расширения) ||
-main ||
-index ||
-первый шаблон в списке
+                    <p>Генерация страницы index.html на основе шаблона index.ss из примера выше.</p>
+                    <pre class="hljs example-bash"><code>snakeskin ./index.ss <span class="hljs-_">-e</span> -o ./dist/index.html
 </code></pre>
                 </section>
                 <section id="basics" class="b-article">
@@ -326,7 +345,7 @@ index ||
 			{<span class="hljs-keyword">namespace</span> demo}
 
 			{template index()}
-				Hello World!
+				Hello world!
 			{/template}
 
 			{template calc(a, b)}
@@ -408,7 +427,7 @@ index ||
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
 	</span><span class="hljs-comment">///{name}</span><span class="xml">
 	</span><span class="hljs-comment">/*Hello
-	World*/</span><span class="xml">
+	world*/</span><span class="xml">
 
 	</span><span class="hljs-directive">{<span class="hljs-number">1</span> <span class="hljs-comment">/*+ 2*/</span>}</span><span class="xml"> </span><span class="hljs-comment">/// Выведет 1</span><span class="xml">
 
@@ -570,11 +589,11 @@ index ||
                         <div class="b-example__code">
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> hello()</span><span class="xml">
-	Hello World!
+	Hello world!
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> hello()}</span><span class="xml">
-	Hello World!
+	Hello world!
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
@@ -585,7 +604,7 @@ index ||
 }
 
 exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hello</span>(<span class="hljs-params"></span>) </span>{
-	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello World!'</span>;
+	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello world!'</span>;
 };
 </code></pre>
                     <h3>Вывод значений</h3>
@@ -674,14 +693,14 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         <div class="b-example__code">
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
-	Hello          World
+	Hello          world
 
 
 	Bar
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
-	Hello          World
+	Hello          world
 
 
 	Bar
@@ -690,7 +709,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <p>Отрендерится как</p>
-                    <pre class="hljs example-default"><code>Hello World Bar
+                    <pre class="hljs example-default"><code>Hello world Bar
 </code></pre>
                     <p>Исключение составляют блоки <a href="#api.html#cdata">cdata</a>, литералы строк и регулярных выражений внутри директивы и
                         <a href="#basics--jsDoc">jsDoc комментарии</a>.</p>
@@ -847,6 +866,124 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 </code></pre>
                     <h2>Встроенные фильтры</h2>
                     <p>В стандартном runtime библиотеки Snakeskin присутствует ряд базовых фильтров, которые могут быть полезны при разработке шаблонов, <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js">подробнее</a>.</p>
+                </section>
+                <section id="localization" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Основы </li>
+                    </ul>
+                    <h1>Локализация</h1>
+                    <p>В Snakeskin существует специальный тип строк <code>` ... `</code>, которые при параметре
+                        <a href="api.html#compile--localization">localization</a> (включён по умолчанию) будут автоматически оборачиваться функцией <code>i18n()</code>.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	</span><span class="hljs-string">`Hello world!`</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-string">`Hello world!`</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Скомпилируется как</p>
+                    <pre class="hljs example-js"><code>...
+i18n(<span class="hljs-string">"hello world!"</span>)
+...
+</code></pre>
+                    <p>Данные строки можно также использовать внутри директив, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-string">`Hello world!`</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-string">`Hello world!`</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Имя используемой функции локализации можно задать явно с помощью параметра <a href="api.html#compile--i18nFn">i18nFn</a>.</p>
+                    <h2>Экранирование</h2>
+                    <p>Чтобы использовать символ <code>`</code> самостоятельно, то его нужно экранировать.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	</span>\`<span class="xml">Hello world!</span><span class="hljs-string">`\
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span>\`<span class="xml">Hello world!</span><span class="hljs-string">`\
+{/template}
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code>`Hello world!`
+</code></pre>
+                    <p>Или же можно просто отключить параметр <em>localization</em>.</p>
+                    <h2>Замена на этапе трансляции</h2>
+                    <p>Если при компиляции шаблонов задать параметр-объект <code>language</code>, то найденные литералы будут автоматически заменятся на указанные в объекте.</p>
+                    <pre class="hljs example-default"><code>{template foo()}
+	`Hello world!`
+{/template}
+</code></pre>
+                    <pre class="hljs example-js"><code>Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	language: {
+		// В качестве значений замены можно также использовать функции,
+		// которые возвращают строку
+		'Hello world!': 'Привет мир!'
+	}
+});
+</span></code></pre>
+                    <p>Скомпилируется как</p>
+                    <pre class="hljs example-html"><code>Привет мир!
+</code></pre>
+                    <p>Т.к. смежные пробельные символы в Snakeskin схлопываются один, то следующий пример также будет работать.</p>
+                    <pre class="hljs example-default"><code>{template foo()}
+	`Hello
+
+
+	world!`
+{/template}
+</code></pre>
+                    <pre class="hljs example-js"><code>Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	language: {
+		'Hello world!': 'Привет мир!'
+	}
+});
+</span></code></pre>
+                    <h2>Генерация таблицы используемых литералов</h2>
+                    <p>Дополнительно Snakeskin может сохранить все найденные литералы локализации в объект, чтобы потом, например, можно было передать его переводчикам. За эту функцию отвечает параметр <code>words</code>.</p>
+                    <pre class="hljs example-default"><code>{template foo()}
+	`Hello world!`
+{/template}
+</code></pre>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> words = {};
+
+Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	words: words
+});
+
+words // {"Hello world!": "Hello world!"}
+</span></code></pre>
                 </section>
                 <section id="inheritBasic" class="b-article">
                     <ul class="b-breadcrumbs">
