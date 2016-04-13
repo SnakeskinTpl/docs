@@ -776,6 +776,25 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
+                    <h2>Глобальный контекст</h2>
+                    <p>Код, который находится вне тела шаблона или прототипа считается глобальным и помимо трансляции в JavaScript выполняется на этапе трансляции.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-comment">/// Данный forEach выполнится на этапе трансляции и войдёт в конечный JS</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-keyword">=&gt;</span> el</span><span class="xml">
+	? console.log(el)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Данный forEach выполнится на этапе трансляции и войдёт в конечный JS</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>] <span class="hljs-keyword">=&gt;</span> el}</span><span class="xml">
+	</span><span class="hljs-directive">{? console.log(el)}</span><span class="xml">
+</span><span class="hljs-directive">{/}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
                     <h2>Работа с пробельными символами</h2>
                     <p>Если не задан параметр <a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a>, то любые пробельные символы (перевод строки, пробел, табуляция и т. д.) в рамках шаблона Snakeskin трактуются как пробел и «схлопываются»
                         в один, т. е.</p>
