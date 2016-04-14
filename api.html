@@ -107,7 +107,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -122,11 +122,31 @@
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> base = {child: {name: <span class="hljs-string">'Moscow'</span>}}</span><span class="xml">
 </span><span class="hljs-directive">
 - <span class="hljs-name"><span class="hljs-built_in">with</span></span> base.child</span><span class="xml">
-	? console.log(@name) </span><span class="hljs-comment">/// Kobezzza</span><span class="xml">
+	? console.log(@name) </span><span class="hljs-comment">/// Moscow</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> base = {child: {name: <span class="hljs-string">'Moscow'</span>}</span><span class="xml">}}
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">with</span></span> base.child}</span><span class="xml">
+	</span><span class="hljs-directive">{? console.log(@name)}</span><span class="xml"> </span><span class="hljs-comment">/// Kobezzza</span><span class="xml">
+</span><span class="hljs-directive">{/}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>С помощью <code>@</code> можно как получать, так и устанавливать свойства объекту.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> base = {child: {name: <span class="hljs-string">'Moscow'</span>}}</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">with</span></span> base.child</span><span class="xml">
 	? @name = 'Washington'
+	? @type = 'city'
 
 ? console.log(base.child.name) </span><span class="hljs-comment">/// Washington</span><span class="xml">
-
+? console.log(base.child.type) </span><span class="hljs-comment">/// city</span><span class="xml">
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> base = {child: {name: <span class="hljs-string">'Moscow'</span>}</span><span class="xml">}}
 
@@ -157,7 +177,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Такая запись эквивалентна</p>
+                    <p>Такая запись эквивалентна:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -173,6 +193,32 @@
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(params)}</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">with</span></span> params}</span><span class="xml">
 		</span><span class="hljs-directive">{@name}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Можно вкладывать with-блоки друг в друга, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">with</span></span> params</span><span class="xml">
+		</span><span class="hljs-directive">{@name}</span><span class="xml"> </span><span class="hljs-comment">/// params.name</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">with</span></span> @data</span><span class="xml">
+			</span><span class="hljs-directive">{@type}</span><span class="xml"> </span><span class="hljs-comment">/// params.data.type</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(params)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">with</span></span> params}</span><span class="xml">
+		</span><span class="hljs-directive">{@name}</span><span class="xml"> </span><span class="hljs-comment">/// params.name</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">with</span></span> params}</span><span class="xml">
+			</span><span class="hljs-directive">{@type}</span><span class="xml"> </span><span class="hljs-comment">/// params.data.type</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
@@ -202,7 +248,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td><code>?</code></td>
-                                <td>Строковая</td>
+                                <td>Строковая, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -270,7 +316,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -466,7 +512,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -630,7 +676,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -728,7 +774,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -826,7 +872,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td><code>&gt;</code> (для <strong>case</strong>)</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -920,7 +966,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td><code>:</code></td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1092,7 +1138,7 @@
                             <tr>
                                 <td>Только внутри шаблонов или внешних блоков</td>
                                 <td>Отсутствует</td>
-                                <td>Строковая</td>
+                                <td>Строковая, текстовая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1204,7 +1250,7 @@
                             <tr>
                                 <td>Только внутри шаблонов или внешних блоков</td>
                                 <td>Отсутствует</td>
-                                <td>Строковая</td>
+                                <td>Строковая, текстовая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1267,6 +1313,9 @@
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code>alt=""
+</code></pre>
                     <h3>Инлайновые атрибуты</h3>
                     <p>Для задания «инлайновых» HTML атрибутов, например, <code>&lt;input disabled&gt;</code> нужно просто опустить знак присвоения.</p>
                     <div class="b-example">
@@ -1321,10 +1370,13 @@
                         <div class="b-example__code">
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ng-(( repeat = el in data | bind = bla ))</span><span class="xml">
 </span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> dng-(( repeat = el in data | bind = bla ))}</span><span class="xml">
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ng-(( repeat = el in data | bind = bla ))}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code>ng-repeat="el in data" ng-bind="bla"
+</code></pre>
                     <p>Обратите внимание, что крайние пробелы у символов <code>((</code> и <code>))</code> важны, иначе они трактуется как простой текст. Также следует отметить, что при комбинировании групп атрибутов с другими группами не нужно ставить специальный
                         разделитель, например:
                     </p>
@@ -1402,6 +1454,9 @@
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code>disabled
+</code></pre>
                     <p>А чтобы исключить, то нужно использовать константу <code>FALSE</code>:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1417,6 +1472,22 @@
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Значение ключа автоматически переводится из camelCase в dash-style, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${{fooBarBla: <span class="hljs-string">'baz'</span>}}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">attr</span></span> ${{fooBarBla: <span class="hljs-string">'baz'</span>}</span><span class="xml">}}
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как</p>
+                    <pre class="hljs example-html"><code>foo-bar-bla="baz"
+</code></pre>
                     <h3>Экранирование</h3>
                     <p>Для экранирования спецсимволов директивы используется символ <code>\</code>, например:</p>
                     <div class="b-example">
@@ -1455,7 +1526,7 @@
                             <tr>
                                 <td>Только внутри шаблонов или внешних блоков</td>
                                 <td><code>&lt;</code></td>
-                                <td>Блочная</td>
+                                <td>Блочная, текстовая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1685,7 +1756,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1772,7 +1843,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Строковая</td>
+                                <td>Строковая, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1839,7 +1910,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1985,7 +2056,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>
@@ -2090,7 +2161,7 @@
                             <tr>
                                 <td>Без ограничений</td>
                                 <td>Отсутствует</td>
-                                <td>Блочная</td>
+                                <td>Блочная, логическая</td>
                             </tr>
                         </tbody>
                     </table>

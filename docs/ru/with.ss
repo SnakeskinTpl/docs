@@ -17,9 +17,9 @@
 
 ## Паспорт
 
-| Декларация      | Короткий синтаксис | Тип директивы |
-|-----------------|--------------------|---------------|
-| Без ограничений | Отсутствует        | Блочная       |
+| Декларация      | Короткий синтаксис | Тип директивы       |
+|-----------------|--------------------|---------------------|
+| Без ограничений | Отсутствует        | Блочная, логическая |
 
 ## Описание
 
@@ -32,11 +32,32 @@
 - var base = {child: {name: 'Moscow'}}
 
 - with base.child
-	? console.log(@name) \/// Kobezzza
+	? console.log(@name) \/// Moscow
+```
+
+```classic
+{var base = {child: {name: 'Moscow'}}}
+
+{with base.child}
+	{? console.log(@name)} \/// Kobezzza
+{/}
+```
+
+#{/}
+
+С помощью `@` можно как получать, так и устанавливать свойства объекту.
+
+#{+= self.example()}
+
+```jade-like
+- var base = {child: {name: 'Moscow'}}
+
+- with base.child
 	? @name = 'Washington'
+	? @type = 'city'
 
 ? console.log(base.child.name) \/// Washington
-
+? console.log(base.child.type) \/// city
 ```
 
 ```classic
@@ -72,7 +93,7 @@
 
 #{/}
 
-Такая запись эквивалентна
+Такая запись эквивалентна:
 
 #{+= self.example()}
 
@@ -88,6 +109,33 @@
 {template index(params)}
 	{with params}
 		{@name}
+	{/}
+{/template}
+```
+
+#{/}
+
+Можно вкладывать with-блоки друг в друга, например:
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	- with params
+		{@name} \/// params.name
+		- with @data
+			{@type} \/// params.data.type
+```
+
+```classic
+{namespace demo}
+{template index(params)}
+	{with params}
+		{@name} \/// params.name
+		{with params}
+			{@type} \/// params.data.type
+		{/}
 	{/}
 {/template}
 ```

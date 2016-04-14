@@ -20,7 +20,7 @@
     "/\\b(snakeskin|nakeskin|snakeskinTpl|ss|v7|filename|dirname)\\b/i",
     "/\\b(es2015|ECMAScript|js|CoffeeScript|github|io|com|filename|dirname|codepen)\\b/i",
     "/\\b(html5|haml|jade|dtd|mathml|svg|bem|frameset)\\b/i",
-    "/\\b(mvvm|npm|webkit|vue|xss|webpack|foo|cli|std|jsdoc|myData|gulpfile)\\b/i",
+    "/\\b(mvvm|npm|webkit|vue|xss|webpack|foo|cli|std|jsdoc|myData|gulpfile|camelCase)\\b/i",
     "/\\b(importFilters|setFilterParams|undef|tolerateWhitespaces|i18nFn|i18nFnOptions)\\b/i",
     "/\\b(bemFilter|literalBounds|renderAs|renderMode|async)\\b/i",
     "/\\b(attr|doctype|forEach|forIn|putIn|cdata)\\b/i",
