@@ -64,6 +64,8 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#doctype">doctype</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#attr">attr</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#tag">tag</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#script">script</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#style">style</a> </li>
                                 </ol>
                             </li>
                             <li class="b-contents__part b-contents__part_link_false">Работа с исключениями
@@ -1836,6 +1838,284 @@
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; .bla foo = bar \= bla</span><span class="xml">
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{&lt; .bla foo = bar \= bla}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="script" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с HTML/XML </li>
+                    </ul>
+                    <h1>script</h1>
+                    <p>Директива <strong>script</strong> вставляет в шаблон код декларации тега <code>&lt;script&gt;</code> с заданными параметрами.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, текстовая</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива предназначена для более удобного задания тегов <code>&lt;script&gt;</code> и может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <h3>Таблица обозначений</h3>
+                    <h4>js</h4>
+                    <pre class="hljs example-default"><code>text/javascript
+</code></pre>
+                    <h4>dart</h4>
+                    <pre class="hljs example-default"><code>application/dart
+</code></pre>
+                    <h4>coffee</h4>
+                    <pre class="hljs example-default"><code>application/coffeescript
+</code></pre>
+                    <h4>ts</h4>
+                    <pre class="hljs example-default"><code>application/typescript
+</code></pre>
+                    <h4>cljs</h4>
+                    <pre class="hljs example-default"><code>application/clojurescript
+</code></pre>
+                    <h4>ls</h4>
+                    <pre class="hljs example-default"><code>application/livescript
+</code></pre>
+                    <h4>json</h4>
+                    <pre class="hljs example-default"><code>application/json
+</code></pre>
+                    <h4>html</h4>
+                    <pre class="hljs example-default"><code>text/html
+</code></pre>
+                    <h4>ss</h4>
+                    <pre class="hljs example-default"><code>text/x-snakeskin-template
+</code></pre>
+                    <h3>Примеры</h3>
+                    <h4>Использование значения по умолчанию (js)</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">script</span></span></span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">script</span></span>}</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Явное указание типа</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">script</span></span> ts</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">script</span></span> ts}</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Указание собственного типа</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">script</span></span> application/myscript</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">script</span></span> application/myscript}</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Задание произвольных атрибутов</h4>
+                    <p><em>(используется синтаксис <a href="#attr">attr</a>)</em></p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">script</span></span> js class = foo</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">script</span></span> js class = foo}</span><span class="xml">
+		var a = </span><span class="hljs-directive">{}</span><span class="xml">;
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
+                <section id="style" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Работа с HTML/XML </li>
+                    </ul>
+                    <h1>style</h1>
+                    <p>Директива <strong>style</strong> вставляет в шаблон код декларации тега <code>&lt;style&gt;</code> с заданными параметрами.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, текстовая</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива предназначена для более удобного задания тегов <code>&lt;style&gt;</code> и может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <h3>Таблица обозначений</h3>
+                    <h4>css</h4>
+                    <pre class="hljs example-default"><code>text/css
+</code></pre>
+                    <h3>Примеры</h3>
+                    <h4>Использование значения по умолчанию (css)</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">style</span></span></span><span class="xml">
+		.foo </span><span class="hljs-directive">{
+			color: red;
+		}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">style</span></span>}</span><span class="xml">
+		.foo </span><span class="hljs-directive">{
+			color: red;
+		}</span><span class="xml">
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Явное указание типа</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">style</span></span> css</span><span class="xml">
+		.foo </span><span class="hljs-directive">{
+			color: red;
+		}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">style</span></span> css}</span><span class="xml">
+		.foo </span><span class="hljs-directive">{
+			color: red;
+		}</span><span class="xml">
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Указание собственного типа</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">style</span></span> text/stylus</span><span class="xml">
+		.foo
+			color red
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">style</span></span> text/stylus}</span><span class="xml">
+		.foo
+			color red
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Задание произвольных атрибутов</h4>
+                    <p><em>(используется синтаксис <a href="#attr">attr</a>)</em></p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	# <span class="hljs-name"><span class="hljs-built_in">style</span></span> css class = foo</span><span class="xml">
+		.foo </span><span class="hljs-directive">{
+			color: red;
+		}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">#{<span class="hljs-name"><span class="hljs-built_in">style</span></span> css class = foo}</span><span class="xml">
+		.foo </span><span class="hljs-directive">{
+			color: red;
+		}</span><span class="xml">
+	</span><span class="hljs-directive">#{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
