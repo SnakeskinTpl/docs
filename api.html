@@ -1313,7 +1313,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Отрендерится как</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code>alt=""
 </code></pre>
                     <h3>Инлайновые атрибуты</h3>
@@ -1374,7 +1374,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Отрендерится как</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code>ng-repeat="el in data" ng-bind="bla"
 </code></pre>
                     <p>Обратите внимание, что крайние пробелы у символов <code>((</code> и <code>))</code> важны, иначе они трактуется как простой текст. Также следует отметить, что при комбинировании групп атрибутов с другими группами не нужно ставить специальный
@@ -1454,7 +1454,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Отрендерится как</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code>disabled
 </code></pre>
                     <p>А чтобы исключить, то нужно использовать константу <code>FALSE</code>:</p>
@@ -1485,7 +1485,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Отрендерится как</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code>foo-bar-bla="baz"
 </code></pre>
                     <h3>Экранирование</h3>
@@ -1549,6 +1549,13 @@
 </span></code></pre>
                         </div>
                     </div>
+                    <p>При использовании <em>tag</em> в классическом синтаксисе существует короткая форма закрытия директивы, например:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Обычное закрытие</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> input type = text}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> input type = text /}</span><span class="xml">
+</span></code></pre>
                     <h3>Создание элемента с заданием классов и ИД</h3>
                     <p>Для удобного задания классов и ИД-а в <em>tag</em> используется синтаксис селекторов CSS, например:</p>
                     <div class="b-example">
@@ -1577,12 +1584,15 @@
                             <li class="b-example__link">classic</li>
                         </menu>
                         <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; input disabled | value = foo</span><span class="xml">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; input value = foo | disabled</span><span class="xml">
 </span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{&lt; input disabled | value = foo}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{&lt; input value = foo | disabled /}</span><span class="xml">
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Отрендерится как:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"foo"</span> <span class="hljs-attr">disabled</span>&gt;</span>
+</code></pre>
                     <h3>Ссылки на родительский класс</h3>
                     <p>В Snakeskin существует специальный механизм получения значения родительского класса в дочернем теге, который называется «липкая ссылка». Принцип работы следующий: если при декларации тега задать имя класса, которое начинается с символа
                         <code>&amp;</code>, то он будет заменён на ближайший родительский класс, который декларировался без этого символа, например:</p>
@@ -1603,7 +1613,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В результате работы шаблона получится следующий код:</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo__bar"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo__bla"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -1624,6 +1634,9 @@
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Отрендерится как:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"foo"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
                     <h4>Локальные ссылки</h4>
                     <p>Если поместить декларацию класса в специальную конструкцию <code>[...]</code>, то классы заданные внутри такого блока не будут запоминаться как липкая ссылка, а также плейсхолдер <code>&amp;</code> будет ссылаться на ближайший по иерархии
                         вложенности класс слева.</p>
@@ -1642,7 +1655,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В результате работы шаблона получится следующий код:</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button g-helper"</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button__elem b-button__elem_focused_true"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -1664,7 +1677,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В результате работы шаблона получится следующий код:</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button__elem"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
 </code></pre>
                     <h3>Интерполяция</h3>
@@ -1715,8 +1728,102 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В результате работы шаблона получится следующий код:</p>
+                    <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"b-button__elem"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+</code></pre>
+                    <h3>«Инлайновые» теги</h3>
+                    <p>В HTML ряд тегов не требуют закрывающей части (<code>&lt;/tag&gt;</code>), например, <a href="http://htmlbook.ru/html/input">input</a> или <a href="http://htmlbook.ru/html/meta">meta</a>, причём если в XHTML такие теги закрываются
+                        явно, например:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span> /&gt;</span>
+</code></pre>
+                    <p>То в HTML это можно опустить:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">type</span>=<span class="hljs-string">"text"</span>&gt;</span>
+</code></pre>
+                    <p>Snakeskin знает про такие теги, а способ их закрытия зависит от выбранного <a href="#doctype">doctype</a>. Правила декларации заданы в объекте <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L184">Snakeskin.inlineTags</a>,
+                        структура следующая:</p>
+                    <pre class="hljs example-js"><code>Snakeskin.inlineTags = {
+	<span class="hljs-comment">// Название используемого doctype</span>
+	<span class="hljs-string">'html'</span>: {
+		<span class="hljs-comment">// Тег br ставится инлайновым</span>
+		<span class="hljs-string">'br'</span>: <span class="hljs-literal">true</span>,
+
+		<span class="hljs-comment">// Тег input ставится инлайновым,</span>
+		<span class="hljs-comment">// причём если вставить содержимое в такой тег, например,</span>
+		<span class="hljs-comment">//</span>
+		<span class="hljs-comment">// &lt; input</span>
+		<span class="hljs-comment">//   Hello world!</span>
+		<span class="hljs-comment">//</span>
+		<span class="hljs-comment">// то оно поставится как значение атрибута value</span>
+		<span class="hljs-string">'input'</span>: <span class="hljs-string">'value'</span>
+	}
+}
+</code></pre>
+                    <p>Если для заданного doctype нет своей схемы тегов, то используется <code>html</code>.</p>
+                    <h4>Локальная декларация инлайновых тегов</h4>
+                    <p>С помощью модификатора <code>!inline</code> любой тег можно сделать принудительно инлайновым, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">&lt; textarea!inline</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{&lt; textarea!inline /}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span>
+</code></pre>
+                    <p>Также можно задать локальную схему тегов, которая будет распространяться на все сложенные теги:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">var</span></span> val = {textarea: true}</span><span class="xml">
+</span><span class="hljs-directive">&lt; div!inline=val</span><span class="xml">
+</span><span class="hljs-directive">	&lt; textarea</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> val = {textarea: true}</span><span class="xml"> /}
+</span><span class="hljs-directive">{&lt; div!inline=val}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; textarea /}</span><span class="xml">
+</span><span class="hljs-directive">{/}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+</code></pre>
+                    <h4>Полиморфизм тегов</h4>
+                    <p>При разработке шаблонов часто бывает такая ситуация, когда имя создаваемого тега зависит от различных параметров, и для решения такой задачи удобно использовать интерполяцию, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value, area)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; ${area ? <span class="hljs-string">'textarea'</span> : <span class="hljs-string">'input'</span>}.input</span><span class="xml">
+		</span><span class="hljs-directive">{value}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(value, area)}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; ${area ? <span class="hljs-string">'textarea'</span> : <span class="hljs-string">'input'</span>}</span><span class="xml">.input}
+		</span><span class="hljs-directive">{value}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Snakeskin поймёт такую конструкцию и в случае textarea создаст код вида:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"input"</span>&gt;</span>значение<span class="hljs-tag">&lt;/<span class="hljs-name">textarea</span>&gt;</span>
+</code></pre>
+                    <p>А в случае input:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"input"</span> <span class="hljs-attr">value</span>=<span class="hljs-string">"значение"</span>&gt;</span>
 </code></pre>
                     <h3>Экранирование</h3>
                     <p>Для экранирования спецсимволов директивы используется символ <code>\</code>, например:</p>
