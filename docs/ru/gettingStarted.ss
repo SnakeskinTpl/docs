@@ -51,12 +51,6 @@ exports.demo.helloWorld = function helloWorld(name) {
 
 ## Способы использования и основные use-case
 
-Snakeskin поддерживает работу как на клиенте, так и на сервере, а также интеграцию со всеми основными системами сборок:
-
-* [gulp](https://github.com/SnakeskinTpl/gulp-snakeskin)
-* [grunt](https://github.com/SnakeskinTpl/grunt-snakeskin)
-* [webpack](https://github.com/SnakeskinTpl/snakeskin-loader)
-
 Основные use-case Snakeskin - это:
 
 1. Серверная шаблонизация;

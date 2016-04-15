@@ -106,7 +106,7 @@
                     <h2>Bower</h2>
                     <pre class="hljs example-bash"><code>bower install --save snakeskin
 </code></pre>
-                    <p>Файл библиотеки лежит по адресу:</p>
+                    <p>Файлы библиотеки лежат по адресу:</p>
                     <pre class="hljs example-default"><code>bower_components/
 	snakeskin/
 		dist/
@@ -164,12 +164,6 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
 </code></pre>
                     <p>После компиляции вызов шаблона соответствует простому вызову функции. Такой же подход используется в <a href="https://developers.google.com/closure/templates/">Google Closure Templates</a>.</p>
                     <h2>Способы использования и основные use-case</h2>
-                    <p>Snakeskin поддерживает работу как на клиенте, так и на сервере, а также интеграцию со всеми основными системами сборок:</p>
-                    <ul>
-                        <li><a href="https://github.com/SnakeskinTpl/gulp-snakeskin">gulp</a></li>
-                        <li><a href="https://github.com/SnakeskinTpl/grunt-snakeskin">grunt</a></li>
-                        <li><a href="https://github.com/SnakeskinTpl/snakeskin-loader">webpack</a></li>
-                    </ul>
                     <p>Основные use-case Snakeskin — это:</p>
                     <ol>
                         <li>Серверная шаблонизация;</li>
@@ -392,7 +386,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                     <p>Все директивы, которые вложены в директиву с расширенным синтаксисом, должны также использовать этот синтаксис.</p>
                     <h3>Интерполяция</h3>
-                    <p>Ряд директив Snakeskin поддерживают специальный синтаксис интерполяции значений, который нужен для проброса динамических выражений в статический текст через специальный синтаксис <code>${выражение}</code>.</p>
+                    <p>Ряд директив Snakeskin поддерживают специальный синтаксис интерполяции значений, который нужен для проброса динамических выражений в статический текст через конструкцию <code>${выражение}</code>.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = true /}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> ${a ? <span class="hljs-string">'input'</span> : <span class="hljs-string">'textarea'</span>}</span><span class="xml">}</span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>

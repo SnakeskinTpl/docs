@@ -35,7 +35,7 @@ Snakeskin написан на языке JavaScript и поддерживает 
 bower install --save snakeskin
 ```
 
-Файл библиотеки лежит по адресу:
+Файлы библиотеки лежат по адресу:
 
 ```
 bower_components/
