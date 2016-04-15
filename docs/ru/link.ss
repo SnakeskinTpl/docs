@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['Работа с HTML/XML']['4::script']
+- namespace docs.ru.api['Директивы']['Работа с HTML/XML']['6::link']
 
 /*!
  * snakeskin.github.io
@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **script** вставляет в шаблон код декларации тега `<script>` с заданными параметрами.
+Директива **link** вставляет в шаблон код декларации тега `<link>` с заданными параметрами.
 
 ## Паспорт
 
@@ -23,81 +23,43 @@
 
 ## Описание
 
-Директива предназначена для более удобного задания тегов `<script>` и может использоваться только внутри шаблонов или внешних блоков.
+Директива предназначена для более удобного задания тегов `<link>` и может использоваться только внутри шаблонов или внешних блоков.
 
 ### Таблица обозначений
-#### js
+#### css
 
 ```
-text/javascript
+type="text/css" rel="stylesheet"
 ```
 
-#### dart
+#### acss
 
 ```
-application/dart
+type="text/css" rel="alternate stylesheet"
 ```
 
-#### coffee
+#### icon
 
 ```
-application/coffeescript
-```
-
-#### ts
-
-```
-application/typescript
-```
-
-#### cljs
-
-```
-application/clojurescript
-```
-
-#### ls
-
-```
-application/livescript
-```
-
-#### json
-
-```
-application/json
-```
-
-#### html
-
-```
-text/html
-```
-
-#### ss
-
-```
-text/x-snakeskin-template
+type="image/x-icon" rel="icon"
 ```
 
 ### Примеры
-#### Использование значения по умолчанию (js)
+#### Использование значения по умолчанию css
 
 #{+= self.example()}
 
 ```jade-like
 - namespace demo
 - template index()
-	# script
-		var a = {};
+	- link
+		http://bar.com/foo.css
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\#{script}
-		var a = {};
-	\#{/}
+	{link}http://bar.com/foo.css{/}
 {/template}
 ```
 
@@ -110,16 +72,14 @@ text/x-snakeskin-template
 ```jade-like
 - namespace demo
 - template index()
-	# script ts
-		var a = {};
+	- link acss
+		http://bar.com/foo.css
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\#{script ts}
-		var a = {};
-	\#{/}
+	{link acss}http://bar.com/foo.css{/}
 {/template}
 ```
 
@@ -132,16 +92,14 @@ text/x-snakeskin-template
 ```jade-like
 - namespace demo
 - template index()
-	# script application/myscript
-		var a = {};
+	- link (( type = text/stylus | rel = stylesheet ))
+		http://bar.com/foo.styl
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\#{script application/myscript}
-		var a = {};
-	\#{/}
+	{link (( type = text/stylus | rel = stylesheet ))}http://bar.com/foo.styl{/}
 {/template}
 ```
 
@@ -156,16 +114,14 @@ text/x-snakeskin-template
 ```jade-like
 - namespace demo
 - template index()
-	# script js class = foo
-		var a = {};
+	- link css rel = alternate stylesheet
+		http://bar.com/foo.css
 ```
 
 ```classic
 {namespace demo}
 {template index()}
-	\#{script js class = foo}
-		var a = {};
-	\#{/}
+	{link css rel = alternate stylesheet}http://bar.com/foo.css{/}
 {/template}
 ```
 
