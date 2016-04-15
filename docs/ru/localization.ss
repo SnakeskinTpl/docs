@@ -1,4 +1,4 @@
-- namespace docs.ru.guide['2::Основы']['5::Локализация']
+- namespace docs.ru.guide['2::Основы']['6::Локализация']
 
 /*!
  * snakeskin.github.io

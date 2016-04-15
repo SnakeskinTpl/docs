@@ -47,6 +47,30 @@
 
 #{/}
 
+Наследуется и отношения параметра к `null` - `?` и `!`, причём в дочернем шаблоне можно переопределить поведение, например:
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+
+- template base(a? = 1)
+
+- template child(a!) extends @base
+```
+
+```classic
+{namespace demo}
+
+{template base(a? = 1)}
+{/template}
+
+{template child(a!) extends @base}
+{/template}
+```
+
+#{/}
+
 Фильтры параметров также наследуются, причём мы можем добавлять новые фильтры в дочернем шаблоне
 (они будут применятся после родительских).
 

@@ -1,4 +1,4 @@
-- namespace docs.ru.guide['2::Основы']['7::Интеграция с другими шаблонами']
+- namespace docs.ru.guide['2::Основы']['8::Интеграция с другими шаблонами']
 
 /*!
  * snakeskin.github.io

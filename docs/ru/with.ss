@@ -73,7 +73,7 @@
 
 #{/}
 
-Любые входные параметры "функциональных" директив Snakeskin ([template](#template), [forEach](#forEach) и т.д.)
+Любые входные параметры функциональных директив Snakeskin ([template](#template), [forEach](#forEach) и т.д.)
 поддерживают короткую запись декларации *with*.
 
 #{+= self.example()}

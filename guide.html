@@ -45,6 +45,7 @@
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#basics">Декларация и базовый синтаксис</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Jade-like синтаксис</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Декларация шаблона и вывод данных</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introParams">Параметры функциональных директив</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#localization">Локализация</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introSet">Параметры трансляции</a> </li>
@@ -871,6 +872,89 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <pre class="hljs example-default"><code>Hello world
 </code></pre>
                 </section>
+                <section id="introParams" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Основы </li>
+                    </ul>
+                    <h1>Параметры функциональных директив</h1>
+                    <p>Функциональные директивы Snakeskin — это такие директивы, которые по своему синтаксису напоминают функции JavaScript, и как правило при трансляции преобразуются именно в них. Логично, что такие директивы могут принимать входные параметры,
+                        например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(a, b)</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>У параметров может быть значение по умолчанию, которое применяется, если значение параметра будет <code>null</code> или <code>undefined</code>.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>)</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(a = <span class="hljs-number">1</span>, b = <span class="hljs-number">2</span>)}</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>С помощью оператора <code>?</code> можно задать, чтобы значение по умолчанию ставилось только при значении <code>undefined</code>.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(a? = <span class="hljs-number">1</span>, b? = <span class="hljs-number">2</span>)</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(a? = <span class="hljs-number">1</span>, b? = <span class="hljs-number">2</span>)}</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Существует также оператор <code>!</code>, которые отменяет такое поведение, но он используется только при наследовании блоков и шаблонов.</p>
+                    <h2>with биндинг</h2>
+                    <p>Оператор <code>@</code> осуществляет привязку параметра к директиве <a href="api.html#with">with</a>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(@params)</span><span class="xml">
+	</span><span class="hljs-directive">{@name}</span><span class="xml"> </span><span class="hljs-comment">/// params.name</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(@params)}</span><span class="xml">
+	</span><span class="hljs-directive">{@name}</span><span class="xml"> </span><span class="hljs-comment">/// params.name</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="filters" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -918,7 +1002,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Фильтры входных параметров</h2>
-                    <p>Фильтры Snakeskin можно назначать на любые входные параметр «функциональных» директив (
+                    <p>Фильтры Snakeskin можно назначать на любые входные параметр функциональных директив (
                         <a href="api.html#template">template</a>, <a href="api.html#forEach">forEach</a> и т. д.), например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1572,6 +1656,29 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 
 </span><span class="hljs-comment">/// Шаблон имеет один параметр "a" со значением по умолчанию 2</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child2(a = <span class="hljs-number">2</span>)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Наследуется и отношения параметра к <code>null</code> — <code>?</code> и <code>!</code>, причём в дочернем шаблоне можно переопределить поведение, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a? = <span class="hljs-number">1</span>)</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child(a!)<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base(a? = <span class="hljs-number">1</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child(a!)<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                         </div>
