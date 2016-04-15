@@ -917,6 +917,39 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
+                    <h2>Фильтры входных параметров</h2>
+                    <p>Фильтры Snakeskin можно назначать на любые входные параметр «функциональных» директив (
+                        <a href="api.html#template">template</a>, <a href="api.html#forEach">forEach</a> и т. д.), например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> demo((a<span class="hljs-keyword">|trim</span>), (b<span class="hljs-keyword">|trim</span><span class="hljs-keyword">|remove</span> <span class="hljs-string">'foo'</span>))</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> demo((a<span class="hljs-keyword">|trim</span>), (b<span class="hljs-keyword">|trim</span><span class="hljs-keyword">|remove</span> <span class="hljs-string">'foo'</span>))}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Обратите внимание, что фильтр параметра берётся в круглые скобки.</p>
+                    <h3>Фильтры значений по умолчанию</h3>
+                    <p>На значения по умолчанию для параметров можно также накладывать фильтры, причём если у самого параметра есть свои фильтры, то они применятся после, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> demo((a<span class="hljs-keyword">|trim</span>) = (<span class="hljs-string">'fooBar'</span><span class="hljs-keyword">|remove</span> <span class="hljs-string">'foo'</span>))</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> demo((a<span class="hljs-keyword">|trim</span>) = (<span class="hljs-string">'fooBar'</span><span class="hljs-keyword">|remove</span> <span class="hljs-string">'foo'</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h2>Пользовательский фильтр</h2>
                     <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) и знака доллара (<code>$</code>). Первым параметром функции
                         будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'replace'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
@@ -948,7 +981,7 @@ Snakeskin.importFilters({
 	}
 }, <span class="hljs-string">'my.foo.bar'</span>);
 </code></pre>
-                    <h2>Дополнительные параметры фильтров</h2>
+                    <h3>Дополнительные параметры фильтров</h3>
                     <p>При декларации фильтра ему можно задать ряд дополнительных параметров, например, чтобы фильтр отменял выполнение фильтров по умолчанию. Для этого используется специальный метод
                         <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L46">Snakeskin.setFilterParams</a>, который первым параметром принимает название фильтра, а вторым объект с настройками.</p>
                     <pre class="hljs example-js"><code>Snakeskin.importFilters({
