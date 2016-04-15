@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['with']
+- namespace docs.ru.api['Директивы']['4::with']
 
 /*!
  * snakeskin.github.io
