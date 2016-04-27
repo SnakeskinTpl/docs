@@ -722,7 +722,124 @@
                         </li>
                         <li> Выполнение / вывод </li>
                     </ul>
-                    <h1>output</h1> </section>
+                    <h1>output</h1>
+                    <p>Директива выполняет заданное выражение и выводит результат в шаблон (на выводимое выражение по умолчанию накладываются <a href="guide.html#filters">фильтры</a>
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L175">html</a> и
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L232">undef</a>).</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Не требуется</td>
+                                <td>Строковая, текстовая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива <strong>output</strong> используется когда нам нужно вывести в текст шаблона значение переменной или выражения.</p>
+                    <p>Директива не требует специального ключевого слова, поэтому достаточно просто взять выводимое выражение в фигурные скобки, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)</span><span class="xml">
+	a + b = </span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	a + b = </span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Однако нужно следить, чтобы первое слово выводимого выражения не было равно имени другой директивы Snakeskin, иначе возникнет ошибка:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(link)</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">link</span></span>}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(link)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">link</span></span>}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Для того чтобы пример выше отработал корректно достаточно просто взять наше выражение в круглые скобки:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(link)</span><span class="xml">
+	</span><span class="hljs-directive">{(link)}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(link)}</span><span class="xml">
+	</span><span class="hljs-directive">{(link)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Внутри <em>output</em> можно использовать вызовы функций, тернарные операторы и т. д.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)</span><span class="xml">
+	</span><span class="hljs-directive">{a &gt; <span class="hljs-number">1</span> ? --a * b : Math.random() * b}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{a &gt; <span class="hljs-number">1</span> ? --a * b : Math.random() * b}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>На всё выводимое выражение по умолчанию накладывается специальный фильтр <em>html</em>, который экранирует html сущности, а также фильтр <em>undef</em> на каждый отдельный чанк выражения, который преобразует значение <code>undefined</code>                        в <code>''</code>. Чтобы отменить это поведение нужно использовать фильтры <code>!html</code> и <code>!undef</code> или задать глобальное через параметр трансляции <a href="#compile--filters">filters</a>.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(val1, val2)</span><span class="xml">
+	</span><span class="hljs-directive">{(val1<span class="hljs-keyword">|!undef</span>) + (val2<span class="hljs-keyword">|!undef</span>) <span class="hljs-keyword">|!html</span>}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(val1, val2)}</span><span class="xml">
+	</span><span class="hljs-directive">{(val1<span class="hljs-keyword">|!undef</span>) + (val2<span class="hljs-keyword">|!undef</span>) <span class="hljs-keyword">|!html</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться только внутри шаблонов или внешних блоков.</p>
+                </section>
                 <section id="call" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
