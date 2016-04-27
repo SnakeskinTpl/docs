@@ -129,8 +129,9 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Пространства имён Snakeskin служат для экспорта шаблонов из файла, поэтому перед тем как начать создавать сами шаблоны нужно предварительно создать пространство имён. В рамках одного файла может быть только одно пространство имён.
-                        После задания пространства имён все шаблоны будут экспортироваться по схеме <code>exports.namespace.template</code>, например:</p>
+                    <p>Пространства имён Snakeskin служат для экспорта шаблонов из файла, поэтому перед тем как начать создавать сами шаблоны нужно предварительно обьявить пространство имён, а уже после они будут экспортироваться по схеме <code>exports.namespace.template</code>.
+                        В рамках одного файла может быть только одно пространство имён.</p>
+                    <p>Например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -138,11 +139,13 @@
                         </menu>
                         <div class="b-example__code">
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+
 </span><span class="hljs-comment">/// Шаблон экспортируется как exports.demo.index</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
 	Hello world!
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
 </span><span class="hljs-comment">/// Шаблон экспортируется как exports.demo.index</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
 	Hello world!

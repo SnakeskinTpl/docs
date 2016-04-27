@@ -973,7 +973,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <p>Фильтрам можно передавать параметры, на которые также можно применять фильтры и т. д.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{a<span class="hljs-keyword">|myFilter</span> <span class="hljs-number">1</span>, (<span class="hljs-number">2</span> / <span class="hljs-number">3</span><span class="hljs-keyword">|myFilter</span>)}</span><span class="xml">
 </span></code></pre>
-                    <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако их выполнение можно
+                    <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако, их выполнение можно
                         отменить <code>{a|!html}</code> и <code>{a|!undef}</code>.</p>
                     <p>Механизм фильтров поддерживает большинство директив Snakeskin, например:</p>
                     <div class="b-example">
