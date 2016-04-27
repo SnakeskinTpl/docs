@@ -747,8 +747,7 @@
                     </table>
                     <h2>Описание</h2>
                     <p>Директива <strong>output</strong> используется когда нам нужно вывести в текст шаблона значение переменной или выражения.</p>
-                    <p>Директива не требует специального ключевого слова, поэтому достаточно просто взять выводимое выражение в фигурные скобки, например:
-                    </p>
+                    <p>Директива не требует специального ключевого слова (хотя допускается), поэтому достаточно просто взять выводимое выражение в фигурные скобки, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1110,7 +1109,139 @@
                         </li>
                         <li> Переменные </li>
                     </ul>
-                    <h1>const</h1> </section>
+                    <h1>const</h1>
+                    <p>Директива создаёт константу с указанным именем и значением.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Не требуется</td>
+                                <td>Строковая, текстовая / логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Константы Snakeskin не имеют ничего общего с константами из JS ES2015 и служат для других целей. Константы глобальны в рамках своего шаблона, поэтому не может быть 2-х констант с одинаковым именем. Значение константы может меняться
+                        по ходу выполнения шаблона.</p>
+                    <p>При декларации константы не требуется специального ключевого слова (хотя допускается), например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- val = <span class="hljs-string">'hello'</span></span><span class="xml">
+	</span><span class="hljs-directive">{val}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{val = <span class="hljs-string">'hello'</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{val}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>С логической точки зрения константы Snakeskin — это свойства класса (шаблона), т. е. они доступны в любом месте шаблона и их можно <a href="guide.html#inheritConsts">переопределять в дочернем шаблоне</a>. Константа может быть свойством
+                        объекта (включая свойство другой константы), например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- val = {}</span><span class="xml">
+</span><span class="hljs-directive">	- val.name = <span class="hljs-string">'Kobezzza'</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{val = {}</span><span class="xml">}
+	</span><span class="hljs-directive">{val.name = <span class="hljs-string">'Kobezzza'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>После декларации константы станет невозможным в рамках шаблона объявление переменной с таким же именем.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- val = {}</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> val = <span class="hljs-number">1</span> <span class="hljs-comment">/// Ошибка</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{val = {}</span><span class="xml">}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> val = <span class="hljs-number">1</span> /}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Константы могут создаваться только внутри шаблонов или внешних блоков.</p>
+                    <h2>Распад константы</h2>
+                    <p>Если любая <a href="guide.html#introParams">функциональная директива</a> содержит параметр с именем равным константе, то он «замещает» константу в рамках своей блочной области видимости, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- val = {}</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] <span class="hljs-keyword">=&gt;</span> val</span><span class="xml">
+		</span><span class="hljs-directive">{val}</span><span class="xml"> </span><span class="hljs-comment">/// 1, 2</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{val = {}</span><span class="xml">}
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">forEach</span></span> [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>] <span class="hljs-keyword">=&gt;</span> val}</span><span class="xml">
+		</span><span class="hljs-directive">{val}</span><span class="xml"> </span><span class="hljs-comment">/// 1, 2</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h2>Вызываемые константы</h2>
+                    <p>Если в конце декларации константы поставить символ <code>?</code>, то её значение сразу же выведется в шаблон.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; title</span><span class="xml">
+</span><span class="hljs-directive">		- title = <span class="hljs-string">'Главная страница'</span> ?</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; title}</span><span class="xml">
+		</span><span class="hljs-directive">{title = <span class="hljs-string">'Главная страница'</span> ?}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="global" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
