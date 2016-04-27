@@ -116,8 +116,6 @@ $(() => {
 				);
 			});
 
-			console.log(sub[0]);
-
 			link
 				.closest('li')
 				.append(sub.is('.b-contents__sub') ? sub : sub.closest('.b-contents__sub'));
