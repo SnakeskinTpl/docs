@@ -612,95 +612,6 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello world!'</span>;
 };
 </code></pre>
-                    <h2>Модификаторы шаблона</h2>
-                    <p>Функция-шаблон поддерживает специальные модификаторы декларации.</p>
-                    <h3>Шаблон-генератор</h3>
-                    <p>Шаблон будет транслироваться в JS как функция-генератор (для поддержки в старых браузерах необходимо использовать полифил).</p>
-                    <div class="b-example">
-                        <menu class="b-example__toggle">
-                            <li class="b-example__link b-example__link_active_true">jade-like</li>
-                            <li class="b-example__link">classic</li>
-                        </menu>
-                        <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
-</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> *hello()</span><span class="xml">
-</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">yield</span></span></span><span class="xml">
-		Hello world!
-</span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> *hello()}</span><span class="xml">
-	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">yield</span></span>}</span><span class="xml">
-		Hello world!
-	</span><span class="hljs-directive">{/}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
-</span></code></pre>
-                        </div>
-                    </div>
-                    <h3>Асинхронный шаблон</h3>
-                    <p>Шаблон будет транслироваться в JS как <em>async</em> функция (для поддержки в браузерах необходимо использовать полифил).</p>
-                    <div class="b-example">
-                        <menu class="b-example__toggle">
-                            <li class="b-example__link b-example__link_active_true">jade-like</li>
-                            <li class="b-example__link">classic</li>
-                        </menu>
-                        <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
-</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">async</span> <span class="hljs-built_in">template</span></span> hello()</span><span class="xml">
-</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> data = await db.getData()</span><span class="xml">
-	Hello </span><span class="hljs-directive">{data.name}</span><span class="xml">!
-</span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">async</span> <span class="hljs-built_in">template</span></span> hello()}</span><span class="xml">
-	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> data = await db.getData() /}</span><span class="xml">
-	Hello </span><span class="hljs-directive">{data.name}</span><span class="xml">!
-</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
-</span></code></pre>
-                        </div>
-                    </div>
-                    <h3>Декораторы</h3>
-                    <p>К любому шаблону может быть добавлено неограниченное количество функций-декораторов (которые также могу быть шаблонами). Функция декоратор принимает на вход ссылку на исходную функция и обязан вернуть в качестве ответа функцию.</p>
-                    <div class="b-example">
-                        <menu class="b-example__toggle">
-                            <li class="b-example__link b-example__link_active_true">jade-like</li>
-                            <li class="b-example__link">classic</li>
-                        </menu>
-                        <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
-</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> Typograf from <span class="hljs-string">'typograf'</span></span><span class="xml">
-</span><span class="hljs-directive">
-- <span class="hljs-name"><span class="hljs-built_in">template</span></span> typograf(params)</span><span class="xml">
-</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">return</span></span></span><span class="xml">
-</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> target</span><span class="xml">
-</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">return</span></span></span><span class="xml">
-</span><span class="hljs-directive">				() <span class="hljs-keyword">=&gt;</span></span><span class="xml">
-</span><span class="hljs-directive">					- <span class="hljs-name"><span class="hljs-built_in">return</span></span> new Typograf(params).execute(target.apply(this, arguments))</span><span class="xml">
-</span><span class="hljs-directive">
-- @typograf({lang: <span class="hljs-string">'ru'</span>})</span><span class="xml">
-</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
-	Спорт - это правильно!
-</span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> Typograf from <span class="hljs-string">'typograf'</span>}</span><span class="xml">
-
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> typograf(params)}</span><span class="xml">
-	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span>}</span><span class="xml">
-		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> target}</span><span class="xml">
-			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span>}</span><span class="xml">
-				</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span>}</span><span class="xml">
-					</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> new Typograf(params).execute(target.apply(this, arguments))}</span><span class="xml">
-				</span><span class="hljs-directive">{/}</span><span class="xml">
-			</span><span class="hljs-directive">{/}</span><span class="xml">
-		</span><span class="hljs-directive">{/}</span><span class="xml">
-	</span><span class="hljs-directive">{/}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
-
-</span><span class="hljs-directive">{@typograf({lang: <span class="hljs-string">'ru'</span>}</span><span class="xml">)}
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
-	Спорт - это правильно!
-</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
-</span></code></pre>
-                        </div>
-                    </div>
                     <h2>Вывод значений</h2>
                     <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона динамические JavaScript выражения, например, вызовы функций, значения переменных, результат математических операций и т. д. Для этого используется специальная директива
                         <a href="api.html#output">output</a>. Давайте усложним пример данный главой выше: будем выводить приветствие по заданному параметру-имени.</p>
@@ -973,7 +884,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <p>Фильтрам можно передавать параметры, на которые также можно применять фильтры и т. д.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{a<span class="hljs-keyword">|myFilter</span> <span class="hljs-number">1</span>, (<span class="hljs-number">2</span> / <span class="hljs-number">3</span><span class="hljs-keyword">|myFilter</span>)}</span><span class="xml">
 </span></code></pre>
-                    <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако, их выполнение можно
+                    <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако их выполнение можно
                         отменить <code>{a|!html}</code> и <code>{a|!undef}</code>.</p>
                     <p>Механизм фильтров поддерживает большинство директив Snakeskin, например:</p>
                     <div class="b-example">
@@ -1865,7 +1776,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                             <div class="fa fa-angle-right"></div> Наследование </li>
                     </ul>
                     <h1>Наследование модификаторов шаблона</h1>
-                    <p>Модификаторы вида <a href="#introTemplates--%D0%90%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD">async</a> и <a href="#introTemplates--%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80">генератор</a>                        наследуются дочерними шаблонами без возможности переопределения этого поведения.</p>
+                    <p>Модификаторы вида <a href="api.html#template--%D0%90%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD">async</a> и <a href="api.html#template--%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80">генератор</a>                        наследуются дочерними шаблонами без возможности переопределения этого поведения.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1894,7 +1805,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p><a href="#introTemplates--%D0%94%D0%B5%D0%BA%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B">Декораторы шаблонов</a> также наследуются, а дочерний шаблон может добавить новые, которые применятся после родительских.</p>
+                    <p><a href="api.html#template--%D0%94%D0%B5%D0%BA%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B">Декораторы шаблонов</a> также наследуются, а дочерний шаблон может добавить новые, которые применятся после родительских.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
