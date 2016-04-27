@@ -56,6 +56,7 @@ npm install --save snakeskin
 * [gulp](https://github.com/SnakeskinTpl/gulp-snakeskin)
 * [grunt](https://github.com/SnakeskinTpl/grunt-snakeskin)
 * [webpack](https://github.com/SnakeskinTpl/snakeskin-loader)
+* [CLI](https://github.com/SnakeskinTpl/snakeskin-cli)
 
 ### std.ss
 
