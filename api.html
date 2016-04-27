@@ -346,7 +346,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>template</h1>
-                    <p>Директива <strong>template</strong> декларирует шаблон c заданным именем и выходными параметрами.</p>
+                    <p>Директива <strong>template</strong> декларирует шаблон c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -611,7 +611,52 @@
                         </li>
                         <li> Создание шаблона </li>
                     </ul>
-                    <h1>interface</h1> </section>
+                    <h1>interface</h1>
+                    <p>Директива <strong>interface</strong> декларирует шаблон-интерфейс c заданным именем и входными параметрами.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только в глобальной области, необходима предварительная декларация <a href="#namespace">namespace</a></td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая, функциональная</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Шаблон-интерфейс отличается от простого шаблона тем, что после трансляции в JS будет получена пустая функция с входными параметрами, например:
+                    </p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">interface</span></span> index(name = <span class="hljs-string">'world'</span>)</span><span class="xml">
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">interface</span></span> index(name = <span class="hljs-string">'world'</span>)}</span><span class="xml">
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">interface</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Превратится в:</p>
+                    <pre class="hljs example-js"><code>exports.demo.index = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">index</span>(<span class="hljs-params">name</span>) </span>{};
+</code></pre>
+                    <p>В остальном механика таких шаблонов полностью идентичная <a href="#template">template</a>.</p>
+                </section>
                 <section id="placeholder" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -620,7 +665,50 @@
                         </li>
                         <li> Создание шаблона </li>
                     </ul>
-                    <h1>placeholder</h1> </section>
+                    <h1>placeholder</h1>
+                    <p>Директива <strong>placeholder</strong> декларирует шаблон-плейсхолдер c заданным именем и входными параметрами.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только в глобальной области, необходима предварительная декларация <a href="#namespace">namespace</a></td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая, функциональная</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Шаблон-плейсхолдер отличается от простого шаблона тем, что он существует только на этапе трансляции и не будет включён в конечный JS, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">placeholder</span></span> index(name = <span class="hljs-string">'world'</span>)</span><span class="xml">
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">placeholder</span></span> index(name = <span class="hljs-string">'world'</span>)}</span><span class="xml">
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">placeholder</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Превратится в:</p>
+                    <pre class="hljs example-js"><code></code></pre>
+                    <p>В остальном механика таких шаблонов полностью идентичная <a href="#template">template</a>.</p>
+                </section>
                 <section id="void" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
