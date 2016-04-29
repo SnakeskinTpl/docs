@@ -92,6 +92,7 @@
 
 ```jade-like
 - namespace ['@demo']['hello' + 'World']
+
 \/// exports['@demo']['hello' + 'World'].index
 - template index()
 	Hello world!
@@ -99,6 +100,7 @@
 
 ```classic
 {namespace ['@demo']['hello' + 'World']}
+
 \/// exports['@demo']['hello' + 'World'].index
 {template index()}
 	Hello world!
@@ -107,7 +109,7 @@
 
 #{/}
 
-Если первая часть имени использует синтаксис без квадратных скобок, то в будет создана глобальная (для Snakeskin)
+Если первая часть имени использует синтаксис без квадратных скобок, то будет создана глобальная (для Snakeskin)
 переменная с таким же именем:
 
 #{+= self.example()}
@@ -115,6 +117,7 @@
 ```jade-like
 \/// var demo = exports.demo['helloWorld']
 - namespace demo['hello' + 'World']
+
 - template index()
 	Hello world!
 ```
@@ -122,6 +125,7 @@
 ```classic
 \/// var demo = exports.demo['helloWorld']
 {namespace ['@demo']['hello' + 'World']}
+
 {template index()}
 	Hello world!
 {/template}
