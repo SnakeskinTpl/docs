@@ -1254,7 +1254,156 @@
                         </li>
                         <li> Переменные </li>
                     </ul>
-                    <h1>global</h1> </section>
+                    <h1>global</h1>
+                    <p>Директива создаёт супер-глобальную переменную с указанным именем и значением.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Не требуется</td>
+                                <td>Строковая, текстовая / логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Супер-глобальная переменная Snakeskin — это свойство объекта <code>Snakeskin.Vars</code>, т. е. такая переменая доступна как из JavaScript, так и <strong>во всех</strong> файлах шаблонов. Устанавливать такие переменные можно из JS (причём
+                        можно до трансляции) или из шаблонов. Основной use-case супер-глобальных переменных — это прокидывание конфига, т. е. некоторый аналог переменных среды в операционной системе.</p>
+                    <h3>Задание из JS</h3>
+                    <p>Чтобы задать значение супер-глобальной переменной перед непосредственной трансляцией можно использовать параметр <a href="#compile--vars">vars</a>, а также в любой момент времени допускается вносить изменения напрямую в объект <code>Snakeskin.Vars</code>,
+                        например:</p>
+                    <pre class="hljs example-js"><code>Snakeskin.Vars.server = <span class="hljs-string">'localhost'</span>;
+Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
+</code></pre>
+                    <h3>Задание и чтение из SS</h3>
+                    <p>Для задания супер-глобальной переменной из SS можно использовать несколько способов:</p>
+                    <ol>
+                        <li>Использование директивы <em>global</em>, например:</li>
+                    </ol>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">global</span></span> server = <span class="hljs-string">'localhost'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">global</span></span> port = <span class="hljs-string">'1989'</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">global</span></span> server = <span class="hljs-string">'localhost'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">global</span></span> port = <span class="hljs-string">'1989'</span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Вне тела шаблонов можно опустить ключевое слово <code>global</code>:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- server = <span class="hljs-string">'localhost'</span></span><span class="xml">
+</span><span class="hljs-directive">- port = <span class="hljs-string">'1989'</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{server = <span class="hljs-string">'localhost'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{port = <span class="hljs-string">'1989'</span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>При задании имение допускается использовать скобочную нотацию:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- [<span class="hljs-string">'server'</span>] = <span class="hljs-string">'localhost'</span></span><span class="xml">
+</span><span class="hljs-directive">- [<span class="hljs-string">'port'</span>] = <span class="hljs-string">'1989'</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{[<span class="hljs-string">'server'</span>] = <span class="hljs-string">'localhost'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{[<span class="hljs-string">'port'</span>] = <span class="hljs-string">'1989'</span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <ol start="2">
+                        <li>Использование литеральной формы через модификатор <code>@@</code>, например:</li>
+                    </ol>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- @@server = <span class="hljs-string">'localhost'</span></span><span class="xml">
+</span><span class="hljs-directive">- @@port = <span class="hljs-string">'1989'</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{@@server = <span class="hljs-string">'localhost'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{@@port = <span class="hljs-string">'1989'</span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Такой вариант можно использовать как вне шаблонов, так и внутри их. Литеральная форма также поддерживает скобочную нотацию:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- @@[<span class="hljs-string">'server'</span>] = <span class="hljs-string">'localhost'</span></span><span class="xml">
+</span><span class="hljs-directive">- @@[<span class="hljs-string">'port'</span>] = <span class="hljs-string">'1989'</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{@@[<span class="hljs-string">'server'</span>] = <span class="hljs-string">'localhost'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{@@[<span class="hljs-string">'port'</span>] = <span class="hljs-string">'1989'</span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Чтение</h4>
+                    <p>Для чтения супер-глобальных переменных используется модификатор <code>@@</code>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- @@server = <span class="hljs-string">'localhost'</span></span><span class="xml">
+? console.log(@@server)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{@@server = <span class="hljs-string">'localhost'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{? console.log(@@server)}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h3>Вызываемые переменные</h3>
+                    <p>Если в конце декларации супер-глобальной переменной поставить символ <code>?</code>, то её значение сразу же выведется в шаблон.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; title</span><span class="xml">
+</span><span class="hljs-directive">		- @@title = <span class="hljs-string">'Главная страница'</span> ?</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> calc(a, b)}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; title}</span><span class="xml">
+		</span><span class="hljs-directive">{@@title = <span class="hljs-string">'Главная страница'</span> ?}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="with" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
