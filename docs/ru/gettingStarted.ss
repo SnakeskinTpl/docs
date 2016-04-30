@@ -96,7 +96,7 @@ Snakeskin содержит ряд вспомогательных методов 
 var ss = require('snakeskin');
 
 console.log(
-	ss.compileFile('templates.ss').registration.index()
+	ss.compileFile('./templates.ss').registration.index()
 );
 ```
 

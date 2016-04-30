@@ -202,7 +202,7 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> ss = <span class="hljs-built_in">require</span>(<span class="hljs-string">'snakeskin'</span>);
 
 <span class="hljs-built_in">console</span>.log(
-	ss.compileFile(<span class="hljs-string">'templates.ss'</span>).registration.index()
+	ss.compileFile(<span class="hljs-string">'./templates.ss'</span>).registration.index()
 );
 </code></pre>
                     <h3>Подключение уже скомпилированного шаблона в Node.js</h3>
@@ -368,11 +368,11 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>
                     <p>Но некоторые директивы поддерживают альтернативный, более короткий синтаксис, например:</p>
-                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> </span><span class="hljs-comment">/* ↔ */</span><span class="xml"> </span><span class="hljs-directive">{? <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">output</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> </span><span class="hljs-comment">/* ↔ */</span><span class="xml"> </span><span class="hljs-directive">{<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> ↔ </span><span class="hljs-directive">{? <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">output</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> ↔ </span><span class="hljs-directive">{<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
 </span></code></pre>
                     <h3>Расширенный синтаксис</h3>
-                    <p>В случаях, когда в теле генерируемого шаблона необходимо также использовать фигурные скобки, то используется специальных расширенный синтаксис декларации директив (символы <code>#{</code> и <code>}</code>), например:</p>
+                    <p>В случаях, когда в теле генерируемого шаблона необходимо также использовать фигурные скобки, то используется специальный расширенный синтаксис декларации директив (символы <code>#{</code> и <code>}</code>), например:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> example()}</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> val = <span class="hljs-number">1</span> /}</span><span class="xml">
 
@@ -389,7 +389,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <h3>Интерполяция</h3>
                     <p>Ряд директив Snakeskin поддерживают специальный синтаксис интерполяции значений, который нужен для проброса динамических выражений в статический текст через конструкцию <code>${выражение}</code>.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = true /}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> ${a ? <span class="hljs-string">'input'</span> : <span class="hljs-string">'textarea'</span>}</span><span class="xml">}</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> ${a ? <span class="hljs-string">'input'</span> : <span class="hljs-string">'textarea'</span>}</span><span class="xml"> /}
 </span></code></pre>
                     <h2>Блочные директивы</h2>
                     <p>Подобно тегам HTML или XML, многие директивы Snakeskin могут включать в себя другие директивы и т. д. и в дальнейшем такие директивы будут называться блочными, а все остальные — строчными.</p>
@@ -449,7 +449,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 {/template}</span><span class="xml">
 </span></code></pre>
                     <h3>jsDoc</h3>
-                    <p>Snakeskin поддерживает jsDoc комментарии, которые не вырезаются из конечного JavaScript кода.</p>
+                    <p>Snakeskin поддерживает <a href="http://usejsdoc.org/">jsDoc комментарии</a>, которые не вырезаются из конечного JavaScript кода.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/**
  * jsDoc комментарий
  * @param {string} name
@@ -465,7 +465,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> example()}</span><span class="xml">
 	</span>\{<span class="xml">var val = 1} </span><span class="hljs-comment">/// Выведется как простой текст</span><span class="xml">
 	</span>\/<span class="xml">// Выведется как простой текст
-	</span>\1<span class="xml"> </span><span class="hljs-comment">/// \1</span><span class="xml">
+	</span>\\<span class="xml">1 </span><span class="hljs-comment">/// \1</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                 </section>
@@ -565,7 +565,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                         <a href="api.html#placeholder">placeholder</a>. Шаблон не может включать в себя другой шаблон, для этого есть другие директивы.</p>
                     <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
                     <h2>Пространства имён</h2>
-                    <p>Все шаблоны Snakeskin декларируются в рамках пространства имён, которое обязан задать сам разработчик с помощью директивы
+                    <p>Все шаблоны Snakeskin декларируются в пространстве имён, которое обязан задать сам разработчик с помощью директивы
                         <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т. е.
                     </p>
                     <div class="b-example">
@@ -583,7 +583,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                         </div>
                     </div>
                     <p>Каждое пространство имён является свойством корневого объекта <strong>exports</strong>, которое является глобальным для всех файлов Snakeskin и осуществляет экспорт шаблонов в JavaScript.</p>
-                    <p>В рамках пространства имён не может быть двух шаблонов с одинаковым названием, т. е. переопределять шаблоны в Snakeskin нельзя.</p>
+                    <p>В рамках одного пространства имён не может быть двух шаблонов с одинаковым названием, т. е. переопределять шаблоны в Snakeskin нельзя.</p>
                     <h2>Механика шаблонов</h2>
                     <p>Snakeskin в известном смысле — макроязык, в нём нет оператора print; весь текст, набранный в исходном файле, суть большой оператор print. Директивы Snakeskin являются погруженными в текст. Получается, что вы не пишете программу, которая
                         выводит текст — наоборот, в имеющийся текст вы добавляете логику и организацию, блоки (методы), на которые вы разбиваете код:</p>
