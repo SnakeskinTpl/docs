@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['6::Циклы']['3::do']
+- namespace docs.ru.api['Директивы']['7::Циклы']['3::do']
 
 /*!
  * snakeskin.github.io

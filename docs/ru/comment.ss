@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['Работа с HTML/XML']['7::comment']
+- namespace docs.ru.api['Директивы']['11::Работа с HTML/XML']['7::comment']
 
 /*!
  * snakeskin.github.io

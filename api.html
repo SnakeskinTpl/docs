@@ -57,7 +57,11 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#head">head</a> </li>
                                 </ol>
                             </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#with">with</a> </li>
+                            <li class="b-contents__part b-contents__part_link_false">Область видимости
+                                <ol>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#cdata">with</a> </li>
+                                </ol>
+                            </li>
                             <li class="b-contents__part b-contents__part_link_false">Переменные
                                 <ol>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#var">var</a> </li>
@@ -463,7 +467,7 @@
 </code></pre>
                     <h3>Стандартные переменные шаблона</h3>
                     <p>Каждый шаблон определяет ряд констант и функций, которые можно использовать в нём:</p>
-                    <p><code>TPL_NAME</code> — строка, которая содержит полное имя шаблона вместе с простраством имён, причём именно в том виде, как оно было задано при декларации шаблона;</p>
+                    <p><code>TPL_NAME</code> — строка, которая содержит полное имя шаблона вместе с пространством имён, причём именно в том виде, как оно было задано при декларации шаблона;</p>
                     <p><code>PARENT_TPL_NAME</code> — строка, которая содержит полное имя родительского шаблона вместе с простраством имён, причём именно в том виде, как оно было задано при декларации шаблона;</p>
                     <p><code>callee</code> — ссылка на исходную функцию-шаблон;</p>
                     <p><code>self</code> — ссылка на объект <code>callee.Blocks</code>, в котором хранятся вызываемые блоки (методы) исходного шаблона;</p>
@@ -1076,10 +1080,13 @@
                         </div>
                     </div>
                 </section>
-                <section id="with" class="b-article">
+                <section id="cdata" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Директивы </li>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Область видимости </li>
                     </ul>
                     <h1>with</h1>
                     <p>Директива <strong>with</strong> задаёт область видимости для поиска свойств объекта.</p>

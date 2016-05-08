@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['9::Работа с пробельными символами']['2::ignoreAllWhitespaces']
+- namespace docs.ru.api['Директивы']['10::Работа с пробельными символами']['2::ignoreAllWhitespaces']
 
 /*!
  * snakeskin.github.io

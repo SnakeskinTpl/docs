@@ -34,7 +34,14 @@
 				< .b-content-wrapper
 					< nav.b-contents
 						- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
-							: sortDoc = Object.keys(doc).sort()
+							: putIn sort
+								() => a, b
+									: pos = /^(\d+)\s*/
+									? a = pos.exec(a)[1]
+									? b = pos.exec(b)[1]
+									- return a - b
+
+							: sortDoc = Object.keys(doc).sort(sort)
 
 							< ol
 								- forEach sortDoc => key
