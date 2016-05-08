@@ -421,7 +421,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 	...
 </span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>
-                    <p>Какую форму использовать решает сам разработчик, но следует отметить, что при использовании форм с указанием имени закрываемой директивы Snakeskin будет проверять правильность, т. е.</p>
+                    <p>Какую форму использовать решает сам разработчик, но следует отметить, что при использовании форм с указанием имени закрываемой директивы Snakeskin будет проверять правильность, т. е.:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
 	...
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">else</span></span>}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
@@ -566,7 +566,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
                     <h2>Пространства имён</h2>
                     <p>Все шаблоны Snakeskin декларируются в пространстве имён, которое обязан задать сам разработчик с помощью директивы
-                        <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т. е.
+                        <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т. е.:
                     </p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -585,8 +585,8 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <p>Каждое пространство имён является свойством корневого объекта <strong>exports</strong>, которое является глобальным для всех файлов Snakeskin и осуществляет экспорт шаблонов в JavaScript.</p>
                     <p>В рамках одного пространства имён не может быть двух шаблонов с одинаковым названием, т. е. переопределять шаблоны в Snakeskin нельзя.</p>
                     <h2>Механика шаблонов</h2>
-                    <p>Snakeskin в известном смысле — макроязык, в нём нет оператора print; весь текст, набранный в исходном файле, суть большой оператор print. Директивы Snakeskin являются погруженными в текст. Получается, что вы не пишете программу, которая
-                        выводит текст — наоборот, в имеющийся текст вы добавляете логику и организацию, блоки (методы), на которые вы разбиваете код:</p>
+                    <p>Snakeskin в известном смысле — макроязык, в нём нет оператора print, т. е. весь текст, набранный в исходном файле, суть большой оператор print. Директивы Snakeskin являются погруженными в текст. Получается, что вы не пишете программу,
+                        которая выводит текст — наоборот, в имеющийся текст вы добавляете логику и организацию, блоки (методы), на которые вы разбиваете код:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -615,7 +615,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </code></pre>
                     <h2>Вывод значений</h2>
                     <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона динамические JavaScript выражения, например, вызовы функций, значения переменных, результат математических операций и т. д. Для этого используется специальная директива
-                        <a href="api.html#output">output</a>. Давайте усложним пример данный главой выше: будем выводить приветствие по заданному параметру-имени.</p>
+                        <a href="api.html#output">output</a>. Давайте усложним пример данный выше: будем выводить приветствие по заданному параметру-имени.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -709,7 +709,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     </div>
                     <h2>Работа с пробельными символами</h2>
                     <p>Если не задан параметр <a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a>, то любые пробельные символы (перевод строки, пробел, табуляция и т. д.) в рамках шаблона Snakeskin трактуются как пробел и «схлопываются»
-                        в один, т. е.</p>
+                        в один, т. е.:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -744,7 +744,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <p>Текстовые директивы — это такие директивы, результат работы которых выводится в шаблон, например,
                         <a href="api.html#output">output</a> или <a href="api.html#call">call</a>, а остальные директивы считаются логическими, например,
                         <a href="api.html#if">if</a> или <a href="api.html#for">for</a>.</p>
-                    <p>Логические директивы не участвуют в обработке пробелов, т. е.</p>
+                    <p>Логические директивы не участвуют в обработке пробелов, т. е.:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -822,7 +822,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>С помощью оператора <code>?</code> можно задать, чтобы значение по умолчанию ставилось только при значении <code>undefined</code>.</p>
+                    <p>С помощью специального оператора <code>?</code> можно задать, чтобы значение по умолчанию ставилось только при <code>undefined</code>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -840,7 +840,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Существует также оператор <code>!</code>, которые отменяет такое поведение, но он используется только при наследовании блоков и шаблонов.</p>
+                    <p>Существует также оператор <code>!</code>, который отменяет оператор <code>?</code>, но он используется только при наследовании блоков или шаблонов.</p>
                     <h2>with биндинг</h2>
                     <p>Оператор <code>@</code> осуществляет привязку параметра к директиве <a href="api.html#with">with</a>, например:</p>
                     <div class="b-example">
@@ -908,7 +908,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Фильтры входных параметров</h2>
-                    <p>Фильтры Snakeskin можно назначать на любые входные параметр функциональных директив (
+                    <p>Фильтры Snakeskin можно назначать на любые входные параметры функциональных директив (
                         <a href="api.html#template">template</a>, <a href="api.html#forEach">forEach</a> и т. д.), например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -940,8 +940,8 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Пользовательский фильтр</h2>
-                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) и знака доллара (<code>$</code>). Первым параметром функции
-                        будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
+                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) или знака доллара (<code>$</code>). Первым параметром
+                        функции будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'replace'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
 };
@@ -988,7 +988,12 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 	<span class="hljs-string">'!html'</span>: <span class="hljs-literal">true</span>,
 
 	<span class="hljs-comment">// Отменяем фильтр undef по умолчанию</span>
-	<span class="hljs-string">'!undef'</span>: <span class="hljs-literal">true</span>
+	<span class="hljs-string">'!undef'</span>: <span class="hljs-literal">true</span>,
+
+	<span class="hljs-comment">// Указывает, что фильтр не меняет исходное значение так,</span>
+	<span class="hljs-comment">// что это может привести к появлению XSS, т.е. фильтр безопасный,</span>
+	<span class="hljs-comment">// например таким фильтром является trim</span>
+	<span class="hljs-string">'safe'</span>: <span class="hljs-literal">true</span>
 });
 </code></pre>
                     <p>Обратите внимание, что такие параметры должны задаваться <strong>до</strong> трансляции шаблона.</p>
@@ -1185,7 +1190,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 });
 </code></pre>
                     <h2>Генерация таблицы используемых литералов</h2>
-                    <p>Дополнительно Snakeskin может сохранить все найденные литералы локализации в объект, чтобы потом, например, можно было передать его переводчикам. За эту функцию отвечает параметр <code>words</code>.</p>
+                    <p>Дополнительно Snakeskin может сохранить все найденные литералы локализации в объект, чтобы потом, например, можно было передать его переводчикам. За эту функцию отвечает параметр <a href="api.html#compile--words">words</a>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>

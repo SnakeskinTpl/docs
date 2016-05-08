@@ -93,7 +93,7 @@
 ```jade-like
 - namespace ['@demo']['hello' + 'World']
 
-\/// exports['@demo']['hello' + 'World'].index
+\/// exports['@demo']['helloWorld'].index
 - template index()
 	Hello world!
 ```
@@ -101,7 +101,7 @@
 ```classic
 {namespace ['@demo']['hello' + 'World']}
 
-\/// exports['@demo']['hello' + 'World'].index
+\/// exports['@demo']['helloWorld'].index
 {template index()}
 	Hello world!
 {/template}
