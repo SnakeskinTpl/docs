@@ -42,6 +42,8 @@
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#interface">interface</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#placeholder">placeholder</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#block">block</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#set">set</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#end">end</a> </li>
                                 </ol>
                             </li>
                             <li class="b-contents__part b-contents__part_link_false">Выполнение / вывод
@@ -821,7 +823,7 @@
                     </div>
                     <p>Параметров у блока может быть неограниченное количество, а т. к. директива <em>block</em> является функциональной, то она реализует <a href="guide.html#introParams">стандартный механизм декларации параметров</a>. По умолчанию вызываемые
                         блоки возвращают строки, однако это поведение можно поменять задав специальный <a href="#api--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>.</p>
-                    <p>Название блока соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам, причём статичные блоки и вызываемые лежает в одном пространстве имён. В рамках шаблона не может быть 2-х блоков с одинаковым названием.</p>
+                    <p>Название блока соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам, причём статичные блоки и вызываемые лежат в одном пространстве имён. В рамках шаблона не может быть 2-х блоков с одинаковым названием.</p>
                     <h3>Блок как метод шаблона</h3>
                     <p>Вызываемые блоки — это методы шаблона, т. е. они наследуются в дочерних шаблонах, могут переопределяться и т. д., а сама механика наследования практически идентична со статичными блоками и шаблонами, и описана в <a href="guide.html#inheritBlocks">отдельной главе</a>.</p>
                     <p>При создании вызываемого блока он ставиться как свойство <code>.Blocks.названиеБлока</code> исходного шаблона, и, как правило, вызывается с помощью директивы <a href="#call">call</a> и указателя <a href="#template--%D0%A1%D1%82%D0%B0%D0%BD%D0%B4%D0%B0%D1%80%D1%82%D0%BD%D1%8B%D0%B5_%D0%BF%D0%B5%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B5_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD%D0%B0">self</a>,
@@ -937,7 +939,7 @@
                         </div>
                     </div>
                     <h3>Ссылка <code>&amp;</code> для удобного рекурсивного вызова блока</h3>
-                    <p>При использовании <em>call</em> для вызова блока можно использовать специальный указать <code>&amp;</code>, который ссылается на блок внутри котого он используется — это удобно для организации рекурсий, например:</p>
+                    <p>При использовании <em>call</em> для вызова блока можно использовать специальный указать <code>&amp;</code>, который ссылается на блок внутри которого он используется — это удобно для организации рекурсий, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -971,6 +973,109 @@
 </span></code></pre>
                         </div>
                     </div>
+                </section>
+                <section id="set" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Создание шаблона </li>
+                    </ul>
+                    <h1>set</h1>
+                    <p>Директива <strong>set</strong> задаёт значение указанному <a href="guide.html#introSet">параметру трансляции</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только в глобальной области</td>
+                                <td><code>@=</code></td>
+                                <td>Строковая, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Поддерживаемые параметры</h2>
+                    <ul>
+                        <li><a href="api.html#compile--renderMode">renderMode</a></li>
+                        <li><a href="api.html#compile--renderAs">renderAs</a></li>
+                        <li><a href="api.html#compile--localization">localization</a></li>
+                        <li><a href="api.html#compile--i18nFn">i18nFn</a></li>
+                        <li><a href="api.html#compile--i18nFnOptions">i18nFnOptions</a></li>
+                        <li><a href="api.html#compile--literalBounds">literalBounds</a></li>
+                        <li><a href="api.html#compile--bemFilter">bemFilter</a></li>
+                        <li><a href="api.html#compile--filters">filters</a></li>
+                        <li><a href="api.html#compile--language">language</a></li>
+                        <li><a href="api.html#compile--ignore">ignore</a></li>
+                        <li><a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a></li>
+                        <li><a href="api.html#compile--doctype">doctype</a></li>
+                    </ul>
+                </section>
+                <section id="end" class="b-article">
+                    <ul class="b-breadcrumbs">
+                        <li><i class="fa fa-home"></i>
+                            <div class="fa fa-angle-right"></div> Директивы
+                            <div class="fa fa-angle-right"></div>
+                        </li>
+                        <li> Создание шаблона </li>
+                    </ul>
+                    <h1>end</h1>
+                    <p>Директива <strong>end</strong> декларирует завершение <a href="guide.html#basics--%D0%91%D0%BB%D0%BE%D1%87%D0%BD%D1%8B%D0%B5_%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D1%8B">блочной директивы</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td><code>/</code></td>
+                                <td>Строковая, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива используется для завершения блочной директивы в <a href="guide.html#basics--%D0%A1%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D1%85_%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B9">классическом синтаксисе Snakeskin</a>                        (в
+                        <a href="guide.html#jadeLike">jade-like</a>) она ставиться автоматически). У директивы есть 4-ри формы использования:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Полная форма</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
+	...
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">end</span></span> if}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Сокращённая форма</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
+	...
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">end</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Альтернативная полная форма</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
+	...
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">if</span></span>}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Альтернативная сокращённая форма</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
+	...
+</span><span class="hljs-directive">{/}</span><span class="xml">
+</span></code></pre>
+                    <p>Какую форму использовать решает сам разработчик, но следует отметить, что при использовании форм с указанием имени закрываемой директивы Snakeskin будет проверять правильность, т. е.:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
+	...
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">else</span></span>}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
+</span></code></pre>
                 </section>
                 <section id="output" class="b-article">
                     <ul class="b-breadcrumbs">
