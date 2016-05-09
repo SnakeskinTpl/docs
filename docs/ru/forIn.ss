@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **forIn** итерирует заданный объект (без учёта *hasOwnProperty*).
+Директива итерирует заданный объект (без учёта *hasOwnProperty*).
 
 ## Паспорт
 

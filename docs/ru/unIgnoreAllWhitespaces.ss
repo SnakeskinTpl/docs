@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **unIgnoreAllWhitespaces** декларирует, что все вложенные в директиву пробельные символы не должны игнорироваться
+Директива декларирует, что все вложенные в директиву пробельные символы не должны игнорироваться
 (обычно используется вместе с [ignoreAllWhitespaces](#ignoreAllWhitespaces)).
 
 ## Паспорт

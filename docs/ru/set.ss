@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **set** задаёт значение указанному [параметру трансляции](guide.html#introSet).
+Директива задаёт значение указанному [параметру трансляции](guide.html#introSet).
 
 ## Паспорт
 

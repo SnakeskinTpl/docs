@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **doctype** вставляет в шаблон код декларации заданного [doctype](http://htmlbook.ru/html/!doctype),
+Директива вставляет в шаблон код декларации заданного [doctype](http://htmlbook.ru/html/!doctype),
 а также определяет правила форматирования для тегов и атрибутов.
 
 ## Паспорт

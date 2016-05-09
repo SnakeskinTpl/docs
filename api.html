@@ -140,7 +140,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>namespace</h1>
-                    <p>Директива <strong>namespace</strong> декларирует пространство имён для файла, в котором оно используется, т. е. все декларируемые в этом файле шаблоны будут частью заданного пространства имён.</p>
+                    <p>Директива декларирует пространство имён для файла в котором оно используется, т. е. все декларируемые в этом файле шаблоны будут частью заданного пространства имён.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -382,7 +382,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>template</h1>
-                    <p>Директива <strong>template</strong> декларирует шаблон c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует шаблон c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -657,7 +657,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>interface</h1>
-                    <p>Директива <strong>interface</strong> декларирует шаблон-интерфейс c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует шаблон-интерфейс c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -711,7 +711,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>placeholder</h1>
-                    <p>Директива <strong>placeholder</strong> декларирует шаблон-плейсхолдер c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует шаблон-плейсхолдер c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -763,7 +763,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>block</h1>
-                    <p>Директива <strong>block</strong> декларирует статичный блок или подшаблон c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует статичный блок или подшаблон c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -983,7 +983,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>set</h1>
-                    <p>Директива <strong>set</strong> задаёт значение указанному <a href="guide.html#introSet">параметру трансляции</a>.</p>
+                    <p>Директива задаёт значение указанному <a href="guide.html#introSet">параметру трансляции</a>.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -1028,7 +1028,7 @@
                         <li> Создание шаблона </li>
                     </ul>
                     <h1>end</h1>
-                    <p>Директива <strong>end</strong> декларирует завершение <a href="guide.html#basics--%D0%91%D0%BB%D0%BE%D1%87%D0%BD%D1%8B%D0%B5_%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D1%8B">блочной директивы</a>.</p>
+                    <p>Директива декларирует завершение <a href="guide.html#basics--%D0%91%D0%BB%D0%BE%D1%87%D0%BD%D1%8B%D0%B5_%D0%B4%D0%B8%D1%80%D0%B5%D0%BA%D1%82%D0%B8%D0%B2%D1%8B">блочной директивы</a>.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -1109,7 +1109,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива <strong>output</strong> используется когда нам нужно вывести в текст шаблона значение переменной или выражения.</p>
+                    <p>Директива <em>output</em> используется когда нам нужно вывести в текст шаблона значение переменной или выражения.</p>
                     <p>Директива не требует специального ключевого слова (хотя допускается), поэтому достаточно просто взять выводимое выражение в фигурные скобки, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1241,7 +1241,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива <strong>void</strong> используется когда нам нужно выполнить некоторую логику, но чтобы она никак не отобразилась в шаблоне, например, сделать инкремент переменной или вывести текст в консоль разработчика.</p>
+                    <p>Директива <em>void</em> используется когда нам нужно выполнить некоторую логику, но чтобы она никак не отобразилась в шаблоне, например, сделать инкремент переменной или вывести текст в консоль разработчика.</p>
                     <p>Директива начинается с ключевого слова <code>void</code> (или символа <code>?</code>), которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1289,7 +1289,68 @@
                         </li>
                         <li> Выполнение / вывод </li>
                     </ul>
-                    <h1>return</h1> </section>
+                    <h1>return</h1>
+                    <p>Директива <strong>return</strong></p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри функциональных директив</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива <strong>void</strong> используется когда нам нужно выполнить некоторую логику, но чтобы она никак не отобразилась в шаблоне, например, сделать инкремент переменной или вывести текст в консоль разработчика.</p>
+                    <p>Директива начинается с ключевого слова <code>void</code> (или символа <code>?</code>), которое должно сопровождаться выражением (заключать выражение в скобки не обязательно). Самая простая форма выглядит так:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">void</span></span> console.log(<span class="hljs-string">'hello'</span>)</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> console.log(<span class="hljs-string">'hello'</span>)}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+? console.log('hello world')
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	: a = <span class="hljs-number">0</span></span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">void</span></span> a++</span><span class="xml">
+	</span><span class="hljs-directive">{a}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{? console.log(<span class="hljs-string">'hello world'</span>)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{: a = <span class="hljs-number">0</span>}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> a++}</span><span class="xml">
+	</span><span class="hljs-directive">{a}</span><span class="xml"> </span><span class="hljs-comment">/// 1</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="eval" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -1299,7 +1360,7 @@
                         <li> Глобальный контекст </li>
                     </ul>
                     <h1>eval</h1>
-                    <p>Директива <strong>eval</strong> создаёт блок, который выполнится на этапе трансляции, но не войдёт в конечный JS.</p>
+                    <p>Директива создаёт блок, который выполнится на этапе трансляции, но не войдёт в конечный JS.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -1347,7 +1408,7 @@
                         <li> Глобальный контекст </li>
                     </ul>
                     <h1>head</h1>
-                    <p>Директива <strong>head</strong> создаёт блок, который не выполнится на этапе трансляции, но войдёт в конечный JS.</p>
+                    <p>Директива создаёт блок, который не выполнится на этапе трансляции, но войдёт в конечный JS.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -1421,7 +1482,7 @@
                         <li> Область видимости </li>
                     </ul>
                     <h1>with</h1>
-                    <p>Директива <strong>with</strong> задаёт область видимости для поиска свойств объекта.</p>
+                    <p>Директива задаёт область видимости для поиска свойств объекта.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -1586,7 +1647,7 @@
                     </table>
                     <h2>Описание</h2>
                     <p>Переменные в Snakeskin имеют блочную область видимости и по своей семантике напоминают <code>let</code> из JS ES2015.</p>
-                    <p>Директива <strong>var</strong> позволяет декларировать сразу несколько переменных через запятую (аналогично как это делается в JS).</p>
+                    <p>Директива <em>var</em> позволяет декларировать сразу несколько переменных через запятую (аналогично как это делается в JS).</p>
                     <p>Директива начинается с ключевого слова <code>var</code> (или символа <code>:</code>), которое должно сопровождаться списком имён создаваемых переменных (через запятую). Для присвоения значений созданной переменной необходимо поставить
                         символ <code>=</code> после имени.</p>
                     <p>Самая простая форма выглядит так:</p>
@@ -2037,7 +2098,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Логические директивы </li>
                     </ul>
                     <h1>if</h1>
-                    <p>Директива <strong>if</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива <em>if</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2137,7 +2198,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Логические директивы </li>
                     </ul>
                     <h1>unless</h1>
-                    <p>Директива <strong>unless</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в CoffeeScript.</p>
+                    <p>Директива <em>unless</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в CoffeeScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2236,8 +2297,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Логические директивы </li>
                     </ul>
                     <h1>switch</h1>
-                    <p>Директива <strong>switch</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript (<code>break</code> ставится автоматически после каждого блока
-                        <strong>case</strong>).</p>
+                    <p>Директива <em>switch</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript (<code>break</code> ставится автоматически после каждого блока <strong>case</strong>).</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2333,7 +2393,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Циклы </li>
                     </ul>
                     <h1>for</h1>
-                    <p>Директива <strong>for</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива <em>for</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2481,7 +2541,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Циклы </li>
                     </ul>
                     <h1>while</h1>
-                    <p>Директива <strong>while</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива <em>while</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2588,7 +2648,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Циклы </li>
                     </ul>
                     <h1>do</h1>
-                    <p>Директива <strong>do</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива <em>do</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2609,8 +2669,8 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную. Отличие <strong>do</strong> от <a href="#while">while</a> состоит
-                        в том, что цикл <code>do-while</code> выполняется по крайней мере один раз, даже если условие изначально ложно.</p>
+                    <p>Директива создаёт цикл, т. е. блок цикла будет выполняется до тех пор, пока управляющее логическое выражение не станет ложным или пока цикл не будет сброшен вручную. Отличие <em>do</em> от <a href="#while">while</a> состоит в том,
+                        что цикл <code>do-while</code> выполняется по крайней мере один раз, даже если условие изначально ложно.</p>
                     <p>Директива начинается с ключевого слова <code>do</code>, а выражение для проверки идёт после вложенного блока цикла вместе с директивой <strong>while</strong> (заключать выражение в скобки не обязательно).</p>
                     <p>Самая простая форма выглядит так:</p>
                     <div class="b-example">
@@ -2724,7 +2784,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Итераторы </li>
                     </ul>
                     <h1>forEach</h1>
-                    <p>Директива <strong>forEach</strong> итерирует заданный объект (с учётом <em>hasOwnProperty</em>) или массив.</p>
+                    <p>Директива итерирует заданный объект (с учётом <em>hasOwnProperty</em>) или массив.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2923,7 +2983,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Итераторы </li>
                     </ul>
                     <h1>forIn</h1>
-                    <p>Директива <strong>forIn</strong> итерирует заданный объект (без учёта <em>hasOwnProperty</em>).</p>
+                    <p>Директива итерирует заданный объект (без учёта <em>hasOwnProperty</em>).</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3090,7 +3150,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с исключениями </li>
                     </ul>
                     <h1>try</h1>
-                    <p>Директива <strong>try</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива <em>try</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3179,7 +3239,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с исключениями </li>
                     </ul>
                     <h1>throw</h1>
-                    <p>Директива <strong>throw</strong> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива <em>throw</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3248,7 +3308,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с пробельными символами </li>
                     </ul>
                     <h1>ignoreWhitespaces</h1>
-                    <p>Директива <strong>ignoreWhitespaces</strong> декларирует, что все последующие пробельные символы до первого не пробельного должны игнорироваться.</p>
+                    <p>Директива декларирует, что все последующие пробельные символы до первого не пробельного должны игнорироваться.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3299,7 +3359,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с пробельными символами </li>
                     </ul>
                     <h1>ignoreAllWhitespaces</h1>
-                    <p>Директива <strong>ignoreAllWhitespaces</strong> декларирует, что все вложенные в директиву пробельные символы должны игнорироваться.</p>
+                    <p>Директива декларирует, что все вложенные в директиву пробельные символы должны игнорироваться.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3353,7 +3413,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с пробельными символами </li>
                     </ul>
                     <h1>unIgnoreAllWhitespaces</h1>
-                    <p>Директива <strong>unIgnoreAllWhitespaces</strong> декларирует, что все вложенные в директиву пробельные символы не должны игнорироваться (обычно используется вместе с <a href="#ignoreAllWhitespaces">ignoreAllWhitespaces</a>).</p>
+                    <p>Директива декларирует, что все вложенные в директиву пробельные символы не должны игнорироваться (обычно используется вместе с <a href="#ignoreAllWhitespaces">ignoreAllWhitespaces</a>).</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3412,7 +3472,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с пробельными символами </li>
                     </ul>
                     <h1>sp</h1>
-                    <p>Директива <strong>sp</strong> просто декларирует пробельный символ (актуально только для Jade-Like).</p>
+                    <p>Директива вставляет в шаблон пробельный символ (актуально только для Jade-Like).</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3452,7 +3512,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>doctype</h1>
-                    <p>Директива <strong>doctype</strong> вставляет в шаблон код декларации заданного <a href="http://htmlbook.ru/html/!doctype">doctype</a>, а также определяет правила форматирования для тегов и атрибутов.</p>
+                    <p>Директива вставляет в шаблон код декларации заданного <a href="http://htmlbook.ru/html/!doctype">doctype</a>, а также определяет правила форматирования для тегов и атрибутов.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3566,7 +3626,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>attr</h1>
-                    <p>Директива <strong>attr</strong> вставляет код декларации HTML/XML атрибута по заданным параметрам.</p>
+                    <p>Директива вставляет в шаблон код декларации HTML/XML атрибута по заданным параметрам.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -3845,7 +3905,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>tag</h1>
-                    <p>Директива <strong>tag</strong> вставляет код декларации HTML/XML тега по заданным параметрам.</p>
+                    <p>Директива вставляет в шаблон код декларации HTML/XML тега по заданным параметрам.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -4186,7 +4246,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>script</h1>
-                    <p>Директива <strong>script</strong> вставляет в шаблон код декларации тега <code>&lt;script&gt;</code> с заданными параметрами.</p>
+                    <p>Директива вставляет в шаблон код декларации тега <code>&lt;script&gt;</code> с заданными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -4332,7 +4392,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>style</h1>
-                    <p>Директива <strong>style</strong> вставляет в шаблон код декларации тега <code>&lt;style&gt;</code> с заданными параметрами.</p>
+                    <p>Директива вставляет в шаблон код декларации тега <code>&lt;style&gt;</code> с заданными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -4468,7 +4528,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>link</h1>
-                    <p>Директива <strong>link</strong> вставляет в шаблон код декларации тега <code>&lt;link&gt;</code> с заданными параметрами.</p>
+                    <p>Директива вставляет в шаблон код декларации тега <code>&lt;link&gt;</code> с заданными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -4588,7 +4648,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Работа с HTML/XML </li>
                     </ul>
                     <h1>comment</h1>
-                    <p>Директива <strong>comment</strong> вставляет в шаблон код декларации XML комментария с заданными параметрами.</p>
+                    <p>Директива вставляет в шаблон код декларации XML комментария с заданными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -4683,7 +4743,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Экранирование </li>
                     </ul>
                     <h1>cdata</h1>
-                    <p>Директива <strong>cdata</strong> задаёт блок текста, который вырезается до трансляции, а затем вставляется без изменений в результирующую функцию (пробельные символы также остаются неизменны).</p>
+                    <p>Директива задаёт блок текста, который вырезается до трансляции, а затем вставляется без изменений в результирующую функцию (пробельные символы также остаются неизменны).</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -4741,7 +4801,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Экранирование </li>
                     </ul>
                     <h1>literal</h1>
-                    <p>Директива <strong>literal</strong> задаёт блок текста, который вставляется без изменений в результирующую функцию, а также будет врапиться специальными текстовыми символами согласно параметру <a href="#compile--literalBounds">literalBounds</a>.</p>
+                    <p>Директива задаёт блок текста, который вставляется без изменений в результирующую функцию, а также будет врапиться специальными текстовыми символами согласно параметру <a href="#compile--literalBounds">literalBounds</a>.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>

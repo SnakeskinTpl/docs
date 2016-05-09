@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива **forEach** итерирует заданный объект (с учётом *hasOwnProperty*) или массив.
+Директива итерирует заданный объект (с учётом *hasOwnProperty*) или массив.
 
 ## Паспорт
 
