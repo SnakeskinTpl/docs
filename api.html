@@ -1210,7 +1210,368 @@
                         </li>
                         <li> Выполнение / вывод </li>
                     </ul>
-                    <h1>call</h1> </section>
+                    <h1>call</h1>
+                    <p>Директива выполняет заданное выражение и выводит результат в шаблон (на выводимое выражение по умолчанию накладываются
+                        <a href="guide.html#filters">фильтр</a> <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L232">undef</a>).</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td><code>+=</code></td>
+                                <td>Блочная, текстовая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива <em>call</em> похожа на <a href="#output">output</a>, т. е. она тоже вставляет результат выражения в шаблон, однако, она не накладывает по умолчанию на выводимые данные фильтр <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L175">html</a>,
+                        т. е. выводимое выражение не экранируется и это является аналогом использования фильтра <code>!html</code>.</p>
+                    <p>Директива начинается с ключевого слова <code>call</code> (или символов <code>+=</code>), которое может сопровождаться ссылкой на возвращаемое значение или выражение, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	+= <span class="hljs-number">1</span> + <span class="hljs-number">2</span></span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{+= <span class="hljs-number">1</span> + <span class="hljs-number">2</span> /}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Для удобства использования <em>call</em> в классическом синтаксисе существует короткая форма закрытия директивы, например:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Обычное закрытие</span><span class="xml">
+</span><span class="hljs-directive">{+= <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
+</span><span class="hljs-directive">{+= <span class="hljs-number">1</span> + <span class="hljs-number">2</span> /}</span><span class="xml">
+</span></code></pre>
+                    <p>Главным кейзом использования <em>call</em> является вызов <a href="#block">блоков</a> и других шаблонов внутри шаблона, поэтому выводимые данные не экранируются, т. к. они уже и так экранированы, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper()</span><span class="xml">
+</span><span class="hljs-directive">	&lt; .foo</span><span class="xml">
+		Hello world!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	</span><span class="hljs-comment">/// &lt;div class="foo"&gt;Hello world!&lt;/div&gt;</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper()</span><span class="xml">
+
+	</span><span class="hljs-comment">/// &amp;lt;div class=&amp;quot;foo&amp;quot;&amp;gt;Hello world!&amp;lt;/div&amp;gt;</span><span class="xml">
+	</span><span class="hljs-directive">{@helper()}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper()}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; .foo}</span><span class="xml">
+		Hello world!
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-comment">/// &lt;div class="foo"&gt;Hello world!&lt;/div&gt;</span><span class="xml">
+	</span><span class="hljs-directive">{+= @helper() /}</span><span class="xml">
+
+	</span><span class="hljs-comment">/// &amp;lt;div class=&amp;quot;foo&amp;quot;&amp;gt;Hello world!&amp;lt;/div&amp;gt;</span><span class="xml">
+	</span><span class="hljs-directive">{@helper()}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <h3>Расширенная декларация</h3>
+                    <p>Директива поддерживает специальную расширенную форму для передачи параметров-шаблонов в вызываемую функцию, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(text)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; .output</span><span class="xml">
+		</span><span class="hljs-directive">{text}</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+	</span><span class="hljs-comment">/// &lt;div class="output"&gt;&lt;div class="foo"&gt;Hello world!&lt;/div&gt;&lt;/div&gt;</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper()</span><span class="xml">
+</span><span class="hljs-directive">		&lt; .hello</span><span class="xml">
+			Hello world!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(text)}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; .output}</span><span class="xml">
+		</span><span class="hljs-directive">{text}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-comment">/// &lt;div class="output"&gt;&lt;div class="foo"&gt;Hello world!&lt;/div&gt;&lt;/div&gt;</span><span class="xml">
+	</span><span class="hljs-directive">{+= @helper()}</span><span class="xml">
+		</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+			Hello world!
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Внутри такой декларации можно использовать любые допустимые директивы, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д. Если необходимо передать несколько параметров, то нужно использовать директиву <a href="#putIn">putIn</a>:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(text1, text2)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; .output1</span><span class="xml">
+		</span><span class="hljs-directive">{text1}</span><span class="xml">
+</span><span class="hljs-directive">
+	&lt; .output2</span><span class="xml">
+		</span><span class="hljs-directive">{text2}</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper()</span><span class="xml">
+</span><span class="hljs-directive">		*
+			&lt; .hello</span><span class="xml">
+				Hello world!
+</span><span class="hljs-directive">		*
+			&lt; .goodbye</span><span class="xml">
+				Goodbye cruel world!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(text1, text2)}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; .output1}</span><span class="xml">
+		</span><span class="hljs-directive">{text1}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{&lt; .output2}</span><span class="xml">
+		</span><span class="hljs-directive">{text2}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()
+	{+= @helper()}</span><span class="xml">
+		</span><span class="hljs-directive">{*}</span><span class="xml">
+			</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+				Hello world!
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{*}</span><span class="xml">
+			</span><span class="hljs-directive">{&lt; .goodbye}</span><span class="xml">
+				Goodbye cruel world!
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Первый вызов <em>putIn</em> можно опустить:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(text1, text2)</span><span class="xml">
+</span><span class="hljs-directive">	&lt; .output1</span><span class="xml">
+		</span><span class="hljs-directive">{text1}</span><span class="xml">
+</span><span class="hljs-directive">
+	&lt; .output2</span><span class="xml">
+		</span><span class="hljs-directive">{text2}</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper()</span><span class="xml">
+</span><span class="hljs-directive">			&lt; .hello</span><span class="xml">
+				Hello world!
+</span><span class="hljs-directive">		*
+			&lt; .goodbye</span><span class="xml">
+				Goodbye cruel world!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(text1, text2)}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; .output1}</span><span class="xml">
+		</span><span class="hljs-directive">{text1}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{&lt; .output2}</span><span class="xml">
+		</span><span class="hljs-directive">{text2}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()
+	{+= @helper()}</span><span class="xml">
+		</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+			Hello world!
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{*}</span><span class="xml">
+			</span><span class="hljs-directive">{&lt; .goodbye}</span><span class="xml">
+				Goodbye cruel world!
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Допускается совмещать передачу параметров в обычной и расширенной форме.</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(a, b, text1, text2)</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span><span class="hljs-directive">
+	&lt; .output1</span><span class="xml">
+		</span><span class="hljs-directive">{text1}</span><span class="xml">
+</span><span class="hljs-directive">
+	&lt; .output2</span><span class="xml">
+		</span><span class="hljs-directive">{text2}</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</span><span class="xml">
+</span><span class="hljs-directive">			&lt; .hello</span><span class="xml">
+				Hello world!
+</span><span class="hljs-directive">		*
+			&lt; .goodbye</span><span class="xml">
+				Goodbye cruel world!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(a, b, text1, text2)}</span><span class="xml">
+	</span><span class="hljs-directive">{a + b}</span><span class="xml">
+
+	</span><span class="hljs-directive">{&lt; .output1}</span><span class="xml">
+		</span><span class="hljs-directive">{text1}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{&lt; .output2}</span><span class="xml">
+		</span><span class="hljs-directive">{text2}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()
+	{+= @helper(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)}</span><span class="xml">
+		</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+			Hello world!
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{*}</span><span class="xml">
+			</span><span class="hljs-directive">{&lt; .goodbye}</span><span class="xml">
+				Goodbye cruel world!
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h3>Примеры</h3>
+                    <h4>Передача функции-параметра с помощью <a href="#callback">callback</a></h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(fn)</span><span class="xml">
+</span><span class="hljs-directive">	+= fn(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper()</span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> a, b</span><span class="xml">
+			</span><span class="hljs-directive">{a + b}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(fn)}</span><span class="xml">
+	</span><span class="hljs-directive">{+= fn(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>) /}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()
+	{+= @helper()}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> a, b}</span><span class="xml">
+			</span><span class="hljs-directive">{a + b}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Передача объекта-параметра с помощью <a href="#target">target</a></h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(@params)</span><span class="xml">
+	</span><span class="hljs-directive">{@data}</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	+= @helper()</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">target</span></span> {}</span><span class="xml">
+</span><span class="hljs-directive">			* data</span><span class="xml">
+</span><span class="hljs-directive">				&lt; .hello</span><span class="xml">
+					Hello world!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> helper(@params)}</span><span class="xml">
+	</span><span class="hljs-directive">{@data}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()
+	{+= @helper()}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">target</span></span> {}</span><span class="xml">}
+			</span><span class="hljs-directive">{* data}</span><span class="xml">
+				</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+					Hello world!
+				</span><span class="hljs-directive">{/}</span><span class="xml">
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="void" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -1338,7 +1699,9 @@
 </span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span> /}</span><span class="xml">
 </span></code></pre>
-                    <p>Также директива может включать возвращаемое значение в своё тело — это удобно, когда возвращаемое значение является шаблоном, например:
+                    <p>Директива может использоваться только внутри функциональных директив.</p>
+                    <h3>Расширенная декларация</h3>
+                    <p>Директива может включать возвращаемое значение в своё тело — это удобно, когда возвращаемое значение является подшаблоном, например:
                     </p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1367,7 +1730,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Внутри такой декларации можно использовать любые допустимые директив, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д.</p>
+                    <p>Внутри такой декларации можно использовать любые допустимые директивы, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д.</p>
                 </section>
                 <section id="eval" class="b-article">
                     <ul class="b-breadcrumbs">
@@ -1729,7 +2092,9 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>С помощью ключевого слова <strong>putIn</strong> можно присвоить переменной фрагмент выражения Snakeskin, однако при такой декларации допускается создавать только одну переменную за раз, например:</p>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <h3>putIn декларация</h3>
+                    <p>С помощью ключевого слова <code>putIn</code> можно присвоить переменной подшаблон Snakeskin, однако при такой декларации допускается создавать только одну переменную за раз, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1764,7 +2129,6 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
                     <h3>Примеры</h3>
                     <div class="b-example">
                         <menu class="b-example__toggle">
