@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['3::Глобальный контекст']['1::eval']
+- namespace docs.ru.api['1::Директивы']['3::Глобальный контекст']['1::eval']
 
 /*!
  * snakeskin.github.io

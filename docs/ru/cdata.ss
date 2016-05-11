@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['12::Экранирование']['1::cdata']
+- namespace docs.ru.api['1::Директивы']['12::Экранирование']['1::cdata']
 
 /*!
  * snakeskin.github.io

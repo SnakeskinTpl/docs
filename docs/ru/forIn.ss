@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['8::Итераторы']['2::forIn']
+- namespace docs.ru.api['1::Директивы']['8::Итераторы']['2::forIn']
 
 /*!
  * snakeskin.github.io

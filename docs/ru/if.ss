@@ -1,4 +1,4 @@
-- namespace docs.ru.api['Директивы']['6::Логические директивы']['1::if']
+- namespace docs.ru.api['1::Директивы']['6::Логические директивы']['1::if']
 
 /*!
  * snakeskin.github.io
