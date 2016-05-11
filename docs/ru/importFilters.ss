@@ -13,5 +13,18 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
+Метод импортирует заданный объект в пространство имён [фильтров Snakeskin](guide.html#filters).
+
+## Интерфейс
+
+```js
+Snakeskin.importFilters(filters, opt_namespace) { return void 0; }
+```
+
+### Аргументы
+
+1. `!Object` `filters` - импортируемый объект;
+2. `?string=` `opt_params` - пространство имён для сохранения, например, `foo.bar`.
+
 #{/block}
 {/template}

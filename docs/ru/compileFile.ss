@@ -13,5 +13,18 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
+Метод скомпилирует заданный файл и вернёт ссылку на объект полученных шаблонов.
+
+## Интерфейс
+
+```js
+Snakeskin.compileFile(src, opt_params) { return !Object || false; }
+```
+
+### Аргументы
+
+1. `string` `src` — путь к файлу шаблонов;
+2. `Object=` `opt_params` — [дополнительные параметры запуска](#compile).
+
 #{/block}
 {/template}

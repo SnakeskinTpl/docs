@@ -7008,7 +7008,17 @@ hello = 'people'
                         </li>
                         <li> Общее </li>
                     </ul>
-                    <h1>importFilters</h1> </section>
+                    <h1>importFilters</h1>
+                    <p>Метод импортирует заданный объект в пространство имён <a href="guide.html#filters">фильтров Snakeskin</a>.</p>
+                    <h2>Интерфейс</h2>
+                    <pre class="hljs example-js"><code>Snakeskin.importFilters(filters, opt_namespace) { <span class="hljs-keyword">return</span> <span class="hljs-keyword">void</span> <span class="hljs-number">0</span>; }
+</code></pre>
+                    <h3>Аргументы</h3>
+                    <ol>
+                        <li><code>!Object</code> <code>filters</code> — импортируемый объект;</li>
+                        <li><code>?string=</code> <code>opt_params</code> — пространство имён для сохранения, например, <code>foo.bar</code>.</li>
+                    </ol>
+                </section>
                 <section id="setFilterParams" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -7026,7 +7036,17 @@ hello = 'people'
                         </li>
                         <li> node.js </li>
                     </ul>
-                    <h1>check</h1> </section>
+                    <h1>check</h1>
+                    <p>Метод вернёт <code>true</code>, если заданный файл шаблонов соответствует скомпилированному по временной метке.</p>
+                    <h2>Интерфейс</h2>
+                    <pre class="hljs example-js"><code>Snakeskin.check(source, result) { <span class="hljs-keyword">return</span> boolean; }
+</code></pre>
+                    <h3>Аргументы</h3>
+                    <ol>
+                        <li><code>string</code> <code>source</code> — путь к исходному файлу;</li>
+                        <li><code>string</code> <code>result</code> — путь к скомпилированному файлу.</li>
+                    </ol>
+                </section>
                 <section id="compileFile" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -7035,7 +7055,17 @@ hello = 'people'
                         </li>
                         <li> node.js </li>
                     </ul>
-                    <h1>compileFile</h1> </section>
+                    <h1>compileFile</h1>
+                    <p>Метод скомпилирует заданный файл и вернёт ссылку на объект полученных шаблонов.</p>
+                    <h2>Интерфейс</h2>
+                    <pre class="hljs example-js"><code>Snakeskin.compileFile(src, opt_params) { <span class="hljs-keyword">return</span> !<span class="hljs-built_in">Object</span> || <span class="hljs-literal">false</span>; }
+</code></pre>
+                    <h3>Аргументы</h3>
+                    <ol>
+                        <li><code>string</code> <code>src</code> — путь к файлу шаблонов;</li>
+                        <li><code>Object=</code> <code>opt_params</code> — <a href="#compile">дополнительные параметры запуска</a>.</li>
+                    </ol>
+                </section>
                 <section id="exec" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -7044,7 +7074,19 @@ hello = 'people'
                         </li>
                         <li> node.js </li>
                     </ul>
-                    <h1>exec</h1> </section>
+                    <h1>exec</h1>
+                    <p>Метод скомпилирует заданный текст и вернёт ссылку на главный шаблон.</p>
+                    <p>Главный шаблон определяется по правилу: <code>название файла без расширения</code> или <code>main</code> или <code>index</code> или <code>Object.keys().sort()[0]</code>.</p>
+                    <h2>Интерфейс</h2>
+                    <pre class="hljs example-js"><code>Snakeskin.exec(txt, opt_params, opt_tplName) { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Function</span>; }
+</code></pre>
+                    <h3>Аргументы</h3>
+                    <ol>
+                        <li><code>string</code> <code>txt</code> — исходный текст;</li>
+                        <li><code>Object=</code> <code>opt_params</code> — <a href="#compile">дополнительные параметры запуска</a>;</li>
+                        <li><code>?string=</code> <code>opt_tplName</code> — имя главного шаблона.</li>
+                    </ol>
+                </section>
                 <section id="execFile" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -7053,7 +7095,19 @@ hello = 'people'
                         </li>
                         <li> node.js </li>
                     </ul>
-                    <h1>execFile</h1> </section>
+                    <h1>execFile</h1>
+                    <p>Метод скомпилирует заданный файл и вернёт ссылку на главный шаблон.</p>
+                    <p>Главный шаблон определяется по правилу: <code>название файла без расширения</code> или <code>main</code> или <code>index</code> или <code>Object.keys().sort()[0]</code>.</p>
+                    <h2>Интерфейс</h2>
+                    <pre class="hljs example-js"><code>Snakeskin.execFile(src, opt_params, opt_tplName) { <span class="hljs-keyword">return</span> <span class="hljs-built_in">Function</span>; }
+</code></pre>
+                    <h3>Аргументы</h3>
+                    <ol>
+                        <li><code>string</code> <code>src</code> — путь к файлу шаблонов;</li>
+                        <li><code>Object=</code> <code>opt_params</code> — <a href="#compile">дополнительные параметры запуска</a>;</li>
+                        <li><code>?string=</code> <code>opt_tplName</code> — имя главного шаблона.</li>
+                    </ol>
+                </section>
                 <div class="b-articles__nav-cont b-articles__next">
                     <div class="b-articles__nav-control"><i class="fa fa-angle-right"></i></div>
                 </div>

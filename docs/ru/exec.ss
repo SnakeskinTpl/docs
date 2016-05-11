@@ -13,5 +13,21 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
+Метод скомпилирует заданный текст и вернёт ссылку на главный шаблон.
+
+Главный шаблон определяется по правилу: `название файла без расширения` или `main` или `index` или `Object.keys().sort()[0]`.
+
+## Интерфейс
+
+```js
+Snakeskin.exec(txt, opt_params, opt_tplName) { return Function; }
+```
+
+### Аргументы
+
+1. `string` `txt` - исходный текст;
+2. `Object=` `opt_params` - [дополнительные параметры запуска](#compile);
+3. `?string=` `opt_tplName` - имя главного шаблона.
+
 #{/block}
 {/template}
