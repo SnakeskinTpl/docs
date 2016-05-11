@@ -6999,7 +6999,251 @@ hello = 'people'
                         </li>
                         <li> Общее </li>
                     </ul>
-                    <h1>compile</h1> </section>
+                    <h1>compile</h1>
+                    <p>Метод компилирует заданный текст шаблона или содержимое DOM узла.</p>
+                    <h2>Интерфейс</h2>
+                    <pre class="hljs example-js"><code>Snakeskin.compile(src, opt_params, opt_info) {
+	<span class="hljs-keyword">return</span> string || <span class="hljs-literal">false</span> || <span class="hljs-literal">null</span>;
+}
+</code></pre>
+                    <h3>Аргументы</h3>
+                    <ol>
+                        <li><code>(!Element|string)</code> <code>src</code> — ссылка на DOM узел, где декларированы шаблоны или исходный текст шаблонов;</li>
+                        <li><code>Object=</code> <code>opt_params</code> — дополнительные параметры запуска;</li>
+                        <li><code>Object=</code> <code>opt_info</code> — дополнительная информация для отладчика.</li>
+                    </ol>
+                    <h4>opt_params</h4>
+                    <ul>
+                        <li><a href="#compile--cache">cache</a></li>
+                        <li><a href="#compile--vars">vars</a></li>
+                        <li><a href="#compile--context">context</a></li>
+                        <li><a href="#compile--onError">onError</a></li>
+                        <li><a href="#compile--throws">throws</a></li>
+                        <li><a href="#compile--debug">debug</a></li>
+                        <li><a href="#compile--pack">pack</a></li>
+                        <li><a href="#compile--module">module</a></li>
+                        <li><a href="#compile--moduleId">moduleId</a></li>
+                        <li><a href="#compile--moduleName">moduleName</a></li>
+                        <li><a href="#compile--useStrict">useStrict</a></li>
+                        <li><a href="#compile--prettyPrint">prettyPrint</a></li>
+                        <li><a href="#compile--literalBounds">literalBounds</a></li>
+                        <li><a href="#compile--bemFilter">bemFilter</a></li>
+                        <li><a href="#compile--filters">filters</a></li>
+                        <li><a href="#compile--localization">localization</a></li>
+                        <li><a href="#compile--i18nfn">i18nFn</a></li>
+                        <li><a href="#compile--i18nFnOptions">i18nFnOptions</a></li>
+                        <li><a href="#compile--language">language</a></li>
+                        <li><a href="#compile--words">words</a></li>
+                        <li><a href="#compile--ignore">ignore</a></li>
+                        <li><a href="#compile--tolerateWhitespaces">tolerateWhitespaces</a></li>
+                        <li><a href="#compile--eol">eol</a></li>
+                        <li><a href="#compile--renderAs">renderAs</a></li>
+                        <li><a href="#compile--renderMode">renderMode</a></li>
+                        <li><a href="#compile--doctype">doctype</a></li>
+                    </ul>
+                    <h4>opt_info</h4>
+                    <ul>
+                        <li><a href="#compile--file">file</a></li>
+                    </ul>
+                    <h3>Параметры</h3>
+                    <h4>cache</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?boolean=}
+ * @default true
+ */</span>
+</code></pre>
+                    <p>Если параметр равен <code>false</code>, то наличие шаблона в кеше не будет проверятся, а сам шаблон не будет кешироваться.</p>
+                    <h4>vars</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Object=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт <a href="#global">суперглобальные переменные</a> Snakeskin.</p>
+                    <pre class="hljs example-js"><code>Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	vars: {
+		foo: 'bar'
+	}
+});
+</span></code></pre>
+                    <h4>context</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Object=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт объект для экспорта свойств при компиляции в стиле commonJS.</p>
+                    <pre class="hljs example-default"><code>{template foo()}
+	Hello world
+{/template}
+</code></pre>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = {};
+
+Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	context: tpls
+});
+
+tpls.foo() // Hello world
+</span></code></pre>
+                    <h4>debug</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Object=}
+ */</span>
+</code></pre>
+                    <p>Объект, который будет содержать в себе некоторую отладочную информацию.</p>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> info = {};
+Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {debug: info});
+info.code // Исходный текст полученного JS файла
+</span></code></pre>
+                    <h4>throws</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?boolean=}
+ * @default false
+ */</span>
+</code></pre>
+                    <p>Если параметр равен <code>true</code>, то в случае ошибки и отсутствия обработчика ошибок — будет возбуждено исключение.</p>
+                    <p>По умолчанию просто выводится сообщение в <code>stderr</code> и прерывается операция.</p>
+                    <h4>i18nFn</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ * @default 'i18n'
+ */</span>
+</code></pre>
+                    <p>Название используемой функции локализации: данная функция будет оборачивать строки локализации.</p>
+                    <h4>localization</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?boolean=}
+ * @default true
+ */</span>
+</code></pre>
+                    <p>Если параметр равен <code>false</code>, то строки вида <code>` ... `</code> не будут дополнительно обрабатываться.</p>
+                    <h4>language</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Object=}
+ */</span>
+</code></pre>
+                    <p>Если задан данный параметр, то строки локализации будут заменятся на этапе трансляции.</p>
+                    <pre class="hljs example-default"><code>{template foo()}
+	`Hello world`
+{/template}
+</code></pre>
+                    <pre class="hljs example-js"><code>Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	'Hello world': 'Привет мир'
+});
+</span></code></pre>
+                    <h4>words</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Object=}
+ */</span>
+</code></pre>
+                    <p>Если задан данный параметр, то найденные в шаблонах строки локализации будут добавляться в него в виде свойств.</p>
+                    <pre class="hljs example-default"><code>{template foo()}
+	`Hello world`
+{/template}
+</code></pre>
+                    <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> words = {};
+
+Snakeskin.compile(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">шаблон</span>&gt;</span>, {
+	words: words
+});
+
+words // {'Hello word': 'Hello word'}
+</span></code></pre>
+                    <h4>module</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ * @default 'default'
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт тип экспорта шаблонов.</p>
+                    <h4>renderAs</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт тип шаблонов для рендеринга, доступны варианты:</p>
+                    <ul>
+                        <li><code>interface</code> — все директивы <a href="#template">template</a> рендерятся как <a href="#interface">interface</a>;</li>
+                        <li><code>placeholder</code> — все директивы <em>template</em> и <em>interface</em> рендерятся <a href="#placeholder">placeholder</a>.</li>
+                    </ul>
+                    <h4>renderMode</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ * @default 'stringConcat'
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт режим рендеринга шаблонов, доступны варианты:</p>
+                    <ul>
+                        <li><code>stringConcat</code> — шаблон генерируется в виде строки, для конкатенаций используется оператор <code>+</code>;</li>
+                        <li><code>stringBuffer</code> — шаблон генерируется в виде строки, для конкатенаций используется оператор <a href="https://github.com/kobezzza/Snakeskin/blob/master/lib/live.es6#L12">StringBuffer</a>;</li>
+                        <li><code>dom</code> — шаблон генерируется в виде <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> с помощью DOM API.</li>
+                    </ul>
+                    <h4>eol</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ * @default '\n'
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт символ перевода строки, который будет использоваться в сгенерированном файле, можно использовать <code>\n</code>, <code>\r</code> или <code>\r\n</code>.</p>
+                    <h4>tolerateWhitespaces</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?boolean=}
+ * @default false
+ */</span>
+</code></pre>
+                    <p>Если параметр равен <code>true</code>, то пробельные символы в шаблоне обрабатываются «как есть».</p>
+                    <h4>ignore</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {RegExp=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт пробельные символы, которые будут игнорироваться в шаблонах.</p>
+                    <h4>doctype</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {(string|boolean|null)=}
+ * @default 'xml'
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт тип XML документа: это влияет на код, который генерируют некоторые директивы, например, <a href="https://github.com/kobezzza/Snakeskin/wiki/tag">tag</a>, а также может включать различные дополнительные проверки на уровне
+                        исходного кода.</p>
+                    <p>Доступны варианты:</p>
+                    <ol>
+                        <li><code>xml</code> — дополнительные проверки шаблона, разметка в стиле xml;</li>
+                        <li><code>html</code> — дополнительные проверки шаблона, разметка в стиле html;</li>
+                        <li><code>false</code> — нет дополнительных проверок, разметка в стиле html.</li>
+                    </ol>
+                    <h4>onError</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?function(!Error)=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт функцию обратного вызова для обработки ошибок.</p>
+                    <h4>useStrict</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?boolean=}
+ * @default true
+ */</span>
+</code></pre>
+                    <p>Если параметр равен <code>false</code>, то шаблоны компилируются без <code>'use strict';</code>.</p>
+                    <h4>bemFilter</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ * @default 'bem'
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт название фильтра для БЭМ.</p>
+                    <h4>prettyPrint</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?boolean=}
+ * @default false
+ */</span>
+</code></pre>
+                    <p>Если параметр равен <code>true</code>, то полученный JS после трансляции будет отформатирован.</p>
+                    <h4>file</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт адрес компилируемого файла.</p>
+                </section>
                 <section id="importFilters" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
