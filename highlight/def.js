@@ -30,7 +30,8 @@ Object.defineProperties(exports, {
 					'for while do break continue',
 					'forEach forIn',
 					'doctype attr tag script style link comment',
-					'op sp ignoreWhitespaces ignoreAllWhitespaces unIgnoreAllWhitespaces'
+					'op sp ignoreWhitespaces ignoreAllWhitespaces unIgnoreAllWhitespaces',
+					'series parallel waterfall final when'
 				].join(' ')
 			};
 		}

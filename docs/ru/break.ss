@@ -93,6 +93,10 @@
 
 ```classic
 {namespace demo}
+
+{import async from 'async'}
+{import fs from 'fs'}
+
 {template index(brk)}
 	{series}
 		{() => cb}

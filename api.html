@@ -5855,7 +5855,177 @@ hello = 'people'
                         </li>
                         <li> Директивы для асинхронной работы </li>
                     </ul>
-                    <h1>series</h1> </section>
+                    <h1>series</h1>
+                    <p>Директива является фасадом для <a href="https://www.npmjs.com/package/async#seriestasks-callback">Async.series</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива является обёрткой над функцией series библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>series</em> должна использоваться директива <a href="#callback">callback</a>. Перед
+                        использованием директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">series</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">series</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
+                    <ol>
+                        <li><code>final</code> — второй параметр Async.series.</li>
+                    </ol>
+                    <p>Для управления переходами внутри блока можно использовать директивы:</p>
+                    <ol>
+                        <li><a href="#break">break</a> — прерывает выполнение операции и переходит в <em>final</em> (если он задан), может принимать параметр;</li>
+                        <li><a href="#continue">continue</a> — прерывает выполнение текущей функции и переходит к следующей (если она если) или к
+                            <em>final</em> (если он задан), может принимать параметр.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <h4>Задание final</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">series</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, files</span><span class="xml">
+		? console.log(err, files)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">series</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
+		</span><span class="hljs-directive">{? console.log(err, files)}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброс операции</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">series</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">if</span></span> brk</span><span class="xml">
+</span><span class="hljs-directive">				- <span class="hljs-name"><span class="hljs-built_in">break</span></span> new Error(<span class="hljs-string">'Skipped'</span>)</span><span class="xml">
+
+			? cb()
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res</span><span class="xml">
+		...
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">series</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> brk}</span><span class="xml">
+				</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">break</span></span> new Error(<span class="hljs-string">'Skipped'</span>)}</span><span class="xml">
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+
+			</span><span class="hljs-directive">{? cb()}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
+		...
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="parallel" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -5864,7 +6034,177 @@ hello = 'people'
                         </li>
                         <li> Директивы для асинхронной работы </li>
                     </ul>
-                    <h1>parallel</h1> </section>
+                    <h1>parallel</h1>
+                    <p>Директива является фасадом для <a href="https://www.npmjs.com/package/async#parallel">Async.parallel</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива является обёрткой над функцией parallel библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>parallel</em> должна использоваться директива <a href="#callback">callback</a>. Перед
+                        использованием директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">parallel</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">parallel</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
+                    <ol>
+                        <li><code>final</code> — второй параметр Async.parallel.</li>
+                    </ol>
+                    <p>Для управления переходами внутри блока можно использовать директивы:</p>
+                    <ol>
+                        <li><a href="#break">break</a> — прерывает выполнение операции и переходит в <em>final</em> (если он задан), может принимать параметр;</li>
+                        <li><a href="#continue">continue</a> — прерывает выполнение текущей функции и переходит к следующей (если она если) или к
+                            <em>final</em> (если он задан), может принимать параметр.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <h4>Задание parallel</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">parallel</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, files</span><span class="xml">
+		? console.log(err, files)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">parallel</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
+		</span><span class="hljs-directive">{? console.log(err, files)}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброс операции</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">parallel</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">if</span></span> brk</span><span class="xml">
+</span><span class="hljs-directive">				- <span class="hljs-name"><span class="hljs-built_in">break</span></span> new Error(<span class="hljs-string">'Skipped'</span>)</span><span class="xml">
+
+			? cb()
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res</span><span class="xml">
+		...
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">parallel</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> brk}</span><span class="xml">
+				</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">break</span></span> new Error(<span class="hljs-string">'Skipped'</span>)}</span><span class="xml">
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+
+			</span><span class="hljs-directive">{? cb()}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
+		...
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="waterfall" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -5873,7 +6213,170 @@ hello = 'people'
                         </li>
                         <li> Директивы для асинхронной работы </li>
                     </ul>
-                    <h1>waterfall</h1> </section>
+                    <h1>waterfall</h1>
+                    <p>Директива является фасадом для <a href="https://www.npmjs.com/package/async#waterfall">Async.waterfall</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива является обёрткой над функцией waterfall библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>waterfall</em> должна использоваться директива <a href="#callback">callback</a>.
+                        Перед использованием директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">waterfall</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> file1, cb</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">waterfall</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> file1, cb}</span><span class="xml">
+			fs.readFile('bar.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
+                    <ol>
+                        <li><code>final</code> — второй параметр Async.waterfall.</li>
+                    </ol>
+                    <p>Для управления переходами внутри блока можно использовать директивы:</p>
+                    <ol>
+                        <li><a href="#break">break</a> — прерывает выполнение операции и переходит в <em>final</em> (если он задан), может принимать параметр;</li>
+                        <li><a href="#continue">continue</a> — прерывает выполнение текущей функции и переходит к следующей (если она если) или к
+                            <em>final</em> (если он задан), может принимать параметр.</li>
+                    </ol>
+                    <h3>Примеры</h3>
+                    <h4>Задание final</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">waterfall</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, files</span><span class="xml">
+		? console.log(err, files)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">waterfall</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
+		</span><span class="hljs-directive">{? console.log(err, files)}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <h4>Сброс операции</h4>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span></span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">waterfall</span></span></span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">if</span></span> brk</span><span class="xml">
+</span><span class="hljs-directive">				- <span class="hljs-name"><span class="hljs-built_in">break</span></span> new Error(<span class="hljs-string">'Skipped'</span>)</span><span class="xml">
+
+			? cb()
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res</span><span class="xml">
+		...
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">waterfall</span></span>}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> brk}</span><span class="xml">
+				</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">break</span></span> new Error(<span class="hljs-string">'Skipped'</span>)}</span><span class="xml">
+			</span><span class="hljs-directive">{/}</span><span class="xml">
+
+			</span><span class="hljs-directive">{? cb()}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
+			fs.readFile('foo.txt', cb)
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
+		...
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="when" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
@@ -6104,7 +6607,7 @@ hello = 'people'
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
 </span><span class="hljs-directive">
 - <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)</span><span class="xml">
-</span><span class="hljs-directive">	- series</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">series</span></span></span><span class="xml">
 </span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
 </span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">if</span></span> brk</span><span class="xml">
 				</span><span class="hljs-comment">/// Управление перейдёт в final c ошибкой</span><span class="xml">
@@ -6115,12 +6618,16 @@ hello = 'people'
 		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
 			fs.readFile('foo.txt', cb)
 </span><span class="hljs-directive">
-	- final err, res</span><span class="xml">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res</span><span class="xml">
 		...
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)}</span><span class="xml">
-	</span><span class="hljs-directive">{series}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">series</span></span>}</span><span class="xml">
 		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
 			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> brk}</span><span class="xml">
 				</span><span class="hljs-comment">/// Управление перейдёт в final c ошибкой</span><span class="xml">
@@ -6134,7 +6641,7 @@ hello = 'people'
 			fs.readFile('foo.txt', cb)
 		</span><span class="hljs-directive">{/}</span><span class="xml">
 
-	</span><span class="hljs-directive">{final err, res}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
 		...
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
@@ -6172,7 +6679,7 @@ hello = 'people'
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Поведение директивы <em>continue</em> зависит от контекста, например, если использовать её внутри циклов или итераторов, то она будет немедленно прерывать текущуюю итерацию и переходить к следующей, а если использовать совместно с асинхронными
+                    <p>Поведение директивы <em>continue</em> зависит от контекста, например, если использовать её внутри циклов или итераторов, то она будет немедленно прерывать текущую итерацию и переходить к следующей, а если использовать совместно с асинхронными
                         директивами, то <em>continue</em> будет осуществлять немедленный переход к следующей функции в цепи.</p>
                     <p>Директива может использоваться только внутри директив:</p>
                     <ul>
@@ -6228,7 +6735,7 @@ hello = 'people'
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span></span><span class="xml">
 </span><span class="hljs-directive">
 - <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)</span><span class="xml">
-</span><span class="hljs-directive">	- waterfall</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">waterfall</span></span></span><span class="xml">
 </span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> cb</span><span class="xml">
 </span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">if</span></span> brk</span><span class="xml">
 </span><span class="hljs-directive">				- <span class="hljs-name"><span class="hljs-built_in">continue</span></span> <span class="hljs-string">'foo.txt'</span></span><span class="xml">
@@ -6239,12 +6746,16 @@ hello = 'people'
 		() <span class="hljs-keyword">=&gt;</span> path, cb</span><span class="xml">
 			fs.readFile(path, cb)
 </span><span class="hljs-directive">
-	- final err, res</span><span class="xml">
+	- <span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res</span><span class="xml">
 		...
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> async from <span class="hljs-string">'async'</span>}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">import</span></span> fs from <span class="hljs-string">'fs'</span>}</span><span class="xml">
+
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(brk)}</span><span class="xml">
-	</span><span class="hljs-directive">{waterfall}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">waterfall</span></span>}</span><span class="xml">
 		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> cb}</span><span class="xml">
 			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> brk}</span><span class="xml">
 				</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">continue</span></span> <span class="hljs-string">'foo.txt'</span>}</span><span class="xml">
@@ -6258,7 +6769,7 @@ hello = 'people'
 			fs.readFile(path, cb)
 		</span><span class="hljs-directive">{/}</span><span class="xml">
 
-	</span><span class="hljs-directive">{final err, res}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">final</span></span> err, res}</span><span class="xml">
 		...
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
