@@ -5919,7 +5919,7 @@ hello = 'people'
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
                     <ol>
-                        <li><code>final</code> — второй параметр Async.series.</li>
+                        <li><code>final</code> — второй параметр Async.series (<a href="guide.html#introParams">функциональная директива</a>).</li>
                     </ol>
                     <p>Для управления переходами внутри блока можно использовать директивы:</p>
                     <ol>
@@ -6098,7 +6098,7 @@ hello = 'people'
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
                     <ol>
-                        <li><code>final</code> — второй параметр Async.parallel.</li>
+                        <li><code>final</code> — второй параметр Async.parallel (<a href="guide.html#introParams">функциональная директива</a>).</li>
                     </ol>
                     <p>Для управления переходами внутри блока можно использовать директивы:</p>
                     <ol>
@@ -6277,7 +6277,7 @@ hello = 'people'
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
                     <ol>
-                        <li><code>final</code> — второй параметр Async.waterfall.</li>
+                        <li><code>final</code> — второй параметр Async.waterfall (<a href="guide.html#introParams">функциональная директива</a>).</li>
                     </ol>
                     <p>Для управления переходами внутри блока можно использовать директивы:</p>
                     <ol>
@@ -6385,7 +6385,64 @@ hello = 'people'
                         </li>
                         <li> Директивы для асинхронной работы </li>
                     </ul>
-                    <h1>when</h1> </section>
+                    <h1>when</h1>
+                    <p>Директива является фасадом для <a href="http://www.html5rocks.com/en/tutorials/es6/promises/">ECMAScript2015 Promise.then</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td>Отсутствует</td>
+                                <td>Блочная, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива является обёрткой над функцией Promise.then и позволяет создавать удобные цепочки асинхронных вызовов. Директива начинается с ключевого слова <code>when</code>, которое должно сопровождаться выражением (заключать выражение
+                        в скобки не обязательно). Вместе с директивой <em>when</em> должна использоваться директива <a href="#callback">callback</a>, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(db)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">when</span></span> db.getData()</span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> data</span><span class="xml">
+			...
+</span><span class="hljs-directive">
+		() <span class="hljs-keyword">=&gt;</span> err</span><span class="xml">
+			...
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">when</span></span> db.getData()}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> data}</span><span class="xml">
+			...
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> err}</span><span class="xml">
+			...
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                </section>
                 <section id="yield" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
