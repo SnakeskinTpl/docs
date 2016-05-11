@@ -35,7 +35,6 @@
 
 ```jade-like
 - namespace demo
-
 - template index()
 	\/// Статичный блок
 	- block hello
@@ -48,7 +47,6 @@
 
 ```classic
 {namespace demo}
-
 {template index()}
 	\/// Статичный блок
 	{block hello}
