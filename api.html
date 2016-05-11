@@ -5909,7 +5909,66 @@ hello = 'people'
                         </li>
                         <li> Наследование </li>
                     </ul>
-                    <h1>super</h1> </section>
+                    <h1>super</h1>
+                    <p>Директива вставляет в шаблон тело родительского <a href="#block">блока</a>.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Только внутри шаблонов или внешних блоков</td>
+                                <td>Отсутствует</td>
+                                <td>Строковая, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива работает по схеме: всплывает по дереву шаблона до тех пор, пока не найдётся блок, который имеет родителя, и вставляет родительское тело в указанное место, а если такого родителя нет, то просто ничего не делает. Директива
+                        может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <h3>Примеры</h3>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> base()</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> base</span><span class="xml">
+		Какой хороший день!
+</span><span class="hljs-directive">
+- <span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">block</span></span> base</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">super</span></span></span><span class="xml">
+		Трудиться мне не лень!
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> base()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> base}</span><span class="xml">
+		Какой хороший день!
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> child()<span class="hljs-keyword"> extends </span>@base}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">block</span></span> base}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">super</span></span>}</span><span class="xml">
+		Трудиться мне не лень!
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                </section>
                 <section id="op" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
