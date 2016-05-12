@@ -178,7 +178,7 @@
 
 ### jsDoc
 
-Snakeskin поддерживает [jsDoc комментарии](http://usejsdoc.org/), которые не вырезаются из конечного JavaScript кода.
+Snakeskin поддерживает [jsDoc комментарии](http://usejsdoc.org), которые не вырезаются из конечного JavaScript кода.
 
 ```classic
 \/**

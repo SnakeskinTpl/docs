@@ -85,7 +85,7 @@ Snakeskin.compile(src, opt_params, opt_info) {
 Параметр задаёт [суперглобальные переменные](#global) Snakeskin.
 
 ```js
-Snakeskin.compile(<шаблон>, {
+Snakeskin.compile('<шаблон>', {
 	vars: {
 		foo: 'bar'
 	}
@@ -100,39 +100,44 @@ Snakeskin.compile(<шаблон>, {
  */
 ```
 
-Параметр задаёт объект для экспорта свойств при компиляции в стиле commonJS.
+Параметр задаёт объект для экспорта свойств при компиляции в стиле [CommonJS](http://www.commonjs.org).
 
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	Hello world!
 ```
-{template foo()}
-	Hello world
+
+```classic
+{namespace demo}
+{template index()
+	Hello world!
 {/template}
 ```
+
+#{/}
 
 ```js
 var tpls = {};
 
-Snakeskin.compile(<шаблон>, {
+Snakeskin.compile('<шаблон>', {
 	context: tpls
 });
 
-tpls.foo() // Hello world
+tpls.demo.foo() // Hello world
 ```
 
-#### debug
+#### onError
 
 ```js
 \/**
- * @type {Object=}
+ * @type {?function(!Error)=}
  */
 ```
 
-Объект, который будет содержать в себе некоторую отладочную информацию.
-
-```js
-var info = {};
-Snakeskin.compile(<шаблон>, {debug: info});
-info.code // Исходный текст полученного JS файла
-```
+Параметр задаёт функцию обратного вызова для обработки ошибок.
 
 #### throws
 
@@ -147,16 +152,152 @@ info.code // Исходный текст полученного JS файла
 
 По умолчанию просто выводится сообщение в `stderr` и прерывается операция.
 
-#### i18nFn
+#### debug
+
+```js
+\/**
+ * @type {Object=}
+ */
+```
+
+Объект, который будет содержать в себе некоторую отладочную информацию.
+
+```js
+var info = {};
+Snakeskin.compile('<шаблон>', {debug: info});
+info.code // Исходный текст полученного JS файла
+```
+
+#### pack
+
+```js
+\/**
+ * @type {?boolean=}
+ * @default false
+ */
+```
+
+Если параметр равен `true`, то модель импорта/экспорта модулей будет оптимизирована для использования вместе с WebPack.
+
+#### module
 
 ```js
 \/**
  * @type {?string=}
- * @default 'i18n'
+ * @default 'umd'
  */
 ```
 
-Название используемой функции локализации: данная функция будет оборачивать строки локализации.
+Тип импорта/экспорта модулей, доступны варианты:
+
+* [umd](https://github.com/umdjs/umd);
+* `global` (сохранение напрямую в глобальный объект);
+* [cjs](http://www.commonjs.org);
+* [amd](http://requirejs.org/docs/whyamd.html#amd);
+* [native](http://www.2ality.com/2014/09/es6-modules-final.html).
+
+#### moduleId
+
+```js
+\/**
+ * @type {?string=}
+ * @default 'tpls'
+ */
+```
+
+ИД модуля для `umd`/`amd` декларации: первый параметр функции [define](http://requirejs.org/docs/whyamd.html#namedmodules).
+
+#### moduleName
+
+```js
+\/**
+ * @type {?string=}
+ */
+```
+
+Название модуля для `umd`/`global` декларации: если задан, то в глобальном объекте (`window` и т.д.) будет создано свойство
+с указанным именем, куда будут сохраняться полученные шаблоны, иначе, всё будет сохранено напрямую в глобальный объект.
+
+#### useStrict
+
+```js
+\/**
+ * @type {?boolean=}
+ * @default true
+ */
+```
+
+Если параметр равен `false`, то шаблоны компилируются без `'use strict';`.
+
+#### prettyPrint
+
+```js
+\/**
+ * @type {?boolean=}
+ * @default false
+ */
+```
+
+Если параметр равен `true`, то полученный JS после трансляции будет отформатирован.
+
+#### literalBounds
+
+```js
+\/**
+ * @type {Array<string>=}
+ * @default ['{{', '}}']
+ */
+```
+
+Параметр задаёт "врапперы" для директивы [literal](#literal), например:
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index() @= literalBounds ['<?php', '?>']
+	{{ Hello }}
+```
+
+```classic
+{namespace demo}
+{template index() @= literalBounds ['<?php', '?>']}
+	{{ Hello }}
+{/template}
+```
+
+#{/}
+
+Отрендерится как:
+
+```html
+<?php Hello ?>
+```
+
+#### bemFilter
+
+```js
+\/**
+ * @type {?string=}
+ * @default 'bem'
+ */
+```
+
+Параметр задаёт название [фильтра](guide.html#filters) для обработки [липких ссылок](#tag--Ссылки_на_родительский_класс),
+по умолчанию используется `Snakeskin.Filters.bem`.
+
+#### filters
+
+```js
+\/**
+ * @type {Object<Array<string>>=}
+ * @default {global: ['html', 'undef'], local: ['undef']}
+ */
+```
+
+Объект [фильтров](guide.html#filters) по умолчанию для директивы [output](#output):
+фильтры бывают 2-х видов - глобальные (применяются ко всему полученному выражению, ключ `global`) и
+локальные (применяются к каждой части выражения по отдельности, ключ `local`).
 
 #### localization
 
@@ -167,7 +308,51 @@ info.code // Исходный текст полученного JS файла
  */
 ```
 
-Если параметр равен `false`, то строки вида `` ` ... ` `` не будут дополнительно обрабатываться.
+Если параметр равен `false`, то [строки локализации](guide.html#localization) будут отключены, т.е. сохраняются "как есть".
+
+#### i18nFn
+
+```js
+\/**
+ * @type {?string=}
+ * @default 'i18n'
+ */
+```
+
+Название используемой глобальной функции локализации: данная функция будет оборачивать [строки локализации](guide.html#localization).
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	`Hello world!`
+```
+
+```classic
+{namespace demo}
+{template index()}
+	`Hello world!`
+{/template}
+```
+
+#{/}
+
+Строка `` `Hello world!` `` скомпилируется как
+
+```js
+i18n("hello world!")
+```
+
+#### i18nFnOptions
+
+```js
+\/**
+ * @type {?string=}
+ */
+```
+
+Передаваемые параметры для [глобальной функции локализации](#compile--i18nFn) в строковом виде, например, `'{lang: "en"}, true'`.
 
 #### language
 
@@ -177,17 +362,28 @@ info.code // Исходный текст полученного JS файла
  */
 ```
 
-Если задан данный параметр, то строки локализации будут заменятся на этапе трансляции.
+Если задан данный параметр, то [строки локализации](guide.html#localization) будут заменятся на этапе трансляции.
 
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	`Hello world!`
 ```
-{template foo()}
-	`Hello world`
+
+```classic
+{namespace demo}
+{template index()}
+	`Hello world!`
 {/template}
 ```
 
+#{/}
+
 ```js
-Snakeskin.compile(<шаблон>, {
-	'Hello world': 'Привет мир'
+Snakeskin.compile('<шаблон>', {
+	'Hello world!': 'Привет мир!'
 });
 ```
 
@@ -199,34 +395,68 @@ Snakeskin.compile(<шаблон>, {
  */
 ```
 
-Если задан данный параметр, то найденные в шаблонах строки локализации будут добавляться в него в виде свойств.
+Если задан данный параметр, то найденные в шаблонах [строки локализации](guide.html#localization) будут добавляться
+в него в виде свойств.
 
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index()
+	`Hello world!`
 ```
-{template foo()}
-	`Hello world`
+
+```classic
+{namespace demo}
+{template index()}
+	`Hello world!`
 {/template}
 ```
+
+#{/}
 
 ```js
 var words = {};
 
-Snakeskin.compile(<шаблон>, {
+Snakeskin.compile('<шаблон>', {
 	words: words
 });
 
-words // {'Hello word': 'Hello word'}
+// {'Hello world!': 'Hello world!'}
+console.log(words);
 ```
 
-#### module
+#### ignore
+
+```js
+\/**
+ * @type {RegExp=}
+ */
+```
+
+Параметр задаёт пробельные символы, которые будут игнорироваться в шаблонах.
+
+#### tolerateWhitespaces
+
+```js
+\/**
+ * @type {?boolean=}
+ * @default false
+ */
+```
+
+Если параметр равен `true`, то все пробельные символы в шаблоне обрабатываются "как есть".
+
+#### eol
 
 ```js
 \/**
  * @type {?string=}
- * @default 'default'
+ * @default '\n'
  */
 ```
 
-Параметр задаёт тип экспорта шаблонов.
+Параметр задаёт символ перевода строки, который будет использоваться в сгенерированном файле, можно использовать `\n`, `\r` или `\r\n`.
 
 #### renderAs
 
@@ -253,101 +483,22 @@ words // {'Hello word': 'Hello word'}
 Параметр задаёт режим рендеринга шаблонов, доступны варианты:
 
 * `stringConcat` - шаблон генерируется в виде строки, для конкатенаций используется оператор `+`;
-* `stringBuffer` - шаблон генерируется в виде строки, для конкатенаций используется оператор [StringBuffer](https://github.com/kobezzza/Snakeskin/blob/master/lib/live.es6#L12);
-* `dom` - шаблон генерируется в виде [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) с помощью DOM API.
-
-#### eol
-
-```js
-\/**
- * @type {?string=}
- * @default '\n'
- */
-```
-
-Параметр задаёт символ перевода строки, который будет использоваться в сгенерированном файле, можно использовать `\n`, `\r` или `\r\n`.
-
-#### tolerateWhitespaces
-
-```js
-\/**
- * @type {?boolean=}
- * @default false
- */
-```
-
-Если параметр равен `true`, то пробельные символы в шаблоне обрабатываются «как есть».
-
-#### ignore
-
-```js
-\/**
- * @type {RegExp=}
- */
-```
-
-Параметр задаёт пробельные символы, которые будут игнорироваться в шаблонах.
+* `stringBuffer` - шаблон генерируется в виде строки, для конкатенаций используется оператор
+[StringBuffer](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L26);
+* `dom` - шаблон генерируется в виде [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment)
+с помощью DOM API.
 
 #### doctype
 
 ```js
 \/**
- * @type {(string|boolean|null)=}
+ * @type {?string=}
  * @default 'xml'
  */
 ```
 
-Параметр задаёт тип XML документа: это влияет на код, который генерируют некоторые директивы, например, [tag](https://github.com/kobezzza/Snakeskin/wiki/tag), а также может включать различные дополнительные проверки на уровне исходного кода.
-
-Доступны варианты:
-
-1. `xml` - дополнительные проверки шаблона, разметка в стиле xml;
-2. `html` - дополнительные проверки шаблона, разметка в стиле html;
-3. `false` - нет дополнительных проверок, разметка в стиле html.
-
-#### onError
-
-```js
-\/**
- * @type {?function(!Error)=}
- */
-```
-
-Параметр задаёт функцию обратного вызова для обработки ошибок.
-
-
-#### useStrict
-
-```js
-\/**
- * @type {?boolean=}
- * @default true
- */
-```
-
-Если параметр равен `false`, то шаблоны компилируются без `'use strict';`.
-
-#### bemFilter
-
-```js
-\/**
- * @type {?string=}
- * @default 'bem'
- */
-```
-
-Параметр задаёт название фильтра для БЭМ.
-
-#### prettyPrint
-
-```js
-\/**
- * @type {?boolean=}
- * @default false
- */
-```
-
-Если параметр равен `true`, то полученный JS после трансляции будет отформатирован.
+Параметр задаёт тип XML документа: это влияет на код, который генерируют некоторые директивы, например, [tag](#tag),
+доступны варианты: `xml` и `html`.
 
 #### file
 

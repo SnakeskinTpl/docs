@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива является фасадом для [ECMAScript2015 Promise.then](http://www.html5rocks.com/en/tutorials/es6/promises/).
+Директива является фасадом для [ECMAScript2015 Promise.then](http://www.html5rocks.com/en/tutorials/es6/promises).
 
 ## Паспорт
 

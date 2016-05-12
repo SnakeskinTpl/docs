@@ -47,7 +47,7 @@ exports.demo.helloWorld = function helloWorld(name) {
 ```
 
 После компиляции вызов шаблона соответствует простому вызову функции.
-Такой же подход используется в [Google Closure Templates](https://developers.google.com/closure/templates/).
+Такой же подход используется в [Google Closure Templates](https://developers.google.com/closure/templates).
 
 ## Способы использования и основные use-case
 
@@ -188,7 +188,7 @@ Vue.component('button', {
 });
 ```
 
-В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора [Babel](https://babeljs.io/),
+В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора [Babel](https://babeljs.io),
 чтобы обеспечить поддержку в старых браузерах.
 
 ### Статическая генерация страниц вместе с Gulp
