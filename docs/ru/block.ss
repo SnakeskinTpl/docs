@@ -82,7 +82,6 @@
 
 ```jade-like
 - namespace demo
-
 - template index()
 	- block hello(name)
 		Hello {name}!
@@ -92,7 +91,6 @@
 
 ```classic
 {namespace demo}
-
 {template index()}
 	{block hello(name)}
 		Hello {name}!
