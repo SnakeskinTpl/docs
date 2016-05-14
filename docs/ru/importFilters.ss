@@ -18,7 +18,7 @@
 ## Интерфейс
 
 ```js
-Snakeskin.importFilters(filters, opt_namespace) { return void 0; }
+Snakeskin.importFilters(filters, opt_namespace) { return undefined; }
 ```
 
 ### Аргументы
