@@ -5792,7 +5792,7 @@ hello = 'people'
                         <li> Модули </li>
                     </ul>
                     <h1>import</h1>
-                    <p>Директива ипортирует в заданный файл ссылки из указанного JavaScript модуля и по своей семантике близка к реализации в JavaScript.</p>
+                    <p>Директива импортирует в заданный файл ссылки из указанного JavaScript модуля и по своей семантике близка к реализации в JavaScript.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -6075,7 +6075,7 @@ hello = 'people'
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Внутри такой декларации можно использовать любые допустимые директивы, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д. Свойства объекту ставяться с помощью директивы <a href="#putIn">putIn</a>. Чтобы получить
+                    <p>Внутри такой декларации можно использовать любые допустимые директивы, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д. Свойства объекту ставятся с помощью директивы <a href="#putIn">putIn</a>. Чтобы получить
                         явную ссылку на созданный объект, то его нужно присвоить переменной: самый простой способ — это использовать оператор <code>as</code>, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -6405,7 +6405,89 @@ hello = 'people'
                         </li>
                         <li> Создание литералов </li>
                     </ul>
-                    <h1>putIn</h1> </section>
+                    <h1>putIn</h1>
+                    <p>Директива задает значение переменной или свойству объекта в виде подшаблона Snakeskin.</p>
+                    <h2>Паспорт</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Декларация</th>
+                                <th>Короткий синтаксис</th>
+                                <th>Тип директивы</th>
+                                <th>Интерполяция</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Без ограничений</td>
+                                <td><code>*</code></td>
+                                <td>Блочная, логическая</td>
+                                <td>Не требуется</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <h2>Описание</h2>
+                    <p>Директива <em>putIn</em> несёт двойную функциональность: с одной стороны она позволяет присвоить подшаблон Snakeskin переменной или свойству объекта, а с другой — является частью директивы <a href="#call">call</a> и <a href="#target">target</a>.
+                        Совместное использование <em>putIn</em> подробно рассмотрено в других главах, поэтому здесь описываться не будет.</p>
+                    <p>Для изменения переменной или свойства объекта через <em>putIn</em> используется общая форма:</p>
+                    <pre class="hljs example-js"><code>putIn ссылка
+	Шаблон
+</code></pre>
+                    <p>Например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index(val)</span><span class="xml">
+</span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">var</span></span> myObj = {}</span><span class="xml">
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">putIn</span></span> myObj.foo</span><span class="xml">
+</span><span class="hljs-directive">		&lt; .hello</span><span class="xml">
+			Hello world!
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">putIn</span></span> myObj.calc</span><span class="xml">
+</span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> a, b</span><span class="xml">
+</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">return</span></span> a + b</span><span class="xml">
+</span><span class="hljs-directive">
+	- <span class="hljs-name"><span class="hljs-built_in">putIn</span></span> myObj.arr</span><span class="xml">
+</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">target</span></span> []</span><span class="xml">
+			Hello people!
+
+	? console.log(myObj)
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> myObj = {}</span><span class="xml"> /}
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">putIn</span></span> myObj.foo}</span><span class="xml">
+		</span><span class="hljs-directive">{&lt; .hello}</span><span class="xml">
+			Hello world!
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">putIn</span></span> myObj.calc}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> a, b}</span><span class="xml">
+			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> a + b}</span><span class="xml">
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">putIn</span></span> myObj.arr}</span><span class="xml">
+		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">target</span></span> []}</span><span class="xml">
+			Hello people!
+		</span><span class="hljs-directive">{/}</span><span class="xml">
+	</span><span class="hljs-directive">{/}</span><span class="xml">
+
+	</span><span class="hljs-directive">{? console.log(myObj)}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Внутри такой декларации можно использовать любые допустимые директивы, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д. Директива может использоваться как внутри шаблонов или других директив, так и в глобальной
+                        области.</p>
+                </section>
                 <section id="series" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
