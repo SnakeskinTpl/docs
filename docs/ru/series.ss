@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива является фасадом для [Async.series](https://www.npmjs.com/package/async#seriestasks-callback).
+Директива является фасадом для [Async.series](https://www.npmjs.com/package/async#seriestasks-func).
 
 ## Паспорт
 
@@ -24,7 +24,7 @@
 ## Описание
 
 Директива является обёрткой над функцией series библиотеки Async и позволяет создавать удобные цепочки
-асинхронных вызовов. Вместе с директивой *series* должна использоваться директива [callback](#callback).
+асинхронных вызовов. Вместе с директивой *series* должна использоваться директива [func](#func).
 Перед использованием директивы необходимо подключить через [import](#import) саму библиотеку Async, например:
 
 #{+= self.example()}

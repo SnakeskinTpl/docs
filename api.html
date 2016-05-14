@@ -131,7 +131,7 @@
                             </li>
                             <li class="b-contents__part b-contents__part_link_false">Создание литералов
                                 <ol>
-                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#func">callback</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#func">func</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#target">target</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#putIn">putIn</a> </li>
                                 </ol>
@@ -5852,7 +5852,7 @@ hello = 'people'
                         </li>
                         <li> Создание литералов </li>
                     </ul>
-                    <h1>callback</h1>
+                    <h1>func</h1>
                     <p>Директива декларирует анонимную функцию.</p>
                     <h2>Паспорт</h2>
                     <table>
@@ -5874,8 +5874,8 @@ hello = 'people'
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива <em>callback</em> декларирует анонимную функцию-литерал и обычно используется в связи с другими директивами, которые требуют аргумент-функцию, например, <a href="#series">series</a> или <a href="#parallel">parallel</a>.</p>
-                    <p>Директива начинается с ключевого слова <code>callback</code> (или символов <code>()</code> или <code>() =&gt;</code>), которое может списком аргументов функции через запятую, например:</p>
+                    <p>Директива <em>func</em> декларирует анонимную функцию-литерал и обычно используется в связи с другими директивами, которые требуют аргумент-функцию, например, <a href="#series">series</a> или <a href="#parallel">parallel</a>.</p>
+                    <p>Директива начинается с ключевого слова <code>func</code> (или символов <code>()</code> или <code>() =&gt;</code>), которое может сопровождаться списком аргументов функции через запятую, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -5896,31 +5896,10 @@ hello = 'people'
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Параметров у такой функции может быть неограниченное количество, а т. к. директива <em>callback</em> является функциональной, то она реализует <a href="guide.html#introParams">стандартный механизм декларации параметров</a>. Директива
-                        может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
-                    <h3>callback и <a href="#return">return</a></h3>
-                    <p>По умолчанию функции созданные через <em>callback</em> не возвращают никакого значения, поэтому для этого нужно использовать директиву <em>return</em>, например:</p>
-                    <div class="b-example">
-                        <menu class="b-example__toggle">
-                            <li class="b-example__link b-example__link_active_true">jade-like</li>
-                            <li class="b-example__link">classic</li>
-                        </menu>
-                        <div class="b-example__code">
-                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
-</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
-</span><span class="hljs-directive">	() <span class="hljs-keyword">=&gt;</span> a, b</span><span class="xml">
-</span><span class="hljs-directive">		- <span class="hljs-name"><span class="hljs-built_in">return</span></span> a + b</span><span class="xml">
-</span></code></pre>
-                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
-	</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> a, b}</span><span class="xml">
-		</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> a + b /}</span><span class="xml">
-	</span><span class="hljs-directive">{/}</span><span class="xml">
-</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
-</span></code></pre>
-                        </div>
-                    </div>
-                    <h3>callback и <a href="#var">var</a></h3>
+                    <p>Параметров у такой функции может быть неограниченное количество, а т. к. директива <em>func</em> является функциональной, то она реализует <a href="guide.html#introParams">стандартный механизм декларации параметров</a>. По умолчанию
+                        такие функции возвращают строки, однако это поведение можно поменять задав специальный <a href="#compile--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>. Директива может использоваться
+                        как внутри шаблонов или других директив, так и в глобальной области.</p>
+                    <h3>func и <a href="#var">var</a></h3>
                     <p>Чтобы создать переменную с функциональным значением необходимо использовать конструкцию <code>var putIn</code>:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -5949,7 +5928,7 @@ hello = 'people'
 </span></code></pre>
                         </div>
                     </div>
-                    <h3>callback и <a href="#call">call</a>, <a href="#target">target</a>, <a href="#putIn">putIn</a></h3>
+                    <h3>func и <a href="#call">call</a>, <a href="#target">target</a>, <a href="#putIn">putIn</a></h3>
                     <p>Функцию можно передавать как аргумент при вызове другой функции с помощью директивы <em>call</em>:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -5962,15 +5941,12 @@ hello = 'people'
 </span><span class="hljs-directive">	+= [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map()</span><span class="xml">
 </span><span class="hljs-directive">		() <span class="hljs-keyword">=&gt;</span> el</span><span class="xml">
 			el = </span><span class="hljs-directive">{el}</span><span class="xml">
-</span><span class="hljs-directive">			- <span class="hljs-name"><span class="hljs-built_in">return</span></span> getTplResult()</span><span class="xml">
 </span></code></pre>
                             <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
-	</span><span class="hljs-comment">/// Мы создали функцию,</span><span class="xml">
-	</span><span class="hljs-comment">/// а затем присвоили её переменной calc</span><span class="xml">
-	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> putIn calc}</span><span class="xml">
-		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> a, b}</span><span class="xml">
-			</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">return</span></span> a + b /}</span><span class="xml">
+	</span><span class="hljs-directive">{+= [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>].map()}</span><span class="xml">
+		</span><span class="hljs-directive">{() <span class="hljs-keyword">=&gt;</span> el}</span><span class="xml">
+			el = </span><span class="hljs-directive">{el}</span><span class="xml">
 		</span><span class="hljs-directive">{/}</span><span class="xml">
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
@@ -6058,7 +6034,7 @@ hello = 'people'
                         <li> Директивы для асинхронной работы </li>
                     </ul>
                     <h1>series</h1>
-                    <p>Директива является фасадом для <a href="https://www.npmjs.com/package/async#seriestasks-callback">Async.series</a>.</p>
+                    <p>Директива является фасадом для <a href="https://www.npmjs.com/package/async#seriestasks-func">Async.series</a>.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -6079,8 +6055,8 @@ hello = 'people'
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива является обёрткой над функцией series библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>series</em> должна использоваться директива <a href="#callback">callback</a>. Перед
-                        использованием директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
+                    <p>Директива является обёрткой над функцией series библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>series</em> должна использоваться директива <a href="#func">func</a>. Перед использованием
+                        директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -6258,8 +6234,8 @@ hello = 'people'
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива является обёрткой над функцией parallel библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>parallel</em> должна использоваться директива <a href="#callback">callback</a>. Перед
-                        использованием директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
+                    <p>Директива является обёрткой над функцией parallel библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>parallel</em> должна использоваться директива <a href="#func">func</a>. Перед использованием
+                        директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -6437,8 +6413,8 @@ hello = 'people'
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива является обёрткой над функцией waterfall библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>waterfall</em> должна использоваться директива <a href="#callback">callback</a>.
-                        Перед использованием директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
+                    <p>Директива является обёрткой над функцией waterfall библиотеки Async и позволяет создавать удобные цепочки асинхронных вызовов. Вместе с директивой <em>waterfall</em> должна использоваться директива <a href="#func">func</a>. Перед использованием
+                        директивы необходимо подключить через <a href="#import">import</a> саму библиотеку Async, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -7262,7 +7238,7 @@ info.code <span class="hljs-comment">// Исходный текст получе
  * @default false
  */</span>
 </code></pre>
-                    <p>Если параметр равен <code>true</code>, то модель импорта/экспорта модулей будет оптимизирована для использования вместе с WebPack.</p>
+                    <p>Если параметр равен <code>true</code>, то модель импорта/экспорта модулей будет оптимизирована для использования вместе с <a href="http://webpack.github.io/">WebPack</a>.</p>
                     <h4>module</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {?string=}
