@@ -78,7 +78,7 @@
 {async template index()}
 	{await}
 		{block getData() =>}
-			{return db.getData()}
+			{return db.getData() /}
 		{/}
 	{/}
 {/template}

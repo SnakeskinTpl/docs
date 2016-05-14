@@ -215,7 +215,7 @@ exports.demo.index = function index(name) {
 		{() => target}
 			{return}
 				{() =>}
-					{return new Typograf(params).execute(target.apply(this, arguments))}
+					{return new Typograf(params).execute(target.apply(this, arguments)) /}
 				{/}
 			{/}
 		{/}
