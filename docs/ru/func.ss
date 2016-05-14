@@ -160,7 +160,7 @@
 	{target {} as map /}
 	{putIn map.calc}
 		{() => a, b}
-			{return a + b}
+			{return a + b /}
 		{/}
 	{/}
 {/template}
