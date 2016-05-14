@@ -131,7 +131,7 @@
                             </li>
                             <li class="b-contents__part b-contents__part_link_false">Создание литералов
                                 <ol>
-                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#calback">callback</a> </li>
+                                    <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#func">callback</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#target">target</a> </li>
                                     <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#putIn">putIn</a> </li>
                                 </ol>
@@ -269,8 +269,8 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Т.к. пространство имён превращается в JS объект, то на используемое имя накладываются те же ограничения, что и на свойство объекта, однако можно использовать декларацию через квадратные скобки (<code>[ ... ]</code>), которая позволяет
-                        использовать любые символы и сложные выражения, например:</p>
+                    <p>Т.к. пространство имён превращается в JS объект, то на декларируемое имя накладываются те же ограничения, что и на свойство объекта, однако можно использовать декларацию через квадратные скобки (<code>[ ... ]</code>), которая позволяет
+                        применять любые символы и сложные выражения, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -341,7 +341,7 @@
                     </div>
                     <p>Директива может использоваться только в глобальной области.</p>
                     <h3>Плейсхолдеры имени</h3>
-                    <p>При декларации пространства имён можно использовать специальные плейсхолдеры, которые заменятся на некоторое статическое значение в рамках своего контекста.</p>
+                    <p>При декларации пространства имён можно использовать специальные плейсхолдеры, которые заменяются при трансляции на некоторое статическое значение в рамках своего контекста.</p>
                     <h4>%dirName%</h4>
                     <p>Плейсхолдер <code>%dirName%</code> заменяется на имя директории, в которой лежит исходный файл Snakeskin, например:</p>
                     <p><strong>foo/index.ss</strong></p>
@@ -458,9 +458,9 @@
                     </table>
                     <h2>Описание</h2>
                     <p>Шаблон Snakeskin — это синоним функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом. По умолчанию шаблоны возвращают строки, однако это
-                        поведение можно поменять задав специальный <a href="#api--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>.</p>
+                        поведение можно поменять задав специальный <a href="#compile--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>.</p>
                     <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам. Начать декларацию шаблона можно только после декларации пространства имён, причём в рамках одного пространства имён не может быть
-                        2-х шаблонов с одинаковым именем, а размещаться шаблон может только в глобальной области декларации, т. е. шаблон не может включать в себя другой шаблон — для этого есть подшаблоны.</p>
+                        2-х шаблонов с одинаковым именем, а размещаться шаблон может только в глобальной области декларации, т. е. шаблон не может включать в себя другой шаблон — для этого есть подшаблоны, например, <a href="#block">блоки</a>.</p>
                     <p>Декларация шаблона очень похожа на декларацию функции в JavaScript, только вместо ключевого слова <code>function</code> используется
                         <code>template</code>, например:</p>
                     <div class="b-example">
@@ -535,6 +535,7 @@
                     <p><code>callee</code> — ссылка на исходную функцию-шаблон;</p>
                     <p><code>self</code> — ссылка на объект <code>callee.Blocks</code>, в котором хранятся вызываемые блоки (методы) исходного шаблона;</p>
                     <p><code>$0</code> — ссылка на активный DOM узел (если <code>renderMode == 'dom'</code>);</p>
+                    <p><code>$class</code> — значение <a href="">липкой ссылки</a>#tag--Ссылки_на_родительский_класс;</p>
                     <p><code>getTplResult</code> — функция, которая возвращает результат работы шаблона, также может принимать один логический входной параметр, при задании которого после вызова функции результат работы шаблона будет обнуляться;</p>
                     <p><code>clearTplResult</code> — функция, которая обнуляет результат работы шаблона.</p>
                     <h3>Модификаторы шаблона</h3>
@@ -838,7 +839,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива <em>block</em> несёт двойную функциональность: с одной стороны она позволяет создавать <a href="#guide.html#inheritBasic">статичные блоки</a>, а с другой — вызываемые. Блоки — являются фундаментальной ячейкой Snakeskin, т. к.
+                    <p>Директива <em>block</em> несёт двойную функциональность: с одной стороны она позволяет создавать <a href="#guide.html#inheritBasic">статичные блоки</a>, а с другой — вызываемые. Блоки являются фундаментальной ячейкой Snakeskin, т. к.
                         играют ключевую роль при наследовании, но если статичный блок — это просто выделение фрагмента текста, чтобы в дальнейшем иметь возможность его переопределить в дочернем шаблоне, то вызываемый блок — это по сути вложенная функция-шаблон,
                         т. е. после декларации его можно неоднократно вызывать и передавать различные параметры.</p>
                     <p>Разница в декларации статичного блока от динамического заключается в наличии скобок для параметров, например:</p>
@@ -874,7 +875,7 @@
                         </div>
                     </div>
                     <p>Параметров у блока может быть неограниченное количество, а т. к. директива <em>block</em> является функциональной, то она реализует <a href="guide.html#introParams">стандартный механизм декларации параметров</a>. По умолчанию вызываемые
-                        блоки возвращают строки, однако это поведение можно поменять задав специальный <a href="#api--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>.</p>
+                        блоки возвращают строки, однако это поведение можно поменять задав специальный <a href="#compile--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>.</p>
                     <p>Название блока соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам, причём статичные блоки и вызываемые лежат в одном пространстве имён. В рамках шаблона не может быть 2-х блоков с одинаковым названием.</p>
                     <h3>Блок как метод шаблона</h3>
                     <p>Вызываемые блоки — это методы шаблона, т. е. они наследуются в дочерних шаблонах, могут переопределяться и т. д., а сама механика наследования практически идентична со статичными блоками и шаблонами, и описана в <a href="guide.html#inheritBlocks">отдельной главе</a>.</p>
@@ -973,7 +974,7 @@
                             <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 </span><span class="hljs-directive">
 - <span class="hljs-name"><span class="hljs-built_in">block</span></span> index<span class="hljs-keyword">-&gt;</span>hello(name) <span class="hljs-keyword">=&gt;</span> <span class="hljs-string">'kobezzza'</span></span><span class="xml">
-		Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
+	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
 </span><span class="hljs-directive">
 - <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
 </span></code></pre>
@@ -1285,7 +1286,7 @@
                     <h2>Описание</h2>
                     <p>Директива <em>call</em> похожа на <a href="#output">output</a>, т. е. она тоже вставляет результат выражения в шаблон, однако, она не накладывает по умолчанию на выводимые данные фильтр <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L175">html</a>,
                         т. е. выводимое выражение не экранируется и это является аналогом использования фильтра <code>!html</code>.</p>
-                    <p>Директива начинается с ключевого слова <code>call</code> (или символов <code>+=</code>), которое может сопровождаться ссылкой на возвращаемое значение или выражение, например:</p>
+                    <p>Директива начинается с ключевого слова <code>call</code> (или символов <code>+=</code>), которое должно сопровождаться ссылкой на выводимое значение или выражение (заключать выражение в скобки не обязательно), например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1549,7 +1550,7 @@
                         </div>
                     </div>
                     <h3>Примеры</h3>
-                    <h4>Передача функции-параметра с помощью <a href="#callback">callback</a></h4>
+                    <h4>Передача функции-параметра с помощью <a href="#func">func</a></h4>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -2182,6 +2183,7 @@
 </span></code></pre>
                         </div>
                     </div>
+                    <p>Внутри такой декларации можно использовать любые допустимые директивы, например, <a href="#if">if</a>, <a href="#forEach">forEach</a> и т. д.</p>
                     <h3>Примеры</h3>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -2654,8 +2656,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива является инвертной формой <a href="#if">if</a>, т. е. если <strong>if</strong> блок выполнится только в том случае когда условное выражение будет приведено к <code>true</code>, то <strong>unless</strong> выполнится в случае
-                        <code>false</code>.</p>
+                    <p>Директива является инвертной формой <a href="#if">if</a>, т. е. если <em>if</em> блок выполнится только в том случае когда условное выражение будет приведено к <code>true</code>, то <em>unless</em> выполнится в случае <code>false</code>.</p>
                     <p>Директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения.</p>
                     <p>Директива начинается с ключевого слова <code>unless</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно).</p>
                     <p>Самая простая форма выглядит так:</p>
@@ -2732,7 +2733,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li> Логические директивы </li>
                     </ul>
                     <h1>switch</h1>
-                    <p>Директива <em>switch</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript (<code>break</code> ставится автоматически после каждого блока <strong>case</strong>).</p>
+                    <p>Директива <em>switch</em> является эквивалентом одноименного оператора в различных языках программирования и по своей семантике близка к реализации в JavaScript (<code>break</code> ставится автоматически после каждого блока <em>case</em>).</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -2746,7 +2747,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <tbody>
                             <tr>
                                 <td>Без ограничений</td>
-                                <td><code>&gt;</code> (для <strong>case</strong>)</td>
+                                <td><code>&gt;</code> (для <em>case</em>)</td>
                                 <td>Блочная, логическая</td>
                                 <td>Не требуется</td>
                             </tr>
@@ -2756,7 +2757,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     <p>Подобно <a href="#if">if</a> или <a href="#unless">unless</a> директива позволяет вашему шаблону в зависимости от условий выполнить некоторую логику или сгенерировать фрагмент шаблона, основываясь на значении переменной или выражения,
                         но предоставляет более удобный синтаксис когда нужно сравнить выражение сразу с несколькими вариантами.</p>
                     <p>Директива начинается с ключевого слова <code>switch</code>, которое должно сопровождаться выражением (заключать выражение в скобки не обязательно), а внутри директивы должны использоваться вспомогательные директивы
-                        <strong>case</strong> и/или <strong>default</strong>. Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
+                        <em>case</em> и/или <em>default</em>. Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области.</p>
                     <p>Директива <em>case</em> начинается с ключевого слова <code>case</code> (или символа <code>&gt;</code>), а после должно следовать выражение выражение для сравнения со <em>switch</em>. В отличии от реализации <em>case</em> в JS — оператор
                         <code>break</code> ставиться автоматически после каждого блока.
                     </p>
@@ -3241,7 +3242,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     </table>
                     <h2>Описание</h2>
                     <p>Директива итерирует заданное значение с помощью функции
-                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L239">Snakeskin.forEach</a> и может работать как с объектами, так и с массивами.</p>
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L245">Snakeskin.forEach</a> и может работать как с объектами, так и с массивами.</p>
                     <p>Общая форма директивы следующая:</p>
                     <pre class="hljs example-js"><code>forEach ссылка на объект или сам объект =&gt; параметры функции через запятую
 	команда
@@ -3273,19 +3274,27 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li>Значение элемента;</li>
                         <li>Номер итерации;</li>
                         <li>Ссылка на итерируемый массив;</li>
-                        <li>Является ли элемент первым;</li>
-                        <li>Является ли элемент последним;</li>
-                        <li>Длина массива.</li>
+                        <li>Объект:
+                            <ul>
+                                <li><code>isFirst</code> — является ли элемент первым;</li>
+                                <li><code>isLast</code> — является ли элемент последним;</li>
+                                <li><code>length</code> — длина массива.</li>
+                            </ul>
+                        </li>
                     </ol>
                     <h3>Параметры для таблицы</h3>
                     <ol>
                         <li>Значение элемента;</li>
                         <li>Ключ;</li>
                         <li>Ссылка на итерируемый объект;</li>
-                        <li>Номер итерации;</li>
-                        <li>Является ли элемент первым;</li>
-                        <li>Является ли элемент последним;</li>
-                        <li>Количество элементов в объекте.</li>
+                        <li>Объект:
+                            <ul>
+                                <li><code>i</code> — номер итерации;</li>
+                                <li><code>isFirst</code> — является ли элемент первым;</li>
+                                <li><code>isLast</code> — является ли элемент последним;</li>
+                                <li><code>length</code> — длина массива.</li>
+                            </ul>
+                        </li>
                     </ol>
                     <h3>forEach и <a href="#return">return</a></h3>
                     <p>Несмотря на то что <em>forEach</em> использует функцию при обходе объекта, поведение директивы приближено к поведению цикла, т. е. внутри можно использовать директивы <em>break</em>, <em>continue</em> и <em>return</em>, принцип работы
@@ -3440,7 +3449,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     </table>
                     <h2>Описание</h2>
                     <p>Директива итерирует заданный объект с помощью функции
-                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L302">Snakeskin.forIn</a>.</p>
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L308">Snakeskin.forIn</a>.</p>
                     <p>Общая форма директивы следующая:</p>
                     <pre class="hljs example-js"><code>forIn ссылка на объект или сам объект =&gt; параметры функции через запятую
 	команда
@@ -3472,10 +3481,14 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         <li>Значение элемента;</li>
                         <li>Ключ;</li>
                         <li>Ссылка на итерируемый объект;</li>
-                        <li>Номер итерации;</li>
-                        <li>Является ли элемент первым;</li>
-                        <li>Является ли элемент последним;</li>
-                        <li>Количество элементов в объекте.</li>
+                        <li>Объект:
+                            <ul>
+                                <li><code>i</code> — номер итерации;</li>
+                                <li><code>isFirst</code> — является ли элемент первым;</li>
+                                <li><code>isLast</code> — является ли элемент последним;</li>
+                                <li><code>length</code> — длина массива.</li>
+                            </ul>
+                        </li>
                     </ol>
                     <h3>forIn и <a href="#return">return</a></h3>
                     <p>Несмотря на то что <em>forIn</em> использует функцию при обходе объекта, поведение директивы приближено к поведению цикла, т. е. внутри можно использовать директивы <em>break</em>, <em>continue</em> и <em>return</em>, принцип работы
@@ -4450,7 +4463,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
 	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo__bla"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-                    <p>При реализации этого механизма используется специальный фильтр <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L453">bem</a>, который можно перегрузить и добавить дополнительную логику.</p>
+                    <p>При реализации этого механизма используется специальный фильтр <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L512">bem</a>, который можно перегрузить и добавить дополнительную логику.</p>
                     <h4>Ссылка на родительский класс в произвольном атрибуте</h4>
                     <p>Альтернативным способом получения липкой ссылки является вызов внутренней переменной шаблона <code>$class</code>, например:</p>
                     <div class="b-example">
@@ -4608,7 +4621,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">textarea</span>&gt;</span>
 </code></pre>
-                    <p>Также можно задать локальную схему тегов, которая будет распространяться на все сложенные теги:</p>
+                    <p>Также можно задать локальную схему тегов, которая будет распространяться на все вложенные теги:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -4703,6 +4716,13 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     </table>
                     <h2>Описание</h2>
                     <p>Директива предназначена для более удобного задания тегов <code>&lt;script&gt;</code> и может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <p>При использовании <em>script</em> в классическом синтаксисе существует короткая форма закрытия директивы, например:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Обычное закрытие</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">script</span></span> js src = foo.js}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">script</span></span> js src = foo.js /}</span><span class="xml">
+</span></code></pre>
                     <h3>Таблица обозначений</h3>
                     <h4>js</h4>
                     <pre class="hljs example-default"><code>text/javascript
@@ -4985,6 +5005,13 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     </table>
                     <h2>Описание</h2>
                     <p>Директива предназначена для более удобного задания тегов <code>&lt;link&gt;</code> и может использоваться только внутри шаблонов или внешних блоков.</p>
+                    <p>При использовании <em>link</em> в классическом синтаксисе существует короткая форма закрытия директивы, например:</p>
+                    <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Обычное закрытие</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">link</span></span> css href = foo.css}</span><span class="xml"></span><span class="hljs-directive">{/}</span><span class="xml">
+
+</span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">link</span></span> css href = foo.css /}</span><span class="xml">
+</span></code></pre>
                     <h3>Таблица обозначений</h3>
                     <h4>css</h4>
                     <pre class="hljs example-default"><code>type=<span class="hljs-string">"text/css"</span> rel=<span class="hljs-string">"stylesheet"</span>
@@ -5786,8 +5813,8 @@ hello = 'people'
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Директива используется для импортирования JavaScript модулей в шаблон Snakeskin, а тип используемого импортирования зависит от параметра трансляции <a href="#compile--module">module</a> (по умолчанию используется require node.js).
-                        Синтаксис директивы идентичен аналогичной конструкции в JavaScript ECMAScript2015. Директива может использоваться только в глобальной области.</p>
+                    <p>Директива используется для импортирования JavaScript модулей в шаблон Snakeskin, а тип используемого импортирования зависит от параметра трансляции <a href="#compile--module">module</a> (по умолчанию используется <a href="https://github.com/umdjs/umd">UMD</a>).
+                        Синтаксис директивы идентичен аналогичной конструкции в JS ES2015. Директива может использоваться только в глобальной области.</p>
                     <h3>Примеры</h3>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -5817,7 +5844,7 @@ hello = 'people'
                         </div>
                     </div>
                 </section>
-                <section id="calback" class="b-article">
+                <section id="func" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
                             <div class="fa fa-angle-right"></div> Директивы
