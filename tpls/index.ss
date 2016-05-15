@@ -51,7 +51,7 @@
 			},
 			{
 				id: 'examples',
-				href: '#',
+				href: 'guide.html#gettingStarted--Способы_использования_и_основные_use-case',
 				label: `Примеры`
 			},
 			{
@@ -89,8 +89,8 @@
 							< h2
 								`Удивительно мощный язык описания шаблонов`
 
-						< a.b-install href = #
-							Установить v{snakeskin.VERSION.join('.')}
+						< a.b-install href = guide.html#install
+							Установить
 
 						< .b-badges
 							< a.github-button href = https://github.com/SnakeskinTpl | &
