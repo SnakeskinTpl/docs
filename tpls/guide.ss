@@ -107,7 +107,7 @@
 					< menu.&__menu
 						< li
 							< a href = https://github.com/SnakeskinTpl/snakeskin.github.io/issues/new
-								Сообщить об ошибке
+								`Сообщить об ошибке`
 
 						< li
 							< a href = https://github.com/SnakeskinTpl/Snakeskin
