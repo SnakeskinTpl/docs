@@ -18,7 +18,8 @@ const
 	rollup = require('gulp-rollup'),
 	uglify = require('gulp-uglify'),
 	csso = require('gulp-csso'),
-	run = require('gulp-run');
+	run = require('gulp-run'),
+	through = require('through2');
 
 const
 	path = require('path'),
@@ -40,8 +41,15 @@ function error() {
 }
 
 gulp.task('templates', (cb) => {
+	let cluster;
 	gulp.src('./tpls/*.ss')
-		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru'}}))
+		.pipe(through.obj(function (file, enc, cb) {
+			cluster = path.basename(file.path, '.ss');
+			this.push(file);
+			return cb();
+		}))
+
+		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru', file: () => cluster}}))
 		.on('error', error())
 		.pipe(gulp.dest(buildFolder))
 		.on('end', cb);

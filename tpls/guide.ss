@@ -8,12 +8,11 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
+- @@cluster = @@file()
 - include './index'
-- include '../docs/*/*'
+- include '../docs/' + @@lang + '/' + @@cluster + '.*'
 
 - template main() extends index.main
-	- cluster = 'guide'
-
 	- block head
 		- super
 		- forEach ['jquery.scrollTo.min', 'index'] => url
@@ -28,12 +27,12 @@
 						< .&__logo-text
 							nakeskin
 
-					+= self.nav(cluster)
+					+= self.nav(@@cluster)
 
 				: contents = {}
 				< .b-content-wrapper
 					< nav.b-contents
-						- block contents(doc, breadcrumbs = []) => docs[@@lang][cluster]
+						- block contents(doc, breadcrumbs = []) => docs[@@lang][@@cluster]
 							: putIn sort
 								() => a, b
 									: pos = /^(\d+)\s*/
@@ -53,10 +52,11 @@
 									? key = key.replace(/^\d+::\s*/, '')
 
 									- if el.main
-										? href = Object.keys(el.main)[0]
+										: name = Object.keys(el.main)[0]
+										? href = name.replace(/^\w+?\./, '')
 										? contents[href] = { &
 											breadcrumbs: breadcrumbs,
-											text: el.main[href](),
+											text: el.main[name](),
 											title: key
 										} .
 

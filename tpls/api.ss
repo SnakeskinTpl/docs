@@ -9,7 +9,4 @@
  */
 
 - include './guide'
-- include '../docs/*/*'
-
 - template main() extends guide.main
-	- cluster = 'api'
