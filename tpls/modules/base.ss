@@ -9,6 +9,9 @@
  */
 
 - prfx = @@lang !== 'en' ? '-' + @@lang : ''
+- guide = 'guide' + @@prfx + '.html'
+- api = 'api' + @@prfx + '.html'
+
 - import Typograf from 'typograf'
 - import MarkdownIt from 'markdown-it'
 - import hljs from 'highlight.js'

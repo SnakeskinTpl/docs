@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива задаёт значение указанному [параметру трансляции](guide#{@@prfx}.html#introSet).
+Директива задаёт значение указанному [параметру трансляции](#{@@guide}#introSet).
 
 ## Паспорт
 
@@ -23,18 +23,18 @@
 
 ## Поддерживаемые параметры
 
-* [renderMode](api#{@@prfx}.html#compile--renderMode)
-* [renderAs](api#{@@prfx}.html#compile--renderAs)
-* [localization](api#{@@prfx}.html#compile--localization)
-* [i18nFn](api#{@@prfx}.html#compile--i18nFn)
-* [i18nFnOptions](api#{@@prfx}.html#compile--i18nFnOptions)
-* [literalBounds](api#{@@prfx}.html#compile--literalBounds)
-* [bemFilter](api#{@@prfx}.html#compile--bemFilter)
-* [filters](api#{@@prfx}.html#compile--filters)
-* [language](api#{@@prfx}.html#compile--language)
-* [ignore](api#{@@prfx}.html#compile--ignore)
-* [tolerateWhitespaces](api#{@@prfx}.html#compile--tolerateWhitespaces)
-* [doctype](api#{@@prfx}.html#compile--doctype)
+* [renderMode](#{@@api}#compile--renderMode)
+* [renderAs](#{@@api}#compile--renderAs)
+* [localization](#{@@api}#compile--localization)
+* [i18nFn](#{@@api}#compile--i18nFn)
+* [i18nFnOptions](#{@@api}#compile--i18nFnOptions)
+* [literalBounds](#{@@api}#compile--literalBounds)
+* [bemFilter](#{@@api}#compile--bemFilter)
+* [filters](#{@@api}#compile--filters)
+* [language](#{@@api}#compile--language)
+* [ignore](#{@@api}#compile--ignore)
+* [tolerateWhitespaces](#{@@api}#compile--tolerateWhitespaces)
+* [doctype](#{@@api}#compile--doctype)
 
 #{/block}
 {/template}

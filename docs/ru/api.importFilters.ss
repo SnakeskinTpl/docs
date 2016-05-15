@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Метод импортирует заданный объект в пространство имён [фильтров Snakeskin](guide#{@@prfx}.html#filters).
+Метод импортирует заданный объект в пространство имён [фильтров Snakeskin](#{@@guide}#filters).
 
 ## Интерфейс
 

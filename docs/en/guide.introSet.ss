@@ -14,7 +14,7 @@
 #{block root}
 
 Транслятор Snakeskin поддерживает множество дополнительных режимов работы, которые можно задавать через метод
-[compile](api#{@@prfx}.html#compile) и т.д., но также, Snakeskin позволяет декларировать часть таких параметров непосредственно
+[compile](#{@@api}#compile) и т.д., но также, Snakeskin позволяет декларировать часть таких параметров непосредственно
 в тексте программы, например:
 
 #{+= self.example()}
@@ -31,21 +31,21 @@
 
 #{/}
 
-Задачу параметров трансляции выполняет директива [set](api#{@@prfx}.html#set), которая имеет короткий синтаксис декларации `@=`.
+Задачу параметров трансляции выполняет директива [set](#{@@api}#set), которая имеет короткий синтаксис декларации `@=`.
 Поддерживаются следующие параметры:
 
-* [renderMode](api#{@@prfx}.html#compile--renderMode)
-* [renderAs](api#{@@prfx}.html#compile--renderAs)
-* [localization](api#{@@prfx}.html#compile--localization)
-* [i18nFn](api#{@@prfx}.html#compile--i18nFn)
-* [i18nFnOptions](api#{@@prfx}.html#compile--i18nFnOptions)
-* [literalBounds](api#{@@prfx}.html#compile--literalBounds)
-* [bemFilter](api#{@@prfx}.html#compile--bemFilter)
-* [filters](api#{@@prfx}.html#compile--filters)
-* [language](api#{@@prfx}.html#compile--language)
-* [ignore](api#{@@prfx}.html#compile--ignore)
-* [tolerateWhitespaces](api#{@@prfx}.html#compile--tolerateWhitespaces)
-* [doctype](api#{@@prfx}.html#compile--doctype)
+* [renderMode](#{@@api}#compile--renderMode)
+* [renderAs](#{@@api}#compile--renderAs)
+* [localization](#{@@api}#compile--localization)
+* [i18nFn](#{@@api}#compile--i18nFn)
+* [i18nFnOptions](#{@@api}#compile--i18nFnOptions)
+* [literalBounds](#{@@api}#compile--literalBounds)
+* [bemFilter](#{@@api}#compile--bemFilter)
+* [filters](#{@@api}#compile--filters)
+* [language](#{@@api}#compile--language)
+* [ignore](#{@@api}#compile--ignore)
+* [tolerateWhitespaces](#{@@api}#compile--tolerateWhitespaces)
+* [doctype](#{@@api}#compile--doctype)
 
 Параметры заданные таким способом распространяются на все шаблоны в файле, а также на все подключаемые файлы, если
 они там явно не переопределяются.

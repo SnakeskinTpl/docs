@@ -14,7 +14,7 @@
 #{block root}
 
 Директива выполняет заданное выражение и выводит результат в шаблон
-(на выводимое выражение по умолчанию накладываются [фильтры](guide#{@@prfx}.html#filters)
+(на выводимое выражение по умолчанию накладываются [фильтры](#{@@guide}#filters)
 [html](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L175) и
 [undef](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L232)).
 

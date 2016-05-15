@@ -15,7 +15,7 @@
 
 Директива выполняет заданное выражение и выводит результат в шаблон
 (на выводимое выражение по умолчанию накладываются
-[фильтр](guide#{@@prfx}.html#filters) [undef](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L232)).
+[фильтр](#{@@guide}#filters) [undef](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L232)).
 
 ## Паспорт
 
