@@ -36,22 +36,22 @@
 		- menu = [ &
 			{
 				id: 'guide',
-				href: 'guide.html',
+				href: 'guide' + @@prfx + '.html',
 				label: `Учебник`
 			},
 			{
 				id: 'api',
-				href: 'api.html',
+				href: 'api' + @@prfx + '.html',
 				label: `Документация`
 			},
 			{
 				id: 'plugins',
-				href: 'guide.html#install--Плагины',
+				href: 'guide' + @@prfx + '.html#install' + `--Плагины`,
 				label: `Плагины`
 			},
 			{
 				id: 'examples',
-				href: 'guide.html#gettingStarted--Способы_использования_и_основные_use-case',
+				href: 'guide' + @@prfx + '.html#gettingStarted' + `--Способы_использования_и_основные_use-case`,
 				label: `Примеры`
 			},
 			{
@@ -90,7 +90,7 @@
 								`Удивительно мощный язык описания шаблонов`
 
 						< a.b-install href = guide.html#install
-							Установить
+							`Установить Snakeskin`
 
 						< .b-badges
 							< a.github-button href = https://github.com/SnakeskinTpl | &
@@ -120,3 +120,14 @@
 								Fork
 
 							- script js id = github-bjs | src = https://buttons.github.io/buttons.js | async | defer
+
+						< .b-language
+							- if @@lang === 'en'
+								< a.&__link href = index-ru.html
+									< img.&__flag src = https://assets-cdn.github.com/images/icons/emoji/unicode/1f1f7-1f1fa.png | alt = Русская документация
+									Русская документация
+
+							- else
+								< a.&__link href = index.html
+									< img.&__flag src = https://assets-cdn.github.com/images/icons/emoji/unicode/1f1ec-1f1e7.png | alt = English documentation
+									English documentation

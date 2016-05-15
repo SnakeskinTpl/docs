@@ -14,7 +14,7 @@
 #{block root}
 
 В Snakeskin существует специальный тип строк `` ` ... ` ``, которые при параметре
-[localization](api.html#compile--localization) (включён по умолчанию) будут автоматически оборачиваться функцией `i18n()`.
+[localization](api#{@@prfx}.html#compile--localization) (включён по умолчанию) будут автоматически оборачиваться функцией `i18n()`.
 
 #{+= self.example()}
 
@@ -58,12 +58,12 @@ i18n("hello world!")
 
 #{/}
 
-Имя используемой функции локализации можно задать явно с помощью параметра [i18nFn](api.html#compile--i18nFn).
+Имя используемой функции локализации можно задать явно с помощью параметра [i18nFn](api#{@@prfx}.html#compile--i18nFn).
 
 ## Передача параметров функции локализации
 
 Snakeskin поддерживает передачу параметров для функции локализации, которые задаются в виде строки через параметр
-[i18nFnOptions](api.html#compile--i18nFnOptions), например:
+[i18nFnOptions](api#{@@prfx}.html#compile--i18nFnOptions), например:
 
 #{+= self.example()}
 
@@ -143,7 +143,7 @@ i18n("hello world!", {lang: "en"}, true)
 `Hello world!`
 ```
 
-Или же можно просто отключить параметр [localization](api.html#compile--localization).
+Или же можно просто отключить параметр [localization](api#{@@prfx}.html#compile--localization).
 
 ## Замена на этапе трансляции
 
@@ -219,7 +219,7 @@ Snakeskin.compile('<шаблон>', {
 ## Генерация таблицы используемых литералов
 
 Дополнительно Snakeskin может сохранить все найденные литералы локализации в объект, чтобы потом,
-например, можно было передать его переводчикам. За эту функцию отвечает параметр [words](api.html#compile--words).
+например, можно было передать его переводчикам. За эту функцию отвечает параметр [words](api#{@@prfx}.html#compile--words).
 
 #{+= self.example()}
 

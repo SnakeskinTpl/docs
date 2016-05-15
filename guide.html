@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8" content="">
-    <title>Документация Snakeskin 7</title>
+    <title>Snakeskin 7 documentation</title>
     <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type="text/javascript" src="http://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext">
@@ -22,11 +22,11 @@
             </a>
             <nav class="b-nav">
                 <menu>
-                    <li><strong>Учебник</strong> </li>
-                    <li><a id="api" href="api.html" label="Документация">Документация</a></li>
-                    <li><a id="plugins" href="guide.html#install--Плагины" label="Плагины">Плагины</a></li>
-                    <li><a id="examples" href="guide.html#gettingStarted--Способы_использования_и_основные_use-case" label="Примеры">Примеры</a></li>
-                    <li><a id="sandbox" href="http://codepen.io/kobezzza/pen/zrJNXx" label="Песочница" target="_blank">Песочница</a></li>
+                    <li><strong>Guide</strong> </li>
+                    <li><a id="api" href="api.html" label="Documentation">Documentation</a></li>
+                    <li><a id="plugins" href="guide.html#install--Плагины" label="Plugins">Plugins</a></li>
+                    <li><a id="examples" href="guide.html#gettingStarted--Способы_использования_и_основные_use-case" label="Examples">Examples</a></li>
+                    <li><a id="sandbox" href="http://codepen.io/kobezzza/pen/zrJNXx" label="Sandbox" target="_blank">Sandbox</a></li>
                 </menu>
             </nav>
         </header>
@@ -37,19 +37,19 @@
                         <ol>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#intro">Что такое Snakeskin</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#install">Установка</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#gettingStarted">Концепт и варианты применения</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#gettingStarted">Концепт и варианты применения</a> </li>
                         </ol>
                     </li>
                     <li class="b-contents__part b-contents__part_link_false">Основы
                         <ol>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#basics">Декларация и базовый синтаксис</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#basics">Декларация и базовый синтаксис</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Jade-like синтаксис</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Декларация шаблона и вывод данных</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introTemplates">Декларация шаблона и вывод данных</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introParams">Параметры функциональных директив</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#filters">Механизм фильтров</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#localization">Локализация</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introSet">Параметры трансляции</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introLiteral">Интеграция с другими шаблонами</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introLiteral">Интеграция с другими шаблонами</a> </li>
                         </ol>
                     </li>
                     <li class="b-contents__part b-contents__part_link_false">Наследование
@@ -76,13 +76,13 @@
                         </li>
                     </ul>
                     <h1>Что такое Snakeskin</h1>
-                    <p>Snakeskin — это язык шаблонов и движок для их трансляции в JavaScript. Мощный набор возможностей и развитая защита от уязвимостей типа <a href="http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%B6%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B8%D0%BD%D0%B3">XSS</a>                        позволяют полностью сосредоточиться на представлении данных, делая его независимым от бизнес-логики. Таким образом, Snakeskin идеально подходит для ситуаций, когда бэкенд и фронтенд разработчики работают параллельно.</p>
-                    <p>Благодаря тому, что шаблоны Snakeskin транслируются в JS-код стандарта ECMAScript 5, независимый от окружения, он одинаково хорошо подходит для использования как на стороне сервера, так и на клиенте. Это можно сравнить с принципом
-                        работы <a href="https://ru.wikipedia.org/wiki/CoffeeScript">CoffeeScript</a>, но если CoffeeScript спроектирован для упрощения разработки сложных проектов непосредственно на JS, то Snakeskin предназначен для шаблонизации HTML/XML-подобных
-                        структур и упрощения их code-reuse, предоставляя из коробки наследование, расширение, локализацию, экранирование и прочие полезные ништяки :)</p>
-                    <p>Snakeskin удобно использовать для генерации статичных страниц — транслятор может скомпилировать и сразу выполнить шаблон, возвратив результат его работы, что можно использовать для генерации шаблонов различных MVVM-фреймворков, таких
-                        как Angular, Vue или React. В принципе, можно использовать Snakeskin даже для генерации кода на PHP — но помните, мы не гарантируем защиты от динозавров, которые могут прийти за вами.</p>
-                    <p>Snakeskin поддерживает интеграцию с популярными task-runnerʼами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов — это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
+                    <p>Snakeskin - это язык шаблонов и движок для их трансляции в JavaScript. Мощный набор возможностей и развитая защита от уязвимостей типа <a href="http://ru.wikipedia.org/wiki/%D0%9C%D0%B5%D0%B6%D1%81%D0%B0%D0%B9%D1%82%D0%BE%D0%B2%D1%8B%D0%B9_%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D0%B8%D0%BD%D0%B3">XSS</a>                        позволяют полностью сосредоточиться на представлении данных, делая его независимым от бизнес-логики. Таким образом, Snakeskin идеально подходит для ситуаций, когда бэкенд и фронтенд разработчики работают параллельно.</p>
+                    <p>Благодаря тому, что шаблоны Snakeskin транслируются в JS-код стандарта ECMAScript 5, независимый от окружения, он одинаково хорошо подходит для использования как на стороне сервера, так и на клиенте. Это можно сравнить с принципом
+                        работы <a href="https://ru.wikipedia.org/wiki/CoffeeScript">CoffeeScript</a>, но если CoffeeScript спроектирован для упрощения разработки сложных проектов непосредственно на JS, то Snakeskin предназначен для шаблонизации HTML/XML-подобных
+                        структур и упрощения их code-reuse, предоставляя из коробки наследование, расширение, локализацию, экранирование и прочие полезные ништяки :)</p>
+                    <p>Snakeskin удобно использовать для генерации статичных страниц - транслятор может скомпилировать и сразу выполнить шаблон, возвратив результат его работы, что можно использовать для генерации шаблонов различных MVVM-фреймворков, таких
+                        как Angular, Vue или React. В принципе, можно использовать Snakeskin даже для генерации кода на PHP - но помните, мы не гарантируем защиты от динозавров, которые могут прийти за вами.</p>
+                    <p>Snakeskin поддерживает интеграцию с популярными task-runner'ами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов - это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
                     <p>Use and enjoy.</p>
                 </section>
                 <section id="install" class="b-article">
@@ -93,24 +93,24 @@
                         </li>
                     </ul>
                     <h1>Установка</h1>
-                    <p>Snakeskin написан на языке JavaScript и поддерживает работу как в браузере, так и в других окружениях:</p>
+                    <p>Snakeskin написан на языке JavaScript и поддерживает работу как в браузере, так и в других окружениях:</p>
                     <ul>
                         <li>node.js (0.12+);</li>
                         <li>node-webkit;</li>
                         <li>electron;</li>
                         <li>web-worker;</li>
-                        <li>дополнения к приложениям и т. д.</li>
+                        <li>дополнения к приложениям и т.д.</li>
                     </ul>
-                    <h2>Запуск в браузере</h2>
+                    <h2>Запуск в браузере</h2>
                     <ul>
-                        <li><a href="https://raw.githubusercontent.com/SnakeskinTpl/Snakeskin/master/dist/snakeskin.live.min.js">runtime</a> — микробиблиотека для запуска скомпилированных шаблонов;</li>
-                        <li><a href="https://raw.githubusercontent.com/SnakeskinTpl/Snakeskin/master/dist/snakeskin.min.js">compiler</a> — для запуска компилятора необходимо предварительно установить <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/demo/helloworld.html">ряд зависимостей</a>                            и
+                        <li><a href="https://raw.githubusercontent.com/SnakeskinTpl/Snakeskin/master/dist/snakeskin.live.min.js">runtime</a> - микробиблиотека для запуска скомпилированных шаблонов;</li>
+                        <li><a href="https://raw.githubusercontent.com/SnakeskinTpl/Snakeskin/master/dist/snakeskin.min.js">compiler</a> - для запуска компилятора необходимо предварительно установить <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/demo/helloworld.html">ряд зависимостей</a>                            и
                             <a href="https://github.com/zloirock/core-js">полифилов</a> (если нужна поддержка старых браузеров).</li>
                     </ul>
                     <h2>Bower</h2>
                     <pre class="hljs example-bash"><code>bower install --save snakeskin
 </code></pre>
-                    <p>Файлы библиотеки лежат по адресу:</p>
+                    <p>Файлы библиотеки лежат по адресу:</p>
                     <pre class="hljs example-default"><code>bower_components/
 	snakeskin/
 		dist/
@@ -128,7 +128,7 @@
                         <li><a href="https://github.com/SnakeskinTpl/snakeskin-cli">CLI</a></li>
                     </ul>
                     <h3>std.ss</h3>
-                    <p><a href="https://github.com/SnakeskinTpl/std.ss">std.ss</a> — это библиотека написанная на Snakeskin, которая предоставляет ряд дополнительных функций для разработки.</p>
+                    <p><a href="https://github.com/SnakeskinTpl/std.ss">std.ss</a> - это библиотека написанная на Snakeskin, которая предоставляет ряд дополнительных функций для разработки.</p>
                     <h2>GitHub</h2>
                     <pre class="hljs example-bash"><code>git <span class="hljs-built_in">clone</span> https://github.com/SnakeskinTpl/Snakeskin
 </code></pre>
@@ -140,9 +140,9 @@
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
-                    <h1>Концепт и варианты применения</h1>
+                    <h1>Концепт и варианты применения</h1>
                     <h2>Общая концепция</h2>
-                    <p>Шаблоны в Snakeskin — это функции в JavaScript.</p>
+                    <p>Шаблоны в Snakeskin - это функции в JavaScript.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -169,21 +169,20 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
 	<span class="hljs-keyword">return</span> <span class="hljs-string">'Hello '</span> + <span class="hljs-built_in">escape</span>(name) + <span class="hljs-string">'!'</span>;
 }
 </code></pre>
-                    <p>После компиляции вызов шаблона соответствует простому вызову функции. Такой же подход используется в <a href="https://developers.google.com/closure/templates">Google Closure Templates</a>.</p>
-                    <h2>Способы использования и основные use-case</h2>
-                    <p>Основные use-case Snakeskin — это:</p>
+                    <p>После компиляции вызов шаблона соответствует простому вызову функции. Такой же подход используется в <a href="https://developers.google.com/closure/templates">Google Closure Templates</a>.</p>
+                    <h2>Способы использования и основные use-case</h2>
+                    <p>Основные use-case Snakeskin - это:</p>
                     <ol>
                         <li>Серверная шаблонизация;</li>
-                        <li>Предварительная трансляция шаблонов в JS и использование их на клиенте;</li>
-                        <li>Генерация шаблонов для различных фреймворков, например, Angular, Vue, React и т. д.;</li>
-                        <li>Статическая генерация страниц на этапе сборки проекта.</li>
+                        <li>Предварительная трансляция шаблонов в JS и использование их на клиенте;</li>
+                        <li>Генерация шаблонов для различных фреймворков, например, Angular, Vue, React и т.д.;</li>
+                        <li>Статическая генерация страниц на этапе сборки проекта.</li>
                     </ol>
-                    <p>Также есть возможность «живой» компиляции в браузере, хотя данная фича не рекомендуется для prod.</p>
+                    <p>Также есть возможность “живой” компиляции в браузере, хотя данная фича не рекомендуется для prod.</p>
                     <h3>Песочница</h3>
-                    <p>Простейшим способом изучения возможностей Snakeskin является использование <a href="http://codepen.io/kobezzza/pen/zrJNXx">онлайн-песочницы</a> на Codepen.
-                    </p>
-                    <h3>Использование Snakeskin как серверного шаблонизатора вместе с Node.js</h3>
-                    <p>Snakeskin содержит ряд вспомогательных методов для удобной работы из Node.js.</p>
+                    <p>Простейшим способом изучения возможностей Snakeskin является использование <a href="http://codepen.io/kobezzza/pen/zrJNXx">онлайн-песочницы</a> на Codepen.</p>
+                    <h3>Использование Snakeskin как серверного шаблонизатора вместе с Node.js</h3>
+                    <p>Snakeskin содержит ряд вспомогательных методов для удобной работы из Node.js.</p>
                     <p><strong>templates.ss</strong></p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -211,13 +210,13 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
 	ss.compileFile(<span class="hljs-string">'./templates.ss'</span>).registration.index()
 );
 </code></pre>
-                    <h3>Подключение уже скомпилированного шаблона в Node.js</h3>
+                    <h3>Подключение уже скомпилированного шаблона в Node.js</h3>
                     <p>Скомпилированные файлы Snakeskin подключаются как простые Node.js модули.</p>
                     <p><strong>index.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./templates.ss.js'</span>);
 </code></pre>
-                    <h3>Использование вместе с Vue и Webpack</h3>
-                    <p>Snakeskin бесшовно интегрируется с большинством популярных MVVM библиотек и фреймворков, а использование SS вместе с Webpack является одной из самых лучших практик.</p>
+                    <h3>Использование вместе с Vue и Webpack</h3>
+                    <p>Snakeskin бесшовно интегрируется с большинством популярных MVVM библиотек и фреймворков, а использование SS вместе с Webpack является одной из самых лучших практик.</p>
                     <p><strong>webpack.config.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
@@ -284,9 +283,9 @@ Vue.component(<span class="hljs-string">'button'</span>, {
 	template: button.index()
 });
 </code></pre>
-                    <p>В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора <a href="https://babeljs.io">Babel</a>, чтобы обеспечить поддержку в старых браузерах.</p>
-                    <h3>Статическая генерация страниц вместе с Gulp</h3>
-                    <p>Snakeskin может немедленно выполнить скомпилированный шаблон по заданному имени и вернуть результат, а если имя шаблона не задано, то оно будет вычислено по формуле:</p>
+                    <p>В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора <a href="https://babeljs.io">Babel</a>, чтобы обеспечить поддержку в старых браузерах.</p>
+                    <h3>Статическая генерация страниц вместе с Gulp</h3>
+                    <p>Snakeskin может немедленно выполнить скомпилированный шаблон по заданному имени и вернуть результат, а если имя шаблона не задано, то оно будет вычислено по формуле:</p>
                     <pre class="hljs example-default"><code>шаблон с именем главного файла (без расширения) ||
 main ||
 index ||
@@ -327,8 +326,8 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                         </div>
                     </div>
                     <p>Также для задач статической генерации страниц может использоваться Grunt, Webpack или Snakeskin CLI.</p>
-                    <h3>Статическая генерация с Snakeskin CLI</h3>
-                    <p>Генерация страницы index.html на основе шаблона index.ss из примера выше.</p>
+                    <h3>Статическая генерация с Snakeskin CLI</h3>
+                    <p>Генерация страницы index.html на основе шаблона index.ss из примера выше.</p>
                     <pre class="hljs example-bash"><code>snakeskin ./index.ss <span class="hljs-_">-e</span> -o ./dist/index.html
 </code></pre>
                 </section>
@@ -339,9 +338,9 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
-                    <h1>Декларация и базовый синтаксис</h1>
+                    <h1>Декларация и базовый синтаксис</h1>
                     <h2>Область декларации шаблонов</h2>
-                    <p>Шаблоны Snakeskin можно декларировать либо в отдельных файлах c расширением <strong>.ss</strong> (рекомендуемый способ), либо внутри HTML документа через <code>&lt;script&gt;</code> блок, например:</p>
+                    <p>Шаблоны Snakeskin можно декларировать либо в отдельных файлах c расширением <strong>.ss</strong> (рекомендуемый способ), либо внутри HTML документа через <code>&lt;script&gt;</code> блок, например:</p>
                     <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!doctype html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -364,9 +363,9 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 	<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
 </code></pre>
-                    <p>В одной области декларации может быть объявлено неограниченное количество шаблонов.</p>
+                    <p>В одной области декларации может быть объявлено неограниченное количество шаблонов.</p>
                     <h2>Синтаксис управляющих конструкций</h2>
-                    <p>Управляющие конструкции (директивы) Snakeskin размещаются между символами <code>{</code> и <code>}</code>. Обычно вызов директивы подходит под следующий шаблон:</p>
+                    <p>Управляющие конструкции (директивы) Snakeskin размещаются между символами <code>{</code> и <code>}</code>. Обычно вызов директивы подходит под следующий шаблон:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{названиеДирективы параметры}</span><span class="xml">
 </span></code></pre>
                     <p>Например:</p>
@@ -375,12 +374,12 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> console.log(a)}</span><span class="xml">
 </span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>
-                    <p>Но некоторые директивы поддерживают альтернативный, более короткий синтаксис, например:</p>
+                    <p>Но некоторые директивы поддерживают альтернативный, более короткий синтаксис, например:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> ↔ </span><span class="hljs-directive">{? <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">output</span></span> <span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml"> ↔ </span><span class="hljs-directive">{<span class="hljs-number">1</span> + <span class="hljs-number">2</span>}</span><span class="xml">
 </span></code></pre>
                     <h3>Расширенный синтаксис</h3>
-                    <p>В случаях, когда в теле генерируемого шаблона необходимо также использовать фигурные скобки, то используется специальный расширенный синтаксис декларации директив (символы <code>#{</code> и <code>}</code>), например:</p>
+                    <p>В случаях, когда в теле генерируемого шаблона необходимо также использовать фигурные скобки, то используется специальный расширенный синтаксис декларации директив (символы <code>#{</code> и <code>}</code>), например:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> example()}</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> val = <span class="hljs-number">1</span> /}</span><span class="xml">
 
@@ -393,22 +392,22 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 	</span><span class="hljs-directive">#{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
-                    <p>Все директивы, которые вложены в директиву с расширенным синтаксисом, должны также использовать этот синтаксис.</p>
+                    <p>Все директивы, которые вложены в директиву с расширенным синтаксисом, должны также использовать этот синтаксис.</p>
                     <h3>Интерполяция</h3>
-                    <p>Ряд директив Snakeskin поддерживают специальный синтаксис интерполяции значений, который нужен для проброса динамических выражений в статический текст через конструкцию <code>${выражение}</code>.</p>
+                    <p>Ряд директив Snakeskin поддерживают специальный синтаксис интерполяции значений, который нужен для проброса динамических выражений в статический текст через конструкцию <code>${выражение}</code>.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = true /}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> ${a ? <span class="hljs-string">'input'</span> : <span class="hljs-string">'textarea'</span>}</span><span class="xml"> /}
 </span></code></pre>
                     <h2>Блочные директивы</h2>
-                    <p>Подобно тегам HTML или XML, многие директивы Snakeskin могут включать в себя другие директивы и т. д. и в дальнейшем такие директивы будут называться блочными, а все остальные — строчными.</p>
-                    <p>Блочные директивы состоят из двух частей: основной декларации и завершающей части, например:</p>
+                    <p>Подобно тегам HTML или XML, многие директивы Snakeskin могут включать в себя другие директивы и т.д. и в дальнейшем такие директивы будут называться блочными, а все остальные - строчными.</p>
+                    <p>Блочные директивы состоят из двух частей: основной декларации и завершающей части, например:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Основная декларация директивы if</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
 	...
 </span><span class="hljs-comment">/// Завершающая часть</span><span class="xml">
 </span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>
-                    <p>Завершающая часть, как правило, создаётся с помощью специальной директивы <a href="api.html#end">end</a>, которая поддерживает несколько видов синтаксиса:</p>
+                    <p>Завершающая часть, как правило, создаётся с помощью специальной директивы <a href="api.html#end">end</a>, которая поддерживает несколько видов синтаксиса:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Полная форма</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
 	...
@@ -429,13 +428,13 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 	...
 </span><span class="hljs-directive">{/}</span><span class="xml">
 </span></code></pre>
-                    <p>Какую форму использовать решает сам разработчик, но следует отметить, что при использовании форм с указанием имени закрываемой директивы Snakeskin будет проверять правильность, т. е.:</p>
+                    <p>Какую форму использовать решает сам разработчик, но следует отметить, что при использовании форм с указанием имени закрываемой директивы Snakeskin будет проверять правильность, т.е.:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
 	...
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">else</span></span>}</span><span class="xml"> </span><span class="hljs-comment">/// Ошибка</span><span class="xml">
 </span></code></pre>
                     <h2>Комментарии</h2>
-                    <p>В любом месте области декларации шаблонов допускается использовать однострочные (<code>///</code>) и многострочные (<code>/* ... */</code>) комментарии. Комментарии вырезаются на этапе трансляции и не попадают в скомпилированный JavaScript.</p>
+                    <p>В любом месте области декларации шаблонов допускается использовать однострочные (<code>///</code>) и многострочные (<code>/* ... */</code>) комментарии. Комментарии вырезаются на этапе трансляции и не попадают в скомпилированный JavaScript.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/* ... */</span><span class="xml">
 </span><span class="hljs-comment">/// ...</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
@@ -457,7 +456,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 {/template}</span><span class="xml">
 </span></code></pre>
                     <h3>jsDoc</h3>
-                    <p>Snakeskin поддерживает <a href="http://usejsdoc.org">jsDoc комментарии</a>, которые не вырезаются из конечного JavaScript кода.</p>
+                    <p>Snakeskin поддерживает <a href="http://usejsdoc.org">jsDoc комментарии</a>, которые не вырезаются из конечного JavaScript кода.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/**
  * jsDoc комментарий
  * @param {string} name
@@ -469,7 +468,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
                     <h2>Экранирование</h2>
-                    <p>Символ <code>\</code> может использоваться для экранирования директив, комментариев и прочих сущностей Snakeskin.</p>
+                    <p>Символ <code>\</code> может использоваться для экранирования директив, комментариев и прочих сущностей Snakeskin.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> example()}</span><span class="xml">
 	</span>\{<span class="xml">var val = 1} </span><span class="hljs-comment">/// Выведется как простой текст</span><span class="xml">
 	</span>\/<span class="xml">// Выведется как простой текст
@@ -486,15 +485,15 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     </ul>
                     <h1>Jade-like синтаксис</h1>
                     <p>Помимо <a href="#basics--%D0%A1%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D1%8F%D1%8E%D1%89%D0%B8%D1%85_%D0%BA%D0%BE%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BA%D1%86%D0%B8%D0%B9">основного</a> синтаксиса
-                        Snakeskin поддерживает также альтернативный, который основан на принципе управляющих пробелов и по духу близок к <a href="https://github.com/visionmedia/jade">Jade</a> и
+                        Snakeskin поддерживает также альтернативный, который основан на принципе управляющих пробелов и по духу близок к <a href="https://github.com/visionmedia/jade">Jade</a> и
                         <a href="https://github.com/haml/haml">HAML</a>. Такой синтаксис крайне удобен при генерации XML подобных структур, например:</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> hello(name)</span><span class="xml">
 </span><span class="hljs-directive">	&lt; h1.foo</span><span class="xml">
 </span><span class="hljs-directive">		&lt; span style = color: red</span><span class="xml">
 			Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
 </span></code></pre>
-                    <p>Вместо символов <code>{</code>, <code>}</code> для вывода директивы используется <code>-</code>. В примерах документации основной синтаксис будет называться <strong>classic</strong>, а альтернативный — <strong>jade-like</strong>.</p>
-                    <p><strong>«Классический» синтаксис:</strong></p>
+                    <p>Вместо символов <code>{</code>, <code>}</code> для вывода директивы используется <code>-</code>. В примерах документации основной синтаксис будет называться <strong>classic</strong>, а альтернативный - <strong>jade-like</strong>.</p>
+                    <p><strong>“Классический” синтаксис:</strong></p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index(name)}</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> name}</span><span class="xml">
@@ -508,8 +507,8 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span><span class="hljs-directive">	- <span class="hljs-name"><span class="hljs-built_in">if</span></span> name</span><span class="xml">
 		</span><span class="hljs-directive">{name}</span><span class="xml">
 </span></code></pre>
-                    <p>Следует заметить, что в jade-like синтаксисе нет необходимости ставить закрывающие теги для блочных директив, т. к. они проставляются автоматически.</p>
-                    <p>Если директива имеет короткий синтаксис, то тогда управляющий символ <code>-</code> может быть опущен, например:</p>
+                    <p>Следует заметить, что в jade-like синтаксисе нет необходимости ставить закрывающие теги для блочных директив, т.к. они проставляются автоматически.</p>
+                    <p>Если директива имеет короткий синтаксис, то тогда управляющий символ <code>-</code> может быть опущен, например:</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-comment">/// - var foo = 'bar'</span><span class="xml">
 </span><span class="hljs-directive">: foo = <span class="hljs-string">'bar'</span></span><span class="xml">
 </span><span class="hljs-comment">/// - void foo = 'bar'</span><span class="xml">
@@ -517,13 +516,13 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                     <h2>Расширенный синтаксис</h2>
                     <p>Для использования <a href="#basics--%D0%A0%D0%B0%D1%81%D1%88%D0%B8%D1%80%D0%B5%D0%BD%D0%BD%D1%8B%D0%B9_%D1%81%D0%B8%D0%BD%D1%82%D0%B0%D0%BA%D1%81%D0%B8%D1%81">расширенного синтаксиса</a> используется символ <code>#</code> вместо <code>-</code>,
-                        причём управляющий символ должен писаться всегда (в том числе и для короткого синтаксиса директив).</p>
+                        причём управляющий символ должен писаться всегда (в том числе и для короткого синтаксиса директив).</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">: foo = true</span><span class="xml">
 </span><span class="hljs-directive"># <span class="hljs-name"><span class="hljs-built_in">if</span></span> true</span><span class="xml">
 	#? console.log(foo)
 </span></code></pre>
                     <h2>Смешивание синтаксисов</h2>
-                    <p>Jade-like синтаксис можно использовать совместно с классическим, при этом классический синтаксис может включаться в блоки с декларацией jade-like, например:</p>
+                    <p>Jade-like синтаксис можно использовать совместно с классическим, при этом классический синтаксис может включаться в блоки с декларацией jade-like, например:</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-comment">/// Альтернативный синтаксис</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
 
@@ -537,7 +536,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 	Hello </span><span class="hljs-directive">{name}</span><span class="xml">!
 </span></code></pre>
                     <h2>Многострочная декларация</h2>
-                    <p>В случае, если необходимо разбить тело директивы на несколько строк, то используется конструкция <code>&amp; ... .</code> (перед символами необходимо ставить пробел), например:</p>
+                    <p>В случае, если необходимо разбить тело директивы на несколько строк, то используется конструкция <code>&amp; ... .</code> (перед символами необходимо ставить пробел), например:</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> hello(name)</span><span class="xml">
 </span><span class="hljs-directive">	&lt; h1.foo &amp;</span><span class="xml">
 		style =
@@ -547,13 +546,13 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 		</span><span class="hljs-directive">{name}</span><span class="xml">
 </span></code></pre>
                     <h2>Инлайновая декларация</h2>
-                    <p>Содержимое директивы можно задать на одной строке с декларацией после символов <code>::</code> (обязательное выделение пробелами с обеих сторон; после спецсимвола можно использовать только классический синтаксис).</p>
+                    <p>Содержимое директивы можно задать на одной строке с декларацией после символов <code>::</code> (обязательное выделение пробелами с обеих сторон; после спецсимвола можно использовать только классический синтаксис).</p>
                     <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> hello(name)</span><span class="xml">
 </span><span class="hljs-directive">	&lt; h1.foo :: {name}</span><span class="xml">
 </span></code></pre>
                     <p>Однако, при многострочной декларации директивы такой синтаксис невозможен.</p>
                     <h2>Символ текста</h2>
-                    <p>Специальный символ <code>|</code> в начале строки декларирует, что вся строка является простым текстом (внутри которого по прежнему можно использовать классический синтаксис), а сам символ игнорируется, например:</p>
+                    <p>Специальный символ <code>|</code> в начале строки декларирует, что вся строка является простым текстом (внутри которого по прежнему можно использовать классический синтаксис), а сам символ игнорируется, например:</p>
                     <pre class="hljs example-default"><code>- template hello(name)
 	- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> :: Hello world! <span class="hljs-comment">/// Hello world!</span>
 	|- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> :: Hello world! <span class="hljs-comment">/// - if true :: Hello world!</span>
@@ -562,7 +561,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <pre class="hljs example-default"><code>- template hello(name)
 	\- <span class="hljs-keyword">if</span> <span class="hljs-literal">true</span> :: Hello world! <span class="hljs-comment">/// - if true :: Hello world!</span>
 </code></pre>
-                    <p>Т.е. можно использовать любой из способов.</p>
+                    <p>Т.е. можно использовать любой из способов.</p>
                 </section>
                 <section id="introTemplates" class="b-article">
                     <ul class="b-breadcrumbs">
@@ -571,14 +570,14 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
-                    <h1>Декларация шаблона и вывод данных</h1>
-                    <p>Шаблон — это главная функциональная ячейка Snakeskin, которая является синонимом функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом.</p>
-                    <p>Объявление шаблона возможно с помощью директив <a href="api.html#template">template</a>, <a href="api.html#interface">interface</a> и
-                        <a href="api.html#placeholder">placeholder</a>. Шаблон не может включать в себя другой шаблон, для этого есть другие директивы.</p>
-                    <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
+                    <h1>Декларация шаблона и вывод данных</h1>
+                    <p>Шаблон - это главная функциональная ячейка Snakeskin, которая является синонимом функции в JavaScript, т.е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом.</p>
+                    <p>Объявление шаблона возможно с помощью директив <a href="api.html#template">template</a>, <a href="api.html#interface">interface</a> и
+                        <a href="api.html#placeholder">placeholder</a>. Шаблон не может включать в себя другой шаблон, для этого есть другие директивы.</p>
+                    <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
                     <h2>Пространства имён</h2>
-                    <p>Все шаблоны Snakeskin декларируются в пространстве имён, которое обязан задать сам разработчик с помощью директивы
-                        <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т. е.:
+                    <p>Все шаблоны Snakeskin декларируются в пространстве имён, которое обязан задать сам разработчик с помощью директивы
+                        <a href="api.html#namespace">namespace</a>, причём в рамках одного файла Snakeskin может существовать только одно пространство имён, т.е.:
                     </p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -594,11 +593,11 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Каждое пространство имён является свойством корневого объекта <strong>exports</strong>, которое является глобальным для всех файлов Snakeskin и осуществляет экспорт шаблонов в JavaScript.</p>
-                    <p>В рамках одного пространства имён не может быть двух шаблонов с одинаковым названием, т. е. переопределять шаблоны в Snakeskin нельзя.</p>
+                    <p>Каждое пространство имён является свойством корневого объекта <strong>exports</strong>, которое является глобальным для всех файлов Snakeskin и осуществляет экспорт шаблонов в JavaScript.</p>
+                    <p>В рамках одного пространства имён не может быть двух шаблонов с одинаковым названием, т.е. переопределять шаблоны в Snakeskin нельзя.</p>
                     <h2>Механика шаблонов</h2>
-                    <p>Snakeskin в известном смысле — макроязык, в нём нет оператора print, т. е. весь текст, набранный в исходном файле, суть большой оператор print. Директивы Snakeskin являются погруженными в текст. Получается, что вы не пишете программу,
-                        которая выводит текст — наоборот, в имеющийся текст вы добавляете логику и организацию, блоки (методы), на которые вы разбиваете код:</p>
+                    <p>Snakeskin в известном смысле - макроязык, в нём нет оператора print, т.е. весь текст, набранный в исходном файле, суть большой оператор print. Директивы Snakeskin являются погруженными в текст. Получается, что вы не пишете программу,
+                        которая выводит текст - наоборот, в имеющийся текст вы добавляете логику и организацию, блоки (методы), на которые вы разбиваете код:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -616,7 +615,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В JS такое будет выглядеть как:</p>
+                    <p>В JS такое будет выглядеть как:</p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (exports.demo === <span class="hljs-string">'undefined'</span>) {
 	<span class="hljs-keyword">var</span> demo = exports.demo = {};
 }
@@ -626,8 +625,8 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 };
 </code></pre>
                     <h2>Вывод значений</h2>
-                    <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона динамические JavaScript выражения, например, вызовы функций, значения переменных, результат математических операций и т. д. Для этого используется специальная директива
-                        <a href="api.html#output">output</a>. Давайте усложним пример данный выше: будем выводить приветствие по заданному параметру-имени.</p>
+                    <p>Snakeskin позволяет разработчику вставлять в статичный текст шаблона динамические JavaScript выражения, например, вызовы функций, значения переменных, результат математических операций и т.д. Для этого используется специальная директива
+                        <a href="api.html#output">output</a>. Давайте усложним пример данный выше: будем выводить приветствие по заданному параметру-имени.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -653,7 +652,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Как уже говорилось выше, выводить через <em>output</em> можно не только простые параметры, а практически любое JavaScript выражение, например:
+                    <p>Как уже говорилось выше, выводить через <em>output</em> можно не только простые параметры, а практически любое JavaScript выражение, например:
                     </p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -675,7 +674,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Другие директивы</h2>
-                    <p>Помимо <em>output</em>, в Snakeskin существует множество других директив, которые помогут написать функциональный и гибкий шаблон, например:</p>
+                    <p>Помимо <em>output</em>, в Snakeskin существует множество других директив, которые помогут написать функциональный и гибкий шаблон, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -699,9 +698,9 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
+                    <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
                     <h2>Глобальный контекст</h2>
-                    <p>Код, который находится вне тела шаблона или прототипа считается глобальным и помимо трансляции в JavaScript выполняется на этапе трансляции.</p>
+                    <p>Код, который находится вне тела шаблона или прототипа считается глобальным и помимо трансляции в JavaScript выполняется на этапе трансляции.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -719,9 +718,9 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <h2>Работа с пробельными символами</h2>
-                    <p>Если не задан параметр <a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a>, то любые пробельные символы (перевод строки, пробел, табуляция и т. д.) в рамках шаблона Snakeskin трактуются как пробел и «схлопываются»
-                        в один, т. е.:</p>
+                    <h2>Работа с пробельными символами</h2>
+                    <p>Если не задан параметр <a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a>, то любые пробельные символы (перевод строки, пробел, табуляция и т.д.) в рамках шаблона Snakeskin трактуются как пробел и “схлопываются”
+                        в один, т.е.:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -748,15 +747,15 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <p>Отрендерится как:</p>
                     <pre class="hljs example-default"><code>Hello world Bar
 </code></pre>
-                    <p>Исключение составляют блоки <a href="#api.html#cdata">cdata</a>, литералы строк и регулярных выражений внутри директивы и
+                    <p>Исключение составляют блоки <a href="#api.html#cdata">cdata</a>, литералы строк и регулярных выражений внутри директивы и
                         <a href="#basics--jsDoc">jsDoc комментарии</a>.</p>
-                    <p>С помощью параметра <a href="api.html#compile--ignore">ignore</a> можно задать те пробельные символы, которые будут полностью вырезаться из шаблона.</p>
-                    <h3>Текстовые и логические директивы</h3>
-                    <p>Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.</p>
-                    <p>Текстовые директивы — это такие директивы, результат работы которых выводится в шаблон, например,
-                        <a href="api.html#output">output</a> или <a href="api.html#call">call</a>, а остальные директивы считаются логическими, например,
+                    <p>С помощью параметра <a href="api.html#compile--ignore">ignore</a> можно задать те пробельные символы, которые будут полностью вырезаться из шаблона.</p>
+                    <h3>Текстовые и логические директивы</h3>
+                    <p>Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.</p>
+                    <p>Текстовые директивы — это такие директивы, результат работы которых выводится в шаблон, например,
+                        <a href="api.html#output">output</a> или <a href="api.html#call">call</a>, а остальные директивы считаются логическими, например,
                         <a href="api.html#if">if</a> или <a href="api.html#for">for</a>.</p>
-                    <p>Логические директивы не участвуют в обработке пробелов, т. е.:</p>
+                    <p>Логические директивы не участвуют в обработке пробелов, т.е.:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -798,7 +797,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </li>
                     </ul>
                     <h1>Параметры функциональных директив</h1>
-                    <p>Функциональные директивы Snakeskin — это такие директивы, которые по своему синтаксису напоминают функции JavaScript, и как правило при трансляции преобразуются именно в них. Логично, что такие директивы могут принимать входные параметры,
+                    <p>Функциональные директивы Snakeskin - это такие директивы, которые по своему синтаксису напоминают функции JavaScript, и как правило при трансляции преобразуются именно в них. Логично, что такие директивы могут принимать входные параметры,
                         например:
                     </p>
                     <div class="b-example">
@@ -818,7 +817,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>У параметров может быть значение по умолчанию, которое применяется, если значение параметра будет <code>null</code> или <code>undefined</code>.</p>
+                    <p>У параметров может быть значение по умолчанию, которое применяется, если значение параметра будет <code>null</code> или <code>undefined</code>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -836,7 +835,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>С помощью специального оператора <code>?</code> можно задать, чтобы значение по умолчанию ставилось только при <code>undefined</code>.</p>
+                    <p>С помощью специального оператора <code>?</code> можно задать, чтобы значение по умолчанию ставилось только при <code>undefined</code>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -854,9 +853,9 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Существует также оператор <code>!</code>, который отменяет оператор <code>?</code>, но он используется только при наследовании блоков или шаблонов.</p>
+                    <p>Существует также оператор <code>!</code>, который отменяет оператор <code>?</code>, но он используется только при наследовании блоков или шаблонов.</p>
                     <h2>with биндинг</h2>
-                    <p>Оператор <code>@</code> осуществляет привязку параметра к директиве <a href="api.html#with">with</a>, например:</p>
+                    <p>Оператор <code>@</code> осуществляет привязку параметра к директиве <a href="api.html#with">with</a>, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -883,26 +882,26 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </li>
                     </ul>
                     <h1>Механизм фильтров</h1>
-                    <p>Фильтром Snakeskin называется функция, которая лежит в пространстве имён <strong>Snakeskin.Filters</strong>, а для вызова такой функции используется специальный «сахарный» синтаксис. Сам механизм фильтров идеологически близок к реализации
-                        в Bash, т. е. для вызова фильтра используется символ вертикальной черты (<code>|</code>), после которого идёт название фильтра и его параметры. Следует отметить, что между символом фильтра и названием не должно быть пробелов, иначе
-                        это будет трактоваться парсером как «побитовое или».</p>
+                    <p>Фильтром Snakeskin называется функция, которая лежит в пространстве имён <strong>Snakeskin.Filters</strong>, а для вызова такой функции используется специальный “сахарный” синтаксис. Сам механизм фильтров идеологически близок к реализации
+                        в Bash, т.е. для вызова фильтра используется символ вертикальной черты (<code>|</code>), после которого идёт название фильтра и его параметры. Следует отметить, что между символом фильтра и названием не должно быть пробелов, иначе
+                        это будет трактоваться парсером как “побитовое или”.</p>
                     <p>Например:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Snakeskin.Filters['ucfirst'].call(this, 'hello' + ' world')</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-string">'hello'</span> + <span class="hljs-string">' world'</span><span class="hljs-keyword">|ucfirst</span>}</span><span class="xml">
 </span></code></pre>
-                    <p>Как и в Bash, фильтры Snakeskin могут создавать конвейерные последовательности:</p>
+                    <p>Как и в Bash, фильтры Snakeskin могут создавать конвейерные последовательности:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-string">' hello '</span><span class="hljs-keyword">|trim</span><span class="hljs-keyword">|ucfirst</span>}</span><span class="xml">
 </span></code></pre>
-                    <p>Фильтры можно накладывать отдельно на некоторые части выражения, для этого нужно обернуть декларацию в круглые скобки:</p>
+                    <p>Фильтры можно накладывать отдельно на некоторые части выражения, для этого нужно обернуть декларацию в круглые скобки:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Два локальных и один глобальный фильтр,</span><span class="xml">
 </span><span class="hljs-comment">/// который применится на всё выражение</span><span class="xml">
 </span><span class="hljs-directive">{(a<span class="hljs-keyword">|ucfirst</span>) + (b<span class="hljs-keyword">|ucfirst</span>) <span class="hljs-keyword">|trim</span>}</span><span class="xml">
 </span></code></pre>
-                    <p>Фильтрам можно передавать параметры, на которые также можно применять фильтры и т. д.</p>
+                    <p>Фильтрам можно передавать параметры, на которые также можно применять фильтры и т.д.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{a<span class="hljs-keyword">|myFilter</span> <span class="hljs-number">1</span>, (<span class="hljs-number">2</span> / <span class="hljs-number">3</span><span class="hljs-keyword">|myFilter</span>)}</span><span class="xml">
 </span></code></pre>
-                    <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако их выполнение можно
-                        отменить <code>{a|!html}</code> и <code>{a|!undef}</code>.</p>
+                    <p>По умолчанию при выводе значений через <a href="#output">output</a> к ним применяется глобальный фильтр html (экранирование html символов) и фильтр undef (замена <code>undefined</code> на пустые строки), однако их выполнение можно
+                        отменить <code>{a|!html}</code> и <code>{a|!undef}</code>.</p>
                     <p>Механизм фильтров поддерживает большинство директив Snakeskin, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -924,8 +923,8 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Фильтры входных параметров</h2>
-                    <p>Фильтры Snakeskin можно назначать на любые входные параметры функциональных директив (
-                        <a href="api.html#template">template</a>, <a href="api.html#forEach">forEach</a> и т. д.), например:</p>
+                    <p>Фильтры Snakeskin можно назначать на любые входные параметры функциональных директив (
+                        <a href="api.html#template">template</a>, <a href="api.html#forEach">forEach</a> и т.д.), например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -939,9 +938,9 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Обратите внимание, что фильтр параметра берётся в круглые скобки.</p>
-                    <h3>Фильтры значений по умолчанию</h3>
-                    <p>На значения по умолчанию для параметров можно также накладывать фильтры, причём если у самого параметра есть свои фильтры, то они применятся после, например:</p>
+                    <p>Обратите внимание, что фильтр параметра берётся в круглые скобки.</p>
+                    <h3>Фильтры значений по умолчанию</h3>
+                    <p>На значения по умолчанию для параметров можно также накладывать фильтры, причём если у самого параметра есть свои фильтры, то они применятся после, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -956,13 +955,13 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Пользовательский фильтр</h2>
-                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) или знака доллара (<code>$</code>). Первым параметром
-                        функции будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
+                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) или знака доллара (<code>$</code>). Первым параметром
+                        функции будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'replace'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
 };
 </code></pre>
-                    <p>Фильтры можно разбивать на внутренние пространства имён:</p>
+                    <p>Фильтры можно разбивать на внутренние пространства имён:</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'text'</span>] = {
 	<span class="hljs-string">'replace'</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 		<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
@@ -988,8 +987,8 @@ Snakeskin.importFilters({
 }, <span class="hljs-string">'my.foo.bar'</span>);
 </code></pre>
                     <h3>Дополнительные параметры фильтров</h3>
-                    <p>При декларации фильтра ему можно задать ряд дополнительных параметров, например, чтобы фильтр отменял выполнение фильтров по умолчанию. Для этого используется специальный метод
-                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L46">Snakeskin.setFilterParams</a>, который первым параметром принимает название фильтра, а вторым объект с настройками.</p>
+                    <p>При декларации фильтра ему можно задать ряд дополнительных параметров, например, чтобы фильтр отменял выполнение фильтров по умолчанию. Для этого используется специальный метод
+                        <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L46">Snakeskin.setFilterParams</a>, который первым параметром принимает название фильтра, а вторым объект с настройками.</p>
                     <pre class="hljs example-js"><code>Snakeskin.importFilters({
 	myFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, getTplResult</span>) </span>{
 		<span class="hljs-keyword">return</span> str + getTplResult();
@@ -1019,15 +1018,15 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 </span><span class="hljs-directive">{$_}</span><span class="xml"> </span><span class="hljs-comment">/// 'fooo'</span><span class="xml">
 </span></code></pre>
                     <h2>Примечание</h2>
-                    <p>Чтобы использовать в шаблоне побитовое ИЛИ (<code>|</code>) достаточно просто указать пробел после оператора <code>|</code>, также если после оператора <code>|</code> идёт число, то можно писать как есть, т. к. название фильтра не может
-                        начинаться с числа.</p>
+                    <p>Чтобы использовать в шаблоне побитовое ИЛИ (<code>|</code>) достаточно просто указать пробел после оператора <code>|</code>, также если после оператора <code>|</code> идёт число, то можно писать как есть, т.к. название фильтра не может
+                        начинаться с числа.</p>
                     <pre class="hljs example-default"><code>{<span class="hljs-number">1</span>|<span class="hljs-number">0</span>}
 
 {a = <span class="hljs-number">1</span>}
 {<span class="hljs-number">1</span> | a}
 </code></pre>
                     <h2>Встроенные фильтры</h2>
-                    <p>В стандартном runtime библиотеки Snakeskin присутствует ряд базовых фильтров, которые могут быть полезны при разработке шаблонов, <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js">подробнее</a>.</p>
+                    <p>В стандартном runtime библиотеки Snakeskin присутствует ряд базовых фильтров, которые могут быть полезны при разработке шаблонов, <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js">подробнее</a>.</p>
                 </section>
                 <section id="localization" class="b-article">
                     <ul class="b-breadcrumbs">
@@ -1037,8 +1036,8 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                         </li>
                     </ul>
                     <h1>Локализация</h1>
-                    <p>В Snakeskin существует специальный тип строк <code>` ... `</code>, которые при параметре
-                        <a href="api.html#compile--localization">localization</a> (включён по умолчанию) будут автоматически оборачиваться функцией <code>i18n()</code>.</p>
+                    <p>В Snakeskin существует специальный тип строк <code>` ... `</code>, которые при параметре
+                        <a href="api.html#compile--localization">localization</a> (включён по умолчанию) будут автоматически оборачиваться функцией <code>i18n()</code>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1077,9 +1076,9 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Имя используемой функции локализации можно задать явно с помощью параметра <a href="api.html#compile--i18nFn">i18nFn</a>.</p>
+                    <p>Имя используемой функции локализации можно задать явно с помощью параметра <a href="api.html#compile--i18nFn">i18nFn</a>.</p>
                     <h2>Передача параметров функции локализации</h2>
-                    <p>Snakeskin поддерживает передачу параметров для функции локализации, которые задаются в виде строки через параметр
+                    <p>Snakeskin поддерживает передачу параметров для функции локализации, которые задаются в виде строки через параметр
                         <a href="api.html#compile--i18nFnOptions">i18nFnOptions</a>, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1106,7 +1105,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                     <pre class="hljs example-js"><code>i18n(<span class="hljs-string">"hello world!"</span>, {lang: <span class="hljs-string">"en"</span>}, <span class="hljs-literal">true</span>)
 </code></pre>
                     <h3>Локальная передача параметров</h3>
-                    <p>Если строка локализации находится внутри директивы, то можно явно передать дополнительные параметры, которые будут заменять глобальные, например:</p>
+                    <p>Если строка локализации находится внутри директивы, то можно явно передать дополнительные параметры, которые будут заменять глобальные, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1125,7 +1124,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                         </div>
                     </div>
                     <h2>Экранирование</h2>
-                    <p>Чтобы использовать символ <code>`</code> самостоятельно, то его нужно экранировать.</p>
+                    <p>Чтобы использовать символ <code>`</code> самостоятельно, то его нужно экранировать.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1146,9 +1145,9 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                     <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code>`Hello world!`
 </code></pre>
-                    <p>Или же можно просто отключить параметр <a href="api.html#compile--localization">localization</a>.</p>
-                    <h2>Замена на этапе трансляции</h2>
-                    <p>Если при компиляции шаблонов задать параметр-объект <code>language</code>, то найденные литералы будут автоматически заменятся на указанные в объекте.</p>
+                    <p>Или же можно просто отключить параметр <a href="api.html#compile--localization">localization</a>.</p>
+                    <h2>Замена на этапе трансляции</h2>
+                    <p>Если при компиляции шаблонов задать параметр-объект <code>language</code>, то найденные литералы будут автоматически заменятся на указанные в объекте.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1177,7 +1176,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                     <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code>Привет мир!
 </code></pre>
-                    <p>Т.к. смежные пробельные символы в Snakeskin схлопываются один, то следующий пример также будет работать.</p>
+                    <p>Т.к. смежные пробельные символы в Snakeskin схлопываются один, то следующий пример также будет работать.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1208,7 +1207,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 });
 </code></pre>
                     <h2>Генерация таблицы используемых литералов</h2>
-                    <p>Дополнительно Snakeskin может сохранить все найденные литералы локализации в объект, чтобы потом, например, можно было передать его переводчикам. За эту функцию отвечает параметр <a href="api.html#compile--words">words</a>.</p>
+                    <p>Дополнительно Snakeskin может сохранить все найденные литералы локализации в объект, чтобы потом, например, можно было передать его переводчикам. За эту функцию отвечает параметр <a href="api.html#compile--words">words</a>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1245,7 +1244,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                     </ul>
                     <h1>Параметры трансляции</h1>
                     <p>Транслятор Snakeskin поддерживает множество дополнительных режимов работы, которые можно задавать через метод
-                        <a href="api.html#compile">compile</a> и т. д., но также, Snakeskin позволяет декларировать часть таких параметров непосредственно в тексте программы, например:</p>
+                        <a href="api.html#compile">compile</a> и т.д., но также, Snakeskin позволяет декларировать часть таких параметров непосредственно в тексте программы, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1275,7 +1274,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         <li><a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a></li>
                         <li><a href="api.html#compile--doctype">doctype</a></li>
                     </ul>
-                    <p>Параметры заданные таким способом распространяются на все шаблоны в файле, а также на все подключаемые файлы, если они там явно не переопределяются.</p>
+                    <p>Параметры заданные таким способом распространяются на все шаблоны в файле, а также на все подключаемые файлы, если они там явно не переопределяются.</p>
                     <h2>Локальные параметры</h2>
                     <p>Параметр трансляции можно задать локально для конкретного шаблона, причём можно совмещать оба способа декларации, например:
                     </p>
@@ -1308,9 +1307,9 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
-                    <h1>Интеграция с другими шаблонами</h1>
-                    <p>Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы <a href="api.html#literal">literal</a>. Как правило такой кейз возникает при интеграции Snakeskin c MVVM фреймворками, например,
-                        с Vue. Директива <em>literal</em> имеет специальный синтаксис <code>{{ ... }}</code>, который скомпилируется согласно параметру <a href="api.html#compile--literalBounds">literalBounds</a> (по умолчанию используется <code>{{ ... }}</code>),
+                    <h1>Интеграция с другими шаблонами</h1>
+                    <p>Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы <a href="api.html#literal">literal</a>. Как правило такой кейз возникает при интеграции Snakeskin c MVVM фреймворками, например,
+                        с Vue. Директива <em>literal</em> имеет специальный синтаксис <code>{{ ... }}</code>, который скомпилируется согласно параметру <a href="api.html#compile--literalBounds">literalBounds</a> (по умолчанию используется <code>{{ ... }}</code>),
                         например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1363,7 +1362,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Концепция наследования. Блоки</h1>
-                    <p>Важно понимать отличие простой декларации шаблона от декларации шаблона с наследованием. При декларации простого шаблона мы описываем его структуру, а при наследовании описываем его изменения относительно родителя, например:</p>
+                    <p>Важно понимать отличие простой декларации шаблона от декларации шаблона с наследованием. При декларации простого шаблона мы описываем его структуру, а при наследовании описываем его изменения относительно родителя, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1390,9 +1389,9 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>При вызове скомпилированной функции <strong>child</strong> результат будет точно таким же, как и у <strong>base</strong>: <code>Какой хороший день!</code>, но мы скорее всего ожидали увидеть <code>Какой хороший день! Может пойдём на речку?</code>.
-                        Всё дело в том, что в тексте шаблона <em>child</em> не были указаны изменения, а просто написана некоторая новая структура и Snakeskin не знает как именно она должна расширять родительский шаблон и поэтому проигнорировал её.</p>
-                    <p>Одним из способов декларации переопределяемых структур являются блоки (<a href="api.html#block">вызываемые блоки</a> являются частным случаем), они позволяют создавать специальные структурные пометки, например:</p>
+                    <p>При вызове скомпилированной функции <strong>child</strong> результат будет точно таким же, как и у <strong>base</strong>: <code>Какой хороший день!</code>, но мы скорее всего ожидали увидеть <code>Какой хороший день! Может пойдём на речку?</code>.
+                        Всё дело в том, что в тексте шаблона <em>child</em> не были указаны изменения, а просто написана некоторая новая структура и Snakeskin не знает как именно она должна расширять родительский шаблон и поэтому проигнорировал её.</p>
+                    <p>Одним из способов декларации переопределяемых структур являются блоки (<a href="api.html#block">вызываемые блоки</a> являются частным случаем), они позволяют создавать специальные структурные пометки, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1425,8 +1424,8 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Теперь при вызове <em>child</em> результат будет: <code>Может пойдём на речку?</code>, т. к. в родительском шаблоне мы декларировали блок <em>root</em>, а в дочернем переопределили его. Мы также можем расширять дочерний шаблон путём
-                        введения новых блоков, которых нет у родителя, и тогда они будут последовательно подставляться в конец тела родителя.</p>
+                    <p>Теперь при вызове <em>child</em> результат будет: <code>Может пойдём на речку?</code>, т.к. в родительском шаблоне мы декларировали блок <em>root</em>, а в дочернем переопределили его. Мы также можем расширять дочерний шаблон путём
+                        введения новых блоков, которых нет у родителя, и тогда они будут последовательно подставляться в конец тела родителя.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1457,7 +1456,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </div>
                     </div>
                     <p>Теперь результат <em>child</em>: <code>Какой хороший день! Может пойдём на речку?</code>.</p>
-                    <p>Сами по себе блоки никак не влияют на конечный вид шаблона, т. е.</p>
+                    <p>Сами по себе блоки никак не влияют на конечный вид шаблона, т.е.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1486,7 +1485,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </div>
                     </div>
                     <p>Оба шаблона дадут абсолютно одинаковый ответ.</p>
-                    <p>В пределах шаблона не может быть двух блоков с одинаковым названием. Название блоков подчиняется тем же правилам, что и идентификаторы в JS. Внутри блока можно декларировать другие директивы, в частности другие блоки, константы и т. д.</p>
+                    <p>В пределах шаблона не может быть двух блоков с одинаковым названием. Название блоков подчиняется тем же правилам, что и идентификаторы в JS. Внутри блока можно декларировать другие директивы, в частности другие блоки, константы и т.д.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1520,8 +1519,8 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Если нам нужно доопределить родительский блок, то для этого следует использовать директиву <a href="api.html#super">super</a>. Директива работает по схеме: всплывает по дереву шаблона до тех пор, пока не найдётся блок, который имеет
-                        родителя, и вставляет родительское тело в указанное место, а если такого родителя нет, то просто ничего не делает.</p>
+                    <p>Если нам нужно доопределить родительский блок, то для этого следует использовать директиву <a href="api.html#super">super</a>. Директива работает по схеме: всплывает по дереву шаблона до тех пор, пока не найдётся блок, который имеет
+                        родителя, и вставляет родительское тело в указанное место, а если такого родителя нет, то просто ничего не делает.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1565,7 +1564,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Наследование входных параметров</h1>
-                    <p>При наследовании шаблон или блок наследует входные параметры родителя только в случае явного перечисления, при этом если входной параметр имеет у родителя значение по умолчанию, а у потомка оно не указано, то оно наследуется также.</p>
+                    <p>При наследовании шаблон или блок наследует входные параметры родителя только в случае явного перечисления, при этом если входной параметр имеет у родителя значение по умолчанию, а у потомка оно не указано, то оно наследуется также.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1597,7 +1596,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Наследуется и отношения параметра к <code>null</code> — <code>?</code> и <code>!</code>, причём в дочернем шаблоне можно переопределить поведение, например:</p>
+                    <p>Наследуется и отношения параметра к <code>null</code> - <code>?</code> и <code>!</code>, причём в дочернем шаблоне можно переопределить поведение, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1620,7 +1619,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Фильтры параметров также наследуются, причём мы можем добавлять новые фильтры в дочернем шаблоне (они будут применятся после родительских).</p>
+                    <p>Фильтры параметров также наследуются, причём мы можем добавлять новые фильтры в дочернем шаблоне (они будут применятся после родительских).</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1645,7 +1644,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Параметры имеют привязку по своему названию, а не порядку.</p>
+                    <p>Параметры имеют привязку по своему названию, а не порядку.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1670,7 +1669,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В случае если потомок исключает родительский параметр, то он становится простой локальной переменной внутри шаблона.</p>
+                    <p>В случае если потомок исключает родительский параметр, то он становится простой локальной переменной внутри шаблона.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1695,7 +1694,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Помимо исключения родительских параметров в дочернем шаблоне допускается и добавление новых.</p>
+                    <p>Помимо исключения родительских параметров в дочернем шаблоне допускается и добавление новых.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1718,7 +1717,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p><a href="api.html#with">with</a> биндинг параметров также наследуется, если он не был переопределён явно.</p>
+                    <p><a href="api.html#with">with</a> биндинг параметров также наследуется, если он не был переопределён явно.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1755,7 +1754,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Наследование параметров трансляции</h1>
-                    <p>При наследовании шаблона также наследуются те параметры трансляции, которые были ассоциированы с родительским шаблоном.</p>
+                    <p>При наследовании шаблона также наследуются те параметры трансляции, которые были ассоциированы с родительским шаблоном.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1780,7 +1779,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Допускается переопределение или доопределение параметров трансляции в дочернем шаблоне.</p>
+                    <p>Допускается переопределение или доопределение параметров трансляции в дочернем шаблоне.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1812,7 +1811,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Наследование модификаторов шаблона</h1>
-                    <p>Модификаторы вида <a href="api.html#template--%D0%90%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD">async</a> и <a href="api.html#template--%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80">генератор</a>                        наследуются дочерними шаблонами без возможности переопределения этого поведения.</p>
+                    <p>Модификаторы вида <a href="api.html#template--%D0%90%D1%81%D0%B8%D0%BD%D1%85%D1%80%D0%BE%D0%BD%D0%BD%D1%8B%D0%B9_%D1%88%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD">async</a> и <a href="api.html#template--%D0%A8%D0%B0%D0%B1%D0%BB%D0%BE%D0%BD-%D0%B3%D0%B5%D0%BD%D0%B5%D1%80%D0%B0%D1%82%D0%BE%D1%80">генератор</a>                        наследуются дочерними шаблонами без возможности переопределения этого поведения.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1841,7 +1840,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p><a href="api.html#template--%D0%94%D0%B5%D0%BA%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B">Декораторы шаблонов</a> также наследуются, а дочерний шаблон может добавить новые, которые применятся после родительских.</p>
+                    <p><a href="api.html#template--%D0%94%D0%B5%D0%BA%D0%BE%D1%80%D0%B0%D1%82%D0%BE%D1%80%D1%8B">Декораторы шаблонов</a> также наследуются, а дочерний шаблон может добавить новые, которые применятся после родительских.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1879,10 +1878,9 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Наследование вызываемых блоков</h1>
-                    <p>Вызываемы блоки — это подвид блоков, которые могут принимать входные параметры и неоднократно применяться в шаблоне. Наследование содержимого таких блоков осуществляется также, как и у <a href="#inheritBasic">простых блоков</a>, а входные
-                        параметры — по
-                        <a href="#inheritParams">общей схеме</a>.</p>
-                    <p>Дополнительно следует отметить, что если блок является немедленно вызываемым, то это поведение также наследуется.</p>
+                    <p>Вызываемы блоки - это подвид блоков, которые могут принимать входные параметры и неоднократно применяться в шаблоне. Наследование содержимого таких блоков осуществляется также, как и у <a href="#inheritBasic">простых блоков</a>, а
+                        входные параметры - по <a href="#inheritParams">общей схеме</a>.</p>
+                    <p>Дополнительно следует отметить, что если блок является немедленно вызываемым, то это поведение также наследуется.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1927,8 +1925,8 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Наследование констант</h1>
-                    <p>Константы — это специальный вид переменных, которые могут явно переопределяться в дочернем шаблоне и имеют глобальную область видимости в рамках своего шаблона. В шаблоне не может быть двух констант с одинаковым именем, а также переменных,
-                        имя которых совпадает с именем константы (за исключением входных параметров функций).</p>
+                    <p>Константы - это специальный вид переменных, которые могут явно переопределяться в дочернем шаблоне и имеют глобальную область видимости в рамках своего шаблона. В шаблоне не может быть двух констант с одинаковым именем, а также переменных,
+                        имя которых совпадает с именем константы (за исключением входных параметров функций).</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1960,7 +1958,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Допускается вводить новые константы в дочернем шаблоне — они вставятся сразу после родительских.</p>
+                    <p>Допускается вводить новые константы в дочернем шаблоне - они вставятся сразу после родительских.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1994,7 +1992,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Если константа была вызываемой, то это поведение также наследуется.</p>
+                    <p>Если константа была вызываемой, то это поведение также наследуется.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -2032,7 +2030,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
         </div>
         <footer class="b-footer">© 2016 Snakeskin
             <menu class="b-footer__menu">
-                <li><a href="https://github.com/SnakeskinTpl/snakeskin.github.io/issues/new">Сообщить об ошибке</a></li>
+                <li><a href="https://github.com/SnakeskinTpl/snakeskin.github.io/issues/new">Сообщить об ошибке</a></li>
                 <li><a href="https://github.com/SnakeskinTpl/Snakeskin">GitHub</a></li>
             </menu>
         </footer>

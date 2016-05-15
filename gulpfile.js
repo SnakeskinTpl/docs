@@ -19,12 +19,14 @@ const
 	uglify = require('gulp-uglify'),
 	csso = require('gulp-csso'),
 	run = require('gulp-run'),
+	rename = require('gulp-rename'),
 	through = require('through2');
 
 const
 	path = require('path'),
 	async = require('async'),
 	nib = require('nib'),
+	exists = require('exists-sync'),
 	babel = require('rollup-plugin-babel'),
 	hljs = require('highlight.js');
 
@@ -41,18 +43,34 @@ function error() {
 }
 
 gulp.task('templates', (cb) => {
-	let cluster;
-	gulp.src('./tpls/*.ss')
-		.pipe(through.obj(function (file, enc, cb) {
-			cluster = path.basename(file.path, '.ss');
-			this.push(file);
-			return cb();
-		}))
+	const doc = (cb, lang) => {
+		let cluster;
+		gulp.src('./tpls/*.ss')
+			.pipe(through.obj(function (file, enc, cb) {
+				cluster = path.basename(file.path, '.ss');
+				this.push(file);
+				return cb();
+			}))
 
-		.pipe(snakeskin({exec: true, prettyPrint: true, vars: {lang: 'ru', file: () => cluster}}))
-		.on('error', error())
-		.pipe(gulp.dest(buildFolder))
-		.on('end', cb);
+			.pipe(snakeskin({
+				exec: true,
+				prettyPrint: true,
+				language: exists(`./${lang}.json`) ? require(`./${lang}.json`) : undefined,
+				vars: {
+					lang,
+					file: () => cluster}
+			}))
+
+			.on('error', error())
+			.pipe(rename({suffix: lang !== 'en' ? `-${lang}` : ''}))
+			.pipe(gulp.dest(buildFolder))
+			.on('end', cb);
+	};
+
+	async.series([
+		(cb) => doc(cb, 'en'),
+		(cb) => doc(cb, 'ru'),
+	], cb);
 });
 
 gulp.task('styles', (cb) => {

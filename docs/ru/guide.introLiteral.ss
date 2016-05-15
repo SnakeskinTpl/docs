@@ -13,9 +13,9 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы [literal](api.html#literal).
+Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы [literal](api#{@@prfx}.html#literal).
 Как правило такой кейз возникает при интеграции Snakeskin c MVVM фреймворками, например, с Vue. Директива *literal* имеет
-специальный синтаксис `{{ ... }}`, который скомпилируется согласно параметру [literalBounds](api.html#compile--literalBounds)
+специальный синтаксис `{{ ... }}`, который скомпилируется согласно параметру [literalBounds](api#{@@prfx}.html#compile--literalBounds)
 (по умолчанию используется `{{ ... }}`), например:
 
 #{+= self.example()}

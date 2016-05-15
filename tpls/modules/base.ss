@@ -8,6 +8,7 @@
  * https://github.com/SnakeskinTpl/snakeskin.github.io/blob/master/LICENSE
  */
 
+- prfx = @@lang !== 'en' ? '-' + @@lang : ''
 - import Typograf from 'typograf'
 - import MarkdownIt from 'markdown-it'
 - import hljs from 'highlight.js'

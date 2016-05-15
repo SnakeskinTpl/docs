@@ -22,7 +22,7 @@
 		< body
 			< .b-doc-wrapper
 				< header.b-header
-					< a.&__logo href = index.html
+					< a.&__logo href = index${@@prfx}.html
 						< img src = logo.svg | alt = snakeskin template engine
 						< .&__logo-text
 							nakeskin
