@@ -137,7 +137,8 @@ $(() => {
 
 		const
 			win = $(window),
-			duration = 250;
+			duration = 250,
+			notFound = Boolean(target);
 
 		if (!hash || target.hasClass('b-article')) {
 			setArticle(target);
@@ -149,7 +150,13 @@ $(() => {
 		}
 
 		if (hash !== location.hash) {
-			location.hash = hash;
+			if (notFound || !location.hash) {
+				location.replace(location.pathname + (hash[0] === '#' ? hash : `#${hash}`));
+
+			} else {
+				location.hash = hash;
+			}
+
 		}
 	}
 
