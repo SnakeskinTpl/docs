@@ -89,7 +89,7 @@
 							< h2
 								`Удивительно мощный язык описания шаблонов`
 
-						< a.b-install href = guide.html#install
+						< a.b-install href = guide${@@prfx}.html#install
 							`Установить Snakeskin`
 
 						< .b-badges
