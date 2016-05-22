@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['2::Выполнение / вывод']['2::call']
+- namespace docs.en.api['1::Directives']['2::Execution / output']['2::call']
 
 /*!
  * snakeskin.github.io
@@ -17,13 +17,13 @@
 (на выводимое выражение по умолчанию накладываются
 [фильтр](#{@@guide}#filters) [undef](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L232)).
 
-## Паспорт
+## Synopsis
 
-| Декларация                                | Короткий синтаксис | Тип директивы      | Интерполяция |
+| Declaration                                | Shorthand | Directive type      | Interpolation |
 |-------------------------------------------|--------------------|--------------------|--------------|
-| Только внутри шаблонов или внешних блоков | `+=`               | Блочная, текстовая | Не требуется |
+| Only within templates or external blocks | `+=`               | Block, text | Not required |
 
-## Описание
+## Description
 
 Директива *call* похожа на [output](#output), т.е. она тоже вставляет результат выражения в шаблон, однако, она не накладывает
 по умолчанию на выводимые данные фильтр [html](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L175), т.е.
@@ -99,7 +99,7 @@
 
 #{/}
 
-Директива может использоваться только внутри шаблонов или внешних блоков.
+Директива может использоваться только внутри шаблонов or внешних блоков.
 
 ### Расширенная декларация
 
@@ -306,7 +306,7 @@
 
 #{/}
 
-### Примеры
+### Examples
 #### Передача функции-параметра с помощью [func](#func)
 
 #{+= self.example()}

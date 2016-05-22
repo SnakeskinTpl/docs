@@ -1,4 +1,4 @@
-- namespace docs.en.guide['3::Наследование']['6::Наследование констант']
+- namespace docs.en.guide['3::Inheritance']['6::Наследование констант']
 
 /*!
  * snakeskin.github.io

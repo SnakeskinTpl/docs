@@ -241,7 +241,7 @@ gulp.task('default', ['snakeskin']);
 
 #{/}
 
-Также для задач статической генерации страниц может использоваться Grunt, Webpack или Snakeskin CLI.
+Также для задач статической генерации страниц может использоваться Grunt, Webpack or Snakeskin CLI.
 
 ### Статическая генерация с Snakeskin CLI
 

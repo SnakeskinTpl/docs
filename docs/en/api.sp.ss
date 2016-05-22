@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['10::Работа с пробельными символами']['4::sp']
+- namespace docs.en.api['1::Directives']['10::Working with whitespace']['4::sp']
 
 /*!
  * snakeskin.github.io
@@ -15,13 +15,13 @@
 
 Директива вставляет в шаблон пробельный символ (актуально только для Jade-Like).
 
-## Паспорт
+## Synopsis
 
-| Декларация                                | Короткий синтаксис | Тип директивы        | Интерполяция |
+| Declaration                                | Shorthand | Directive type        | Interpolation |
 |-------------------------------------------|--------------------|----------------------|--------------|
-| Только внутри шаблонов или внешних блоков | `\\`               | Строковая, текстовая | Не требуется |
+| Only within templates or external blocks | `\\`               | Inline, text | Not required |
 
-## Примеры
+## Examples
 
 ```jade-like
 - namespace demo

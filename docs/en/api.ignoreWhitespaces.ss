@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['10::Работа с пробельными символами']['1::ignoreWhitespaces']
+- namespace docs.en.api['1::Directives']['10::Working with whitespace']['1::ignoreWhitespaces']
 
 /*!
  * snakeskin.github.io
@@ -13,16 +13,15 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива декларирует, что все последующие пробельные символы до первого не пробельного
-должны игнорироваться.
+The Directive declares that all subsequent whitespace characters until first non-whitespace should be ignored.
 
-## Паспорт
+## Synopsis
 
-| Декларация                                | Короткий синтаксис | Тип директивы         | Интерполяция |
-|-------------------------------------------|--------------------|-----------------------|--------------|
-| Только внутри шаблонов или внешних блоков | `&`                | Строковая, логическая | Не требуется |
+| Declaration                              | Shorthand | Directive type | Interpolation |
+|------------------------------------------|-----------|----------------|---------------|
+| Only within templates or external blocks | `&`       | Inline, logic  | Not required  |
 
-## Примеры
+## Examples
 
 #{+= self.example()}
 
@@ -41,7 +40,7 @@
 
 #{/}
 
-Отрендерится как:
+Output:
 
 ```html
 HelloWorld Bar

@@ -1,4 +1,4 @@
-- namespace docs.en.guide['3::Наследование']['1::Концепция наследования. Блоки']
+- namespace docs.en.guide['3::Inheritance']['1::Концепция наследования. Блоки']
 
 /*!
  * snakeskin.github.io

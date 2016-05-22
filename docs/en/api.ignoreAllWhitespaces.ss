@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['10::Работа с пробельными символами']['2::ignoreAllWhitespaces']
+- namespace docs.en.api['1::Directives']['10::Working with whitespace']['2::ignoreAllWhitespaces']
 
 /*!
  * snakeskin.github.io
@@ -15,13 +15,13 @@
 
 Директива декларирует, что все вложенные в директиву пробельные символы должны игнорироваться.
 
-## Паспорт
+## Synopsis
 
-| Декларация                                | Короткий синтаксис | Тип директивы       | Интерполяция |
+| Declaration                                | Shorthand | Directive type       | Interpolation |
 |-------------------------------------------|--------------------|---------------------|--------------|
-| Только внутри шаблонов или внешних блоков | `&+`               | Блочная, логическая | Не требуется |
+| Only within templates or external blocks | `&+`               | Block, logic | Not required |
 
-## Примеры
+## Examples
 
 #{+= self.example()}
 

@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['11::Работа с HTML/XML']['6::link']
+- namespace docs.en.api['1::Directives']['11::Working with HTML/XML']['6::link']
 
 /*!
  * snakeskin.github.io
@@ -15,13 +15,13 @@
 
 Директива вставляет в шаблон код декларации тега `<link>` с заданными параметрами.
 
-## Паспорт
+## Synopsis
 
-| Декларация                                | Короткий синтаксис | Тип директивы      | Интерполяция   |
+| Declaration                                | Shorthand | Directive type      | Interpolation   |
 |-------------------------------------------|--------------------|--------------------|----------------|
-| Только внутри шаблонов или внешних блоков | Отсутствует        | Блочная, текстовая | Поддерживается |
+| Only within templates or external blocks | Absent        | Block, text | Supported |
 
-## Описание
+## Description
 
 Директива предназначена для более удобного задания тегов `<link>` и может использоваться только внутри шаблонов или
 внешних блоков.
@@ -55,7 +55,7 @@ type="text/css" rel="alternate stylesheet"
 type="image/x-icon" rel="icon"
 ```
 
-### Примеры
+### Examples
 #### Использование значения по умолчанию css
 
 #{+= self.example()}

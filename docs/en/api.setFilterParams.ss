@@ -23,7 +23,7 @@ Snakeskin.setFilterParams(filter, params) { return Function; }
 
 ### Аргументы
 
-1. `(string|!Function)` `filter` - название фильтра или функция-фильтр;
+1. `(string|!Function)` `filter` - название фильтра or функция-фильтр;
 2. `!Object` `params` - параметры фильтра.
 
 #{/block}

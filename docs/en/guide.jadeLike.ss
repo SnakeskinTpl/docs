@@ -1,4 +1,4 @@
-- namespace docs.en.guide['2::Основы']['2::Jade-like синтаксис']
+- namespace docs.en.guide['2::Basics']['2::Jade-like синтаксис']
 
 /*!
  * snakeskin.github.io

@@ -1,4 +1,4 @@
-- namespace docs.en.guide['2::Основы']['7::Параметры трансляции']
+- namespace docs.en.guide['2::Basics']['7::Параметры трансляции']
 
 /*!
  * snakeskin.github.io

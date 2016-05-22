@@ -1,4 +1,4 @@
-- namespace docs.en.guide['2::Основы']['6::Локализация']
+- namespace docs.en.guide['2::Basics']['6::Локализация']
 
 /*!
  * snakeskin.github.io
@@ -116,7 +116,7 @@ i18n("hello world!", {lang: "en"}, true)
 
 #{/}
 
-## Экранирование
+## Char escaping
 
 Чтобы использовать символ `` ` `` самостоятельно, то его нужно экранировать.
 

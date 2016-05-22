@@ -1,4 +1,4 @@
-- namespace docs.en.guide['3::Наследование']['5::Наследование вызываемых блоков']
+- namespace docs.en.guide['3::Inheritance']['5::Наследование вызываемых блоков']
 
 /*!
  * snakeskin.github.io

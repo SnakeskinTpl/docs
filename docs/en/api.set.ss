@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['1::Создание шаблона']['6::set']
+- namespace docs.en.api['1::Directives']['1::Creating templates']['6::set']
 
 /*!
  * snakeskin.github.io
@@ -15,11 +15,11 @@
 
 Директива задаёт значение указанному [параметру трансляции](#{@@guide}#introSet).
 
-## Паспорт
+## Synopsis
 
-| Декларация                  | Короткий синтаксис | Тип директивы         | Интерполяция |
+| Declaration                  | Shorthand | Directive type         | Interpolation |
 |-----------------------------|--------------------|-----------------------|--------------|
-| Только в глобальной области | `@=`               | Строковая, логическая | Не требуется |
+| Only in the global scope | `@=`               | Inline, logic | Not required |
 
 ## Поддерживаемые параметры
 

@@ -1,4 +1,4 @@
-- namespace docs.en.api['1::Directives']['11::Работа с HTML/XML']['4::script']
+- namespace docs.en.api['1::Directives']['11::Working with HTML/XML']['4::script']
 
 /*!
  * snakeskin.github.io
@@ -15,13 +15,13 @@
 
 Директива вставляет в шаблон код декларации тега `<script>` с заданными параметрами.
 
-## Паспорт
+## Synopsis
 
-| Декларация                                | Короткий синтаксис | Тип директивы      | Интерполяция   |
+| Declaration                                | Shorthand | Directive type      | Interpolation   |
 |-------------------------------------------|--------------------|--------------------|----------------|
-| Только внутри шаблонов или внешних блоков | Отсутствует        | Блочная, текстовая | Поддерживается |
+| Only within templates or external blocks | Absent        | Block, text | Supported |
 
-## Описание
+## Description
 
 Директива предназначена для более удобного задания тегов `<script>` и может использоваться только внутри шаблонов или
 внешних блоков.
@@ -91,7 +91,7 @@ text/html
 text/x-snakeskin-template
 ```
 
-### Примеры
+### Examples
 #### Использование значения по умолчанию (js)
 
 #{+= self.example()}

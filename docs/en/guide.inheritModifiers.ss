@@ -1,4 +1,4 @@
-- namespace docs.en.guide['3::Наследование']['4::Наследование модификаторов шаблона']
+- namespace docs.en.guide['3::Inheritance']['4::Наследование модификаторов шаблона']
 
 /*!
  * snakeskin.github.io
