@@ -13,13 +13,13 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива вставляет в шаблон пробельный символ (актуально только для Jade-Like).
+The directive puts in a template the space character (only relevant for Jade-Like).
 
 ## Synopsis
 
-| Declaration                                | Shorthand | Directive type        | Interpolation |
-|-------------------------------------------|--------------------|----------------------|--------------|
-| Only within templates or external blocks | `\\`               | Inline, text | Not required |
+| Declaration                              | Shorthand | Directive type | Interpolation |
+|------------------------------------------|-----------|----------------|---------------|
+| Only within templates or external blocks | `\\`      | Inline, text   | Not required  |
 
 ## Examples
 
@@ -31,7 +31,7 @@
 	< .bar
 ```
 
-Отрендерится как:
+Output:
 
 ```html
 <div class="foo"></div> <div class="bar"></div>

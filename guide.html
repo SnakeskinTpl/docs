@@ -40,7 +40,7 @@
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#gettingStarted">Концепт и варианты применения</a> </li>
                         </ol>
                     </li>
-                    <li class="b-contents__part b-contents__part_link_false">Основы
+                    <li class="b-contents__part b-contents__part_link_false">Basics
                         <ol>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#basics">Декларация и базовый синтаксис</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#jadeLike">Jade-like синтаксис</a> </li>
@@ -52,11 +52,11 @@
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#introLiteral">Интеграция с другими шаблонами</a> </li>
                         </ol>
                     </li>
-                    <li class="b-contents__part b-contents__part_link_false">Наследование
+                    <li class="b-contents__part b-contents__part_link_false">Inheritance
                         <ol>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritBasic">Концепция наследования. Блоки</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritParams">Наследование входных параметров</a> </li>
-                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritSet">Наследование параметров трансляции</a> </li>
+                            <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritSet">Inheritance параметров трансляции</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritModifiers">Наследование модификаторов шаблона</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritBlocks">Наследование вызываемых блоков</a> </li>
                             <li class="b-contents__part b-contents__part_link_true"><a class="b-contents__link" href="#inheritConsts">Наследование констант</a> </li>
@@ -81,7 +81,7 @@
                         работы <a href="https://ru.wikipedia.org/wiki/CoffeeScript">CoffeeScript</a>, но если CoffeeScript спроектирован для упрощения разработки сложных проектов непосредственно на JS, то Snakeskin предназначен для шаблонизации HTML/XML-подобных
                         структур и упрощения их code-reuse, предоставляя из коробки наследование, расширение, локализацию, экранирование и прочие полезные ништяки :)</p>
                     <p>Snakeskin удобно использовать для генерации статичных страниц - транслятор может скомпилировать и сразу выполнить шаблон, возвратив результат его работы, что можно использовать для генерации шаблонов различных MVVM-фреймворков, таких
-                        как Angular, Vue или React. В принципе, можно использовать Snakeskin даже для генерации кода на PHP - но помните, мы не гарантируем защиты от динозавров, которые могут прийти за вами.</p>
+                        как Angular, Vue or React. В принципе, можно использовать Snakeskin даже для генерации кода на PHP - но помните, мы не гарантируем защиты от динозавров, которые могут прийти за вами.</p>
                     <p>Snakeskin поддерживает интеграцию с популярными task-runner'ами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов - это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
                     <p>Use and enjoy.</p>
                 </section>
@@ -326,7 +326,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Также для задач статической генерации страниц может использоваться Grunt, Webpack или Snakeskin CLI.</p>
+                    <p>Также для задач статической генерации страниц может использоваться Grunt, Webpack or Snakeskin CLI.</p>
                     <h3>Статическая генерация с Snakeskin CLI</h3>
                     <p>Генерация страницы index.html на основе шаблона index.ss из примера выше.</p>
                     <pre class="hljs example-bash"><code>snakeskin ./index.ss <span class="hljs-_">-e</span> -o ./dist/index.html
@@ -335,7 +335,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                 <section id="basics" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -369,7 +369,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <p>Управляющие конструкции (директивы) Snakeskin размещаются между символами <code>{</code> и <code>}</code>. Обычно вызов директивы подходит под следующий шаблон:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{названиеДирективы параметры}</span><span class="xml">
 </span></code></pre>
-                    <p>Например:</p>
+                    <p>For example:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> a = true /}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> a}</span><span class="xml">
 	</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">void</span></span> console.log(a)}</span><span class="xml">
@@ -400,7 +400,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">tag</span></span> ${a ? <span class="hljs-string">'input'</span> : <span class="hljs-string">'textarea'</span>}</span><span class="xml"> /}
 </span></code></pre>
                     <h2>Блочные директивы</h2>
-                    <p>Подобно тегам HTML или XML, многие директивы Snakeskin могут включать в себя другие директивы и т.д. и в дальнейшем такие директивы будут называться блочными, а все остальные - строчными.</p>
+                    <p>Подобно тегам HTML or XML, многие директивы Snakeskin могут включать в себя другие директивы и т.д. и в дальнейшем такие директивы будут называться блочными, а все остальные - строчными.</p>
                     <p>Блочные директивы состоят из двух частей: основной декларации и завершающей части, например:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Основная декларация директивы if</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">if</span></span> <span class="hljs-number">1</span> &gt; <span class="hljs-number">2</span>}</span><span class="xml">
@@ -468,7 +468,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
   */</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 </span></code></pre>
-                    <h2>Экранирование</h2>
+                    <h2>Char escaping</h2>
                     <p>Символ <code>\</code> может использоваться для экранирования директив, комментариев и прочих сущностей Snakeskin.</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> example()}</span><span class="xml">
 	</span>\{<span class="xml">var val = 1} </span><span class="hljs-comment">/// Выведется как простой текст</span><span class="xml">
@@ -480,7 +480,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                 <section id="jadeLike" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -567,7 +567,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                 <section id="introTemplates" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -700,8 +700,8 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <p>Узнать о всех директивах, которые поддерживает Snakeskin, можно в <a href="api.html">документации проекта</a>.</p>
-                    <h2>Глобальный контекст</h2>
-                    <p>Код, который находится вне тела шаблона или прототипа считается глобальным и помимо трансляции в JavaScript выполняется на этапе трансляции.</p>
+                    <h2>Global context</h2>
+                    <p>Код, который находится вне тела шаблона or прототипа считается глобальным и помимо трансляции в JavaScript выполняется на этапе трансляции.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -719,7 +719,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <h2>Работа с пробельными символами</h2>
+                    <h2>Working with whitespace</h2>
                     <p>Если не задан параметр <a href="api.html#compile--tolerateWhitespaces">tolerateWhitespaces</a>, то любые пробельные символы (перевод строки, пробел, табуляция и т.д.) в рамках шаблона Snakeskin трактуются как пробел и “схлопываются”
                         в один, т.е.:</p>
                     <div class="b-example">
@@ -754,9 +754,9 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <h3>Текстовые и логические директивы</h3>
                     <p>Директивы Snakeskin можно условно разделить на 2 группы: текстовые и логические.</p>
                     <p>Текстовые директивы — это такие директивы, результат работы которых выводится в шаблон, например,
-                        <a href="api.html#output">output</a> или <a href="api.html#call">call</a>, а остальные директивы считаются логическими, например,
-                        <a href="api.html#if">if</a> или <a href="api.html#for">for</a>.</p>
-                    <p>Логические директивы не участвуют в обработке пробелов, т.е.:</p>
+                        <a href="api.html#output">output</a> or <a href="api.html#call">call</a>, а остальные директивы считаются логическими, например,
+                        <a href="api.html#if">if</a> or <a href="api.html#for">for</a>.</p>
+                    <p>Logic directives не участвуют в обработке пробелов, т.е.:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -793,7 +793,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                 <section id="introParams" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -818,7 +818,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>У параметров может быть значение по умолчанию, которое применяется, если значение параметра будет <code>null</code> или <code>undefined</code>.</p>
+                    <p>У параметров может быть значение по умолчанию, которое применяется, если значение параметра будет <code>null</code> or <code>undefined</code>.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -854,7 +854,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Существует также оператор <code>!</code>, который отменяет оператор <code>?</code>, но он используется только при наследовании блоков или шаблонов.</p>
+                    <p>Существует также оператор <code>!</code>, который отменяет оператор <code>?</code>, но он используется только при наследовании блоков or шаблонов.</p>
                     <h2>with биндинг</h2>
                     <p>Оператор <code>@</code> осуществляет привязку параметра к директиве <a href="api.html#with">with</a>, например:</p>
                     <div class="b-example">
@@ -878,7 +878,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                 <section id="filters" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -886,7 +886,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                     <p>Фильтром Snakeskin называется функция, которая лежит в пространстве имён <strong>Snakeskin.Filters</strong>, а для вызова такой функции используется специальный “сахарный” синтаксис. Сам механизм фильтров идеологически близок к реализации
                         в Bash, т.е. для вызова фильтра используется символ вертикальной черты (<code>|</code>), после которого идёт название фильтра и его параметры. Следует отметить, что между символом фильтра и названием не должно быть пробелов, иначе
                         это будет трактоваться парсером как “побитовое или”.</p>
-                    <p>Например:</p>
+                    <p>For example:</p>
                     <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-comment">/// Snakeskin.Filters['ucfirst'].call(this, 'hello' + ' world')</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-string">'hello'</span> + <span class="hljs-string">' world'</span><span class="hljs-keyword">|ucfirst</span>}</span><span class="xml">
 </span></code></pre>
@@ -956,7 +956,7 @@ exports.demo.hello = <span class="hljs-function"><span class="hljs-keyword">func
                         </div>
                     </div>
                     <h2>Пользовательский фильтр</h2>
-                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) или знака доллара (<code>$</code>). Первым параметром
+                    <p>Чтобы написать свой фильтр, достаточно добавить его в <em>Snakeskin.Filters</em>. Название фильтра может начинаться с символа латинского алфавита, подчёркивания (<code>_</code>) or знака доллара (<code>$</code>). Первым параметром
                         функции будет значение выражения, а <em>this</em> внутри фильтра ссылается на <em>this</em> шаблона.</p>
                     <pre class="hljs example-js"><code>Snakeskin.Filters[<span class="hljs-string">'replace'</span>] = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, search, replace</span>) </span>{
 	<span class="hljs-keyword">return</span> <span class="hljs-built_in">String</span>(str).replace(search, replace);
@@ -1032,7 +1032,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                 <section id="localization" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -1124,7 +1124,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <h2>Экранирование</h2>
+                    <h2>Char escaping</h2>
                     <p>Чтобы использовать символ <code>`</code> самостоятельно, то его нужно экранировать.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1239,7 +1239,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="introSet" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -1304,7 +1304,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="introLiteral" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Основы
+                            <div class="fa fa-angle-right"></div> Basics
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -1358,7 +1358,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="inheritBasic" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Наследование
+                            <div class="fa fa-angle-right"></div> Inheritance
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -1560,12 +1560,12 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="inheritParams" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Наследование
+                            <div class="fa fa-angle-right"></div> Inheritance
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
                     <h1>Наследование входных параметров</h1>
-                    <p>При наследовании шаблон или блок наследует входные параметры родителя только в случае явного перечисления, при этом если входной параметр имеет у родителя значение по умолчанию, а у потомка оно не указано, то оно наследуется также.</p>
+                    <p>При наследовании шаблон or блок наследует входные параметры родителя только в случае явного перечисления, при этом если входной параметр имеет у родителя значение по умолчанию, а у потомка оно не указано, то оно наследуется также.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1750,11 +1750,11 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="inheritSet" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Наследование
+                            <div class="fa fa-angle-right"></div> Inheritance
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
-                    <h1>Наследование параметров трансляции</h1>
+                    <h1>Inheritance параметров трансляции</h1>
                     <p>При наследовании шаблона также наследуются те параметры трансляции, которые были ассоциированы с родительским шаблоном.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1780,7 +1780,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Допускается переопределение или доопределение параметров трансляции в дочернем шаблоне.</p>
+                    <p>Допускается переопределение or доопределение параметров трансляции в дочернем шаблоне.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -1807,7 +1807,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="inheritModifiers" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Наследование
+                            <div class="fa fa-angle-right"></div> Inheritance
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -1874,7 +1874,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="inheritBlocks" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Наследование
+                            <div class="fa fa-angle-right"></div> Inheritance
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>
@@ -1921,7 +1921,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="inheritConsts" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> Наследование
+                            <div class="fa fa-angle-right"></div> Inheritance
                             <div class="fa fa-angle-right"></div>
                         </li>
                     </ul>

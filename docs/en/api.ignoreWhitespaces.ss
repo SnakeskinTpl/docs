@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-The Directive declares that all subsequent whitespace characters until first non-whitespace should be ignored.
+The directive declares that all subsequent whitespace characters until first non-whitespace should be ignored.
 
 ## Synopsis
 

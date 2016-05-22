@@ -13,13 +13,13 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива выполняет заданное выражение, но ничего не выводит в шаблон.
+The directive executes the specified expression, but no outputs the result to a template.
 
 ## Synopsis
 
-| Declaration      | Shorthand | Directive type         | Interpolation |
-|-----------------|--------------------|-----------------------|--------------|
-| No limits | `?`                | Inline, logic | Not required |
+| Declaration | Shorthand | Directive type | Interpolation |
+|-------------|-----------|----------------|---------------|
+| No limits   | `?`       | Inline, logic  | Not required  |
 
 ## Description
 
@@ -41,7 +41,7 @@
 
 #{/}
 
-Директива может использоваться как внутри шаблонов or других директив, так и в глобальной области.
+The directive can be used anywhere.
 
 ### Examples
 

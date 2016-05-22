@@ -13,14 +13,14 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива декларирует, что все вложенные в директиву пробельные символы не должны игнорироваться
-(обычно используется вместе с [ignoreAllWhitespaces](#ignoreAllWhitespaces)).
+The directive declares that all nested whitespace characters should not be ignored
+(usually used in conjunction with [ignoreAllWhitespaces] (# ignoreAllWhitespaces)).
 
 ## Synopsis
 
-| Declaration                                | Shorthand | Directive type       | Interpolation |
-|-------------------------------------------|--------------------|---------------------|--------------|
-| Only within templates or external blocks | `&-`               | Block, logic | Not required |
+| Declaration                              | Shorthand | Directive type | Interpolation |
+|------------------------------------------|-----------|----------------|---------------|
+| Only within templates or external blocks | `&-`      | Block, logic   | Not required  |
 
 ## Examples
 
@@ -49,7 +49,7 @@
 
 #{/}
 
-Отрендерится как:
+Output:
 
 ```html
 HelloWorldBarHello World Bar
