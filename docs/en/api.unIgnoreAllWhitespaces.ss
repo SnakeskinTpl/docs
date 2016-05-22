@@ -14,7 +14,7 @@
 #{block root}
 
 The directive declares that all nested whitespace characters should not be ignored
-(usually used in conjunction with [ignoreAllWhitespaces] (# ignoreAllWhitespaces)).
+(usually used in conjunction with [ignoreAllWhitespaces](#ignoreAllWhitespaces)).
 
 ## Synopsis
 
