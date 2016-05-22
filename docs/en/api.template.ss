@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива декларирует шаблон c заданным именем и входными параметрами.
+This directive declares a pattern with specified name and input parameters.
 
 ## Synopsis
 
@@ -23,17 +23,16 @@
 
 ## Description
 
-Шаблон Snakeskin - это синоним функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции,
-которые можно использовать вместе с любым другим JS кодом. По умолчанию шаблоны возвращают строки, однако это поведение
-можно поменять задав специальный [renderMode](#compile--renderMode) or явно вернув значение через директиву [return](#return).
+Snakeskin pattern is just a JavaScript function that can be used inside regular code after being transpiled.
+Every patterns returns a string by default. You can adjust this behaviour by specifying a custom [renderMode](#compile--renderMode)
+or explicit [return](#return) of a value.
 
-Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.
-Начать декларацию шаблона можно только после декларации пространства имён, причём в рамках одного пространства имён
-не может быть 2-х шаблонов с одинаковым именем, а размещаться шаблон может только в глобальной области декларации, т.е.
-шаблон не может включать в себя другой шаблон - для этого есть подшаблоны, например, [блоки](#block).
+A pattern's name matches name of a function in JavaScript, so it should comply the same rules.
+Pattern declaration should be preceeded by namespace declaration and should have a unique name.
+Besides, a pattern can be declared only within global scope. Nesting is not allowed - use [blocks](#block) 
+for this.
 
-Декларация шаблона очень похожа на декларацию функции в JavaScript, только вместо ключевого слова `function` используется
-`template`, например:
+The directive is very similar to declaration of functions in JavaScript, for instance:
 
 #{+= self.example()}
 
@@ -52,10 +51,9 @@
 
 #{/}
 
-Параметров у шаблона может быть неограниченное количество, а т.к. директива *template* является функциональной, то она
-реализует [стандартный механизм декларации параметров](#{@@guide}#introParams).
+You can find more advanced ways of parameters declaring [here](#{@@guide}#introParams).
 
-## Вложенные пространства имён
+## Nested namespaces
 
 При декларации шаблона можно использовать пространства имён, подобно тому, как это делается в [namespace](#namespace),
 например:
@@ -109,36 +107,35 @@ exports.demo.index = function index(name) {
 };
 ```
 
-### Стандартные переменные шаблона
+### Predefined variables
 
-Каждый шаблон определяет ряд констант и функций, которые можно использовать в нём:
+There is a couple of predefined constants and functions that can be used inside patterns.
 
-`TPL_NAME` - строка, которая содержит полное имя шаблона вместе с пространством имён, причём именно в том виде,
-как оно было задано при декларации шаблона;
+`TPL_NAME` - a string containing a full pattern's name along with name of namespace as it was at the moment of declaration.
 
-`PARENT_TPL_NAME` - строка, которая содержит полное имя родительского шаблона вместе с пространством имён,
-причём именно в том виде, как оно было задано при декларации шаблона;
+`PARENT_TPL_NAME` - a string containing a full name of a pattern's parent along its namespace as it was at the moment of 
+declaration.
 
-`callee` - ссылка на исходную функцию-шаблон;
+`callee` - link to a running pattern (i.e. function).
 
-`self` - ссылка на объект `callee.Blocks`, в котором хранятся вызываемые блоки (методы) исходного шаблона;
+`self` - link to a `callee.Blocks` object, containing blocks (methods) of a running pattern.
 
-`$0` - ссылка на активный DOM узел (если `renderMode == 'dom'`);
+`$0` - link to current DOM node (only if renderMode equals 'dom').
 
 `$class` - значение [липкой ссылки]()#tag--Ссылки_на_родительский_класс;
 
-`getTplResult` - функция, которая возвращает результат работы шаблона, также может принимать один логический входной
-параметр, при задании которого после вызова функции результат работы шаблона будет обнуляться;
+`getTplResult` - a function returning a pattern's result. Accepts a boolean argument, pointing whether the result should
+be reseted after the function calling.
 
-`clearTplResult` - функция, которая обнуляет результат работы шаблона.
+`clearTplResult` - a function that resets a pattern's result.
 
-### Модификаторы шаблона
+### Modificators
 
-Шаблоны Snakeskin поддерживают специальные модификаторы декларации.
+Snakeskin patterns support declaration modificators.
 
-#### Шаблон-генератор
+#### Generator pattern
 
-Шаблон будет транслироваться в JS как функция-генератор (для поддержки в старых браузерах необходимо использовать полифил).
+A pattern would be translated into a generator function (you should use a polyfill for older browsers).
 
 #{+= self.example()}
 
@@ -160,9 +157,9 @@ exports.demo.index = function index(name) {
 
 #{/}
 
-#### Асинхронный шаблон
+#### Async pattern
 
-Шаблон будет транслироваться в JS как *async* функция (для поддержки в браузерах необходимо использовать полифил).
+A pattern would be translated into an *async* function (you should use a polyfill for older browsers).
 
 #{+= self.example()}
 
@@ -183,10 +180,10 @@ exports.demo.index = function index(name) {
 
 #{/}
 
-#### Декораторы
+#### Decorators
 
-К любому шаблону может быть добавлено неограниченное количество функций-декораторов (которые также могу быть шаблонами).
-Функция-декоратор принимает на вход ссылку на исходную функцию и обязана вернуть в качестве ответа функцию.
+Every pattern can be attached by decorator functions (that can also be patterns).
+Decorator accepts a link to original function and must return a function as its result.
 
 #{+= self.example()}
 
@@ -203,7 +200,7 @@ exports.demo.index = function index(name) {
 
 - @typograf({lang: 'ru'})
 - template index()
-	Спорт - это правильно!
+	Sport is well!
 ```
 
 ```classic
@@ -224,16 +221,15 @@ exports.demo.index = function index(name) {
 
 {@typograf({lang: 'ru'})}
 {template index()}
-	Спорт - это правильно!
+	Sport is well!
 {/template}
 ```
 
 #{/}
 
-### Локальные параметры трансляции
+### Local translation options
 
-При декларации шаблона ему можно задать определённые [параметры трансляции](#{@@guide}#introSet), для этого используется
-специальный оператор `@=`, например:
+When declaring a pattern specific [translation rules](#{@@guide}#introSet) can be specified by using `@=` operator.
 
 #{+= self.example()}
 
@@ -252,11 +248,10 @@ exports.demo.index = function index(name) {
 
 #{/}
 
-### Наследование шаблонов
+### Pattern inheritance
 
-Шаблоны Snakeskin подобны классам в других языках программирования, т.е. у них могут быть методы и свойства, и они
-могут наследоваться от других шаблонов. Чтобы указать, что шаблон наследуется от другого, необходимо использовать ключевое слово
-**extends**, например:
+Snakeskin patterns are similar to classes in other programming language, it means they have methods, properties and could
+inherit from others. Keyword **extends** is used to setup inheritance.
 
 #{+= self.example()}
 
@@ -277,10 +272,9 @@ exports.demo.index = function index(name) {
 
 [Подробнее про наследование](#{@@guide}#inheritBasic).
 
-### Явный вызов шаблонов внутри других шаблонов
+### Explicit call of a pattern inside other pattern
 
-Т.к. шаблоны Snakeskin являются простыми функциями, то их можно вызывать внутри других шаблонов и для этого удобно использовать
-директиву [call](#call).
+Since Snakeskin patterns are just functions they can be called inside each other via the [call](#call) directive.
 
 #{+= self.example()}
 
@@ -291,9 +285,9 @@ exports.demo.index = function index(name) {
 	Hello world!
 
 - template index()
-	\/// Т.к. hello находится в одном namespace с index,
-	\/// то мы можем использовать короткий вызов,
-	\/// но можем написать и полную форму += demo.hello()
+	\/// Because "hello" and "index" are declared in the same
+	\/// namespace, we can use brief form of call 
+	\/// (full form {+= demo.hello() /} is also avaliable though).
 	+= @hello()
 ```
 
@@ -305,9 +299,9 @@ exports.demo.index = function index(name) {
 {/template}
 
 {template index()}
-	\/// Т.к. hello находится в одном namespace с index,
-	\/// то мы можем использовать короткий вызов,
-	\/// но можем написать и полную форму {+= demo.hello() /}
+	\/// Because "hello" and "index" are declared in the same
+	\/// namespace, we can use brief form of call 
+	\/// (full form {+= demo.hello() /} is also avaliable though).
 	{+= @hello() /}
 {/template}
 ```
