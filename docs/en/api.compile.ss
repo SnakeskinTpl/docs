@@ -54,9 +54,9 @@ Snakeskin.compile(src, opt_params, opt_info) {
 * [ignore](#compile--ignore)
 * [tolerateWhitespaces](#compile--tolerateWhitespaces)
 * [eol](#compile--eol)
+* [doctype](#compile--doctype)
 * [renderAs](#compile--renderAs)
 * [renderMode](#compile--renderMode)
-* [doctype](#compile--doctype)
 
 #### opt_info
 
@@ -458,6 +458,18 @@ console.log(words);
 
 Параметр задаёт символ перевода строки, который будет использоваться в сгенерированном файле, можно использовать `\n`, `\r` или `\r\n`.
 
+#### doctype
+
+```js
+\/**
+ * @type {?string=}
+ * @default 'html'
+ */
+```
+
+Параметр задаёт тип документа: это влияет на код, который генерируют некоторые директивы, например, [tag](#tag).
+[Доступные варианты](#doctype--Таблица_обозначений).
+
 #### renderAs
 
 ```js
@@ -487,18 +499,6 @@ console.log(words);
 [StringBuffer](https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L26);
 * `dom` - шаблон генерируется в виде [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment)
 с помощью DOM API.
-
-#### doctype
-
-```js
-\/**
- * @type {?string=}
- * @default 'html'
- */
-```
-
-Параметр задаёт тип документа: это влияет на код, который генерируют некоторые директивы, например, [tag](#tag).
-[Доступные варианты](#doctype).
 
 #### file
 

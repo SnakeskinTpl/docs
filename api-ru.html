@@ -7726,9 +7726,9 @@ hello = 'people'
                         <li><a href="#compile--ignore">ignore</a></li>
                         <li><a href="#compile--tolerateWhitespaces">tolerateWhitespaces</a></li>
                         <li><a href="#compile--eol">eol</a></li>
+                        <li><a href="#compile--doctype">doctype</a></li>
                         <li><a href="#compile--renderAs">renderAs</a></li>
                         <li><a href="#compile--renderMode">renderMode</a></li>
-                        <li><a href="#compile--doctype">doctype</a></li>
                     </ul>
                     <h4>opt_info</h4>
                     <ul>
@@ -8020,6 +8020,14 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
  */</span>
 </code></pre>
                     <p>Параметр задаёт символ перевода строки, который будет использоваться в сгенерированном файле, можно использовать <code>\n</code>, <code>\r</code> или <code>\r\n</code>.</p>
+                    <h4>doctype</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ * @default 'html'
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт тип документа: это влияет на код, который генерируют некоторые директивы, например, <a href="#tag">tag</a>.
+                        <a href="#doctype--%D0%A2%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D0%B0_%D0%BE%D0%B1%D0%BE%D0%B7%D0%BD%D0%B0%D1%87%D0%B5%D0%BD%D0%B8%D0%B9">Доступные варианты</a>.</p>
                     <h4>renderAs</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {?string=}
@@ -8043,14 +8051,6 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                             <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/live.js#L26">StringBuffer</a>;</li>
                         <li><code>dom</code> — шаблон генерируется в виде <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> с помощью DOM API.</li>
                     </ul>
-                    <h4>doctype</h4>
-                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
- * @type {?string=}
- * @default 'html'
- */</span>
-</code></pre>
-                    <p>Параметр задаёт тип документа: это влияет на код, который генерируют некоторые директивы, например, <a href="#tag">tag</a>.
-                        <a href="#doctype">Доступные варианты</a>.</p>
                     <h4>file</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {?string=}
