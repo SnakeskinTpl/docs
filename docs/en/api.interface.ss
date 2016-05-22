@@ -19,7 +19,7 @@
 
 | Declaration                                                                                 | Shorthand | Directive type                       | Interpolation |
 |--------------------------------------------------------------------------------------------|--------------------|-------------------------------------|--------------|
-| Only in the global scope, require pre-declaration of [namespace] (# namespace) | Absent        | Block, logic, function | Not required |
+| Only in the global scope, require pre-declaration of [namespace](#namespace) | Absent        | Block, logic, function | Not required |
 
 ## Description
 

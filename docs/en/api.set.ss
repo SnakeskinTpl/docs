@@ -13,15 +13,15 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-Директива задаёт значение указанному [параметру трансляции](#{@@guide}#introSet).
+The directive sets the value to the specified [option](#{@@guide}#introSet).
 
 ## Synopsis
 
-| Declaration                  | Shorthand | Directive type         | Interpolation |
-|-----------------------------|--------------------|-----------------------|--------------|
-| Only in the global scope | `@=`               | Inline, logic | Not required |
+| Declaration              | Shorthand | Directive type | Interpolation |
+|--------------------------|-----------|----------------|---------------|
+| Only in the global scope | `@=`      | Inline, logic  | Not required  |
 
-## Поддерживаемые параметры
+## Supported options
 
 * [renderMode](#{@@api}#compile--renderMode)
 * [renderAs](#{@@api}#compile--renderAs)
