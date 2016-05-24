@@ -23,11 +23,11 @@ This directive declares a pattern with specified name and input parameters.
 
 ## Description
 
-Snakeskin pattern is just a JavaScript function that can be used inside regular code after being transpiled.
+Snakeskin pattern is just a JavaScript function, that can be used inside regular code after being transpiled.
 Every patterns returns a string by default. You can adjust this behaviour by specifying a custom [renderMode](#compile--renderMode)
 or explicit [return](#return) of a value.
 
-A pattern's name matches name of a function in JavaScript, so it should comply the same rules.
+A pattern's name matches name of function in JavaScript, so it should comply the same rules.
 Pattern declaration should be preceeded by namespace declaration and should have a unique name.
 Besides, a pattern can be declared only within global scope. Nesting is not allowed - use [blocks](#block) 
 for this.
@@ -109,11 +109,11 @@ exports.demo.index = function index(name) {
 
 ### Predefined variables
 
-There is a couple of predefined constants and functions that can be used inside patterns.
+There are a couple of predefined constants and functions that can be used inside patterns.
 
 `TPL_NAME` - a string containing a full pattern's name along with name of namespace as it was at the moment of declaration.
 
-`PARENT_TPL_NAME` - a string containing a full name of a pattern's parent along its namespace as it was at the moment of 
+`PARENT_TPL_NAME` - a string containing a full name of a pattern's parent along with its namespace as it was at the moment of 
 declaration.
 
 `callee` - link to a running pattern (i.e. function).
@@ -135,7 +135,7 @@ Snakeskin patterns support declaration modificators.
 
 #### Generator pattern
 
-A pattern would be translated into a generator function (you should use a polyfill for older browsers).
+A pattern will be translated into a generator function (you should use a polyfill for older browsers).
 
 #{+= self.example()}
 
@@ -159,7 +159,7 @@ A pattern would be translated into a generator function (you should use a polyfi
 
 #### Async pattern
 
-A pattern would be translated into an *async* function (you should use a polyfill for older browsers).
+A pattern will be translated into an *async* function (you should use a polyfill for older browsers).
 
 #{+= self.example()}
 
@@ -229,7 +229,7 @@ Decorator accepts a link to original function and must return a function as its 
 
 ### Local translation options
 
-When declaring a pattern specific [translation rules](#{@@guide}#introSet) can be specified by using `@=` operator.
+When declaring a pattern you can attach specific [translation rules](#{@@guide}#introSet) by using `@=` operator.
 
 #{+= self.example()}
 
@@ -250,7 +250,7 @@ When declaring a pattern specific [translation rules](#{@@guide}#introSet) can b
 
 ### Pattern inheritance
 
-Snakeskin patterns are similar to classes in other programming language, it means they have methods, properties and could
+Snakeskin patterns are similar to classes in other programming languages, it means they have methods, properties and can
 inherit from others. Keyword **extends** is used to setup inheritance.
 
 #{+= self.example()}
@@ -270,11 +270,11 @@ inherit from others. Keyword **extends** is used to setup inheritance.
 
 #{/}
 
-[Подробнее про наследование](#{@@guide}#inheritBasic).
+[More about inheritance](#{@@guide}#inheritBasic).
 
 ### Explicit call of a pattern inside other pattern
 
-Since Snakeskin patterns are just functions they can be called inside each other via the [call](#call) directive.
+Since Snakeskin patterns are just functions, they can be called inside each other via the [call](#call) directive.
 
 #{+= self.example()}
 
