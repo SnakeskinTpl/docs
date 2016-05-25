@@ -13,7 +13,7 @@
 {template main[%fileName%]() extends base.main}
 #{block root}
 
-This directive declares a pattern with specified name and input parameters.
+This directive declares a template with specified name and input parameters.
 
 ## Synopsis
 
@@ -23,13 +23,13 @@ This directive declares a pattern with specified name and input parameters.
 
 ## Description
 
-Snakeskin pattern is just a JavaScript function, that can be used inside regular code after being transpiled.
-Every patterns returns a string by default. You can adjust this behaviour by specifying a custom [renderMode](#compile--renderMode)
+Snakeskin template is just a JavaScript function, that can be used inside regular code after being transpiled.
+Every template returns a string by default. You can adjust this behaviour by specifying a custom [renderMode](#compile--renderMode)
 or explicit [return](#return) of a value.
 
-A pattern's name matches name of function in JavaScript, so it should comply the same rules.
-Pattern declaration should be preceeded by namespace declaration and should have a unique name.
-Besides, a pattern can be declared only within global scope. Nesting is not allowed - use [blocks](#block) 
+A template's name matches name of function in JavaScript, so it should comply the same rules.
+template declaration should be preceeded by namespace declaration and should have a unique name.
+Besides, a template can be declared only within global scope. Nesting is not allowed - use [blocks](#block) 
 for this.
 
 The directive is very similar to declaration of functions in JavaScript, for instance:
@@ -109,33 +109,33 @@ exports.demo.index = function index(name) {
 
 ### Predefined variables
 
-There are a couple of predefined constants and functions that can be used inside patterns.
+There are a couple of predefined constants and functions that can be used inside templates.
 
-`TPL_NAME` - a string containing a full pattern's name along with name of namespace as it was at the moment of declaration.
+`TPL_NAME` - a string containing a full template's name along with name of namespace as it was at the moment of declaration.
 
-`PARENT_TPL_NAME` - a string containing a full name of a pattern's parent along with its namespace as it was at the moment of 
+`PARENT_TPL_NAME` - a string containing a full name of a template's parent along with its namespace as it was at the moment of 
 declaration.
 
-`callee` - link to a running pattern (i.e. function).
+`callee` - link to a running template (i.e. function).
 
-`self` - link to a `callee.Blocks` object, containing blocks (methods) of a running pattern.
+`self` - link to a `callee.Blocks` object, containing blocks (methods) of a running template.
 
 `$0` - link to current DOM node (only if renderMode equals 'dom').
 
 `$class` - значение [липкой ссылки]()#tag--Ссылки_на_родительский_класс;
 
-`getTplResult` - a function returning a pattern's result. Accepts a boolean argument, pointing whether the result should
+`getTplResult` - a function returning a template's result. Accepts a boolean argument, pointing whether the result should
 be reseted after the function calling.
 
-`clearTplResult` - a function that resets a pattern's result.
+`clearTplResult` - a function that resets a template's result.
 
 ### Modificators
 
-Snakeskin patterns support declaration modificators.
+Snakeskin templates support declaration modificators.
 
-#### Generator pattern
+#### Generator template
 
-A pattern will be translated into a generator function (you should use a polyfill for older browsers).
+A template will be translated into a generator function (you should use a polyfill for older browsers).
 
 #{+= self.example()}
 
@@ -157,9 +157,9 @@ A pattern will be translated into a generator function (you should use a polyfil
 
 #{/}
 
-#### Async pattern
+#### Async template
 
-A pattern will be translated into an *async* function (you should use a polyfill for older browsers).
+A template will be translated into an *async* function (you should use a polyfill for older browsers).
 
 #{+= self.example()}
 
@@ -182,7 +182,7 @@ A pattern will be translated into an *async* function (you should use a polyfill
 
 #### Decorators
 
-Every pattern can be attached by decorator functions (that can also be patterns).
+Every template can be attached by decorator functions (that can also be templates).
 Decorator accepts a link to original function and must return a function as its result.
 
 #{+= self.example()}
@@ -229,7 +229,7 @@ Decorator accepts a link to original function and must return a function as its 
 
 ### Local translation options
 
-When declaring a pattern you can attach specific [translation rules](#{@@guide}#introSet) by using `@=` operator.
+When declaring a template you can attach specific [translation rules](#{@@guide}#introSet) by using `@=` operator.
 
 #{+= self.example()}
 
@@ -248,9 +248,9 @@ When declaring a pattern you can attach specific [translation rules](#{@@guide}#
 
 #{/}
 
-### Pattern inheritance
+### Template inheritance
 
-Snakeskin patterns are similar to classes in other programming languages, it means they have methods, properties and can
+Snakeskin templates are similar to classes in other programming languages, it means they have methods, properties and can
 inherit from others. Keyword **extends** is used to setup inheritance.
 
 #{+= self.example()}
@@ -272,9 +272,9 @@ inherit from others. Keyword **extends** is used to setup inheritance.
 
 [More about inheritance](#{@@guide}#inheritBasic).
 
-### Explicit call of a pattern inside other pattern
+### Explicit call of a template inside other template
 
-Since Snakeskin patterns are just functions, they can be called inside each other via the [call](#call) directive.
+Since Snakeskin templates are just functions, they can be called inside each other via the [call](#call) directive.
 
 #{+= self.example()}
 
