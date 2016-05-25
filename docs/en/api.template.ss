@@ -17,9 +17,9 @@ This directive declares a template with specified name and input parameters.
 
 ## Synopsis
 
-| Declaration                                                                                 | Shorthand | Directive type                       | Interpolation |
-|--------------------------------------------------------------------------------------------|--------------------|-------------------------------------|--------------|
-| Only in the global scope, require pre-declaration of [namespace](#namespace) | Absent        | Block, logic, function | Not required |
+| Declaration                                                                  | Shorthand | Directive type         | Interpolation |
+|------------------------------------------------------------------------------|-----------|------------------------|---------------|
+| Only in the global scope, require pre-declaration of [namespace](#namespace) | Absent    | Block, logic, function | Not required  |
 
 ## Description
 
@@ -29,7 +29,7 @@ or explicit [return](#return) of a value.
 
 A template's name matches name of function in JavaScript, so it should comply the same rules.
 template declaration should be preceeded by namespace declaration and should have a unique name.
-Besides, a template can be declared only within global scope. Nesting is not allowed - use [blocks](#block) 
+Besides, a template can be declared only within global scope. Nesting is not allowed - use [blocks](#block)
 for this.
 
 The directive is very similar to declaration of functions in JavaScript, for instance:
@@ -113,7 +113,7 @@ There are a couple of predefined constants and functions that can be used inside
 
 `TPL_NAME` - a string containing a full template's name along with name of namespace as it was at the moment of declaration.
 
-`PARENT_TPL_NAME` - a string containing a full name of a template's parent along with its namespace as it was at the moment of 
+`PARENT_TPL_NAME` - a string containing a full name of a template's parent along with its namespace as it was at the moment of
 declaration.
 
 `callee` - link to a running template (i.e. function).
@@ -286,7 +286,7 @@ Since Snakeskin templates are just functions, they can be called inside each oth
 
 - template index()
 	\/// Because "hello" and "index" are declared in the same
-	\/// namespace, we can use brief form of call 
+	\/// namespace, we can use brief form of call
 	\/// (full form {+= demo.hello() /} is also avaliable though).
 	+= @hello()
 ```
@@ -300,7 +300,7 @@ Since Snakeskin templates are just functions, they can be called inside each oth
 
 {template index()}
 	\/// Because "hello" and "index" are declared in the same
-	\/// namespace, we can use brief form of call 
+	\/// namespace, we can use brief form of call
 	\/// (full form {+= demo.hello() /} is also avaliable though).
 	{+= @hello() /}
 {/template}
