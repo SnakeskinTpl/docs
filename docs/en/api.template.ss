@@ -122,7 +122,7 @@ declaration.
 
 `$0` - link to current DOM node (only if renderMode equals 'dom').
 
-`$class` - значение [липкой ссылки]()#tag--Ссылки_на_родительский_класс;
+`$class` - значение [липкой ссылки](#tag--Ссылки_на_родительский_класс).
 
 `getTplResult` - a function returning a template's result. Accepts a boolean argument, pointing whether the result should
 be reseted after the function calling.
