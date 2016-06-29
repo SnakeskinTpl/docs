@@ -44,6 +44,7 @@ Snakeskin.compile(src, opt_params, opt_info) {
 * [useStrict](#compile--useStrict)
 * [prettyPrint](#compile--prettyPrint)
 * [literalBounds](#compile--literalBounds)
+* [attrLiteralBounds](#compile--attrLiteralBounds)
 * [bemFilter](#compile--bemFilter)
 * [filters](#compile--filters)
 * [localization](#compile--localization)
@@ -272,6 +273,39 @@ info.code // Исходный текст полученного JS файла
 
 ```html
 <?php Hello ?>
+```
+
+#### attrLiteralBounds
+
+```js
+\/**
+ * @type {Array<string>=}
+ */
+```
+
+Параметр задаёт "врапперы" для директивы [literal](#literal) при декларации значения атрибута, например:
+
+#{+= self.example()}
+
+```jade-like
+- namespace demo
+- template index() @= attrLiteralBounds ['{', '}']
+	< .foo title = {{ val }}
+```
+
+```classic
+{namespace demo}
+{template index() @= attrLiteralBounds ['{', '}']}
+	{< .foo title = {{ val }} /}
+{/template}
+```
+
+#{/}
+
+Отрендерится как:
+
+```html
+<div class="foo" title={ val }></div>
 ```
 
 #### bemFilter

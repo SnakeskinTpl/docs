@@ -7716,6 +7716,7 @@ hello = 'people'
                         <li><a href="#compile--useStrict">useStrict</a></li>
                         <li><a href="#compile--prettyPrint">prettyPrint</a></li>
                         <li><a href="#compile--literalBounds">literalBounds</a></li>
+                        <li><a href="#compile--attrLiteralBounds">attrLiteralBounds</a></li>
                         <li><a href="#compile--bemFilter">bemFilter</a></li>
                         <li><a href="#compile--filters">filters</a></li>
                         <li><a href="#compile--localization">localization</a></li>
@@ -7884,6 +7885,32 @@ info.code <span class="hljs-comment">// Исходный текст получе
                     </div>
                     <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="php"><span class="hljs-meta">&lt;?php</span> Hello <span class="hljs-meta">?&gt;</span></span>
+</code></pre>
+                    <h4>attrLiteralBounds</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Array&lt;string&gt;=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт «врапперы» для директивы <a href="#literal">literal</a> при декларации значения атрибута, например:</p>
+                    <div class="b-example">
+                        <menu class="b-example__toggle">
+                            <li class="b-example__link b-example__link_active_true">jade-like</li>
+                            <li class="b-example__link">classic</li>
+                        </menu>
+                        <div class="b-example__code">
+                            <pre class="hljs example-jade-like"><code><span class="xml"></span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo</span><span class="xml">
+</span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index() <span class="hljs-keyword">@=</span> attrLiteralBounds [<span class="hljs-string">'{'</span>, <span class="hljs-string">'}'</span>]</span><span class="xml">
+</span><span class="hljs-directive">	&lt; .foo title = {{ val }}</span><span class="xml">
+</span></code></pre>
+                            <pre class="hljs example-classic"><code><span class="xml"></span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">namespace</span></span> demo}</span><span class="xml">
+</span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index() <span class="hljs-keyword">@=</span> attrLiteralBounds [<span class="hljs-string">'{'</span>, <span class="hljs-string">'}'</span>]}</span><span class="xml">
+	</span><span class="hljs-directive">{&lt; .foo title = {{ val }</span><span class="xml">} /}
+</span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
+</span></code></pre>
+                        </div>
+                    </div>
+                    <p>Отрендерится как:</p>
+                    <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">{</span> <span class="hljs-attr">val</span> }&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
                     <h4>bemFilter</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
