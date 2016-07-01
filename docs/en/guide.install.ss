@@ -72,6 +72,5 @@ npm install --save snakeskin
 git clone https://github.com/SnakeskinTpl/Snakeskin
 ```
 
-
 #{/block}
 #{/template}
