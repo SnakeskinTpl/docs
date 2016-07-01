@@ -34,6 +34,7 @@ Snakeskin.compile(src, opt_params, opt_info) {
 * [cache](#compile--cache)
 * [vars](#compile--vars)
 * [context](#compile--context)
+* [babel](#compile--babel)
 * [onError](#compile--onError)
 * [throws](#compile--throws)
 * [debug](#compile--debug)
@@ -129,6 +130,16 @@ Snakeskin.compile('<шаблон>', {
 
 tpls.demo.foo() // Hello world
 ```
+
+#### babel
+
+```js
+\/**
+ * @type {Object=}
+ */
+```
+
+Параметр задаёт объект настроек для [Babel](https://babeljs.io) для обработки после основной трансляции.
 
 #### onError
 

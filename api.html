@@ -7698,6 +7698,7 @@ hello = 'people'
                         <li><a href="#compile--cache">cache</a></li>
                         <li><a href="#compile--vars">vars</a></li>
                         <li><a href="#compile--context">context</a></li>
+                        <li><a href="#compile--babel">babel</a></li>
                         <li><a href="#compile--onError">onError</a></li>
                         <li><a href="#compile--throws">throws</a></li>
                         <li><a href="#compile--debug">debug</a></li>
@@ -7778,6 +7779,12 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
 
 tpls.demo.foo() <span class="hljs-comment">// Hello world</span>
 </code></pre>
+                    <h4>babel</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {Object=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт объект настроек для <a href="https://babeljs.io">Babel</a> для обработки после основной трансляции.</p>
                     <h4>onError</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {?function(!Error)=}
