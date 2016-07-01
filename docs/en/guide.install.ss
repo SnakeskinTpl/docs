@@ -59,6 +59,7 @@ npm install --save snakeskin
 * [Browserify](https://github.com/SnakeskinTpl/snakeskinify)
 * [CLI](https://github.com/SnakeskinTpl/snakeskin-cli)
 * [IntelliJ-IDEA](https://github.com/SnakeskinTpl/IntelliJ-IDEA)
+* [Atom](https://github.com/SnakeskinTpl/atom-snakeskin)
 
 ### std.ss
 
