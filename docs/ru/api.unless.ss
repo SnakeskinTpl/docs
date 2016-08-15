@@ -45,7 +45,7 @@
 ```classic
 {unless false}
 	Hello world!
-{/if}
+{/}
 ```
 
 #{/}
