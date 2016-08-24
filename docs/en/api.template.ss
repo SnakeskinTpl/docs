@@ -122,6 +122,12 @@ declaration.
 
 `$0` - link to current DOM node (only if renderMode equals 'dom').
 
+`$tagName` - имя созданного через директиву тега (`.getVar('$tagName')`);
+
+`$attrKey` - ключ атрибута тега созданного через директиву;
+
+`$attrs` - объект атрибутов тега созданного через директиву (`.getVar('$attrs')`);
+
 `$class` - значение [липкой ссылки](#tag--Ссылки_на_родительский_класс).
 
 `getTplResult` - a function returning a template's result. Accepts a boolean argument, pointing whether the result should

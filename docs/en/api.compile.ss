@@ -38,6 +38,7 @@ Snakeskin.compile(src, opt_params, opt_info) {
 * [onError](#compile--onError)
 * [throws](#compile--throws)
 * [debug](#compile--debug)
+* [resolveModuleSource](#compile--resolveModuleSource)
 * [pack](#compile--pack)
 * [module](#compile--module)
 * [moduleId](#compile--moduleId)
@@ -46,6 +47,10 @@ Snakeskin.compile(src, opt_params, opt_info) {
 * [prettyPrint](#compile--prettyPrint)
 * [literalBounds](#compile--literalBounds)
 * [attrLiteralBounds](#compile--attrLiteralBounds)
+* [tagFilter](#compile--tagFilter)
+* [tagNameFilter](#compile--tagNameFilter)
+* [attrKeyFilter](#compile--attrKeyFilter)
+* [attrValueFilter](#compile--attrValueFilter)
 * [bemFilter](#compile--bemFilter)
 * [filters](#compile--filters)
 * [localization](#compile--localization)
@@ -179,6 +184,17 @@ var info = {};
 Snakeskin.compile('<шаблон>', {debug: info});
 info.code // Исходный текст полученного JS файла
 ```
+
+#### resolveModuleSource
+
+```js
+\/**
+ * @type {(?function(string, string): string)=}
+ */
+```
+
+Функция для резолвинга путей в [import](#import): первым параметром принимает строку запроса, а вторым полный путь к файлу,
+в котором вызывается директива. Функция должна возвращать строку, которая будет новым путём к подключаемому файлу.
 
 #### pack
 
@@ -319,17 +335,55 @@ info.code // Исходный текст полученного JS файла
 <div class="foo" title={ val }></div>
 ```
 
+#### tagFilter
+
+```js
+\/**
+ * @type {?string=}
+ */
+```
+
+Параметр задаёт название [фильтра](#{@@guide}#filters) для обработки тега при создании через [tag](#tag).
+
+#### tagNameFilter
+
+```js
+\/**
+ * @type {?string=}
+ */
+```
+
+Параметр задаёт название [фильтра](#{@@guide}#filters) для обработки имени тега при создании через [tag](#tag).
+
+#### attrKeyFilter
+
+```js
+\/**
+ * @type {?string=}
+ */
+```
+
+Параметр задаёт название [фильтра](#{@@guide}#filters) для обработки ключа атрибута тега при создании через [tag](#tag).
+
+#### attrValueFilter
+
+```js
+\/**
+ * @type {?string=}
+ */
+```
+
+Параметр задаёт название [фильтра](#{@@guide}#filters) для обработки значения атрибута тега при создании через [tag](#tag).
+
 #### bemFilter
 
 ```js
 \/**
  * @type {?string=}
- * @default 'bem'
  */
 ```
 
-Параметр задаёт название [фильтра](#{@@guide}#filters) для обработки [липких ссылок](#tag--Ссылки_на_родительский_класс),
-по умолчанию используется `Snakeskin.Filters.bem`.
+Параметр задаёт название [фильтра](#{@@guide}#filters) для обработки [липких ссылок](#tag--Ссылки_на_родительский_класс).
 
 #### filters
 
