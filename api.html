@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8" content="">
+    <meta charset="utf-8">
     <title>Snakeskin 7 documentation</title>
     <link rel="stylesheet" type="text/css" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <script type="text/javascript" src="http://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
@@ -538,6 +538,9 @@
                     <p><code>callee</code> - link to a running template (i.e. function).</p>
                     <p><code>self</code> - link to a <code>callee.Blocks</code> object, containing blocks (methods) of a running template.</p>
                     <p><code>$0</code> - link to current DOM node (only if renderMode equals 'dom').</p>
+                    <p><code>$tagName</code> - имя созданного через директиву тега (<code>.getVar('$tagName')</code>);</p>
+                    <p><code>$attrKey</code> - ключ атрибута тега созданного через директиву;</p>
+                    <p><code>$attrs</code> - объект атрибутов тега созданного через директиву (<code>.getVar('$attrs')</code>);</p>
                     <p><code>$class</code> - значение <a href="#tag--%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D0%BD%D0%B0_%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%BB%D0%B0%D1%81%D1%81">липкой ссылки</a>.</p>
                     <p><code>getTplResult</code> - a function returning a template's result. Accepts a boolean argument, pointing whether the result should be reseted after the function calling.</p>
                     <p><code>clearTplResult</code> - a function that resets a template's result.</p>
@@ -4527,7 +4530,6 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
 	<span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo__bla"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
-                    <p>При реализации этого механизма используется специальный фильтр <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L512">bem</a>, который можно перегрузить и добавить дополнительную логику.</p>
                     <h4>Ссылка на родительский класс в произвольном атрибуте</h4>
                     <p>Альтернативным способом получения липкой ссылки является вызов внутренней переменной шаблона <code>$class</code>, например:</p>
                     <div class="b-example">
@@ -7702,6 +7704,7 @@ hello = 'people'
                         <li><a href="#compile--onError">onError</a></li>
                         <li><a href="#compile--throws">throws</a></li>
                         <li><a href="#compile--debug">debug</a></li>
+                        <li><a href="#compile--resolveModuleSource">resolveModuleSource</a></li>
                         <li><a href="#compile--pack">pack</a></li>
                         <li><a href="#compile--module">module</a></li>
                         <li><a href="#compile--moduleId">moduleId</a></li>
@@ -7710,6 +7713,10 @@ hello = 'people'
                         <li><a href="#compile--prettyPrint">prettyPrint</a></li>
                         <li><a href="#compile--literalBounds">literalBounds</a></li>
                         <li><a href="#compile--attrLiteralBounds">attrLiteralBounds</a></li>
+                        <li><a href="#compile--tagFilter">tagFilter</a></li>
+                        <li><a href="#compile--tagNameFilter">tagNameFilter</a></li>
+                        <li><a href="#compile--attrKeyFilter">attrKeyFilter</a></li>
+                        <li><a href="#compile--attrValueFilter">attrValueFilter</a></li>
                         <li><a href="#compile--bemFilter">bemFilter</a></li>
                         <li><a href="#compile--filters">filters</a></li>
                         <li><a href="#compile--localization">localization</a></li>
@@ -7809,6 +7816,13 @@ tpls.demo.foo() <span class="hljs-comment">// Hello world</span>
 Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {debug: info});
 info.code <span class="hljs-comment">// Исходный текст полученного JS файла</span>
 </code></pre>
+                    <h4>resolveModuleSource</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {(?function(string, string): string)=}
+ */</span>
+</code></pre>
+                    <p>Функция для резолвинга путей в <a href="#import">import</a>: первым параметром принимает строку запроса, а вторым полный путь к файлу, в котором вызывается директива. Функция должна возвращать строку, которая будет новым путём к подключаемому
+                        файлу.</p>
                     <h4>pack</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {?boolean=}
@@ -7911,14 +7925,36 @@ info.code <span class="hljs-comment">// Исходный текст получе
                     <p>Отрендерится как:</p>
                     <pre class="hljs example-html"><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">"foo"</span> <span class="hljs-attr">title</span>=<span class="hljs-string">{</span> <span class="hljs-attr">val</span> }&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
 </code></pre>
+                    <h4>tagFilter</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт название <a href="guide.html#filters">фильтра</a> для обработки тега при создании через <a href="#tag">tag</a>.</p>
+                    <h4>tagNameFilter</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт название <a href="guide.html#filters">фильтра</a> для обработки имени тега при создании через <a href="#tag">tag</a>.</p>
+                    <h4>attrKeyFilter</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт название <a href="guide.html#filters">фильтра</a> для обработки ключа атрибута тега при создании через <a href="#tag">tag</a>.</p>
+                    <h4>attrValueFilter</h4>
+                    <pre class="hljs example-js"><code><span class="hljs-comment">/**
+ * @type {?string=}
+ */</span>
+</code></pre>
+                    <p>Параметр задаёт название <a href="guide.html#filters">фильтра</a> для обработки значения атрибута тега при создании через <a href="#tag">tag</a>.</p>
                     <h4>bemFilter</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {?string=}
- * @default 'bem'
  */</span>
 </code></pre>
-                    <p>Параметр задаёт название <a href="guide.html#filters">фильтра</a> для обработки <a href="#tag--%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D0%BD%D0%B0_%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%BB%D0%B0%D1%81%D1%81">липких ссылок</a>,
-                        по умолчанию используется <code>Snakeskin.Filters.bem</code>.</p>
+                    <p>Параметр задаёт название <a href="guide.html#filters">фильтра</a> для обработки <a href="#tag--%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D0%BD%D0%B0_%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%BB%D0%B0%D1%81%D1%81">липких ссылок</a>.</p>
                     <h4>filters</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {Object&lt;Array&lt;string&gt;&gt;=}
