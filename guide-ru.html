@@ -1000,8 +1000,8 @@ Snakeskin.importFilters({
 });
 
 Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
-	<span class="hljs-comment">// Прокидываем функцию getTplResult из шаблона в фильтр</span>
-	bind: [<span class="hljs-string">'getTplResult'</span>],
+	<span class="hljs-comment">// Прокидываем функцию getTplResult и объект $attrs из шаблона в фильтр</span>
+	bind: [<span class="hljs-string">'getTplResult'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">o</span>) </span>{ <span class="hljs-keyword">return</span> o.getVar(<span class="hljs-string">'$attrs'</span>); }],
 
 	<span class="hljs-comment">// Отменяем фильтр html по умолчанию</span>
 	<span class="hljs-string">'!html'</span>: <span class="hljs-literal">true</span>,

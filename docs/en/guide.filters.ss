@@ -169,8 +169,8 @@ Snakeskin.importFilters({
 });
 
 Snakeskin.setFilterParams('myFilter', {
-	// Прокидываем функцию getTplResult из шаблона в фильтр
-	bind: ['getTplResult'],
+	// Прокидываем функцию getTplResult и объект $attrs из шаблона в фильтр
+	bind: ['getTplResult', function (o) { return o.getVar('$attrs'); }],
 
 	// Отменяем фильтр html по умолчанию
 	'!html': true,
