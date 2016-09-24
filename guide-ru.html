@@ -18,7 +18,7 @@
     <div class="b-doc-wrapper">
         <header class="b-header">
             <a class="b-header__logo" href="index-ru.html"><img src="logo.svg" alt="snakeskin template engine">
-                <div class="b-header__logo-text">nakeskin</div>
+                <div class="b-header__logo-text">Snakeskin</div>
             </a>
             <nav class="b-nav">
                 <menu>
@@ -225,26 +225,26 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
 webpack({
-	entry: {
-		index: <span class="hljs-string">'./button.js'</span>
+	<span class="hljs-attr">entry</span>: {
+		<span class="hljs-attr">index</span>: <span class="hljs-string">'./button.js'</span>
 	},
 
-	output: {
-		filename: <span class="hljs-string">'[name].bundle.js'</span>
+	<span class="hljs-attr">output</span>: {
+		<span class="hljs-attr">filename</span>: <span class="hljs-string">'[name].bundle.js'</span>
 	},
 
-	<span class="hljs-built_in">module</span>: {
-		loaders: [
+	<span class="hljs-attr">module</span>: {
+		<span class="hljs-attr">loaders</span>: [
 			{
-				test: <span class="hljs-regexp">/.js$/</span>,
-				exclude: <span class="hljs-regexp">/node_modules/</span>,
-				loader: <span class="hljs-string">'babel'</span>
+				<span class="hljs-attr">test</span>: <span class="hljs-regexp">/.js$/</span>,
+				<span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
+				<span class="hljs-attr">loader</span>: <span class="hljs-string">'babel'</span>
 			},
 
 			{
-				test: <span class="hljs-regexp">/.ss$/</span>,
-				exclude: <span class="hljs-regexp">/node_modules/</span>,
-				loader: <span class="hljs-string">'snakeskin-loader?pack=true'</span>
+				<span class="hljs-attr">test</span>: <span class="hljs-regexp">/.ss$/</span>,
+				<span class="hljs-attr">exclude</span>: <span class="hljs-regexp">/node_modules/</span>,
+				<span class="hljs-attr">loader</span>: <span class="hljs-string">'snakeskin-loader?pack=true'</span>
 			}
 		]
 	}
@@ -275,16 +275,16 @@ webpack({
                     <pre class="hljs example-js"><code><span class="hljs-keyword">import</span> { button } <span class="hljs-keyword">from</span> <span class="hljs-string">'./button.ss'</span>;
 
 Vue.component(<span class="hljs-string">'button'</span>, {
-	props: {
-		label: {
-			type: <span class="hljs-built_in">String</span>,
-			required: <span class="hljs-literal">true</span>
+	<span class="hljs-attr">props</span>: {
+		<span class="hljs-attr">label</span>: {
+			<span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+			<span class="hljs-attr">required</span>: <span class="hljs-literal">true</span>
 		},
-		type: <span class="hljs-built_in">String</span>,
-		form: <span class="hljs-built_in">String</span>
+		<span class="hljs-attr">type</span>: <span class="hljs-built_in">String</span>,
+		<span class="hljs-attr">form</span>: <span class="hljs-built_in">String</span>
 	},
 
-	template: button.index()
+	<span class="hljs-attr">template</span>: button.index()
 });
 </code></pre>
                     <p>В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора <a href="https://babeljs.io">Babel</a>, чтобы обеспечить поддержку в старых браузерах.</p>
@@ -302,7 +302,7 @@ index ||
 
 gulp.task(<span class="hljs-string">'snakeskin'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
 	gulp.src(<span class="hljs-string">'index.ss'</span>)
-		.pipe(ss({exec: <span class="hljs-literal">true</span>}))
+		.pipe(ss({<span class="hljs-attr">exec</span>: <span class="hljs-literal">true</span>}))
 		.pipe(gulp.dest(<span class="hljs-string">'./dist/index.html'</span>));
 });
 
@@ -994,7 +994,7 @@ Snakeskin.importFilters({
                     <p>При декларации фильтра ему можно задать ряд дополнительных параметров, например, чтобы фильтр отменял выполнение фильтров по умолчанию. Для этого используется специальный метод
                         <a href="https://github.com/SnakeskinTpl/Snakeskin/blob/master/src/live/filters.js#L46">Snakeskin.setFilterParams</a>, который первым параметром принимает название фильтра, а вторым объект с настройками.</p>
                     <pre class="hljs example-js"><code>Snakeskin.importFilters({
-	myFilter: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, getTplResult</span>) </span>{
+	<span class="hljs-attr">myFilter</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">str, getTplResult</span>) </span>{
 		<span class="hljs-keyword">return</span> str + getTplResult();
 	}
 });
@@ -1102,11 +1102,11 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                         </div>
                     </div>
                     <pre class="hljs example-js"><code>Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	i18nFnOptions: <span class="hljs-string">'{lang: "en"}, true'</span>
+	<span class="hljs-attr">i18nFnOptions</span>: <span class="hljs-string">'{lang: "en"}, true'</span>
 });
 </code></pre>
                     <p>Строка локализации скомпилируется как</p>
-                    <pre class="hljs example-js"><code>i18n(<span class="hljs-string">"hello world!"</span>, {lang: <span class="hljs-string">"en"</span>}, <span class="hljs-literal">true</span>)
+                    <pre class="hljs example-js"><code>i18n(<span class="hljs-string">"hello world!"</span>, {<span class="hljs-attr">lang</span>: <span class="hljs-string">"en"</span>}, <span class="hljs-literal">true</span>)
 </code></pre>
                     <h3>Локальная передача параметров</h3>
                     <p>Если строка локализации находится внутри директивы, то можно явно передать дополнительные параметры, которые будут заменять глобальные, например:</p>
@@ -1170,7 +1170,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                         </div>
                     </div>
                     <pre class="hljs example-js"><code>Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	language: {
+	<span class="hljs-attr">language</span>: {
 		<span class="hljs-comment">// В качестве значений замены можно также использовать функции,</span>
 		<span class="hljs-comment">// которые возвращают строку</span>
 		<span class="hljs-string">'Hello world!'</span>: <span class="hljs-string">'Привет мир!'</span>
@@ -1205,7 +1205,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                         </div>
                     </div>
                     <pre class="hljs example-js"><code>Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	language: {
+	<span class="hljs-attr">language</span>: {
 		<span class="hljs-string">'Hello world!'</span>: <span class="hljs-string">'Привет мир!'</span>
 	}
 });
@@ -1232,7 +1232,7 @@ Snakeskin.setFilterParams(<span class="hljs-string">'myFilter'</span>, {
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> words = {};
 
 Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	words: words
+	<span class="hljs-attr">words</span>: words
 });
 
 <span class="hljs-comment">// {'Hello world!': 'Hello world!'}</span>

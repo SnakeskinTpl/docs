@@ -18,7 +18,7 @@
     <div class="b-doc-wrapper">
         <header class="b-header">
             <a class="b-header__logo" href="index-ru.html"><img src="logo.svg" alt="snakeskin template engine">
-                <div class="b-header__logo-text">nakeskin</div>
+                <div class="b-header__logo-text">Snakeskin</div>
             </a>
             <nav class="b-nav">
                 <menu>
@@ -7758,8 +7758,8 @@ hello = 'people'
 </code></pre>
                     <p>Параметр задаёт <a href="#global">суперглобальные переменные</a> Snakeskin.</p>
                     <pre class="hljs example-js"><code>Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	vars: {
-		foo: <span class="hljs-string">'bar'</span>
+	<span class="hljs-attr">vars</span>: {
+		<span class="hljs-attr">foo</span>: <span class="hljs-string">'bar'</span>
 	}
 });
 </code></pre>
@@ -7789,7 +7789,7 @@ hello = 'people'
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = {};
 
 Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	context: tpls
+	<span class="hljs-attr">context</span>: tpls
 });
 
 tpls.demo.foo() <span class="hljs-comment">// Hello world</span>
@@ -7821,7 +7821,7 @@ tpls.demo.foo() <span class="hljs-comment">// Hello world</span>
 </code></pre>
                     <p>Объект, который будет содержать в себе некоторую отладочную информацию.</p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> info = {};
-Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {debug: info});
+Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {<span class="hljs-attr">debug</span>: info});
 info.code <span class="hljs-comment">// Исходный текст полученного JS файла</span>
 </code></pre>
                     <h4>resolveModuleSource</h4>
@@ -8064,7 +8064,7 @@ info.code <span class="hljs-comment">// Исходный текст получе
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> words = {};
 
 Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
-	words: words
+	<span class="hljs-attr">words</span>: words
 });
 
 <span class="hljs-comment">// {'Hello world!': 'Hello world!'}</span>
