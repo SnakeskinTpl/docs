@@ -25,7 +25,7 @@
 					< a.&__logo href = index${@@prfx}.html
 						< img src = logo.svg | alt = snakeskin template engine
 						< .&__logo-text
-							nakeskin
+							Snakeskin
 
 					+= self.nav(@@cluster)
 
