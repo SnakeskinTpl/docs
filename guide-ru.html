@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Документация Snakeskin 7</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="//yastatic.net/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,400italic,700italic&subset=latin,cyrillic,cyrillic-ext,latin-ext">
     <link rel="stylesheet" type="text/css" href="css/highlight/default.css">
@@ -16,10 +16,7 @@
 
 <body>
     <div class="b-doc-wrapper">
-        <header class="b-header">
-            <a class="b-header__logo" href="index-ru.html"><img src="logo.svg" alt="snakeskin template engine">
-                <div class="b-header__logo-text">Snakeskin</div>
-            </a>
+        <header class="b-header"><a class="b-header__logo" href="index-ru.html"><img src="logo.svg" alt="snakeskin template engine"><div class="b-header__logo-text">Snakeskin</div></a>
             <nav class="b-nav">
                 <menu>
                     <li><strong>Учебник</strong> </li>
@@ -82,7 +79,7 @@
                         структур и упрощения их code-reuse, предоставляя из коробки наследование, расширение, локализацию, экранирование и прочие полезные ништяки :)</p>
                     <p>Snakeskin удобно использовать для генерации статичных страниц — транслятор может скомпилировать и сразу выполнить шаблон, возвратив результат его работы, что можно использовать для генерации шаблонов различных MVVM-фреймворков, таких
                         как Angular, Vue или React. В принципе, можно использовать Snakeskin даже для генерации кода на PHP — но помните, мы не гарантируем защиты от динозавров, которые могут прийти за вами.</p>
-                    <p>Snakeskin поддерживает интеграцию с популярными task-runnerʼами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов — это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
+                    <p>Snakeskin поддерживает интеграцию с популярными task-runner’ами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов — это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
                     <p>Use and enjoy.</p>
                 </section>
                 <section id="install" class="b-article">
@@ -332,7 +329,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     <p>Также для задач статической генерации страниц может использоваться Grunt, Webpack или Snakeskin CLI.</p>
                     <h3>Статическая генерация с Snakeskin CLI</h3>
                     <p>Генерация страницы index.html на основе шаблона index.ss из примера выше.</p>
-                    <pre class="hljs example-bash"><code>snakeskin ./index.ss <span class="hljs-_">-e</span> -o ./dist/index.html
+                    <pre class="hljs example-bash"><code>snakeskin ./index.ss -e -o ./dist/index.html
 </code></pre>
                 </section>
                 <section id="basics" class="b-article">
@@ -2037,7 +2034,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 </div>
             </div>
         </div>
-        <footer class="b-footer">© 2016 Snakeskin
+        <footer class="b-footer">© 2016-2017 Snakeskin
             <menu class="b-footer__menu">
                 <li><a href="https://github.com/SnakeskinTpl/snakeskin.github.io/issues/new">Сообщить об ошибке</a></li>
                 <li><a href="https://github.com/SnakeskinTpl/Snakeskin">GitHub</a></li>

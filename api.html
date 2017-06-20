@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <title>Snakeskin 7 documentation</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://yastatic.net/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="//yastatic.net/jquery/2.2.0/jquery.min.js"></script>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,700|Open+Sans+Condensed:700&subset=latin,latin-ext,cyrillic,cyrillic-ext">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700,400italic,700italic&subset=latin,cyrillic,cyrillic-ext,latin-ext">
     <link rel="stylesheet" type="text/css" href="css/highlight/default.css">
@@ -16,10 +16,7 @@
 
 <body>
     <div class="b-doc-wrapper">
-        <header class="b-header">
-            <a class="b-header__logo" href="index.html"><img src="logo.svg" alt="snakeskin template engine">
-                <div class="b-header__logo-text">Snakeskin</div>
-            </a>
+        <header class="b-header"><a class="b-header__logo" href="index.html"><img src="logo.svg" alt="snakeskin template engine"><div class="b-header__logo-text">Snakeskin</div></a>
             <nav class="b-nav">
                 <menu>
                     <li><a id="guide" href="guide.html" label="Guide">Guide</a></li>
@@ -462,7 +459,7 @@
                     </table>
                     <h2>Description</h2>
                     <p>Snakeskin template is just a JavaScript function, that can be used inside regular code after being transpiled. Every template returns a string by default. You can adjust this behaviour by specifying a custom <a href="#compile--renderMode">renderMode</a>                        or explicit <a href="#return">return</a> of a value.</p>
-                    <p>A template's name matches name of function in JavaScript, so it should comply the same rules. template declaration should be preceeded by namespace declaration and should have a unique name. Besides, a template can be declared only
+                    <p>A template’s name matches name of function in JavaScript, so it should comply the same rules. template declaration should be preceeded by namespace declaration and should have a unique name. Besides, a template can be declared only
                         within global scope. Nesting is not allowed - use <a href="#block">blocks</a> for this.</p>
                     <p>The directive is very similar to declaration of functions in JavaScript, for instance:</p>
                     <div class="b-example">
@@ -532,8 +529,8 @@
 </code></pre>
                     <h3>Predefined variables</h3>
                     <p>There are a couple of predefined constants and functions that can be used inside templates.</p>
-                    <p><code>TPL_NAME</code> - a string containing a full template's name along with name of namespace as it was at the moment of declaration.</p>
-                    <p><code>PARENT_TPL_NAME</code> - a string containing a full name of a template's parent along with its namespace as it was at the moment of declaration.
+                    <p><code>TPL_NAME</code> - a string containing a full template’s name along with name of namespace as it was at the moment of declaration.</p>
+                    <p><code>PARENT_TPL_NAME</code> - a string containing a full name of a template’s parent along with its namespace as it was at the moment of declaration.
                     </p>
                     <p><code>callee</code> - link to a running template (i.e. function).</p>
                     <p><code>self</code> - link to a <code>callee.Blocks</code> object, containing blocks (methods) of a running template.</p>
@@ -542,8 +539,8 @@
                     <p><code>$attrKey</code> - ключ атрибута тега созданного через директиву;</p>
                     <p><code>$attrs</code> - объект атрибутов тега созданного через директиву (<code>.getVar('$attrs')</code>);</p>
                     <p><code>$class</code> - значение <a href="#tag--%D0%A1%D1%81%D1%8B%D0%BB%D0%BA%D0%B8_%D0%BD%D0%B0_%D1%80%D0%BE%D0%B4%D0%B8%D1%82%D0%B5%D0%BB%D1%8C%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%BB%D0%B0%D1%81%D1%81">липкой ссылки</a>.</p>
-                    <p><code>getTplResult</code> - a function returning a template's result. Accepts a boolean argument, pointing whether the result should be reseted after the function calling.</p>
-                    <p><code>clearTplResult</code> - a function that resets a template's result.</p>
+                    <p><code>getTplResult</code> - a function returning a template’s result. Accepts a boolean argument, pointing whether the result should be reseted after the function calling.</p>
+                    <p><code>clearTplResult</code> - a function that resets a template’s result.</p>
                     <h3>Modificators</h3>
                     <p>Snakeskin templates support declaration modificators.</p>
                     <h4>Generator template</h4>
@@ -8255,7 +8252,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 </div>
             </div>
         </div>
-        <footer class="b-footer">© 2016 Snakeskin
+        <footer class="b-footer">© 2016-2017 Snakeskin
             <menu class="b-footer__menu">
                 <li><a href="https://github.com/SnakeskinTpl/snakeskin.github.io/issues/new">Report an error</a></li>
                 <li><a href="https://github.com/SnakeskinTpl/Snakeskin">GitHub</a></li>

@@ -12,6 +12,7 @@ global.i18n = (str) => str;
 
 const
 	gulp = require('gulp'),
+	plumber = require('gulp-plumber'),
 	snakeskin = require('gulp-snakeskin'),
 	stylus = require('gulp-stylus'),
 	autoprefixer = require('gulp-autoprefixer'),
@@ -23,10 +24,10 @@ const
 	through = require('through2');
 
 const
+	fs = require('fs'),
 	path = require('path'),
 	async = require('async'),
 	nib = require('nib'),
-	exists = require('exists-sync'),
 	babel = require('rollup-plugin-babel'),
 	hljs = require('highlight.js');
 
@@ -36,16 +37,11 @@ hljs.registerLanguage('jade-like', require('./highlight/jade-like'));
 const
 	buildFolder = './';
 
-function error() {
-	return (err) => {
-		console.error(err.message);
-	};
-}
-
 gulp.task('templates', (cb) => {
 	const doc = (cb, lang) => {
 		let cluster;
 		gulp.src('./tpls/*.ss')
+			.pipe(plumber())
 			.pipe(through.obj(function (file, enc, cb) {
 				cluster = path.basename(file.path, '.ss');
 				this.push(file);
@@ -55,13 +51,13 @@ gulp.task('templates', (cb) => {
 			.pipe(snakeskin({
 				exec: true,
 				prettyPrint: true,
-				language: exists(`./${lang}.json`) ? require(`./${lang}.json`) : undefined,
+				language: fs.existsSync(`./${lang}.json`) ? require(`./${lang}.json`) : undefined,
 				vars: {
 					lang,
-					file: () => cluster}
+					file: () => cluster
+				}
 			}))
 
-			.on('error', error())
 			.pipe(rename({suffix: lang !== 'en' ? `-${lang}` : ''}))
 			.pipe(gulp.dest(buildFolder))
 			.on('end', cb);
@@ -75,12 +71,10 @@ gulp.task('templates', (cb) => {
 
 gulp.task('styles', (cb) => {
 	gulp.src('./styles/*.styl')
+		.pipe(plumber())
 		.pipe(stylus({use: nib()}))
-		.on('error', error())
 		.pipe(autoprefixer())
-		.on('error', error())
 		.pipe(csso())
-		.on('error', error())
 		.pipe(gulp.dest(path.join(buildFolder, 'css')))
 		.on('end', cb);
 });
@@ -92,8 +86,8 @@ gulp.task('dependencies', (cb) => {
 				'./node_modules/highlight.js/styles/default.css'
 			])
 
+				.pipe(plumber())
 				.pipe(csso())
-				.on('error', error())
 				.pipe(gulp.dest(path.join(buildFolder, 'css/highlight')))
 				.on('end', cb);
 		},
@@ -103,8 +97,8 @@ gulp.task('dependencies', (cb) => {
 				'./node_modules/jquery.scrollto/jquery.scrollTo.min.js'
 			])
 
-			.pipe(gulp.dest(path.join(buildFolder, 'js')))
-			.on('end', cb);
+				.pipe(gulp.dest(path.join(buildFolder, 'js')))
+				.on('end', cb);
 		}
 
 	], cb);
@@ -112,17 +106,22 @@ gulp.task('dependencies', (cb) => {
 
 gulp.task('scripts', (cb) => {
 	gulp.src('./scripts/index.js')
-		.pipe(rollup({format: 'iife', plugins: [babel()]}))
-		.on('error', error())
+		.pipe(plumber())
+		.pipe(rollup({
+			allowRealFiles: true,
+			entry: './scripts/index.js',
+			format: 'iife',
+			plugins: [babel()]
+		}))
+
 		.pipe(uglify())
-		.on('error', error())
 		.pipe(gulp.dest(path.join(buildFolder, 'js')))
 		.on('end', cb);
 });
 
 gulp.task('yaspeller', (cb) => {
 	run('yaspeller ./').exec()
-		.on('error', error())
+		.pipe(plumber())
 		.on('finish', cb);
 });
 

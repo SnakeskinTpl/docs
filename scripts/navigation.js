@@ -59,7 +59,9 @@ $(() => {
 
 	function emptyHash() {
 		let
-			hash = decodeURIComponent(location.hash),
+			hash = decodeURIComponent(location.hash);
+
+		const
 			target = hash && $(hash);
 
 		function setArticle(target) {
