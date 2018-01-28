@@ -13,7 +13,7 @@
 
 - import snakeskin from 'snakeskin'
 
-- base.typograf({lang: @@lang})
+- base.typograf({locale: @@locale})
 - template main()
 	- doctype
 	< html

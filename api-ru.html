@@ -156,7 +156,7 @@
                             </li>
                         </ol>
                     </li>
-                    <li class="b-contents__part b-contents__part_link_false">JS API
+                    <li class="b-contents__part b-contents__part_link_false">JS API
                         <ol>
                             <li class="b-contents__part b-contents__part_link_false">Общее
                                 <ol>
@@ -268,7 +268,7 @@
 </span></code></pre>
                         </div>
                     </div>
-                    <p>Т.к. пространство имён превращается в JS объект, то на декларируемое имя накладываются те же ограничения, что и на свойство объекта, однако можно использовать декларацию через квадратные скобки (<code>[ ... ]</code>), которая позволяет
+                    <p>Т.к. пространство имён превращается в JS объект, то на декларируемое имя накладываются те же ограничения, что и на свойство объекта, однако можно использовать декларацию через квадратные скобки (<code>[ ... ]</code>), которая позволяет
                         применять любые символы и сложные выражения, например:</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -437,7 +437,7 @@
                         </li>
                     </ul>
                     <h1>template</h1>
-                    <p>Директива декларирует шаблон c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует шаблон c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -458,7 +458,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Шаблон Snakeskin — это синоним функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом. По умолчанию шаблоны возвращают строки, однако это
+                    <p>Шаблон Snakeskin — это синоним функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом. По умолчанию шаблоны возвращают строки, однако это
                         поведение можно поменять задав специальный <a href="#compile--renderMode">renderMode</a> или явно вернув значение через директиву <a href="#return">return</a>.</p>
                     <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам. Начать декларацию шаблона можно только после декларации пространства имён, причём в рамках одного пространства имён не может быть
                         2-х шаблонов с одинаковым именем, а размещаться шаблон может только в глобальной области декларации, т. е. шаблон не может включать в себя другой шаблон — для этого есть подшаблоны, например, <a href="#block">блоки</a>.</p>
@@ -545,7 +545,7 @@
                     <h3>Модификаторы шаблона</h3>
                     <p>Шаблоны Snakeskin поддерживают специальные модификаторы декларации.</p>
                     <h4>Шаблон-генератор</h4>
-                    <p>Шаблон будет транслироваться в JS как функция-генератор (для поддержки в старых браузерах необходимо использовать полифил).</p>
+                    <p>Шаблон будет транслироваться в JS как функция-генератор (для поддержки в старых браузерах необходимо использовать полифил).</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -567,7 +567,7 @@
                         </div>
                     </div>
                     <h4>Асинхронный шаблон</h4>
-                    <p>Шаблон будет транслироваться в JS как <em>async</em> функция (для поддержки в браузерах необходимо использовать полифил).</p>
+                    <p>Шаблон будет транслироваться в JS как <em>async</em> функция (для поддержки в браузерах необходимо использовать полифил).</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -605,7 +605,7 @@
 </span><span class="hljs-directive">				() <span class="hljs-keyword">=&gt;</span></span><span class="xml">
 </span><span class="hljs-directive">					- <span class="hljs-name"><span class="hljs-built_in">return</span></span> new Typograf(params).execute(target.apply(this, arguments))</span><span class="xml">
 </span><span class="hljs-directive">
-- @typograf({lang: <span class="hljs-string">'ru'</span>})</span><span class="xml">
+- @typograf({locale: <span class="hljs-string">'ru'</span>})</span><span class="xml">
 </span><span class="hljs-directive">- <span class="hljs-name"><span class="hljs-built_in">template</span></span> index()</span><span class="xml">
 	Спорт - это правильно!
 </span></code></pre>
@@ -624,7 +624,7 @@
 	</span><span class="hljs-directive">{/}</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
 
-</span><span class="hljs-directive">{@typograf({lang: <span class="hljs-string">'ru'</span>}</span><span class="xml">)}
+</span><span class="hljs-directive">{@typograf({locale: <span class="hljs-string">'ru'</span>}</span><span class="xml">)}
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">template</span></span> index()}</span><span class="xml">
 	Спорт - это правильно!
 </span><span class="hljs-directive">{<span class="hljs-name">/<span class="hljs-built_in">template</span></span>}</span><span class="xml">
@@ -718,7 +718,7 @@
                         </li>
                     </ul>
                     <h1>interface</h1>
-                    <p>Директива декларирует шаблон-интерфейс c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует шаблон-интерфейс c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -739,7 +739,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Шаблон-интерфейс отличается от простого шаблона тем, что после трансляции в JS будет получена пустая функция с входными параметрами, например:
+                    <p>Шаблон-интерфейс отличается от простого шаблона тем, что после трансляции в JS будет получена пустая функция с входными параметрами, например:
                     </p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -774,7 +774,7 @@
                         </li>
                     </ul>
                     <h1>placeholder</h1>
-                    <p>Директива декларирует шаблон-плейсхолдер c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует шаблон-плейсхолдер c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -828,7 +828,7 @@
                         </li>
                     </ul>
                     <h1>block</h1>
-                    <p>Директива декларирует статичный блок или подшаблон c заданным именем и входными параметрами.</p>
+                    <p>Директива декларирует статичный блок или подшаблон c заданным именем и входными параметрами.</p>
                     <h2>Паспорт</h2>
                     <table>
                         <thead>
@@ -1837,7 +1837,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Т.к. любой код, размещённый вне тела шаблона будет выполняться как на этапе трансляции, так и войдёт в конечный JS код, то директива <em>eval</em> позволяет создать блок, содержимое которого будет исключаться из результирующего кода,
+                    <p>Т.к. любой код, размещённый вне тела шаблона будет выполняться как на этапе трансляции, так и войдёт в конечный JS код, то директива <em>eval</em> позволяет создать блок, содержимое которого будет исключаться из результирующего кода,
                         но по прежнему будет выполняться на этапе трансляции.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -1888,7 +1888,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Т.к. любой код, размещённый вне тела шаблона будет выполняться как на этапе трансляции, так и войдёт в конечный JS код, то директива <em>head</em> позволяет создать блок, содержимое которого по прежнему не будет исключаться из результирующего
+                    <p>Т.к. любой код, размещённый вне тела шаблона будет выполняться как на этапе трансляции, так и войдёт в конечный JS код, то директива <em>head</em> позволяет создать блок, содержимое которого по прежнему не будет исключаться из результирующего
                         кода, но не будет выполняться на этапе трансляции, а также переменные, которые были объявлены на корневом уровне директивы, будут считаться глобальными.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -2111,7 +2111,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Переменные в Snakeskin имеют блочную область видимости и по своей семантике напоминают <code>let</code> из JS ES2015.</p>
+                    <p>Переменные в Snakeskin имеют блочную область видимости и по своей семантике напоминают <code>let</code> из JS ES2015.</p>
                     <p>Директива <em>var</em> позволяет декларировать сразу несколько переменных через запятую (аналогично как это делается в JS).</p>
                     <p>Директива начинается с ключевого слова <code>var</code> (или символа <code>:</code>), которое должно сопровождаться списком имён создаваемых переменных (через запятую). Для присвоения значений созданной переменной необходимо поставить
                         символ <code>=</code> после имени.</p>
@@ -2135,7 +2135,7 @@
 </span><span class="hljs-comment">/// Короткая форма закрытия</span><span class="xml">
 </span><span class="hljs-directive">{<span class="hljs-name"><span class="hljs-built_in">var</span></span> b = <span class="hljs-number">2</span> /}</span><span class="xml">
 </span></code></pre>
-                    <p>В отличии от JS переменные в Snakeskin декларируются только после места декларации.</p>
+                    <p>В отличии от JS переменные в Snakeskin декларируются только после места декларации.</p>
                     <div class="b-example">
                         <menu class="b-example__toggle">
                             <li class="b-example__link b-example__link_active_true">jade-like</li>
@@ -2289,7 +2289,7 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Константы Snakeskin не имеют ничего общего с константами из JS ES2015 и служат для других целей. Константы глобальны в рамках своего шаблона, поэтому не может быть 2-х констант с одинаковым именем. Значение константы может меняться
+                    <p>Константы Snakeskin не имеют ничего общего с константами из JS ES2015 и служат для других целей. Константы глобальны в рамках своего шаблона, поэтому не может быть 2-х констант с одинаковым именем. Значение константы может меняться
                         по ходу выполнения шаблона.</p>
                     <p>При декларации константы не требуется специального ключевого слова (хотя допускается), например:</p>
                     <div class="b-example">
@@ -2432,8 +2432,8 @@
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Супер-глобальная переменная Snakeskin — это свойство объекта <code>Snakeskin.Vars</code>, т. е. такая переменная доступна как из JavaScript, так и <strong>во всех</strong> файлах шаблонов. Устанавливать такие переменные можно из JS (причём
-                        можно до трансляции) или из шаблонов. Основной use-case супер-глобальных переменных — это прокидывание конфига, т. е. некоторый аналог переменных среды в операционной системе.</p>
+                    <p>Супер-глобальная переменная Snakeskin — это свойство объекта <code>Snakeskin.Vars</code>, т. е. такая переменная доступна как из JavaScript, так и <strong>во всех</strong> файлах шаблонов. Устанавливать такие переменные можно из JS
+                        (причём можно до трансляции) или из шаблонов. Основной use-case супер-глобальных переменных — это прокидывание конфига, т. е. некоторый аналог переменных среды в операционной системе.</p>
                     <h3>Задание из JS</h3>
                     <p>Чтобы задать значение супер-глобальной переменной перед непосредственной трансляцией можно использовать параметр <a href="#compile--vars">vars</a>, а также в любой момент времени допускается вносить изменения напрямую в объект <code>Snakeskin.Vars</code>,
                         например:</p>
@@ -2441,7 +2441,7 @@
 Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
 </code></pre>
                     <h3>Задание и чтение из SS</h3>
-                    <p>Для задания супер-глобальной переменной из SS можно использовать несколько способов:</p>
+                    <p>Для задания супер-глобальной переменной из SS можно использовать несколько способов:</p>
                     <ol>
                         <li>Использование директивы <em>global</em>, например:</li>
                     </ol>
@@ -3690,7 +3690,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                     </div>
                     <p>Директива может использоваться как внутри шаблонов или других директив, так и в глобальной области. Вместе с основной директивой можно использовать дополнительные:</p>
                     <ol>
-                        <li><code>catch</code> — аналог <code>catch</code> в JS (<a href="guide-ru.html#introParams">функциональная директива</a>);</li>
+                        <li><code>catch</code> — аналог <code>catch</code> в JS (<a href="guide-ru.html#introParams">функциональная директива</a>);</li>
                         <li><code>finally</code> — аналог <code>finally</code> в JS.</li>
                     </ol>
                     <h3>Примеры</h3>
@@ -5462,7 +5462,7 @@ Snakeskin.Vars.port = <span class="hljs-string">'1989'</span>;
                         </tbody>
                     </table>
                     <h2>Описание</h2>
-                    <p>Любой Snakeskin файл может включать в себя другие SS файлы, т. е. Snakeskin позволяет разбить код на логические части и создавать подключаемые библиотеки (подобно <a href="https://github.com/SnakeskinTpl/std.ss">std.ss</a>) и т. д.
+                    <p>Любой Snakeskin файл может включать в себя другие SS файлы, т. е. Snakeskin позволяет разбить код на логические части и создавать подключаемые библиотеки (подобно <a href="https://github.com/SnakeskinTpl/std.ss">std.ss</a>) и т. д.
                         Чтобы подключить другой файл используется специальная директива <em>include</em>, которая начинается с одноименного ключевого слова и должна сопровождаться выражением, где задаётся путь к подключаемому файлу, например:</p>
                     <p><strong>math.ss</strong></p>
                     <div class="b-example">
@@ -5897,7 +5897,7 @@ hello = 'people'
                     </table>
                     <h2>Описание</h2>
                     <p>Директива используется для импортирования JavaScript модулей в шаблон Snakeskin, а тип используемого импортирования зависит от параметра трансляции <a href="#compile--module">module</a> (по умолчанию используется <a href="https://github.com/umdjs/umd">UMD</a>).
-                        Синтаксис директивы идентичен аналогичной конструкции в JS ES2015. Директива может использоваться только в глобальной области или на глобальном уровне директивы <em>head</em>.</p>
+                        Синтаксис директивы идентичен аналогичной конструкции в JS ES2015. Директива может использоваться только в глобальной области или на глобальном уровне директивы <em>head</em>.</p>
                     <h3>Примеры</h3>
                     <div class="b-example">
                         <menu class="b-example__toggle">
@@ -7680,7 +7680,7 @@ hello = 'people'
                 <section id="compile" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> Общее
@@ -7876,7 +7876,7 @@ info.code <span class="hljs-comment">// Исходный текст получе
  * @default false
  */</span>
 </code></pre>
-                    <p>Если параметр равен <code>true</code>, то полученный JS после трансляции будет отформатирован.</p>
+                    <p>Если параметр равен <code>true</code>, то полученный JS после трансляции будет отформатирован.</p>
                     <h4>literalBounds</h4>
                     <pre class="hljs example-js"><code><span class="hljs-comment">/**
  * @type {Array&lt;string&gt;=}
@@ -8128,7 +8128,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="importFilters" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> Общее
@@ -8149,7 +8149,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="setFilterParams" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> Общее
@@ -8170,7 +8170,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="check" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> node.js
@@ -8191,7 +8191,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="compileFile" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> node.js
@@ -8212,7 +8212,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="exec" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> node.js
@@ -8235,7 +8235,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                 <section id="execFile" class="b-article">
                     <ul class="b-breadcrumbs">
                         <li><i class="fa fa-home"></i>
-                            <div class="fa fa-angle-right"></div> JS API
+                            <div class="fa fa-angle-right"></div> JS API
                             <div class="fa fa-angle-right"></div>
                         </li>
                         <li> node.js

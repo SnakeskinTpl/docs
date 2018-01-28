@@ -207,7 +207,7 @@ exports.demo.index = function index(name) {
 				() =>
 					- return new Typograf(params).execute(target.apply(this, arguments))
 
-- @typograf({lang: 'ru'})
+- @typograf({locale: 'ru'})
 - template index()
 	Спорт - это правильно!
 ```
@@ -228,7 +228,7 @@ exports.demo.index = function index(name) {
 	{/}
 {/template}
 
-{@typograf({lang: 'ru'})}
+{@typograf({locale: 'ru'})}
 {template index()}
 	Спорт - это правильно!
 {/template}

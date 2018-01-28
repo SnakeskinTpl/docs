@@ -204,7 +204,7 @@ Decorator accepts a link to original function and must return a function as its 
 				() =>
 					- return new Typograf(params).execute(target.apply(this, arguments))
 
-- @typograf({lang: 'ru'})
+- @typograf({locale: 'ru'})
 - template index()
 	Sport is well!
 ```
@@ -225,7 +225,7 @@ Decorator accepts a link to original function and must return a function as its 
 	{/}
 {/template}
 
-{@typograf({lang: 'ru'})}
+{@typograf({locale: 'ru'})}
 {template index()}
 	Sport is well!
 {/template}

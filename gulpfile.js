@@ -15,7 +15,7 @@ const
 	$ = require('gulp-load-plugins')();
 
 const
-	fs = require('fs'),
+	fs = require('fs-extra'),
 	path = require('path'),
 	hljs = require('highlight.js');
 
@@ -30,7 +30,7 @@ gulp.task('templates', () => {
 		through = require('through2'),
 		merge = require('merge2');
 
-	const doc = (lang) => {
+	const doc = (lang, locale = lang) => {
 		let cluster;
 		return gulp.src('./tpls/*.ss')
 			.pipe($.plumber())
@@ -42,9 +42,10 @@ gulp.task('templates', () => {
 			.pipe($.snakeskin({
 				exec: true,
 				prettyPrint: true,
-				language: fs.existsSync(`./${lang}.json`) ? require(`./${lang}.json`) : undefined,
+				language: fs.existsSync(`./${lang}.json`) ? fs.readJSONSync(`./${lang}.json`) : undefined,
 				vars: {
 					lang,
+					locale,
 					file: () => cluster
 				}
 			}))
@@ -53,7 +54,7 @@ gulp.task('templates', () => {
 			.pipe(gulp.dest(buildFolder));
 	};
 
-	return merge([doc('en'), doc('ru')]);
+	return merge([doc('en', 'en-US'), doc('ru')]);
 });
 
 gulp.task('styles', () =>

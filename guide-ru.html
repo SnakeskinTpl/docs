@@ -79,7 +79,7 @@
                         структур и упрощения их code-reuse, предоставляя из коробки наследование, расширение, локализацию, экранирование и прочие полезные ништяки :)</p>
                     <p>Snakeskin удобно использовать для генерации статичных страниц — транслятор может скомпилировать и сразу выполнить шаблон, возвратив результат его работы, что можно использовать для генерации шаблонов различных MVVM-фреймворков, таких
                         как Angular, Vue или React. В принципе, можно использовать Snakeskin даже для генерации кода на PHP — но помните, мы не гарантируем защиты от динозавров, которые могут прийти за вами.</p>
-                    <p>Snakeskin поддерживает интеграцию с популярными task-runner’ами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов — это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
+                    <p>Snakeskin поддерживает интеграцию с популярными task-runner'ами и сборщиками (Grunt, Gulp, Webpack) с помощью плагинов — это позволяет бесшовно встроить его в систему сборки любого проекта.</p>
                     <p>Use and enjoy.</p>
                 </section>
                 <section id="install" class="b-article">
@@ -174,7 +174,7 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                     <p>Основные use-case Snakeskin — это:</p>
                     <ol>
                         <li>Серверная шаблонизация;</li>
-                        <li>Предварительная трансляция шаблонов в JS и использование их на клиенте;</li>
+                        <li>Предварительная трансляция шаблонов в JS и использование их на клиенте;</li>
                         <li>Генерация шаблонов для различных фреймворков, например, Angular, Vue, React и т. д.;</li>
                         <li>Статическая генерация страниц на этапе сборки проекта.</li>
                     </ol>
@@ -217,7 +217,7 @@ exports.demo.helloWorld = <span class="hljs-function"><span class="hljs-keyword"
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> tpls = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./templates.ss.js'</span>);
 </code></pre>
                     <h3>Использование вместе с Vue и Webpack</h3>
-                    <p>Snakeskin бесшовно интегрируется с большинством популярных MVVM библиотек и фреймворков, а использование SS вместе с Webpack является одной из самых лучших практик.</p>
+                    <p>Snakeskin бесшовно интегрируется с большинством популярных MVVM библиотек и фреймворков, а использование SS вместе с Webpack является одной из самых лучших практик.</p>
                     <p><strong>webpack.config.js</strong></p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">var</span> webpack = <span class="hljs-built_in">require</span>(<span class="hljs-string">'webpack'</span>);
 
@@ -284,7 +284,7 @@ Vue.component(<span class="hljs-string">'button'</span>, {
 	<span class="hljs-attr">template</span>: button.index()
 });
 </code></pre>
-                    <p>В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора <a href="https://babeljs.io">Babel</a>, чтобы обеспечить поддержку в старых браузерах.</p>
+                    <p>В примере используется JS стандарта ES2015, поэтому также добавлен лоадер для транслятора <a href="https://babeljs.io">Babel</a>, чтобы обеспечить поддержку в старых браузерах.</p>
                     <h3>Статическая генерация страниц вместе с Gulp</h3>
                     <p>Snakeskin может немедленно выполнить скомпилированный шаблон по заданному имени и вернуть результат, а если имя шаблона не задано, то оно будет вычислено по формуле:</p>
                     <pre class="hljs example-default"><code>шаблон с именем главного файла (без расширения) ||
@@ -341,7 +341,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                     </ul>
                     <h1>Декларация и базовый синтаксис</h1>
                     <h2>Область декларации шаблонов</h2>
-                    <p>Шаблоны Snakeskin можно декларировать либо в отдельных файлах c расширением <strong>.ss</strong> (рекомендуемый способ), либо внутри HTML документа через <code>&lt;script&gt;</code> блок, например:</p>
+                    <p>Шаблоны Snakeskin можно декларировать либо в отдельных файлах c расширением <strong>.ss</strong> (рекомендуемый способ), либо внутри HTML документа через <code>&lt;script&gt;</code> блок, например:</p>
                     <pre class="hljs example-html"><code><span class="hljs-meta">&lt;!doctype html&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">html</span>&gt;</span>
 	<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
@@ -572,7 +572,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
                         </li>
                     </ul>
                     <h1>Декларация шаблона и вывод данных</h1>
-                    <p>Шаблон — это главная функциональная ячейка Snakeskin, которая является синонимом функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом.</p>
+                    <p>Шаблон — это главная функциональная ячейка Snakeskin, которая является синонимом функции в JavaScript, т. е. после трансляции все шаблоны будут представлены как JS функции, которые можно использовать вместе с любым другим JS кодом.</p>
                     <p>Объявление шаблона возможно с помощью директив <a href="api-ru.html#template">template</a>, <a href="api-ru.html#interface">interface</a> и
                         <a href="api-ru.html#placeholder">placeholder</a>. Шаблон не может включать в себя другой шаблон, для этого есть другие директивы.</p>
                     <p>Название шаблона соответствует названию функции в JavaScript, поэтому оно подчиняется тем же правилам.</p>
@@ -616,7 +616,7 @@ gulp.task(<span class="hljs-string">'default'</span>, [<span class="hljs-string"
 </span></code></pre>
                         </div>
                     </div>
-                    <p>В JS такое будет выглядеть как:</p>
+                    <p>В JS такое будет выглядеть как:</p>
                     <pre class="hljs example-js"><code><span class="hljs-keyword">if</span> (exports.demo === <span class="hljs-string">'undefined'</span>) {
 	<span class="hljs-keyword">var</span> demo = exports.demo = {};
 }
@@ -1313,7 +1313,7 @@ Snakeskin.compile(<span class="hljs-string">'&lt;шаблон&gt;'</span>, {
                         </li>
                     </ul>
                     <h1>Интеграция с другими шаблонами</h1>
-                    <p>Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы <a href="api-ru.html#literal">literal</a>. Как правило такой кейз возникает при интеграции Snakeskin c MVVM фреймворками, например,
+                    <p>Snakeskin поддерживает бесшовную интеграцию с другими шаблонными движками с помощью специальной директивы <a href="api-ru.html#literal">literal</a>. Как правило такой кейз возникает при интеграции Snakeskin c MVVM фреймворками, например,
                         с Vue. Директива <em>literal</em> имеет специальный синтаксис <code>{{ ... }}</code>, который скомпилируется согласно параметру <a href="api-ru.html#compile--literalBounds">literalBounds</a> (по умолчанию используется <code>{{ ... }}</code>),
                         например:</p>
                     <div class="b-example">
