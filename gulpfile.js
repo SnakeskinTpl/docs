@@ -12,23 +12,11 @@ global.i18n = (str) => str;
 
 const
 	gulp = require('gulp'),
-	plumber = require('gulp-plumber'),
-	snakeskin = require('gulp-snakeskin'),
-	stylus = require('gulp-stylus'),
-	autoprefixer = require('gulp-autoprefixer'),
-	rollup = require('gulp-rollup'),
-	uglify = require('gulp-uglify'),
-	csso = require('gulp-csso'),
-	run = require('gulp-run'),
-	rename = require('gulp-rename'),
-	through = require('through2');
+	$ = require('gulp-load-plugins')();
 
 const
 	fs = require('fs'),
 	path = require('path'),
-	async = require('async'),
-	nib = require('nib'),
-	babel = require('rollup-plugin-babel'),
 	hljs = require('highlight.js');
 
 hljs.registerLanguage('classic', require('./highlight/classic'));
@@ -37,18 +25,21 @@ hljs.registerLanguage('jade-like', require('./highlight/jade-like'));
 const
 	buildFolder = './';
 
-gulp.task('templates', (cb) => {
-	const doc = (cb, lang) => {
+gulp.task('templates', () => {
+	const
+		through = require('through2'),
+		merge = require('merge2');
+
+	const doc = (lang) => {
 		let cluster;
-		gulp.src('./tpls/*.ss')
-			.pipe(plumber())
-			.pipe(through.obj(function (file, enc, cb) {
+		return gulp.src('./tpls/*.ss')
+			.pipe($.plumber())
+			.pipe(through.obj((file, enc, cb) => {
 				cluster = path.basename(file.path, '.ss');
-				this.push(file);
-				return cb();
+				return cb(null, file);
 			}))
 
-			.pipe(snakeskin({
+			.pipe($.snakeskin({
 				exec: true,
 				prettyPrint: true,
 				language: fs.existsSync(`./${lang}.json`) ? require(`./${lang}.json`) : undefined,
@@ -58,78 +49,69 @@ gulp.task('templates', (cb) => {
 				}
 			}))
 
-			.pipe(rename({suffix: lang !== 'en' ? `-${lang}` : ''}))
-			.pipe(gulp.dest(buildFolder))
-			.on('end', cb);
+			.pipe($.rename({suffix: lang !== 'en' ? `-${lang}` : ''}))
+			.pipe(gulp.dest(buildFolder));
 	};
 
-	async.series([
-		(cb) => doc(cb, 'en'),
-		(cb) => doc(cb, 'ru'),
-	], cb);
+	return merge([doc('en'), doc('ru')]);
 });
 
-gulp.task('styles', (cb) => {
+gulp.task('styles', () =>
 	gulp.src('./styles/*.styl')
-		.pipe(plumber())
-		.pipe(stylus({use: nib()}))
-		.pipe(autoprefixer())
-		.pipe(csso())
+		.pipe($.plumber())
+		.pipe($.stylus({use: require('nib')()}))
+		.pipe($.autoprefixer())
+		.pipe($.csso())
 		.pipe(gulp.dest(path.join(buildFolder, 'css')))
-		.on('end', cb);
-});
+);
 
-gulp.task('dependencies', (cb) => {
-	async.parallel([
-		(cb) => {
-			gulp.src([
-				'./node_modules/highlight.js/styles/default.css'
-			])
+gulp.task('dependencies:css', () =>
+	gulp.src([
+		'./node_modules/highlight.js/styles/default.css'
+	])
 
-				.pipe(plumber())
-				.pipe(csso())
-				.pipe(gulp.dest(path.join(buildFolder, 'css/highlight')))
-				.on('end', cb);
-		},
+		.pipe($.plumber())
+		.pipe($.csso())
+		.pipe(gulp.dest(path.join(buildFolder, 'css/highlight')))
+);
 
-		(cb) => {
-			gulp.src([
-				'./node_modules/jquery.scrollto/jquery.scrollTo.min.js'
-			])
+gulp.task('dependencies:js', () =>
+	gulp.src([
+		'./node_modules/jquery.scrollto/jquery.scrollTo.min.js'
+	])
+		.pipe(gulp.dest(path.join(buildFolder, 'js')))
+);
 
-				.pipe(gulp.dest(path.join(buildFolder, 'js')))
-				.on('end', cb);
-		}
+gulp.task('dependencies', gulp.parallel([
+	'dependencies:css',
+	'dependencies:js'
+]));
 
-	], cb);
-});
-
-gulp.task('scripts', (cb) => {
+gulp.task('scripts', () =>
 	gulp.src('./scripts/index.js')
-		.pipe(plumber())
-		.pipe(rollup({
+		.pipe($.plumber())
+		.pipe($.rollup({
 			allowRealFiles: true,
-			entry: './scripts/index.js',
+			input: './scripts/index.js',
 			format: 'iife',
-			plugins: [babel()]
+			plugins: [require('rollup-plugin-babel')()]
 		}))
 
-		.pipe(uglify())
+		.pipe($.uglify())
 		.pipe(gulp.dest(path.join(buildFolder, 'js')))
-		.on('end', cb);
-});
+);
 
-gulp.task('yaspeller', (cb) => {
-	run('yaspeller ./').exec()
-		.pipe(plumber())
-		.on('finish', cb);
-});
+gulp.task('yaspeller', () => $.run('yaspeller ./ --ignore-uppercase').exec().on('error', console.error));
+gulp.task('default', gulp.parallel([
+	'templates',
+	'styles',
+	'scripts',
+	'dependencies'
+]));
 
-gulp.task('watch', () => {
-	gulp.watch(['./tpls/**/*.ss', './docs/**/*.ss'], ['templates']);
-	gulp.watch('./docs/**/*.ss', ['yaspeller']);
-	gulp.watch('./styles/**/*.styl', ['styles']);
-	gulp.watch('./scripts/**/*.js', ['scripts']);
-});
-
-gulp.task('default', ['templates', 'styles', 'scripts', 'dependencies', 'watch']);
+gulp.task('watch', gulp.series(['default', () => {
+	gulp.watch(['./tpls/**/*.ss', './docs/**/*.ss'], gulp.series(['templates']));
+	gulp.watch('./docs/**/*.ss', gulp.series(['yaspeller']));
+	gulp.watch('./styles/**/*.styl', gulp.series(['styles']));
+	gulp.watch('./scripts/**/*.js', gulp.series(['scripts']));
+}]));
